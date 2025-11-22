@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\RegistrasiController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,9 @@ use App\Http\Controllers\LoginController;
 
 Route::get('/', function () {
     return view('login');
-});
+})->name('login');
+
+Route::get('/registrasi', [RegistrasiController::class, 'index'])->name('registrasi');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
 
