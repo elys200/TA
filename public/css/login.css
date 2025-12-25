@@ -236,3 +236,11 @@ body{
         font-size: 30px;
     }
 }
+
+.all-products{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+

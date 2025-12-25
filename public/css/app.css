@@ -327,7 +327,11 @@
     text-transform: uppercase;
     color: #fff;
     letter-spacing: .8px;
+<<<<<<< Updated upstream
     font-weight: 400;
+=======
+    font-weight: 200;
+>>>>>>> Stashed changes
     font-size: 1.3rem;
     margin-bottom: 0;
     margin-top: 5px
@@ -1050,7 +1054,11 @@
     padding: .7rem 2rem;
     display: block;
     color: #25396f;
+<<<<<<< Updated upstream
     font-size: 13px;
+=======
+    font-size: .85rem;
+>>>>>>> Stashed changes
     font-weight: 600;
     letter-spacing: .5px;
     transition: all .3s
@@ -1060,6 +1068,7 @@
     margin-left: .3rem
 }
 
+<<<<<<< Updated upstream
 .sidebar-wrapper .menu .submenu .submenu-item {
     display: flex;
     align-items: center;
@@ -1067,6 +1076,8 @@
 }
 
 
+=======
+>>>>>>> Stashed changes
 @media screen and (max-width:1199px) {
     .sidebar-wrapper {
         position: absolute;
@@ -1425,6 +1436,7 @@
     padding: 2rem;
 }
 
+
 @media screen and (max-width:1199px) {
     #main {
         margin-left: 0
@@ -1552,6 +1564,10 @@ a {
     color: #00474d
 }
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 .font-semibold {
     font-weight: 600
 }
@@ -1592,6 +1608,7 @@ a {
     vertical-align: middle
 }
 
+/* ===== HELLO & PRODUCT ===== */
 .hello {
     background: #435ebe;
     padding: 20px;
@@ -1601,9 +1618,9 @@ a {
 }
 
 .hello-img {
-    height: 70px;         /* ⬅️ Menyesuaikan tinggi hello */
+    height: 70px;
     width: auto;
-    object-fit: contain;  /* ⬅️ Biar gambar tidak gepeng */
+    object-fit: contain;
 }
 
 .card-img-top {
@@ -1623,7 +1640,7 @@ a {
     height: 80%;
     margin-left: 0 !important;
     margin-right: 0 !important;
-    padding: 0; 
+    padding: 0;
 }
 
 .card-hover {
@@ -1634,6 +1651,7 @@ a {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.12);
 }
+
 .product-card {
     border: 1px solid #01040b;
     border-radius: 12px;
@@ -1644,6 +1662,7 @@ a {
 .product-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    border-color: #0d6efd;
 }
 
 .product-card img {
@@ -1665,9 +1684,174 @@ a {
     color: #6c757d;
 }
 
-.product-card:hover {
-    border-color: #0d6efd; /* biru bootstrap */
+/* ===== SERVICES ===== */
+.services-section {
+    padding: 80px 0;
+    background: #fff;
+    text-align: center;
+    border-radius: 12px;
 }
 
+.services-title {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #222;
+}
 
+.services-subtitle {
+    max-width: 600px;
+    margin: 0 auto 50px;
+    color: #555;
+}
 
+.services-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+.service-card {
+    width: 260px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    height: 230px;
+    border: 1px solid #ddd;
+    flex: 0 0 23%;
+    box-sizing: border-box;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 50px rgba(0,0,0,0.1);
+}
+
+.service-card .icon img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.services-btn {
+    margin-top: 15px;
+    display: inline-block;
+    background: #4e74ff;
+    color: #fff;
+    padding: 20px 60px;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: 200;
+    text-decoration: none;
+}
+
+@media (max-width: 992px) {
+    .service-card {
+        flex: 0 0 48%;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .service-card {
+        flex: 0 0 100%;
+        margin-bottom: 15px;
+    }
+}
+
+/* ===== ABOUT ===== */
+.about-section {
+    padding: 80px 0;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.about-left img {
+    width: 100%;
+    max-width: 450px;
+}
+
+.about-right {
+    max-width: 550px;
+}
+
+.about-title {
+    font-size: 36px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.about-desc {
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.about-accordion .faq-item {
+    background: #fff;
+    border-radius: 15px;
+    padding: 20px 25px;
+    margin-bottom: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+
+.about-accordion .faq-question {
+    position: relative;
+    font-size: 18px;
+    font-weight: 600;
+    padding-right: 30px;
+}
+
+.about-accordion .faq-question::after {
+    content: "+";
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 26px;
+    transition: 0.2s ease;
+}
+
+.faq-item.active .faq-question::after {
+    content: "−";
+}
+
+.about-accordion .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    font-size: 15px;
+    color: #555;
+    margin-top: 5px;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 15px;
+}
+
+.about-btn {
+    margin-top: 25px;
+    display: inline-block;
+    background: #4e74ff;
+    padding: 12px 30px;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.card-img-fit {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
