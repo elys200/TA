@@ -6,6 +6,7 @@ use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\BarangController;
+use App\Http\Controllers\RuanganController;
 
 
 Route::get('/', function () {
@@ -22,3 +23,13 @@ Route::get('/ormawa/detail', function () {
 
 Route::get('/role', [RoleController::class, 'index'])->name('role');
 Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+
+Route::get('/barang/detail', function () {
+    return view('barang.detail');
+})->name('barang.detail');
+
+Route::get('/ruangan', [RuanganController::class, 'index'])->name('ruangan');
+Route::get('/ruangan/detail', function () {
+    return view('ruangan.detail');
+})->name('ruangan.detail');
+

@@ -125,82 +125,77 @@
             </header>
 
             <div class="container-fluid">
-
-                <!-- WRAPPER PUTIH -->
                 <div class="bg-white p-4 rounded-3 shadow-sm">
-
-                    <!-- HEADER -->
-                    <div class="mb-4 text-center">
-                        <h2 class="mb-1">Daftar Barang</h2>
-                        <p class="text-muted mb-0">Pilih barang yang tersedia untuk dipinjam</p>
-                    </div>
-
-                    <hr class="my-2">
-
-
-                    <!-- SEARCH -->
-                    <div class="row mb-4" style="margin-top: 10px;">
-                        <div class="col-12 col-md-4">
-                            <input type="text" class="form-control" placeholder="Cari barang...">
-                        </div>
-                    </div>
-
-                    <!-- GRID BARANG -->
-                    <div class="row g-3">
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                            <a href="" class="text-decoration-none text-dark">
-                                <div class="card product-card h-100 border-0" style="border:1px solid #e5e7eb !important;">
-                                    <img src="{{ asset('images/barang.jpg') }}" alt="Barang">
-
-                                    <div class="card-body p-2">
-                                        <p class="product-title mb-1">
-                                            Kamera DSLR Canon EOS
-                                        </p>
-
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="stock-text">
-                                                Stok: <strong>3</strong>
-                                            </span>
-
-                                            <span class="badge bg-success">
-                                                Tersedia
-                                            </span>
-                                        </div>
-                                    </div>
+                    <div class="row">
+                        <div class="col-lg-5 col-md-12 col-12">
+                            <img src="{{ asset('images/baranglokal.jpg') }}" style="margin-bottom:10px;" width="100%"
+                                height="60%">
+                            <div class="small-img-group">
+                                <div class="small-img-col">
+                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
+                                        alt="">
                                 </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                            <a href="" class="text-decoration-none text-dark">
-                                <div class="card product-card h-100 border-0" style="border:1px solid #e5e7eb !important;">
-                                    <img src="{{ asset('images/barang.jpg') }}" alt="Barang">
-
-                                    <div class="card-body p-2">
-                                        <p class="product-title mb-1">
-                                            Kamera DSLR Canon EOS
-                                        </p>
-
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="stock-text">
-                                                Stok: <strong>3</strong>
-                                            </span>
-
-                                            <span class="badge bg-success">
-                                                Tersedia
-                                            </span>
-                                        </div>
-                                    </div>
+                                <div class="small-img-col">
+                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
+                                        alt="">
                                 </div>
-                            </a>
+                                <div class="small-img-col">
+                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
+                                        alt="">
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="col-lg-6 col-md-12">
+                            <h6 class="text-muted">Barang / Extension</h6>
+
+                            <h3 class="fw-bold mb-2">Extension 3 Colokan</h3>
+
+                            <p class="mb-2">
+                                Stok Tersedia :
+                                <span class="badge bg-primary">1</span>
+                            </p>
+
+                            <div class="d-flex align-items-center gap-3 my-3">
+                                <input type="number" value="1" min="1" class="form-control w-25 text-center">
+                                <button class="btn btn-primary px-4">
+                                    Masukkan ke List
+                                </button>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <h5 class="fw-bold mb-3">Detail Barang</h5>
+
+                            <table class="table table-sm">
+                                <tbody>
+                                    <tr>
+                                        <th width="40%">Nama Organisasi</th>
+                                        <td>Badan Eksekutif Mahasiswa</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Tahun Dibentuk</th>
+                                        <td>: 2003</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Dosen Pembimbing</th>
+                                        <td>: Muhammad Idris Str.M.Kom</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Nama Ketua</th>
+                                        <td>: Elys Aulia Tanjung</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                         <button type="button" class="btn btn-primary" disabled>Primary button</button>
                     </div>
-
-
-                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                    <script src="{{asset('js/main.js')}}"></script>
-</body>
-
-</html>
+                </div>
+                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                <script src="{{asset('js/main.js')}}"></script>
+            </div>
+        </div>
+    </div </body> </html>

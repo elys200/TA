@@ -1054,11 +1054,7 @@
     padding: .7rem 2rem;
     display: block;
     color: #25396f;
-<<<<<<< Updated upstream
     font-size: 13px;
-=======
-    font-size: .85rem;
->>>>>>> Stashed changes
     font-weight: 600;
     letter-spacing: .5px;
     transition: all .3s
@@ -1068,16 +1064,12 @@
     margin-left: .3rem
 }
 
-<<<<<<< Updated upstream
 .sidebar-wrapper .menu .submenu .submenu-item {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-
-=======
->>>>>>> Stashed changes
 @media screen and (max-width:1199px) {
     .sidebar-wrapper {
         position: absolute;
@@ -1564,10 +1556,6 @@ a {
     color: #00474d
 }
 
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
 .font-semibold {
     font-weight: 600
 }
@@ -1778,6 +1766,7 @@ a {
     max-width: 450px;
 }
 
+
 .about-right {
     max-width: 550px;
 }
@@ -1851,7 +1840,66 @@ a {
 
 .card-img-fit {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
     border-radius: 5px;
 }
+
+.small-img-group{
+    display: flex;
+    justify-content: space-between;
+}
+
+.small-img-col{
+    gap: 5px;  
+    cursor: pointer;
+}
+
+.image-wrapper {
+    width: 100%;
+    height: 100%;      /* atur tinggi sesuai selera */
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.page-content-wrapper {
+    max-width: 1300px;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .image-wrapper {
+        height: 300px;
+    }
+}
+
+/* HP */
+@media (max-width: 576px) {
+    .image-wrapper {
+        height: 200px;
+        border-radius: 8px;
+    }
+
+    h3 {
+        font-size: 18px;
+    }
+}
+
+.detail-table th {
+    width: 220px;        /* KUNCI UTAMA */
+    padding-right: 20px; /* kecilin jarak ke kanan */
+    font-weight: 600px;
+    color: #10377e;
+}
+
+.detail-table td {
+    padding-left: 0;     /* biar mepet */
+}
+
+
