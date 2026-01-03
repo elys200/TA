@@ -121,56 +121,50 @@
                 </a>
             </header>
             <div class="container-fluid">
-                <div class="page-content-wrapper">
-                    <h3 class="mb-3">Ruangan / Ruangan HMJ</h3>
 
-                    <div class="image-wrapper mb-4">
-                        <img src="{{ asset('images/ruangan2.jpg') }}" alt="">
-                    </div>
+            <h3> Form Pemborang Barang</h3>
 
+                <!-- WRAPPER PUTIH -->
+                <div class="bg-white p-4 rounded-3 shadow-sm">
 
-
-                    <div class="bg-white p-4 rounded-3 shadow-sm">
-                        <h4 class="mb-3">Detail Ruangan</h4>
-
-                        <hr class="my-2">
-
-                        <table class="table table-borderless detail-table">
-                            <tbody>
-                                <tr>
-                                    <th>Nama Organisasi</th>
-                                    <td>Badan Eksekutif Mahasiswa</td>
-                                </tr>
-                                <tr>
-                                    <th>Tahun Dibentuk</th>
-                                    <td>2003</td>
-                                </tr>
-                                <tr>
-                                    <th>Dosen Pembimbing</th>
-                                    <td>Muhammad Idris Str.M.Kom</td>
-                                </tr>
-                                <tr>
-                                    <th>Nama Ketua</th>
-                                    <td>Elys Aulia Tanjung</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="button">Ajukan Peminjaman</button>
+                    <form>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1"
+                                aria-describedby="emailHelp">
                         </div>
-                    </div>
-
-
-
-                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                    <script src="{{asset('js/main.js')}}"></script>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                         <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                         <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                         <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        
+                    </form>
                 </div>
+
+
+
+                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                <script src="{{asset('js/main.js')}}"></script>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

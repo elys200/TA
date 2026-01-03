@@ -1,3 +1,6 @@
+<div>
+    <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
+</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -120,47 +123,15 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+
             <div class="container-fluid">
-                <div class="page-content-wrapper">
-                    <h3 class="mb-3">Ruangan / Ruangan HMJ</h3>
 
-                    <div class="image-wrapper mb-4">
-                        <img src="{{ asset('images/ruangan2.jpg') }}" alt="">
-                    </div>
+                <!-- WRAPPER PUTIH -->
+                <div class="bg-white p-4 rounded-3 shadow-sm">
 
-
-
-                    <div class="bg-white p-4 rounded-3 shadow-sm">
-                        <h4 class="mb-3">Detail Ruangan</h4>
-
-                        <hr class="my-2">
-
-                        <table class="table table-borderless detail-table">
-                            <tbody>
-                                <tr>
-                                    <th>Nama Organisasi</th>
-                                    <td>Badan Eksekutif Mahasiswa</td>
-                                </tr>
-                                <tr>
-                                    <th>Tahun Dibentuk</th>
-                                    <td>2003</td>
-                                </tr>
-                                <tr>
-                                    <th>Dosen Pembimbing</th>
-                                    <td>Muhammad Idris Str.M.Kom</td>
-                                </tr>
-                                <tr>
-                                    <th>Nama Ketua</th>
-                                    <td>Elys Aulia Tanjung</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="button">Ajukan Peminjaman</button>
-                        </div>
-                    </div>
-
+                    <!-- HEADER -->
+                    
+                
 
 
                     <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
@@ -168,9 +139,8 @@
                     <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
                     <script src="{{asset('js/pages/dashboard.js')}}"></script>
                     <script src="{{asset('js/main.js')}}"></script>
+
                 </div>
-            </div>
-        </div>
 </body>
 
 </html>

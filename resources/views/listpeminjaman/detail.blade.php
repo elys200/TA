@@ -55,11 +55,21 @@
                             </a>
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
-                        <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>List Peminjaman</span>
                             </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <i class="bi bi-door-open" style="font-size: 1.1rem;"></i>
+                                    <a href="error-403.html">Ruangan</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <i class="bi bi-archive" style="font-size: 1.1rem;"></i>
+                                    <a href="error-404.html">Barang</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="sidebar-item  ">
                             <a href="ui-file-uploader.html" class='sidebar-link'>
@@ -121,45 +131,60 @@
                 </a>
             </header>
             <div class="container-fluid">
-                <div class="page-content-wrapper">
-                    <h3 class="mb-3">Ruangan / Ruangan HMJ</h3>
 
-                    <div class="image-wrapper mb-4">
-                        <img src="{{ asset('images/ruangan2.jpg') }}" alt="">
-                    </div>
+                <h2> Detail Peminjaman</h3>
 
-
-
+                    <!-- WRAPPER PUTIH -->
                     <div class="bg-white p-4 rounded-3 shadow-sm">
-                        <h4 class="mb-3">Detail Ruangan</h4>
+
+                        <h4 class="mb-3">001</h4>
+                        <hr class="my-2">
+
+                        <div class="row" style="margin-top: 25px;">
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
+                            </div>
+                        </div>
+
+                        <hr class="my-2 margin-top: 20px;">
+
+                        <div class="row text-center" style="margin-top: 5px;">
+                            <div class="col-md-4 mb-4" style="margin-top: 20px;">
+                                <p class="fw-semibold mb-3">Known By</p>
+
+                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                    <button type="button" class="btn btn-success btn-lg">
+                                        Approve</button>
+                                    <button type="button" class="btn btn-danger btn-lg">
+                                        Reject</button>
+                                    
+                                </div>
+
+                                <p class="mb-0">N/A</p>
+                            </div>
+                        </div>
 
                         <hr class="my-2">
 
-                        <table class="table table-borderless detail-table">
-                            <tbody>
-                                <tr>
-                                    <th>Nama Organisasi</th>
-                                    <td>Badan Eksekutif Mahasiswa</td>
-                                </tr>
-                                <tr>
-                                    <th>Tahun Dibentuk</th>
-                                    <td>2003</td>
-                                </tr>
-                                <tr>
-                                    <th>Dosen Pembimbing</th>
-                                    <td>Muhammad Idris Str.M.Kom</td>
-                                </tr>
-                                <tr>
-                                    <th>Nama Ketua</th>
-                                    <td>Elys Aulia Tanjung</td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="button">Ajukan Peminjaman</button>
-                        </div>
                     </div>
+
+
+
 
 
 
@@ -168,9 +193,9 @@
                     <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
                     <script src="{{asset('js/pages/dashboard.js')}}"></script>
                     <script src="{{asset('js/main.js')}}"></script>
-                </div>
             </div>
         </div>
+    </div>
 </body>
 
 </html>
