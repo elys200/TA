@@ -8,9 +8,9 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\KunciController;
-use App\Http\Controllers\ListPeminjamanController;
->>>>>>> 9bd6a6c253dc217b84215e0d8e93944a19820e40
-
+use App\Http\Controllers\ListPeminjamanBarangController;
+use App\Http\Controllers\ListPeminjamanRuanganController;
+use App\Http\Controllers\StatusPeminjamanController;
 
 Route::get('/', function () {
     return view('login');
@@ -23,6 +23,10 @@ Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/ormawa/detail', function () {
     return view('ormawa.detail');
 })->name('ormawa.detail');
+
+Route::get('/ormawa/form', function () {
+    return view('ormawa.form');
+})->name('ormawa.form');
 
 Route::get('/role', [RoleController::class, 'index'])->name('role');
 Route::get('/barang', [BarangController::class, 'index'])->name('barang');
@@ -41,13 +45,22 @@ Route::get('/ruangan/detail', function () {
 })->name('ruangan.detail');
 
 Route::get('/kunci', [KunciController::class, 'index'])->name('kunci');
+Route::get('/kunci/detail', function() {
+    return view('kunci.detail');
+})->name('kunci.detail');
 
-=======
 Route::get('/ruangan/detail/form', function () {
     return view('ruangan.formruangan');
 })->name('ruangan.detail.form');
 
-Route::get('/listpeminjaman', [ListPeminjamanController::class, 'index'])->name('listpeminjaman');
-Route::get('/listpeminjaman/detail', function () {
-    return view('listpeminjaman.detail');
-})->name('listpeminjaman.detail');
+Route::get('/listpeminjamanBarang', [ListPeminjamanBarangController::class, 'index'])->name('listpeminjamanbarang');
+Route::get('/listpeminjamanBarang/detail', function () {
+    return view('listpeminjaman.barang.detail');
+})->name('listpeminjamanbarang.detail');
+
+Route::get('/listpeminjamanRuangan', [ListPeminjamanRuanganController::class, 'index'])->name('listpeminjamanruangan');
+Route::get('/listpeminjamanRuangan/detail', function () {
+    return view('listpeminjaman.ruangan.detail');
+})->name('listpeminjamanruangan.detail');
+
+Route::get('/statuspeminjaman', [StatusPeminjamanController::class, 'index'])->name('statuspeminjaman');

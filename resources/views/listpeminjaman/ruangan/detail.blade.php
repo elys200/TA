@@ -132,107 +132,67 @@
             </header>
             <div class="container-fluid">
 
-                <h3> List Peminjaman</h3>
+                <h2> Detail Peminjaman</h3>
 
-                <!-- WRAPPER PUTIH -->
-                <div class="bg-white p-4 rounded-3 shadow-sm">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center"
-                                    style="background-color: #7367f0; border-radius: 10px; height: 130px;">
-                                    <div class="me-3">
-                                        <i class="bi bi-bell" style="font-size: 50px; color: white;"></i>
-                                    </div>
-                                    <div style="margin-left: 5px;">
-                                        <span style="color: white; font-size: 25px;"><b>Reviewing</b></span>
-                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">1</h4>
-                                    </div>
+                    <!-- WRAPPER PUTIH -->
+                    <div class="bg-white p-4 rounded-3 shadow-sm">
 
-                                </div>
+                        <h4 class="mb-3">001</h4>
+                        <hr class="my-2">
+
+                        <div class="row" style="margin-top: 25px;">
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center"
-                                    style="background-color: #6EC207; border-radius: 10px; height: 130px;">
-                                    <div class="me-3">
-                                        <i class="bi bi-check2-circle" style="font-size: 50px; color: white;"></i>
-                                    </div>
-                                    <div style="margin-left: 5px;">
-                                        <span style="color: white; font-size: 25px;"><b>Approve</b></span>
-                                        <h4 id="counterApprove" class="mb-0" style="color: white;">1</h4>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center"
-                                    style="background-color: #FF0000; border-radius: 10px; height: 130px;">
-                                    <div class="me-3">
-                                        <i class="bi bi-x-circle" style="font-size: 50px; color: white;"></i>
-                                    </div>
-                                    <div style="margin-left: 5px;">
-                                        <span style="color: white; font-size: 25px;"><b>Rejected</b></span>
-                                        <h4 id="counterRejected" class="mb-0" style="color: white;">0</h4>
-                                    </div>
-
-                                </div>
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="row mb-4 mt-5">
-                        <div class="col-12 col-sm-8 col-md-4">
-                            <input type="text" class="form-control" placeholder="Cari Ruangan...">
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
+                            </div>
                         </div>
+
+                        <hr class="my-2 margin-top: 20px;">
+
+                        <div class="row text-center" style="margin-top: 5px;">
+                            <div class="col-md-4 mb-4" style="margin-top: 20px;">
+                                <p class="fw-semibold mb-3">Known By</p>
+
+                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                    <button type="button" class="btn btn-success btn-lg">
+                                        Approve</button>
+                                    <button type="button" class="btn btn-danger btn-lg">
+                                        Reject</button>
+                                    
+                                </div>
+
+                                <p class="mb-0">N/A</p>
+                            </div>
+                        </div>
+
+                        <hr class="my-2">
+
                     </div>
 
-                    <div class="table-responsive">
-                        <table class="table table-bordered align-middle">
-                            <thead class="table-light text-center">
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>NIP</th>
-                                    <th>Position</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Kode Nama</th>
-                                    <th>Role</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
 
-                            <tbody>
-                                <tr>
-                                    <td>Admin</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>Masteradmin</td>
-                                    <td>Jimmy@mtpindo.com</td>
-                                    <td>-</td>
-                                    <td>
-                                        <span class="badge bg-primary">Super Admin</span>
-                                    </td>
-                                    <td class="text-center">
-                                        <div class="d-flex justify-content-center gap-2">
-                                             <button class="btn btn-success btn-sm">
-                                               <i class="bi bi-justify"></i> Detail
-                                            </button>
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="bi bi-trash"></i> Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
 
-                </div>
-                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                <script src="{{asset('js/main.js')}}"></script>
+
+
+
+                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                    <script src="{{asset('js/main.js')}}"></script>
             </div>
         </div>
     </div>

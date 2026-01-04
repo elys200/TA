@@ -1,6 +1,3 @@
-<div>
-    <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
-</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -123,78 +120,78 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-
             <div class="container-fluid">
-                <div class="bg-white p-4 rounded-3 shadow-sm">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-12 col-12">
-                            <img src="{{ asset('images/baranglokal.jpg') }}" style="margin-bottom:10px;" width="100%"
-                                height="60%">
-                            <div class="small-img-group">
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
-                                        alt="">
-                                </div>
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
-                                        alt="">
-                                </div>
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
-                                        alt="">
-                                </div>
-                            </div>
+
+                <h2>  Ormawa Baru</h2>
+
+                <!-- WRAPPER PUTIH -->
+                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
+
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Nama Ormawa</label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Singkatan</label>
+                            <input type="" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label fw-bold">Jenis Ormawa</label>
+                            <select id="inputState" class="form-select">
+                                <option>BEM</option>
+                                <option>Himpunan</option>
+                                <option>UKM</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label fw-bold">Status Ormawa</label>
+                            <select id="inputState" class="form-select">
+                                <option>Aktif</option>
+                                <option>Non Aktif</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="tanggal" class="form-label fw-bold">Tahun Berdiri</label>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="formFile" class="form-label fw-bold">Foto Organisasi</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="formFile" class="form-label fw-bold">Logo</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Ketua</label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Email</label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Kontak</label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label fw-bold">Deskripsi</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Submit</button>
                         </div>
 
-                        <div class="col-lg-6 col-md-12">
-                            <h6 class="text-muted">Barang / Extension</h6>
-
-                            <h3 class="fw-bold mb-2">Extension 3 Colokan</h3>
-
-                            <p class="mb-2">
-                                Stok Tersedia :
-                                <span class="badge bg-primary">1</span>
-                            </p>
-
-                            <div class="d-flex align-items-center gap-3 my-3">
-                                <input type="number" value="1" min="1" class="form-control w-25 text-center">
-                                <button class="btn btn-primary px-4">
-                                    Masukkan ke List
-                                </button>
-                            </div>
-
-                            <hr class="my-4">
-
-                            <h5 class="fw-bold mb-3">Detail Barang</h5>
-
-                            <table class="table table-sm">
-                                <tbody>
-                                    <tr>
-                                        <th width="40%">Nama Organisasi</th>
-                                        <td>Badan Eksekutif Mahasiswa</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Tahun Dibentuk</th>
-                                        <td>: 2003</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Dosen Pembimbing</th>
-                                        <td>: Muhammad Idris Str.M.Kom</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Nama Ketua</th>
-                                        <td>: Elys Aulia Tanjung</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                        <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                        <script src="{{asset('js/main.js')}}"></script>
+                    </form>
                 </div>
-                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                <script src="{{asset('js/main.js')}}"></script>
             </div>
         </div>
-    </div </body> </html>
+</body>
+
+</html>

@@ -1,6 +1,3 @@
-<div>
-    <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
-</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,11 +55,21 @@
                             </a>
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
-                        <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>List Peminjaman</span>
                             </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <i class="bi bi-door-open" style="font-size: 1.1rem;"></i>
+                                    <a href="error-403.html">Ruangan</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <i class="bi bi-archive" style="font-size: 1.1rem;"></i>
+                                    <a href="error-404.html">Barang</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="sidebar-item  ">
                             <a href="ui-file-uploader.html" class='sidebar-link'>
@@ -123,78 +130,71 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-
             <div class="container-fluid">
-                <div class="bg-white p-4 rounded-3 shadow-sm">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-12 col-12">
-                            <img src="{{ asset('images/baranglokal.jpg') }}" style="margin-bottom:10px;" width="100%"
-                                height="60%">
-                            <div class="small-img-group">
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
-                                        alt="">
-                                </div>
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
-                                        alt="">
-                                </div>
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
-                                        alt="">
-                                </div>
+
+                <h2> Detail Peminjaman</h3>
+
+                    <!-- WRAPPER PUTIH -->
+                    <div class="bg-white p-4 rounded-3 shadow-sm">
+
+                        <h4 class="mb-3">001</h4>
+                        <hr class="my-2">
+
+                        <div class="row" style="margin-top: 25px;">
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top: 5px;">
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
+                                <input type="text" class="form-control bg-light" value="Budi" readonly>
                             </div>
                         </div>
 
-                        <div class="col-lg-6 col-md-12">
-                            <h6 class="text-muted">Barang / Extension</h6>
+                        <hr class="my-2 margin-top: 20px;">
 
-                            <h3 class="fw-bold mb-2">Extension 3 Colokan</h3>
+                        <div class="row text-center" style="margin-top: 5px;">
+                            <div class="col-md-4 mb-4" style="margin-top: 20px;">
+                                <p class="fw-semibold mb-3">Known By</p>
 
-                            <p class="mb-2">
-                                Stok Tersedia :
-                                <span class="badge bg-primary">1</span>
-                            </p>
+                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                    <button type="button" class="btn btn-success btn-lg">
+                                        Approve</button>
+                                    <button type="button" class="btn btn-danger btn-lg">
+                                        Reject</button>
+                                </div>
 
-                            <div class="d-flex align-items-center gap-3 my-3">
-                                <input type="number" value="1" min="1" class="form-control w-25 text-center">
-                                <button class="btn btn-primary px-4">
-                                    Masukkan ke List
-                                </button>
+                                <p class="mb-0">N/A</p>
                             </div>
-
-                            <hr class="my-4">
-
-                            <h5 class="fw-bold mb-3">Detail Barang</h5>
-
-                            <table class="table table-sm">
-                                <tbody>
-                                    <tr>
-                                        <th width="40%">Nama Organisasi</th>
-                                        <td>Badan Eksekutif Mahasiswa</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Tahun Dibentuk</th>
-                                        <td>: 2003</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Dosen Pembimbing</th>
-                                        <td>: Muhammad Idris Str.M.Kom</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Nama Ketua</th>
-                                        <td>: Elys Aulia Tanjung</td>
-                                    </tr>
-                                </tbody>
-                            </table>
                         </div>
+
+                        <hr class="my-2">
+
                     </div>
-                </div>
-                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                <script src="{{asset('js/main.js')}}"></script>
+
+
+
+
+
+
+                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                    <script src="{{asset('js/main.js')}}"></script>
             </div>
         </div>
-    </div </body> </html>
+    </div>
+</body>
+
+</html>

@@ -55,11 +55,21 @@
                             </a>
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
-                        <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>List Peminjaman</span>
                             </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <i class="bi bi-door-open" style="font-size: 1.1rem;"></i>
+                                    <a href="error-403.html">Ruangan</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <i class="bi bi-archive" style="font-size: 1.1rem;"></i>
+                                    <a href="error-404.html">Barang</a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="sidebar-item  ">
                             <a href="ui-file-uploader.html" class='sidebar-link'>
@@ -120,122 +130,97 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+            <div class="container-fluid">
 
-            <div class="page-heading mb-4">
-                <h3 class="fw-bold">Badan Eksekutif Mahasiswa</h3>
-                <p class="text-muted mb-0">Detail Organisasi Mahasiswa</p>
-            </div>
-            <div class="card shadow-sm mb-4">
-                <div class="card-body">
-                    <div class="row g-4 align-items-center">
+                <h3> List Peminjaman Ruangan</h3>
 
-                        <!-- Logo / Foto -->
-                        <div class="col-md-4 text-center">
-                            <img src="{{ asset('images/ormawa/bem.jpg') }}" class="img-fluid rounded mb-2"
-                                style="max-height: 300px; object-fit: contain;">
+                <!-- WRAPPER PUTIH -->
+                <div class="bg-white p-4 rounded-3 shadow-sm">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="card-body d-flex align-items-center"
+                                    style="background-color: #7367f0; border-radius: 10px; height: 130px;">
+                                    <div class="me-3">
+                                        <i class="bi bi-bell" style="font-size: 50px; color: white;"></i>
+                                    </div>
+                                    <div style="margin-left: 5px;">
+                                        <span style="color: white; font-size: 25px;"><b>Reviewing</b></span>
+                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">1</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card-body d-flex align-items-center"
+                                    style="background-color: #6EC207; border-radius: 10px; height: 130px;">
+                                    <div class="me-3">
+                                        <i class="bi bi-check2-circle" style="font-size: 50px; color: white;"></i>
+                                    </div>
+                                    <div style="margin-left: 5px;">
+                                        <span style="color: white; font-size: 25px;"><b>Approve</b></span>
+                                        <h4 id="counterApprove" class="mb-0" style="color: white;">1</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card-body d-flex align-items-center"
+                                    style="background-color: #FF0000; border-radius: 10px; height: 130px;">
+                                    <div class="me-3">
+                                        <i class="bi bi-x-circle" style="font-size: 50px; color: white;"></i>
+                                    </div>
+                                    <div style="margin-left: 5px;">
+                                        <span style="color: white; font-size: 25px;"><b>Rejected</b></span>
+                                        <h4 id="counterRejected" class="mb-0" style="color: white;">0</h4>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-
-                        <!-- Informasi -->
-                        <div class="col-md-8">
-                            <table class="table table-borderless mb-0">
-                                <tr>
-                                    <th width="30%">Nama Organisasi</th>
-                                    <td>:</td>
-                                    <td>Badan Eksekutif Mahasiswa</td>
-                                </tr>
-                                <tr>
-                                    <th>Singkatan</th>
-                                    <td>:</td>
-                                    <td>BEM</td>
-                                </tr>
-                                <tr>
-                                    <th>Jenis Ormawa</th>
-                                    <td>:</td>
-                                    <td>BEM</td>
-                                </tr>
-                                <tr>
-                                    <th>Tahun Berdiri</th>
-                                    <td>:</td>
-                                    <td>10 November 2004</td>
-                                </tr>
-                                <tr>
-                                    <th>Status</th>
-                                    <td>:</td>
-                                    <td>
-                                        <span class="badge bg-success px-3 py-2">Aktif</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>Ketua</th>
-                                    <td>:</td>
-                                    <td>Elys Aulia Tanjung</td>
-                                </tr>
-                                <tr>
-                                    <th>Email</th>
-                                    <td>:</td>
-                                    <td>bempolibatam@gmail.com</td>
-                                </tr>
-                                <tr>
-                                    <th>Kontak</th>
-                                    <td>:</td>
-                                    <td>081270889291</td>
-                                </tr>
-                                <tr>
-                                    <th>Logo</th>
-                                    <th>:</th>
-                                    <th>
-                                        <img src="{{ asset('images/bem.png') }}" class="img-fluid rounded"
-                                style="max-height: 70px; object-fit: contain;">
-                                    </th>
-                                </tr>
-                            </table>
-                        </div>
-
                     </div>
-                </div>
-            </div>
 
-            <div class="card shadow-sm">
-                <div class="card-body">
-
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                        <h5 class="fw-bold mb-0">Daftar Barang</h5>
-                        <button class="btn btn-primary btn-sm d-flex align-items-center"
-                        data-bs-toggle="modal" data-bs-target="#modalTambahBarang">
-                            <i class="bi bi-plus-lg me-1"></i> Tambah
-                        </button>
+                    <div class="row mb-4 mt-5">
+                        <div class="col-12 col-sm-8 col-md-4">
+                            <input type="text" class="form-control" placeholder="Cari Ruangan...">
+                        </div>
                     </div>
 
                     <div class="table-responsive">
                         <table class="table table-bordered align-middle">
-                            <thead class="table-light">
+                            <thead class="table-light text-center">
                                 <tr>
-                                    <th>#</th>
-                                    <th>Gambar</th>
                                     <th>Nama</th>
-                                    <th>Qty</th>
-                                    <th>Deskripsi</th>
-                                    <th width="120">Action</th>
+                                    <th>NIP</th>
+                                    <th>Position</th>
+                                    <th>Username</th>
+                                    <th>Email</th>
+                                    <th>Kode Nama</th>
+                                    <th>Role</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
+
                             <tbody>
                                 <tr>
-                                    <td>1</td>
+                                    <td>Admin</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>Masteradmin</td>
+                                    <td>Jimmy@mtpindo.com</td>
+                                    <td>-</td>
                                     <td>
-                                        <img src="{{ asset('images/logo/logo1.png') }}"
-                                            style="width: 80px; height: 60px; object-fit: contain;">
+                                        <span class="badge bg-primary">Super Admin</span>
                                     </td>
-                                    <td>Kain Hitam</td>
-                                    <td>5</td>
-                                    <td>Kain Hitam 3 meter</td>
                                     <td class="text-center">
-                                        <button class="btn btn-warning btn-sm me-1 align-items-center"
-                                         data-bs-toggle="modal" data-bs-target="#modalEditBarang">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-danger btn-sm  align-items-center" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" >
-                                            <i class="bi bi-trash3"></i>
-                                        </button>
+                                        <div class="d-flex justify-content-center gap-2">
+                                             <button class="btn btn-success btn-sm">
+                                               <i class="bi bi-justify"></i> Detail
+                                            </button>
+                                            <button class="btn btn-danger btn-sm">
+                                                <i class="bi bi-trash"></i> Delete
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
@@ -243,19 +228,14 @@
                     </div>
 
                 </div>
+                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                <script src="{{asset('js/main.js')}}"></script>
             </div>
-
         </div>
-
-        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-        <script src="{{asset('js/pages/dashboard.js')}}"></script>
-        <script src="{{asset('js/main.js')}}"></script>
-        @include('ormawa.modal.tambahbarang')
-        @include('ormawa.modal.editbarang')
-        @include('ormawa.modal.hapusbarang')
-
+    </div>
 </body>
 
 </html>

@@ -1898,8 +1898,12 @@ a {
     color: #10377e;
 }
 
-.detail-table td {
-    padding-left: 0;     /* biar mepet */
+.button{
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background-color: #198754;
+    
 }
 
 

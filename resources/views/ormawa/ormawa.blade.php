@@ -125,54 +125,55 @@
                 <h3>Organisasi Mahasiswa</h3>
             </div>
 
-            <div class="main" style="padding: 20px;">
-                <div class="d-flex justify-content-between align-items-center mb-4">
-                    <div class="input-group" style="max-width: 250px;">
-                        <span class="input-group-text">
-                            <i class="bi bi-search"></i>
-                        </span>
-                        <input type="text" class="form-control" placeholder="Cari organisasi...">
+            <div class="bg-white p-4 rounded-3 shadow-sm">
+                <div class="main" style="padding: 20px;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="input-group" style="max-width: 250px;">
+                            <span class="input-group-text">
+                                <i class="bi bi-search"></i>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Cari organisasi...">
+                        </div>
+
+                        <button class="btn btn-primary d-flex align-items-center gap-1">
+                            <i class="bi bi-plus-circle"></i>
+                            Tambah
+                        </button>
                     </div>
 
-                    <button class="btn btn-primary d-flex align-items-center gap-1">
-                        <i class="bi bi-plus-circle"></i>
-                        Tambah
-                    </button>
-                </div>
+                    <div class="row g-4">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
 
-                <div class="row g-4">
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                            <a href="{{ route('ormawa.detail') }}" class="text-decoration-none text-dark">
+                                <div class="card h-100 shadow-sm border-0 card-hover">
 
-                        <a href="{{ route('ormawa.detail') }}" class="text-decoration-none text-dark">
-                            <div class="card h-100 shadow-sm border-0 card-hover">
+                                    <img src="{{ asset('images/ormawa/bem.jpg') }}" class="card-img-top"
+                                        style="height: 220px; object-fit: cover;" alt="BEM">
 
-                                <img src="{{ asset('images/ormawa/bem.jpg') }}" class="card-img-top"
-                                    style="height: 220px; object-fit: cover;" alt="BEM">
+                                    <div class="card-body d-flex flex-column">
 
-                                <div class="card-body d-flex flex-column">
+                                        <h6 class="fw-bold mb-2">
+                                            BEM (BADAN EKSEKUTIF MAHASISWA)
+                                        </h6>
 
-                                    <h6 class="fw-bold mb-2">
-                                        BEM (BADAN EKSEKUTIF MAHASISWA)
-                                    </h6>
+                                        <p class="text-muted small flex-grow-1">
+                                            Some quick example text to build on the card title and make up the bulk of
+                                            the
+                                            card's content.
+                                        </p>
 
-                                    <p class="text-muted small flex-grow-1">
-                                        Some quick example text to build on the card title and make up the bulk of the
-                                        card's content.
-                                    </p>
-
-                                    <div class="d-flex justify-content-end gap-2">
-                                        <button class="btn btn-warning btn-sm">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-
-                                        <button class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash3"></i>
-                                        </button>
+                                        <div class="d-flex justify-content-end gap-2">
+                                            <button class="btn btn-warning btn-sm d-flex align-items-center gap-1">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+                                            <button class="btn btn-danger btn-sm d-flex align-items-center gap-1">
+                                                <i class="bi bi-trash3"></i>
+                                            </button>
+                                        </div>
                                     </div>
-
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
