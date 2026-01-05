@@ -140,61 +140,73 @@
                         <h4 class="mb-3">001</h4>
                         <hr class="my-2">
 
-                        <div class="row" style="margin-top: 25px;">
-                            <div class="col-sm-6 mb-3">
-                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
-                                <input type="text" class="form-control bg-light" value="Budi" readonly>
-                            </div>
-                            <div class="col-sm-6 mb-3">
-                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
-                                <input type="text" class="form-control bg-light" value="Budi" readonly>
-                            </div>
-                        </div>
-                        <div class="row" style="margin-top: 5px;">
-                            <div class="col-sm-6 mb-3">
-                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
-                                <input type="text" class="form-control bg-light" value="Budi" readonly>
-                            </div>
-                            <div class="col-sm-6 mb-3">
-                                <label class="form-label fw-bold" style="font-size: 18px;">Nama</label>
-                                <input type="text" class="form-control bg-light" value="Budi" readonly>
-                            </div>
-                        </div>
+                        <form style="margin-top: 30px; margin-bottom: 30px;">
+                            <fieldset disabled>
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold">Nama Peminjam</label>
+                                        <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold">Ruangan</label>
+                                        <input type="text" class="form-control" placeholder="Ruang HMJ">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold">Tanggal</label>
+                                        <input type="text" class="form-control" placeholder="20 April 2026">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold">Jam Mulai</label>
+                                        <input type="text" class="form-control" placeholder="11:00 WIB">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold">Jam Selesai</label>
+                                        <input type="text" class="form-control" placeholder="21:00 WIB">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label class="form-label fw-bold">Tujuan Peminjaman</label>
+                                        <input type="text" class="form-control" placeholder="Rapat Umum">
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
 
                         <hr class="my-2 margin-top: 20px;">
 
-                        <div class="row text-center" style="margin-top: 5px;">
-                            <div class="col-md-4 mb-4" style="margin-top: 20px;">
-                                <p class="fw-semibold mb-3">Known By</p>
+                        <div class="row text-center justify-content-center mt-2">
 
-                                <div class="d-flex justify-content-center gap-2 mb-4">
-                                    <button type="button" class="btn btn-success btn-lg">
-                                        Approve</button>
-                                    <button type="button" class="btn btn-danger btn-lg">
-                                        Reject</button>
-                                </div>
+    <div class="col-md-4 mb-4 mt-3">
+        <p class="fw-semibold mb-3">Pemberian Kunci</p>
+        <div class="d-flex justify-content-center gap-2 mb-4">
+            <button type="button" class="btn btn-success btn-lg">Approve</button>
+            <button type="button" class="btn btn-danger btn-lg">Reject</button>
+        </div>
+        <p class="mb-0">N/A</p>
+    </div>
 
-                                <p class="mb-0">N/A</p>
-                            </div>
-                        </div>
+    <div class="col-md-4 mb-4 mt-3">
+        <p class="fw-semibold mb-3">Pengembalian Kunci</p>
+        <div class="d-flex justify-content-center gap-2 mb-4">
+            <button type="button" class="btn btn-success btn-lg">Approve</button>
+            <button type="button" class="btn btn-danger btn-lg">Reject</button>
+        </div>
+        <p class="mb-0">N/A</p>
+    </div>
 
-                        <hr class="my-2">
+</div>
 
+
+
+
+
+                        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                        <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                        <script src="{{asset('js/main.js')}}"></script>
                     </div>
-
-
-
-
-
-
-                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                    <script src="{{asset('js/main.js')}}"></script>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

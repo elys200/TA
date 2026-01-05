@@ -19,6 +19,12 @@ Route::get('/', function () {
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::get('/ormawa', [OrmawaController::class, 'index'])->name('ormawa');
 Route::get('/user', [UserController::class, 'index'])->name('user');
+Route::get('/user/detail', function () {
+    return view('user.detail');
+})->name('user.detail');
+Route::get('/user/edit', function () {
+    return view('user.edit');
+})->name('user.edit');
 
 Route::get('/ormawa/detail', function () {
     return view('ormawa.detail');

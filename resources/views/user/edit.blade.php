@@ -55,21 +55,11 @@
                             </a>
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
+                        <li class="sidebar-item  ">
+                            <a href="ui-file-uploader.html" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>List Peminjaman</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <i class="bi bi-door-open" style="font-size: 1.1rem;"></i>
-                                    <a href="error-403.html">Ruangan</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <i class="bi bi-archive" style="font-size: 1.1rem;"></i>
-                                    <a href="error-404.html">Barang</a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="sidebar-item  ">
                             <a href="ui-file-uploader.html" class='sidebar-link'>
@@ -132,94 +122,64 @@
             </header>
             <div class="container-fluid">
 
-                <h3> Kunci</h3>
+                <h2>Edit User</h2>
 
                 <!-- WRAPPER PUTIH -->
-                <div class="bg-white p-4 rounded-3 shadow-sm">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center"
-                                    style="background-color: #6EC207; border-radius: 10px; height: 130px;">
-                                    <div class="me-3">
-                                        <i class="bi bi-arrow-up-circle" style="font-size: 50px; color: white;"></i>
-                                    </div>
-                                    <div style="margin-left: 5px;">
-                                        <span style="color: white; font-size: 25px;"><b>Pemberian</b></span>
-                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">1</h4>
-                                    </div>
+                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
 
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center"
-                                    style="background-color: #7367f0; border-radius: 10px; height: 130px;">
-                                    <div class="me-3">
-                                        <i class="bi bi-arrow-down-circle" style="font-size: 50px; color: white;"></i>
-                                    </div>
-                                    <div style="margin-left: 5px;">
-                                        <span style="color: white; font-size: 25px;"><b>Pengembalian</b></span>
-                                        <h4 id="counterApprove" class="mb-0" style="color: white;">1</h4>
-                                    </div>
-
-                                </div>
-                            </div>
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Nama Lengkap</label>
+                            <input type="text" class="form-control" id="">
                         </div>
-                    </div>
-
-                    <div class="row mb-4 mt-5">
-                        <div class="col-12 col-sm-8 col-md-4">
-                            <input type="text" class="form-control" placeholder="Cari Ruangan...">
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Email</label>
+                            <input type="" class="form-control" id="">
                         </div>
-                    </div>
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label fw-bold">Role</label>
+                            <select id="inputState" class="form-select">
+                                <option>Super Admin</option>
+                                <option>PIC</option>
+                                <option>Mahasiswa</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">NIM</label>
+                            <input type="" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Program Studi</label>
+                            <input type="" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Angkatan</label>
+                            <input type="" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">NO Hp</label>
+                            <input type="" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label fw-bold">Status User</label>
+                            <select id="inputState" class="form-select">
+                                <option>Aktif</option>
+                                <option>Non Aktif</option>
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
 
-                    <div class="table-responsive">
-                        <table class="table table-bordered align-middle">
-                            <thead class="table-light text-center">
-                                <tr>
-                                    <th>Code Peminjaman</th>
-                                    <th>Nama Peminjam</th>
-                                    <th>Ruangan</th>
-                                    <th>Tanggal</th>
-                                    <th>Jam Mulai</th>
-                                    <th>Jam Selesai</th>
-                                    <th>Tujuan Peminjaman</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>001</td>
-                                    <td>Elys Aulia Tanjung</td>
-                                    <td>Ruang HMJ</td>
-                                    <td>20 April 2026</td>
-                                    <td>11:00 WIB</td>
-                                    <td>21:00 WIB</td>
-                                    <td>Rapat Umum</td>
-                                    <td class="text-center">
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <a href="{{route('kunci.detail')}}">
-                                             <button class="btn btn-success btn-sm">
-                                               <i class="bi bi-justify"></i> Detail
-                                            </button>
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
+                        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                        <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                        <script src="{{asset('js/main.js')}}"></script>
+                    </form>
                 </div>
-                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                <script src="{{asset('js/main.js')}}"></script>
             </div>
         </div>
-    </div>
 </body>
 
 </html>

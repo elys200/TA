@@ -120,73 +120,63 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+            <div class="container-fluid">
 
-            <div class="page-heading mb-4">
-                <h3>User</h3>
-            </div>
+                <h2> Data User</h2>
+
+                <!-- WRAPPER PUTIH -->
+                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
+
+                    <form>
+                        <fieldset disabled>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Nama Lengkap</label>
+                                    <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Email</label>
+                                    <input type="text" class="form-control" placeholder="elysaulia20@gmail.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Role</label>
+                                    <input type="text" class="form-control" placeholder="Super Admin">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">NIM</label>
+                                    <input type="text" class="form-control" placeholder="3312301023">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Program Studi</label>
+                                    <input type="text" class="form-control" placeholder="Teknik Informatika">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Angkatan</label>
+                                    <input type="text" class="form-control" placeholder="2023">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">No HP</label>
+                                    <input type="text" class="form-control" placeholder="089505631279">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold">Status Akun</label>
+                                    <input type="text" class="form-control" placeholder="Aktif">
+                                </div>      
+                            </div>
+                        </fieldset>
+                    </form>
 
 
-            <div class="card">
-                <div class="card-body">
 
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
-                        <div class="d-flex align-items-center gap-2">
-                            <label class="mb-0">Search:</label>
-                            <input type="text" class="form-control form-control-sm">
-                        </div>
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered align-middle">
-                            <thead class="table-light text-center">
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
-                                    <th>NIM</th>
-                                    <th>Program Studi</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>Elys Aulia</td>
-                                    <td>elysaulia@gmail.com</td>
-                                    <td>
-                                        <span class="badge bg-primary">Super Admin</span>
-                                    </td>
-                                    <td>3312301023</td>
-                                    <td>Teknik Informatika</td>
-                                    <td class="text-center">
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <a href="" class="btn btn-primary btn-sm btn-air-primary p-3 pt-2 pb-2" style="white-space: nowrap;">
-                                            <span class="bi bi-pencil"></span>
-                                            Edit
-                                        </a>
-                                        <a href="" class="btn btn-danger btn-sm btn-air-danger p-3 pt-2 pb-2" style="white-space: nowrap;">
-                                            <span class="bi bi-trash" style="width: 20px;"></span>
-                                            Delete
-                                        </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                    <script src="{{asset('js/main.js')}}"></script>
 
                 </div>
-
-
-
             </div>
         </div>
-
-        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-        <script src="{{asset('js/pages/dashboard.js')}}"></script>
-        <script src="{{asset('js/main.js')}}"></script>
 </body>
 
 </html>
