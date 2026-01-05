@@ -175,7 +175,13 @@
                             <label for="" class="form-label fw-bold">Kontak</label>
                             <input type="text" class="form-control" id="">
                         </div>
-                        <div class="mb-3">
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label fw-bold">PIC Ormawa</label>
+                            <select id="inputState" class="form-select">
+                                <option>Budi</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
                             <label for="exampleFormControlTextarea1" class="form-label fw-bold">Deskripsi</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>

@@ -29,6 +29,15 @@ Route::get('/ormawa/form', function () {
 })->name('ormawa.form');
 
 Route::get('/role', [RoleController::class, 'index'])->name('role');
+Route::get('/role/detail', function () {
+    return view('role.detail');
+})->name('role.detail');
+
+Route::get('/role/edit', function () {
+    return view('role.edit');
+})->name('role.edit');
+
+
 Route::get('/barang', [BarangController::class, 'index'])->name('barang');
 
 Route::get('/barang/detail', function () {

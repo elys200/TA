@@ -141,66 +141,33 @@
                             <thead class="table-light text-center">
                                 <tr>
                                     <th>Nama</th>
-                                    <th>NIP</th>
-                                    <th>Position</th>
-                                    <th>Username</th>
                                     <th>Email</th>
-                                    <th>Kode Nama</th>
                                     <th>Role</th>
-                                    <th>Nama Kelompok / Pribadi</th>
-                                    <th>Signature</th>
-                                    <th>Contact</th>
+                                    <th>NIM</th>
+                                    <th>Program Studi</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <tr>
-                                    <td>Admin</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>Masteradmin</td>
-                                    <td>Jimmy@mtpindo.com</td>
-                                    <td>-</td>
+                                    <td>Elys Aulia</td>
+                                    <td>elysaulia@gmail.com</td>
                                     <td>
                                         <span class="badge bg-primary">Super Admin</span>
                                     </td>
-                                    <td>N/A</td>
-                                    <td class="text-danger">Not Exist</td>
-                                    <td>-</td>
+                                    <td>3312301023</td>
+                                    <td>Teknik Informatika</td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-2">
-                                            <button class="btn btn-primary btn-sm">
-                                                <i class="bi bi-pencil"></i> Edit
-                                            </button>
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="bi bi-trash"></i> Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Aidil Adha</td>
-                                    <td>-</td>
-                                    <td>Sales</td>
-                                    <td>Aidil</td>
-                                    <td>Aidil@mtpindo.com</td>
-                                    <td>AA</td>
-                                    <td>
-                                        <span class="badge bg-info">Sales</span>
-                                    </td>
-                                    <td>Aidil</td>
-                                    <td class="text-danger">Not Exist</td>
-                                    <td>+62 811-6930-965</td>
-                                    <td class="text-center">
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <button class="btn btn-primary btn-sm">
-                                                <i class="bi bi-pencil"></i> Edit
-                                            </button>
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="bi bi-trash"></i> Delete
-                                            </button>
+                                            <a href="" class="btn btn-primary btn-sm btn-air-primary p-3 pt-2 pb-2" style="white-space: nowrap;">
+                                            <span class="bi bi-pencil"></span>
+                                            Edit
+                                        </a>
+                                        <a href="" class="btn btn-danger btn-sm btn-air-danger p-3 pt-2 pb-2" style="white-space: nowrap;">
+                                            <span class="bi bi-trash" style="width: 20px;"></span>
+                                            Delete
+                                        </a>
                                         </div>
                                     </td>
                                 </tr>

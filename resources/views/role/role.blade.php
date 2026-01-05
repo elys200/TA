@@ -129,7 +129,7 @@
                 <div class="bg-white p-4 rounded-3 shadow-sm">
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3">
                         <h4 class="mb-0">Role Management</h4>
-                        <a href="#" class="btn btn-success">
+                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambahRole">
                             Create New Role
                         </a>
                     </div>
@@ -149,9 +149,13 @@
                                     <td>Purchasing</td>
                                     <td>
                                         <div class="d-flex gap-2">
+                                            <a href="{{ route('role.detail') }}">
                                             <button class="btn btn-info btn-sm text-white">Show</button>
+                                            </a>
+                                            <a href="{{ route('role.edit') }}">
                                             <button class="btn btn-primary btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm">Delete</button>
+                                            </a>
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapusRole">Delete</button>
                                         </div>
                                     </td>
                                 </tr>
@@ -192,6 +196,8 @@
     <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
     <script src="{{asset('js/pages/dashboard.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
+    @include('role.modal.tambah')
+    @include('role.modal.hapus')
 </body>
 
 </html>
