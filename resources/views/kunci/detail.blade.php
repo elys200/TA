@@ -175,35 +175,31 @@
 
                         <div class="row text-center justify-content-center mt-2">
 
-    <div class="col-md-4 mb-4 mt-3">
-        <p class="fw-semibold mb-3">Pemberian Kunci</p>
-        <div class="d-flex justify-content-center gap-2 mb-4">
-            <button type="button" class="btn btn-success btn-lg">Approve</button>
-            <button type="button" class="btn btn-danger btn-lg">Reject</button>
-        </div>
-        <p class="mb-0">N/A</p>
-    </div>
+                            <div class="col-md-4 mb-4 mt-3">
+                                <p class="fw-semibold mb-3">Pemberian Kunci</p>
+                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#modalPemberianKunci">Konfirmasi</button>
+                                </div>
+                                <p class="mb-0">N/A</p>
+                            </div>
 
-    <div class="col-md-4 mb-4 mt-3">
-        <p class="fw-semibold mb-3">Pengembalian Kunci</p>
-        <div class="d-flex justify-content-center gap-2 mb-4">
-            <button type="button" class="btn btn-success btn-lg">Approve</button>
-            <button type="button" class="btn btn-danger btn-lg">Reject</button>
-        </div>
-        <p class="mb-0">N/A</p>
-    </div>
+                            <div class="col-md-4 mb-4 mt-3">
+                                <p class="fw-semibold mb-3">Pengembalian Kunci</p>
+                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal" data-bs-target="#modalPengembalianKunci">Konfirmasi</button>
+                                </div>
+                                <p class="mb-0">N/A</p>
+                            </div>
 
-</div>
-
-
-
-
+                        </div>
 
                         <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
                         <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
                         <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
                         <script src="{{asset('js/pages/dashboard.js')}}"></script>
                         <script src="{{asset('js/main.js')}}"></script>
+                        @include('kunci.modal.pemberiankunci')
+                        @include('kunci.modal.pengembaliankunci')
                     </div>
             </div>
         </div>
