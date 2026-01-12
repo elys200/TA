@@ -157,8 +157,34 @@
                         <div class="col-12 col-md-4 ms-md-auto mt-2 mt-md-0">
                             <input type="text" class="form-control" placeholder="Cari barang...">
                         </div>
-
                     </div>
+
+                    <div style="display: flex; align-items: center; gap: 15px; border: 1px solid #dee2e6; border-radius: 8px; padding: 10px 15px; background-color: #fff; margin-bottom: 1rem;">
+                        <div class="btn-group">
+                            <i class="bi bi-filter" style="margin-right: 15px; font-size: 1.5rem;"></i>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                Status Pengajuan
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Approve</a></li>
+                                <li><a class="dropdown-item" href="#">Rejected</a></li>
+                            </ul>
+                        </div>
+
+                        <div class="btn-group">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                Status Peminjaman
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Diajukan</a></li>
+                                <li><a class="dropdown-item" href="#">Sedang Dipinjam</a></li>
+                                <li><a class="dropdown-item" href="#">Selesai</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
 
                     <div class="table-responsive">
                         <table class="table table-bordered align-middle" style="margin-top: 10px">
