@@ -17,6 +17,43 @@
 
     <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}" type="image/x-icon">
 
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.20/main.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.20/main.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.20/main.min.css" rel="stylesheet" />
+
+    <script type="importmap">
+        {
+        "imports": {
+          "@fullcalendar/core": "https://cdn.skypack.dev/@fullcalendar/core@6.1.20",
+          "@fullcalendar/daygrid": "https://cdn.skypack.dev/@fullcalendar/daygrid@6.1.20",
+          "@fullcalendar/timegrid": "https://cdn.skypack.dev/@fullcalendar/timegrid@6.1.20",
+          "@fullcalendar/list": "https://cdn.skypack.dev/@fullcalendar/list@6.1.20"
+        }
+      }
+    </script>
+
+    <script type="module">
+        import { Calendar } from "@fullcalendar/core";
+      import dayGridPlugin from "@fullcalendar/daygrid";
+      import timeGridPlugin from "@fullcalendar/timegrid";
+
+      document.addEventListener("DOMContentLoaded", function () {
+        const calendarEl = document.getElementById("calendar");
+
+        const calendar = new Calendar(calendarEl, {
+          plugins: [dayGridPlugin, timeGridPlugin],
+          initialView: "dayGridMonth",
+          headerToolbar: {
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay"
+          }
+        });
+
+        calendar.render();
+      });
+    </script>
+
 
 </head>
 
@@ -34,7 +71,6 @@
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
-
                         <li class="sidebar-item active ">
                             <a href="index.html" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
@@ -42,15 +78,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="table.html" class='sidebar-link'>
+                            <a href="{{ route('ruangan') }}" class='sidebar-link'>
                                 <i class="bi bi-door-open-fill"></i>
                                 <span> Ruangan </span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="table-datatable.html" class='sidebar-link'>
+                            <a href="{{ route('barang') }}" class='sidebar-link'>
                                 <i class="bi bi-archive-fill"></i>
-
                                 <span> Barang </span>
                             </a>
                         </li>
@@ -62,51 +97,41 @@
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                            <a href="{{ route('statuspeminjaman') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
-                                <i class="bi bi-clock-history"></i>
-                                <span>Riwayat Peminjaman</span>
-                            </a>
-                        </li>
                         <li class="sidebar-title">Pamdal Menu</li>
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('kunci') }}" class='sidebar-link'>
                                 <i class="bi bi-key-fill"></i>
                                 <span>Kunci</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <i class="bi bi-box-arrow-up-right" style="font-size: 1.1rem;"></i>
-                                    <a href="error-403.html">Pemberian</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <i class="bi bi-box-arrow-down-left" style="font-size: 1.1rem;"></i>
-                                    <a href="error-404.html">Pengembalian</a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="sidebar-title">Other</li>
                         <li class="sidebar-item  ">
-                            <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>
-                                <i class="bi bi-people-fill"></i>
-                                <span>User</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md" class='sidebar-link'>
-                                <i class="bi bi-shield-lock"></i>
-                                <span>Role</span>
+                            <a href="{{ route('tambahruangan') }}" class='sidebar-link'>
+                                <i class="bi bi-door-open-fill"></i>
+                                <span>Kelola Ruangan</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
                             <a href="{{ url('/ormawa') }}" class='sidebar-link'>
                                 <i class="bi bi-diagram-3"></i>
                                 <span>Ormawa</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('user') }}" class='sidebar-link'>
+                                <i class="bi bi-people-fill"></i>
+                                <span>User</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('role') }}" class='sidebar-link'>
+                                <i class="bi bi-shield-lock"></i>
+                                <span>Role</span>
                             </a>
                         </li>
                     </ul>
@@ -157,8 +182,20 @@
                         </table>
 
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="button">Ajukan Peminjaman</button>
+                            <a href="{{ route('ruangan.detail.form') }}" class="btn btn-primary">
+                                Ajukan Peminjaman
+                            </a>
                         </div>
+
+                    </div>
+
+                    <div class="bg-white p-4 rounded-3 shadow-sm mt-4">
+                        <h5 class="mb-3">Jadwal Ruangan</h5>
+                        <hr class="my-2">
+
+                        <div id='calendar'></div>
+
+
                     </div>
 
 

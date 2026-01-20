@@ -34,7 +34,6 @@
                 <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
-
                         <li class="sidebar-item active ">
                             <a href="index.html" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
@@ -42,15 +41,14 @@
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="table.html" class='sidebar-link'>
+                            <a href="{{ route('ruangan') }}" class='sidebar-link'>
                                 <i class="bi bi-door-open-fill"></i>
                                 <span> Ruangan </span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="table-datatable.html" class='sidebar-link'>
+                            <a href="{{ route('barang') }}" class='sidebar-link'>
                                 <i class="bi bi-archive-fill"></i>
-
                                 <span> Barang </span>
                             </a>
                         </li>
@@ -62,51 +60,41 @@
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                            <a href="{{ route('statuspeminjaman') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
-                                <i class="bi bi-clock-history"></i>
-                                <span>Riwayat Peminjaman</span>
-                            </a>
-                        </li>
                         <li class="sidebar-title">Pamdal Menu</li>
-                        <li class="sidebar-item  has-sub">
-                            <a href="#" class='sidebar-link'>
-                                <i class="bi bi-key-fill"></i>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                               <i class="bi bi-key-fill"></i>
                                 <span>Kunci</span>
                             </a>
-                            <ul class="submenu ">
-                                <li class="submenu-item ">
-                                    <i class="bi bi-box-arrow-up-right" style="font-size: 1.1rem;"></i>
-                                    <a href="error-403.html">Pemberian</a>
-                                </li>
-                                <li class="submenu-item ">
-                                    <i class="bi bi-box-arrow-down-left" style="font-size: 1.1rem;"></i>
-                                    <a href="error-404.html">Pengembalian</a>
-                                </li>
-                            </ul>
                         </li>
                         <li class="sidebar-title">Other</li>
                         <li class="sidebar-item  ">
-                            <a href="https://zuramai.github.io/mazer/docs" class='sidebar-link'>
+                            <a href="{{ route('tambahruangan') }}" class='sidebar-link'>
+                                <i class="bi bi-door-open-fill"></i>
+                                <span>Kelola Ruangan</span>
+                            </a>
+                        </li>
+                         <li class="sidebar-item  ">
+                            <a href="{{ url('/ormawa') }}" class='sidebar-link'>
+                                <i class="bi bi-diagram-3"></i>
+                                <span>Ormawa</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('user') }}" class='sidebar-link'>
                                 <i class="bi bi-people-fill"></i>
                                 <span>User</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="https://github.com/zuramai/mazer/blob/main/CONTRIBUTING.md" class='sidebar-link'>
+                            <a href="{{ route('role') }}" class='sidebar-link'>
                                 <i class="bi bi-shield-lock"></i>
                                 <span>Role</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ url('/ormawa') }}" class='sidebar-link'>
-                                <i class="bi bi-diagram-3"></i>
-                                <span>Ormawa</span>
                             </a>
                         </li>
                     </ul>
@@ -166,7 +154,7 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>Ketua</th>
+                                    <th>PIC</th>
                                     <td>:</td>
                                     <td>Elys Aulia Tanjung</td>
                                 </tr>
@@ -215,7 +203,7 @@
                                     <th>Nama</th>
                                     <th>Qty</th>
                                     <th>Deskripsi</th>
-                                    <th width="120">Action</th>
+                                    <th width="200">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -229,11 +217,15 @@
                                     <td>5</td>
                                     <td>Kain Hitam 3 meter</td>
                                     <td class="text-center">
-                                        <button class="btn btn-warning btn-sm me-1 align-items-center"
+                                        <button class="btn btn-success  me-1 align-items-center"
+                                         data-bs-toggle="modal" data-bs-target="#modalHistoryBarang">
+                                          <i class="bi bi-eye-fill"></i>
+                                        </button>
+                                        <button class="btn btn-warning  me-1 align-items-center"
                                          data-bs-toggle="modal" data-bs-target="#modalEditBarang">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
-                                        <button class="btn btn-danger btn-sm  align-items-center" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" >
+                                        <button class="btn btn-danger align-items-center" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" >
                                             <i class="bi bi-trash3"></i>
                                         </button>
                                     </td>
@@ -255,6 +247,7 @@
         @include('ormawa.modal.tambahbarang')
         @include('ormawa.modal.editbarang')
         @include('ormawa.modal.hapusbarang')
+        @include('ormawa.modal.history')
 
 </body>
 

@@ -11,6 +11,7 @@ use App\Http\Controllers\KunciController;
 use App\Http\Controllers\ListPeminjamanBarangController;
 use App\Http\Controllers\ListPeminjamanRuanganController;
 use App\Http\Controllers\StatusPeminjamanController;
+use App\Http\Controllers\TambahRuanganController;
 
 Route::get('/', function () {
     return view('login');
@@ -79,3 +80,4 @@ Route::get('/listpeminjamanRuangan/detail', function () {
 })->name('listpeminjamanruangan.detail');
 
 Route::get('/statuspeminjaman', [StatusPeminjamanController::class, 'index'])->name('statuspeminjaman');
+Route::get('/tambahruangan', [TambahRuanganController::class, 'index'])->name('tambahruangan');
