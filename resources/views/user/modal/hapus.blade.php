@@ -6,7 +6,7 @@
 
                 <img src="{{ asset('images/tanya.png') }}"
                      class="mb-3"
-                     style="width: 90px; height: auto; object-fit: contain;">
+                     style="width: 150px; height: auto; object-fit: contain;">
 
                 <h6 class="fw-bold mb-2">
                     Hapus User

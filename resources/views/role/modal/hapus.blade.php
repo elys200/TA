@@ -6,7 +6,7 @@
 
                 <img src="{{ asset('images/tanya.png') }}"
                      class="mb-3"
-                     style="width: 90px; height: auto; object-fit: contain;">
+                     style="width: 150px; height: auto; object-fit: contain;">
 
                 <h6 class="fw-bold mb-2">
                     Hapus Role
@@ -18,15 +18,14 @@
                 </p>
 
                 <div class="d-flex justify-content-center gap-3">
+                      <button type="button"
+                            class="btn btn-danger btn-sm">
+                        Ya, Hapus
+                    </button>
                     <button type="button"
                             class="btn btn-outline-secondary btn-sm"
                             data-bs-dismiss="modal">
                         Batal
-                    </button>
-
-                    <button type="button"
-                            class="btn btn-danger btn-sm">
-                        Ya, Hapus
                     </button>
                 </div>
 

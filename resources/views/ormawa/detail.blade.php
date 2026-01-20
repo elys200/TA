@@ -198,7 +198,7 @@
                         <table class="table table-bordered align-middle">
                             <thead class="table-light">
                                 <tr>
-                                    <th>#</th>
+                                    <th>No</th>
                                     <th>Gambar</th>
                                     <th>Nama</th>
                                     <th>Qty</th>
@@ -217,9 +217,8 @@
                                     <td>5</td>
                                     <td>Kain Hitam 3 meter</td>
                                     <td class="text-center">
-                                        <button class="btn btn-success  me-1 align-items-center"
-                                         data-bs-toggle="modal" data-bs-target="#modalHistoryBarang">
-                                          <i class="bi bi-eye-fill"></i>
+                                        <button class="btn btn-success  me-1 align-items-center">
+                                         <i class="bi bi-justify"></i>
                                         </button>
                                         <button class="btn btn-warning  me-1 align-items-center"
                                          data-bs-toggle="modal" data-bs-target="#modalEditBarang">
@@ -247,7 +246,6 @@
         @include('ormawa.modal.tambahbarang')
         @include('ormawa.modal.editbarang')
         @include('ormawa.modal.hapusbarang')
-        @include('ormawa.modal.history')
 
 </body>
 
