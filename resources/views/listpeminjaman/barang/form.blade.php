@@ -110,105 +110,113 @@
             </header>
             <div class="container-fluid">
 
-                <h3> List Peminjaman Barang</h3>
-                <div class="container my-4" style="background-color: transparent;">
-                    <div class="card" style="border:2px solid #a855f7;border-radius:12px;">
+                <h2>Formulir Pemborangan Ruangan</h2>
 
-                        <!-- HEADER -->
-                        <div class="card-header bg-white py-3">
-                            <h5 class="mb-0 fw-semibold">Badan Eksekutif Mahasiswa</h5>
+                <!-- WRAPPER PUTIH -->
+                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
+
+                    <form class="row g-3">
+
+                        <!-- Nama Kegiatan -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Nama Kegiatan</label>
+                            <input type="text" class="form-control" placeholder="Contoh: Seminar Nasional">
                         </div>
 
-                        <hr class="my-0">
+                        <!-- Jenis Kegiatan -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Jenis Kegiatan</label>
+                            <select class="form-select">
+                                <option selected disabled>-- Pilih Jenis Kegiatan --</option>
+                                <option>Seminar</option>
+                                <option>Pelatihan</option>
+                                <option>Rapat</option>
+                                <option>Lomba</option>
+                                <option>Kegiatan Internal</option>
+                            </select>
+                        </div>
 
-                        <!-- BODY -->
-                        <div class="card-body bg-white p-3">
+                        <!-- Tanggal Pinjam -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Tanggal Pinjam</label>
+                            <input type="date" class="form-control">
+                        </div>
 
-                            <!-- ITEM -->
-                            <div class="row align-items-center py-3 border-bottom">
+                        <!-- Tanggal Kembali -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Tanggal Pengembalian</label>
+                            <input type="date" class="form-control">
+                        </div>
 
-                                <!-- Checkbox + Image -->
-                                <div class="col-md-4 d-flex align-items-center gap-3">
-                                    <input type="checkbox" class="form-check-input mt-0">
-                                    <img src="{{ asset('images/barang.jpg') }}"
-                                        style="width:90px;height:90px;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;">
-                                    <div>
-                                        <div class="fw-semibold">Extension 3 Colokan</div>
-                                        <small class="text-muted">Barang Elektronik</small>
-                                    </div>
-                                </div>
+                        <hr class="my-4" style="border-top: 1.5px dashed #f90000;">
 
-                                <!-- Quantity -->
-                                <div class="col-md-4 text-center">
-                                    <div class="d-inline-flex align-items-center">
-                                        <button class="btn btn-outline-secondary btn-sm">−</button>
-                                        <input type="text" class="form-control form-control-sm mx-2 text-center"
-                                            style="width:55px;" value="1">
-                                        <button class="btn btn-outline-secondary btn-sm">+</button>
-                                    </div>
-                                </div>
+                        <!-- Daftar Barang -->
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Barang yang Dipinjam</label>
 
-                                <!-- Action -->
-                                <div class="col-md-4 text-end pe-5">
-                                    <a href="#" class="text-danger text-decoration-none fw-semibold">
-                                        <i class="bi bi-trash"></i> Hapus
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="row align-items-center py-3 border-bottom">
-
-                                <!-- Checkbox + Image -->
-                                <div class="col-md-4 d-flex align-items-center gap-3">
-                                    <input type="checkbox" class="form-check-input mt-0">
-                                    <img src="{{ asset('images/barang.jpg') }}"
-                                        style="width:90px;height:90px;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;">
-                                    <div>
-                                        <div class="fw-semibold">Extension 3 Colokan</div>
-                                        <small class="text-muted">Barang Elektronik</small>
-                                    </div>
-                                </div>
-
-                                <!-- Quantity -->
-                                <div class="col-md-4 text-center">
-                                    <div class="d-inline-flex align-items-center">
-                                        <button class="btn btn-outline-secondary btn-sm">−</button>
-                                        <input type="text" class="form-control form-control-sm mx-2 text-center"
-                                            style="width:55px;" value="1">
-                                        <button class="btn btn-outline-secondary btn-sm">+</button>
-                                    </div>
-                                </div>
-
-                                <!-- Action -->
-                                <div class="col-md-4 text-end pe-5">
-                                    <a href="#" class="text-danger text-decoration-none fw-semibold">
-                                        <i class="bi bi-trash"></i> Hapus
-                                    </a>
-                                </div>
-
-                            </div>
-
-                            <div class="bg-white p-3 rounded shadow-sm mt-3 sticky-bottom">
-                                <div class="d-flex justify-content-end align-items-center">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div>
-                                            <span class="text-muted">Total :</span>
-                                            <span class="fw-thin text-danger fs-7">2 Item</span>
-                                        </div>
-                                        <a href="{{ route('listpeminjamanbarang.form') }}" class="btn btn-danger px-4">
-                                            Ajukan Peminjaman
-                                        </a>
-                                    </div>
-                                </div>
+                            <div class="table-responsive">
+                                <table class="table table-bordered align-middle">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th style="width:40%">Gambar Barang</th>
+                                            <th style="width:20%">Nama Barang</th>
+                                            <th style="width:20%">Jumlah</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <img src="{{ asset('images/barang.jpg') }}" alt="Barang"
+                                                    style="width: 100px; height: auto;">
+                                            </td>
+                                            <td>Proyektor</td>
+                                            <td>5</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
-                    </div>
+
+                        <hr class="my-4" style="border-top: 1.5px dashed #f90000;">
+
+                        <!-- Penanggung Jawab -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Penanggung Jawab</label>
+                            <input type="text" class="form-control" placeholder="Nama PJ Kegiatan">
+                        </div>
+
+                        <!-- No HP PJ -->
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">No. HP Penanggung Jawab</label>
+                            <input type="text" class="form-control" placeholder="08xxxxxxxxxx">
+                        </div>
+
+                        <!-- Catatan -->
+                        <div class="col-12">
+                            <label class="form-label fw-bold">Catatan Tambahan</label>
+                            <textarea class="form-control" rows="3"
+                                placeholder="Catatan khusus untuk admin..."></textarea>
+                        </div>
+
+
+                        <!-- Tombol -->
+                        <div class="col-12 text-end mt-3">
+                            <button type="submit" class="btn btn-success px-4">
+                                Ajukan Peminjaman
+                            </button>
+                        </div>
+
+                    </form>
+
                 </div>
-
-
             </div>
         </div>
-    </div>
+        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+        <script src="{{asset('js/pages/dashboard.js')}}"></script>
+        <script src="{{asset('js/main.js')}}">
+        </script>
     </div>
 </body>
 

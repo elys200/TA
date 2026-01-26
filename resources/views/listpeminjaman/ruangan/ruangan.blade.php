@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -113,7 +113,7 @@
                 <h3> List Peminjaman Ruangan</h3>
 
                 <!-- WRAPPER PUTIH -->
-                <div class="bg-white p-4 rounded-3 shadow-sm">
+                <!-- <div class="bg-white p-4 rounded-3 shadow-sm">
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-4">
@@ -216,4 +216,146 @@
     </div>
 </body>
 
+</html> --> -->
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Keranjang Barang</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <style>
+        body {
+            background: #f5f5f5;
+        }
+        .cart-item {
+            border-bottom: 1px solid #eee;
+            padding: 16px 0;
+        }
+        .product-img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+        .qty-box input {
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container my-4">
+
+    <h5 class="fw-bold mb-3">Keranjang Saya</h5>
+
+    <!-- HEADER -->
+    <div class="bg-white p-3 rounded mb-2 shadow-sm">
+        <div class="row text-muted fw-semibold small">
+            <div class="col-5">Produk</div>
+            <div class="col text-center">Harga</div>
+            <div class="col text-center">Jumlah</div>
+            <div class="col text-center">Total</div>
+            <div class="col text-center">Aksi</div>
+        </div>
+    </div>
+
+    <!-- LIST BARANG -->
+    <div class="bg-white p-3 rounded shadow-sm">
+
+        <!-- ITEM -->
+        <div class="row align-items-center cart-item">
+            <div class="col-5 d-flex gap-3">
+                <input type="checkbox">
+                <img src="https://via.placeholder.com/80" class="product-img">
+                <div>
+                    <div class="fw-semibold">Kawat Tangkai Bunga</div>
+                    <small class="text-muted">Variasi: Kawat Batang</small>
+                </div>
+            </div>
+
+            <div class="col text-center">Rp9.920</div>
+
+            <div class="col text-center">
+                <div class="d-flex justify-content-center qty-box">
+                    <button class="btn btn-outline-secondary btn-sm">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1" value="1">
+                    <button class="btn btn-outline-secondary btn-sm">+</button>
+                </div>
+            </div>
+
+            <div class="col text-center text-danger fw-semibold">
+                Rp9.920
+            </div>
+
+            <div class="col text-center">
+                <a href="#" class="text-danger text-decoration-none">Hapus</a>
+            </div>
+        </div>
+
+        <!-- ITEM -->
+        <div class="row align-items-center cart-item">
+            <div class="col-5 d-flex gap-3">
+                <input type="checkbox">
+                <img src="https://via.placeholder.com/80" class="product-img">
+                <div>
+                    <div class="fw-semibold">Flower Tape Solasi</div>
+                    <small class="text-muted">Variasi: 30 Yard</small>
+                </div>
+            </div>
+
+            <div class="col text-center">Rp7.225</div>
+
+            <div class="col text-center">
+                <div class="d-flex justify-content-center qty-box">
+                    <button class="btn btn-outline-secondary btn-sm">-</button>
+                    <input type="text" class="form-control form-control-sm mx-1" value="1">
+                    <button class="btn btn-outline-secondary btn-sm">+</button>
+                </div>
+            </div>
+
+            <div class="col text-center text-danger fw-semibold">
+                Rp7.225
+            </div>
+
+            <div class="col text-center">
+                <a href="#" class="text-danger text-decoration-none">Hapus</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER CHECKOUT -->
+    <div class="bg-white p-3 rounded shadow-sm mt-3 sticky-bottom">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <input type="checkbox"> Pilih Semua
+                <a href="#" class="ms-3 text-danger text-decoration-none">Hapus</a>
+            </div>
+
+            <div class="d-flex align-items-center gap-3">
+                <div>
+                    <span class="text-muted">Total:</span>
+                    <span class="fw-bold text-danger fs-5">Rp17.145</span>
+                </div>
+                <button class="btn btn-danger px-4">
+                    Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
+

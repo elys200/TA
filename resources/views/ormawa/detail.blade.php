@@ -217,9 +217,9 @@
                                     <td>5</td>
                                     <td>Kain Hitam 3 meter</td>
                                     <td class="text-center">
-                                        <button class="btn btn-success  me-1 align-items-center">
+                                        <a href="{{ route('ormawa.detailbarang') }}" class="btn btn-success  me-1 align-items-center">
                                          <i class="bi bi-justify"></i>
-                                        </button>
+                                        </a>
                                         <button class="btn btn-warning  me-1 align-items-center"
                                          data-bs-toggle="modal" data-bs-target="#modalEditBarang">
                                             <i class="bi bi-pencil-square"></i>

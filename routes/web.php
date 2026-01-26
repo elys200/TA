@@ -84,3 +84,10 @@ Route::get('/listpeminjamanRuangan/detail', function () {
 
 Route::get('/statuspeminjaman', [StatusPeminjamanController::class, 'index'])->name('statuspeminjaman');
 Route::get('/tambahruangan', [TambahRuanganController::class, 'index'])->name('tambahruangan');
+Route::get('/tambahruangan/form', function () {
+    return view('tambahruangan.form ');
+})->name('tambahruangan.form');
+
+Route::get('/listpeminjamanBarang/form', function () {
+    return view('listpeminjaman.barang.form');
+})->name('listpeminjamanbarang.form');

@@ -1,6 +1,3 @@
-<div>
-    <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
-</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -111,89 +108,50 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-
             <div class="container-fluid">
 
+                <h2> Ruangan Baru</h2>
+
                 <!-- WRAPPER PUTIH -->
-                <div class="bg-white p-4 rounded-3 shadow-sm">
+                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
 
-                    <!-- HEADER -->
-                    <div class="mb-4 text-center">
-                        <h1 class="mb-1 fs-3 fs-md-2">Daftar Ruangan</h1>
-                        <p class="text-muted mb-0 fs-6 fs-md-5">
-                            Pilih Ruangan yang tersedia untuk dipinjam
-                        </p>
-                    </div>
-
-                    <hr class="my-2">
-
-
-                    <!-- SEARCH -->
-                    <div class="row mb-4 mt-2 align-items-center">
-                        <div class="col-auto">
-                            <input type="text" class="form-control" placeholder="Cari Ruangan..." style="width: 300px;">
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Lokai Ruangan</label>
+                            <input type="text" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Kode Ruangan</label>
+                            <input type="" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Kapasitas Ruangan</label>
+                            <input type="" class="form-control" id="">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label fw-bold">PIC Ruangan</label>
+                            <select id="inputState" class="form-select">
+                                <option>Budi</option>
+                                <option>Elys</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="formFile" class="form-label fw-bold">Foto Ruangan</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Submit</button>
                         </div>
 
-                        <div class="col ms-auto">
-                            <a href="" class="btn btn-primary d-flex align-items-center gap-1 float-end">
-                                <i class="bi bi-plus-circle"></i>
-                                Tambah
-                            </a>
-                        </div>
-                    </div>
-
-
-                    <div class="services-wrapper2">
-                        <div class="row g-3">
-
-                            <div class="col-12 col-md-6">
-                                <div class="card h-100" style="border: 1px solid #ddd;">
-                                    <img src="{{ asset('images/ruangan2.jpg') }}" class="card-img-top card-img-fit"
-                                        alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build the card...</p>
-                                          <button class="btn btn-success  align-items-center" data-bs-toggle="modal"
-                                            data-bs-target="#modalHapusBarang">
-                                            <i class="bi bi-list"></i>
-                                        </button>
-                                        <button class="btn btn-warning  me-1 align-items-center"
-                                            data-bs-toggle="modal" data-bs-target="#modalEditBarang">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-danger  align-items-center" data-bs-toggle="modal"
-                                            data-bs-target="#modalHapusBarang">
-                                            <i class="bi bi-trash3"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-12 col-md-6">
-                                <div class="card h-100" style="border: 1px solid #ddd;">
-                                    <img src="{{ asset('images/ruangan2.jpg') }}" class="card-img-top card-img-fit"
-                                        alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build the card...</p>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-
+                        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                        <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                        <script src="{{asset('js/main.js')}}"></script>
+                    </form>
                 </div>
-
-
-                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                <script src="{{asset('js/main.js')}}"></script>
+            </div>
+        </div>
 </body>
 
 </html>

@@ -163,20 +163,24 @@
                         <table class="table table-borderless detail-table">
                             <tbody>
                                 <tr>
-                                    <th>Nama Organisasi</th>
-                                    <td>Badan Eksekutif Mahasiswa</td>
+                                    <th>Lokasi Ruangan</th>
+                                    <td>Study Center Lt.1</td>
                                 </tr>
                                 <tr>
-                                    <th>Tahun Dibentuk</th>
-                                    <td>2003</td>
+                                    <th>Kode Ruangan</th>
+                                    <td>RB (Ruangan Bersama)</td>
                                 </tr>
                                 <tr>
-                                    <th>Dosen Pembimbing</th>
-                                    <td>Muhammad Idris Str.M.Kom</td>
+                                    <th>Kapasitas Ruangan</th>
+                                    <td>100 Orang</td>
                                 </tr>
                                 <tr>
-                                    <th>Nama Ketua</th>
+                                    <th>PIC Ruangan</th>
                                     <td>Elys Aulia Tanjung</td>
+                                </tr>
+                                <tr>
+                                    <th>No Telp PIC</th>
+                                    <td>089505631279</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -190,7 +194,7 @@
                     </div>
 
                     <div class="bg-white p-4 rounded-3 shadow-sm mt-4">
-                        <h5 class="mb-3">Jadwal Ruangan</h5>
+                        <h5 class="mb-3">Jadwal Penggunaan Ruangan</h5>
                         <hr class="my-2">
 
                         <div id='calendar'></div>

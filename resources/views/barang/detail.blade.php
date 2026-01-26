@@ -158,20 +158,24 @@
                             <table class="table table-sm">
                                 <tbody>
                                     <tr>
-                                        <th width="40%">Nama Organisasi</th>
-                                        <td>Badan Eksekutif Mahasiswa</td>
+                                        <th width="40%">Nama Barang</th>
+                                        <td>: Extension 3 Colokan</td>
                                     </tr>
                                     <tr>
-                                        <th>Tahun Dibentuk</th>
-                                        <td>: 2003</td>
+                                        <th>Ormawa Pemilik</th>
+                                        <td>: HMTI</td>
                                     </tr>
                                     <tr>
-                                        <th>Dosen Pembimbing</th>
-                                        <td>: Muhammad Idris Str.M.Kom</td>
+                                        <th>Kondisi</th>
+                                        <td>: 
+                                            <button class="btn btn-success btn-sm">
+                                                Bagus
+                                            </button>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <th>Nama Ketua</th>
-                                        <td>: Elys Aulia Tanjung</td>
+                                     <tr>
+                                        <th>Deskripsi</th>
+                                        <td>: Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae excepturi, animi deleniti facere corporis, laboriosam enim cupiditate voluptate, quasi magnam sapiente. Sequi adipisci labore debitis expedita, eos consequatur. Ullam, qui.</td>
                                     </tr>
                                 </tbody>
                             </table>

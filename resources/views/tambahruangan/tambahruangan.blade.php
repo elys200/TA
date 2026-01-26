@@ -1,3 +1,6 @@
+<div>
+    <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
+</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +71,7 @@
                         <li class="sidebar-title">Pamdal Menu</li>
                         <li class="sidebar-item  ">
                             <a href="{{ route('kunci') }}" class='sidebar-link'>
-                                <i class="bi bi-key-fill"></i>
+                               <i class="bi bi-key-fill"></i>
                                 <span>Kunci</span>
                             </a>
                         </li>
@@ -79,7 +82,7 @@
                                 <span>Kelola Ruangan</span>
                             </a>
                         </li>
-                        <li class="sidebar-item  ">
+                         <li class="sidebar-item  ">
                             <a href="{{ url('/ormawa') }}" class='sidebar-link'>
                                 <i class="bi bi-diagram-3"></i>
                                 <span>Ormawa</span>
@@ -108,108 +111,86 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+
             <div class="container-fluid">
 
-                <h3> List Peminjaman Barang</h3>
-                <div class="container my-4" style="background-color: transparent;">
-                    <div class="card" style="border:2px solid #a855f7;border-radius:12px;">
+                <!-- WRAPPER PUTIH -->
+                <div class="bg-white p-4 rounded-3 shadow-sm">
 
-                        <!-- HEADER -->
-                        <div class="card-header bg-white py-3">
-                            <h5 class="mb-0 fw-semibold">Badan Eksekutif Mahasiswa</h5>
+                    <!-- HEADER -->
+                    <div class="mb-4 text-center">
+                        <h1 class="mb-1 fs-3 fs-md-2">Daftar Ruangan</h1>
+                    </div>
+
+                    <hr class="my-2">
+
+
+                    <!-- SEARCH -->
+                    <div class="row mb-4 mt-2 align-items-center">
+                        <div class="col-auto">
+                            <input type="text" class="form-control" placeholder="Cari Ruangan..." style="width: 300px;">
                         </div>
 
-                        <hr class="my-0">
-
-                        <!-- BODY -->
-                        <div class="card-body bg-white p-3">
-
-                            <!-- ITEM -->
-                            <div class="row align-items-center py-3 border-bottom">
-
-                                <!-- Checkbox + Image -->
-                                <div class="col-md-4 d-flex align-items-center gap-3">
-                                    <input type="checkbox" class="form-check-input mt-0">
-                                    <img src="{{ asset('images/barang.jpg') }}"
-                                        style="width:90px;height:90px;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;">
-                                    <div>
-                                        <div class="fw-semibold">Extension 3 Colokan</div>
-                                        <small class="text-muted">Barang Elektronik</small>
-                                    </div>
-                                </div>
-
-                                <!-- Quantity -->
-                                <div class="col-md-4 text-center">
-                                    <div class="d-inline-flex align-items-center">
-                                        <button class="btn btn-outline-secondary btn-sm">−</button>
-                                        <input type="text" class="form-control form-control-sm mx-2 text-center"
-                                            style="width:55px;" value="1">
-                                        <button class="btn btn-outline-secondary btn-sm">+</button>
-                                    </div>
-                                </div>
-
-                                <!-- Action -->
-                                <div class="col-md-4 text-end pe-5">
-                                    <a href="#" class="text-danger text-decoration-none fw-semibold">
-                                        <i class="bi bi-trash"></i> Hapus
-                                    </a>
-                                </div>
-
-                            </div>
-                            <div class="row align-items-center py-3 border-bottom">
-
-                                <!-- Checkbox + Image -->
-                                <div class="col-md-4 d-flex align-items-center gap-3">
-                                    <input type="checkbox" class="form-check-input mt-0">
-                                    <img src="{{ asset('images/barang.jpg') }}"
-                                        style="width:90px;height:90px;object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;">
-                                    <div>
-                                        <div class="fw-semibold">Extension 3 Colokan</div>
-                                        <small class="text-muted">Barang Elektronik</small>
-                                    </div>
-                                </div>
-
-                                <!-- Quantity -->
-                                <div class="col-md-4 text-center">
-                                    <div class="d-inline-flex align-items-center">
-                                        <button class="btn btn-outline-secondary btn-sm">−</button>
-                                        <input type="text" class="form-control form-control-sm mx-2 text-center"
-                                            style="width:55px;" value="1">
-                                        <button class="btn btn-outline-secondary btn-sm">+</button>
-                                    </div>
-                                </div>
-
-                                <!-- Action -->
-                                <div class="col-md-4 text-end pe-5">
-                                    <a href="#" class="text-danger text-decoration-none fw-semibold">
-                                        <i class="bi bi-trash"></i> Hapus
-                                    </a>
-                                </div>
-
-                            </div>
-
-                            <div class="bg-white p-3 rounded shadow-sm mt-3 sticky-bottom">
-                                <div class="d-flex justify-content-end align-items-center">
-                                    <div class="d-flex align-items-center gap-3">
-                                        <div>
-                                            <span class="text-muted">Total :</span>
-                                            <span class="fw-thin text-danger fs-7">2 Item</span>
-                                        </div>
-                                        <a href="{{ route('listpeminjamanbarang.form') }}" class="btn btn-danger px-4">
-                                            Ajukan Peminjaman
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="col ms-auto">
+                            <a href="{{ route('tambahruangan.form') }}" class="btn btn-primary d-flex align-items-center gap-1 float-end">
+                                <i class="bi bi-plus-circle"></i>
+                                Tambah
+                            </a>
                         </div>
                     </div>
+
+
+                    <div class="services-wrapper2">
+                        <div class="row g-3">
+
+                            <div class="col-12 col-md-6">
+                                <div class="card h-100" style="border: 1px solid #ddd;">
+                                    <img src="{{ asset('images/ruangan2.jpg') }}" class="card-img-top card-img-fit"
+                                        alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">Some quick example text to build the card...</p>
+                                          <button class="btn btn-success  align-items-center" data-bs-toggle="modal"
+                                            data-bs-target="#modalHapusBarang">
+                                            <i class="bi bi-list"></i>
+                                        </button>
+                                        <button class="btn btn-warning  me-1 align-items-center"
+                                            data-bs-toggle="modal" data-bs-target="#modalEditBarang">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </button>
+                                        <button class="btn btn-danger  align-items-center" data-bs-toggle="modal"
+                                            data-bs-target="#modalHapusBarang">
+                                            <i class="bi bi-trash3"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="card h-100" style="border: 1px solid #ddd;">
+                                    <img src="{{ asset('images/ruangan2.jpg') }}" class="card-img-top card-img-fit"
+                                        alt="">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Card title</h5>
+                                        <p class="card-text">Some quick example text to build the card...</p>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+
                 </div>
 
 
-            </div>
-        </div>
-    </div>
-    </div>
+                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                <script src="{{asset('js/main.js')}}"></script>
 </body>
 
 </html>

@@ -8,6 +8,6 @@ class TambahRuanganController extends Controller
 {
     public function index()
     {
-        return view('tambahruangan');
+        return view('tambahruangan/tambahruangan');
     }
 }

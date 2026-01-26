@@ -113,25 +113,15 @@
             </header>
 
             <div class="container-fluid">
-                <div class="bg-white p-4 rounded-3 shadow-sm">
+                <div class="bg-white p-4 rounded-3 shadow-sm" style="height:400px;">
                     <div class="row">
                         <div class="col-lg-5 col-md-12 col-12">
-                            <img src="{{ asset('images/baranglokal.jpg') }}" style="margin-bottom:10px;" width="100%"
-                                height="55%">
-                            <div class="small-img-group">
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="50%" class="small-img"
-                                        alt="">
-                                </div>
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="50%" class="small-img"
-                                        alt="">
-                                </div>
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="50%" class="small-img"
-                                        alt="">
+                            <div class="col-lg-9 col-md-12 col-12" style="margin-left: 30px;">
+                                <div class="image-wrapper h-100">
+                                    <img src="{{ asset('images/baranglokal.jpg') }}" alt="">
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="col-lg-6 col-md-12">
@@ -160,91 +150,107 @@
                         </div>
                     </div>
                 </div>
-                <div class="container my-4">
-  <div class="card" style="border:2px solid #a855f7;border-radius:12px;">
+                <div class="container my-4" style="background-color: transparent;">
+                    <div class="card" style="border:2px solid #a855f7;border-radius:12px;">
 
-    <!-- Header -->
-    <div class="card-header bg-white">
-      <h5 class="fw-semibold text-primary mb-0">
-        <i class="bi bi-journal-text me-1"></i> Riwayat Peminjaman Barang
-      </h5>
-    </div>
+                        <!-- Header -->
+                        <div class="card-header bg-white">
+                            <h5 class="fw-semibold text-primary mb-0">
+                                <i class="bi bi-journal-text me-1"></i> Riwayat Peminjaman Extension
+                            </h5>
+                        </div>
 
-    <!-- Body -->
-    <div class="card-body">
+                        <!-- Body -->
+                        <div class="card-body">
 
-      <!-- Equipment Name -->
-      <h6 class="text-center fw-semibold mb-4" style="color:#22c55e;">
-        Kain Hitam
-      </h6>
+                            <!-- Timeline -->
+                            <div style="position:relative;padding-left:30px;">
 
-      <!-- Timeline Wrapper -->
-      <div style="position:relative;padding-left:25px;">
+                                <!-- Line -->
+                                <div style="position:absolute;left:6px;top:0;bottom:0;width:2px;background:#e5e7eb;">
+                                </div>
 
-        <!-- Vertical Line -->
-        <div style="position:absolute;left:6px;top:0;bottom:0;width:2px;background:#e5e7eb;"></div>
+                                <!-- Item -->
+                                <div class="mb-4 position-relative">
+                                    <div
+                                        style="position:absolute;left:-2px;top:6px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #facc15;">
+                                    </div>
 
-        <!-- Borrowed -->
-        <div class="mb-4 position-relative">
-          <div style="position:absolute;left:-2px;top:5px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #facc15;"></div>
+                                    <div class="ps-4">
+                                        <div class="fw-semibold text-warning">Borrowed</div>
+                                        <div class="small">
+                                            Date : 21 Feb, 2025
+                                            <span class="float-end text-muted">10 months ago</span>
+                                        </div>
+                                        <div class="small">Estimate : 21 Feb, 2025</div>
+                                        <div class="small text-muted">
+                                            By: Yudha P. (7012207016)
+                                        </div>
+                                    </div>
+                                </div>
 
-          <div class="ps-4">
-            <div class="fw-semibold" style="color:#facc15;">Borrowed</div>
-            <div class="small">
-              Date : 21 Feb, 2025
-              <span class="float-end text-muted">10 months ago</span>
-            </div>
-            <div class="small">Estimate : 21 Feb, 2025</div>
-            <div class="small text-muted">
-              By: Yudha P. (7012207016)
-            </div>
-          </div>
-        </div>
+                                <!-- Item -->
+                                <div class="mb-4 position-relative">
+                                    <div
+                                        style="position:absolute;left:-2px;top:6px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #6366f1;">
+                                    </div>
 
-        <!-- Returned -->
-        <div class="mb-4 position-relative">
-          <div style="position:absolute;left:-2px;top:5px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #6366f1;"></div>
+                                    <div class="ps-4">
+                                        <div class="fw-semibold text-primary">Returned</div>
+                                        <div class="small">
+                                            20 Aug, 2024
+                                            <span class="float-end text-muted">1 year ago</span>
+                                        </div>
 
-          <div class="ps-4">
-            <div class="fw-semibold" style="color:#6366f1;">Returned</div>
-            <div class="small">
-              20 Aug, 2024
-              <span class="float-end text-muted">1 year ago</span>
-            </div>
+                                        <a href="#" class="badge bg-light text-primary mt-1">return_photo</a>
 
-            <a href="#" class="badge bg-light text-primary mt-1">return_photo</a>
+                                        <div class="small text-muted mt-1">
+                                            By: Yudha P. (7012207016) → To: Martauli S. (7011510009)
+                                        </div>
+                                    </div>
+                                </div>
 
-            <div class="small text-muted mt-1">
-              By: Yudha P. (7012207016) → To: Martauli S. (7011510009)
-            </div>
-          </div>
-        </div>
+                                <!-- Item -->
+                                <div class="mb-4 position-relative">
+                                    <div
+                                        style="position:absolute;left:-2px;top:6px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #facc15;">
+                                    </div>
 
-        <!-- Borrowed -->
-        <div class="position-relative">
-          <div style="position:absolute;left:-2px;top:5px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #facc15;"></div>
+                                    <div class="ps-4">
+                                        <div class="fw-semibold text-warning">Borrowed</div>
+                                        <div class="small">
+                                            Date : 20 Aug, 2024
+                                            <span class="float-end text-muted">1 year ago</span>
+                                        </div>
+                                        <div class="small">Estimate : 20 Aug, 2024</div>
 
-          <div class="ps-4">
-            <div class="fw-semibold" style="color:#facc15;">Borrowed</div>
-            <div class="small">
-              Date : 20 Aug, 2024
-              <span class="float-end text-muted">1 year ago</span>
-            </div>
-            <div class="small">Estimate : 20 Aug, 2024</div>
+                                        <a href="#" class="badge bg-light text-primary mt-1">borrow_photo</a>
 
-            <a href="#" class="badge bg-light text-primary mt-1">borrow_photo</a>
+                                        <div class="small text-muted mt-1">
+                                            Perbaiki AC bocor Panin pelita.
+                                        </div>
+                                    </div>
+                                </div>
 
-            <div class="small text-muted mt-1">
-              Perbaiki AC bocor Panin pelita.
-            </div>
-          </div>
-        </div>
+                                <!-- Pagination -->
+                                <div class="d-flex justify-content-end mt-4">
+                                    <nav aria-label="Pagination">
+                                        <ul class="pagination mb-0">
+                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
 
-      </div>
-    </div>
+                            </div>
+                        </div>
 
-  </div>
-</div>
+                    </div>
+                </div>
+
 
                 <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
                 <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>

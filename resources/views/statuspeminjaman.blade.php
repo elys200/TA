@@ -4,24 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Status Peminjaman</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons & CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/iconly/bold.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}" type="image/x-icon">
-
-
+    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}">
 </head>
 
 <body>
     <div id="app">
+
+
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
@@ -68,7 +68,7 @@
                         <li class="sidebar-title">Pamdal Menu</li>
                         <li class="sidebar-item  ">
                             <a href="{{ route('kunci') }}" class='sidebar-link'>
-                               <i class="bi bi-key-fill"></i>
+                                <i class="bi bi-key-fill"></i>
                                 <span>Kunci</span>
                             </a>
                         </li>
@@ -79,7 +79,7 @@
                                 <span>Kelola Ruangan</span>
                             </a>
                         </li>
-                         <li class="sidebar-item  ">
+                        <li class="sidebar-item  ">
                             <a href="{{ url('/ormawa') }}" class='sidebar-link'>
                                 <i class="bi bi-diagram-3"></i>
                                 <span>Ormawa</span>
@@ -102,155 +102,136 @@
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
+        <!-- MAIN -->
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+
             <div class="container-fluid">
+                <h3 class="mb-4">Status Peminjaman</h3>
 
-                <h3> Status Peminjaman</h3>
+                <!-- CARD -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
 
-                <!-- WRAPPER PUTIH -->
-                <div class="bg-white p-4 rounded-3 shadow-sm">
-                    <div class="row align-items-center mb-4">
-                        <div class="col-auto">
-                            <button class="btn btn-primary d-flex align-items-center justify-content-center gap-1"
-                                style="min-width: 120px; padding: 8px 16px;">
-                                <i class="bi bi-archive"></i>
-                                <span>Barang</span>
-                            </button>
+                        <!-- TOP ACTION -->
+                        <div class="row align-items-center g-2 mb-4">
+                            <div class="col-auto">
+                                <button class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                    <i class="bi bi-archive"></i> Barang
+                                </button>
+                            </div>
+                            <div class="col-auto">
+                                <button class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                    <i class="bi bi-door-open"></i> Ruangan
+                                </button>
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <input type="text" class="form-control" placeholder="Cari data...">
+                            </div>
                         </div>
 
-                        <div class="col-auto">
-                            <button class="btn btn-primary d-flex align-items-center justify-content-center gap-1"
-                                style="min-width: 120px; padding: 8px 16px;">
-                                <i class="bi bi-door-open"></i>
-                                <span>Ruangan</span>
-                            </button>
+                        <!-- FILTER -->
+                        <div class="d-flex flex-wrap align-items-center gap-3 p-3 border rounded mb-4">
+                            <i class="bi bi-filter fs-5 text-muted"></i>
+
+                            <div class="btn-group">
+                                <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                    Status Pengajuan
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Approve</a></li>
+                                    <li><a class="dropdown-item" href="#">Rejected</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                    Status Peminjaman
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Diajukan</a></li>
+                                    <li><a class="dropdown-item" href="#">Dipinjam</a></li>
+                                    <li><a class="dropdown-item" href="#">Selesai</a></li>
+                                </ul>
+                            </div>
                         </div>
 
-                        <!-- Search -->
-                        <div class="col-12 col-md-4 ms-md-auto mt-2 mt-md-0">
-                            <input type="text" class="form-control" placeholder="Cari barang...">
+                        <!-- TABLE -->
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered align-middle">
+                                <thead class="table-light text-center">
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Username</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Signature</th>
+                                        <th>Contact</th>
+                                        <th width="120">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Admin</td>
+                                        <td>Masteradmin</td>
+                                        <td>admin@mail.com</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-primary">Super Admin</span>
+                                        </td>
+                                        <td class="text-danger">Not Exist</td>
+                                        <td>-</td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center gap-1">
+                                                <button class="btn btn-sm btn-primary">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Aidil Adha</td>
+                                        <td>Aidil</td>
+                                        <td>aidil@mail.com</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-info">Sales</span>
+                                        </td>
+                                        <td class="text-danger">Not Exist</td>
+                                        <td>+62 811xxxxxxx</td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center gap-1">
+                                                <button class="btn btn-sm btn-primary">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                                <button class="btn btn-sm btn-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
+
                     </div>
-
-                    <div style="display: flex; align-items: center; gap: 15px; border: 1px solid #dee2e6; border-radius: 8px; padding: 10px 15px; background-color: #fff; margin-bottom: 1rem;">
-                        <div class="btn-group">
-                            <i class="bi bi-filter" style="margin-right: 15px; font-size: 1.5rem;"></i>
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                Status Pengajuan
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Approve</a></li>
-                                <li><a class="dropdown-item" href="#">Rejected</a></li>
-                            </ul>
-                        </div>
-
-                        <div class="btn-group">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
-                                Status Peminjaman
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Diajukan</a></li>
-                                <li><a class="dropdown-item" href="#">Sedang Dipinjam</a></li>
-                                <li><a class="dropdown-item" href="#">Selesai</a></li>
-                            </ul>
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered align-middle" style="margin-top: 10px">
-                            <thead class="table-light text-center">
-                                <tr>
-                                    <th>Nama</th>
-                                    <th>NIP</th>
-                                    <th>Position</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Kode Nama</th>
-                                    <th>Role</th>
-                                    <th>Nama Kelompok / Pribadi</th>
-                                    <th>Signature</th>
-                                    <th>Contact</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <tr>
-                                    <td>Admin</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>Masteradmin</td>
-                                    <td>Jimmy@mtpindo.com</td>
-                                    <td>-</td>
-                                    <td>
-                                        <span class="badge bg-primary">Super Admin</span>
-                                    </td>
-                                    <td>N/A</td>
-                                    <td class="text-danger">Not Exist</td>
-                                    <td>-</td>
-                                    <td class="text-center">
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <button class="btn btn-primary btn-sm">
-                                                <i class="bi bi-pencil"></i> Edit
-                                            </button>
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="bi bi-trash"></i> Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>Aidil Adha</td>
-                                    <td>-</td>
-                                    <td>Sales</td>
-                                    <td>Aidil</td>
-                                    <td>Aidil@mtpindo.com</td>
-                                    <td>AA</td>
-                                    <td>
-                                        <span class="badge bg-info">Sales</span>
-                                    </td>
-                                    <td>Aidil</td>
-                                    <td class="text-danger">Not Exist</td>
-                                    <td>+62 811-6930-965</td>
-                                    <td class="text-center">
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <button class="btn btn-primary btn-sm">
-                                                <i class="bi bi-pencil"></i> Edit
-                                            </button>
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="bi bi-trash"></i> Delete
-                                            </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-
                 </div>
             </div>
-
-
-
-
         </div>
-        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-        <script src="{{asset('js/pages/dashboard.js')}}"></script>
-        <script src="{{asset('js/main.js')}}"></script>
     </div>
-    </div>
-    </div>
+
+    <!-- JS -->
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
 </body>
 
 </html>

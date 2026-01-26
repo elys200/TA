@@ -1906,6 +1906,18 @@ a {
     
 }
 
+.image-wrapper {
+    width: 100%;
+}
+
+.image-wrapper img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+
+
 
 
 

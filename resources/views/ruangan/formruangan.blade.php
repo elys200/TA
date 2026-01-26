@@ -68,7 +68,7 @@
                         <li class="sidebar-title">Pamdal Menu</li>
                         <li class="sidebar-item  ">
                             <a href="{{ route('kunci') }}" class='sidebar-link'>
-                               <i class="bi bi-key-fill"></i>
+                                <i class="bi bi-key-fill"></i>
                                 <span>Kunci</span>
                             </a>
                         </li>
@@ -79,7 +79,7 @@
                                 <span>Kelola Ruangan</span>
                             </a>
                         </li>
-                         <li class="sidebar-item  ">
+                        <li class="sidebar-item  ">
                             <a href="{{ url('/ormawa') }}" class='sidebar-link'>
                                 <i class="bi bi-diagram-3"></i>
                                 <span>Ormawa</span>
@@ -110,35 +110,47 @@
             </header>
             <div class="container-fluid">
 
-            <h3> Form Pemborang Ruangan</h3>
+                <h3> Form Pemborang Ruangan</h3>
 
                 <!-- WRAPPER PUTIH -->
                 <div class="bg-white p-4 rounded-3 shadow-sm">
 
-                    <form>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <form class="row g-3">
+                        <div class="col-md-6">
+                            <label for="exampleInputEmail1" class="form-label">Nama Penaggung Jawab</label>
                             <input type="email" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">NIM</label>
+                            <input type="text" class="form-control" id="exampleInputPassword1">
                         </div>
-                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                         <div class="col-md-6">
+                            <label for="inputState" class="form-label fw-bold">Nama Ormawa</label>
+                            <select id="inputState" class="form-select">
+                                <option>BEM</option>
+                                <option>HMTI</option>
+                                <option>UKM</option>
+                            </select>
                         </div>
-                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">Tanggal Peminjaman</label>
+                            <input type="date" class="form-control" id="exampleInputPassword1">
                         </div>
-                         <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1">
+                        <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">Jam Penggunaan</label>
+                            <input type="time" class="form-control" id="exampleInputPassword1">
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                        
+                        <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">Jam Pengembalian</label>
+                            <input type="time" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="exampleInputPassword1" class="form-label">Alasan Peminjaman</label>
+                            <textarea class="form-control" id="exampleInputPassword1"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Ajukan</button>
+
                     </form>
                 </div>
 
