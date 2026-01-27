@@ -81,7 +81,7 @@
                         <li class="sidebar-title">Pamdal Menu</li>
                         <li class="sidebar-item  ">
                             <a href="{{ route('kunci') }}" class='sidebar-link'>
-                               <i class="bi bi-key-fill"></i>
+                                <i class="bi bi-key-fill"></i>
                                 <span>Kunci</span>
                             </a>
                         </li>
@@ -92,7 +92,7 @@
                                 <span>Kelola Ruangan</span>
                             </a>
                         </li>
-                         <li class="sidebar-item  ">
+                        <li class="sidebar-item  ">
                             <a href="{{ url('/ormawa') }}" class='sidebar-link'>
                                 <i class="bi bi-diagram-3"></i>
                                 <span>Ormawa</span>
@@ -123,61 +123,105 @@
             </header>
             <div class="container-fluid">
 
-                <h2> Data User</h2>
+                <h3> List Pemborangan Barang</h3>
 
                 <!-- WRAPPER PUTIH -->
-                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
+                <div class="bg-white p-4 rounded-3 shadow-sm">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="card-body d-flex align-items-center"
+                                    style="background-color: #7367f0; border-radius: 10px; height: 130px;">
+                                    <div class="me-3">
+                                        <i class="bi bi-bell" style="font-size: 50px; color: white;"></i>
+                                    </div>
+                                    <div style="margin-left: 5px;">
+                                        <span style="color: white; font-size: 25px;"><b>Reviewing</b></span>
+                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">1</h4>
+                                    </div>
 
-                    <form>
-                        <fieldset disabled>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Nama Lengkap</label>
-                                    <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Email</label>
-                                    <input type="text" class="form-control" placeholder="elysaulia20@gmail.com">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Role</label>
-                                    <input type="text" class="form-control" placeholder="Super Admin">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">NIM</label>
-                                    <input type="text" class="form-control" placeholder="3312301023">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Program Studi</label>
-                                    <input type="text" class="form-control" placeholder="Teknik Informatika">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Angkatan</label>
-                                    <input type="text" class="form-control" placeholder="2023">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">No HP</label>
-                                    <input type="text" class="form-control" placeholder="089505631279">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Status Akun</label>
-                                    <input type="text" class="form-control" placeholder="Aktif">
-                                </div>      
                             </div>
-                        </fieldset>
-                    </form>
+                            <div class="col-sm-4">
+                                <div class="card-body d-flex align-items-center"
+                                    style="background-color: #6EC207; border-radius: 10px; height: 130px;">
+                                    <div class="me-3">
+                                        <i class="bi bi-check2-circle" style="font-size: 50px; color: white;"></i>
+                                    </div>
+                                    <div style="margin-left: 5px;">
+                                        <span style="color: white; font-size: 25px;"><b>Approve</b></span>
+                                        <h4 id="counterApprove" class="mb-0" style="color: white;">1</h4>
+                                    </div>
 
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card-body d-flex align-items-center"
+                                    style="background-color: #FF0000; border-radius: 10px; height: 130px;">
+                                    <div class="me-3">
+                                        <i class="bi bi-x-circle" style="font-size: 50px; color: white;"></i>
+                                    </div>
+                                    <div style="margin-left: 5px;">
+                                        <span style="color: white; font-size: 25px;"><b>Rejected</b></span>
+                                        <h4 id="counterRejected" class="mb-0" style="color: white;">0</h4>
+                                    </div>
 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                    <script src="{{asset('js/main.js')}}"></script>
+                    <div class="row mb-4 mt-5">
+                        <div class="col-12 col-sm-8 col-md-4">
+                            <input type="text" class="form-control" placeholder="Cari Ruangan...">
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered align-middle">
+                            <thead class="table-light text-center">
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Jumlah</th>
+                                    <th>Penanggung Jawab</th>
+                                    <th>Tanggal Peminjaman</th>
+                                    <th>Tanggal Pengembalian</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>001</td>
+                                    <td>2 Item</td>
+                                    <td>Elys Aulia Tanjung</td>
+                                    <td>20 April 2026</td>
+                                    <td>20 April 2026</td>
+                                    <td class="text-center">
+                                        <span class="badge bg-warning text-dark">Reviewing</span>
+                                    </td>
+                                    <td class="text-center" style="width:100px;">
+                                        <div class="d-flex justify-content-center gap-2">
+                                            <a href="{{ route('approvalbarang.detail') }}" class="btn btn-success btn-sm">
+                                                Detail
+                                            </a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
 
                 </div>
+                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                <script src="{{asset('js/main.js')}}"></script>
             </div>
         </div>
+    </div>
 </body>
 
 </html>

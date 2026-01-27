@@ -65,6 +65,19 @@
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
+                        <li class="sidebar-title">PIC Menu</li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                                <i class="bi bi-door-closed"></i>
+                                <span>Approval Ruangan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                                <i class="bi bi-box-seam"></i>
+                                <span>Approval Barang</span>
+                            </a>
+                        </li>
                         <li class="sidebar-title">Pamdal Menu</li>
                         <li class="sidebar-item  ">
                             <a href="{{ route('kunci') }}" class='sidebar-link'>
@@ -120,14 +133,14 @@
                         <!-- TOP ACTION -->
                         <div class="row align-items-center g-2 mb-4">
                             <div class="col-auto">
-                                <button class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                <a href="{{ route('statuspeminjaman') }}" class="btn btn-primary d-flex align-items-center gap-2 px-3">
                                     <i class="bi bi-archive"></i> Barang
-                                </button>
+                                </a>
                             </div>
                             <div class="col-auto">
-                                <button class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                <a href="{{ route('statuspeminjamanruangan') }}" class="btn btn-primary d-flex align-items-center gap-2 px-3">
                                     <i class="bi bi-door-open"></i> Ruangan
-                                </button>
+                                </a>
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <input type="text" class="form-control" placeholder="Cari data...">
@@ -165,54 +178,28 @@
                             <table class="table table-hover table-bordered align-middle">
                                 <thead class="table-light text-center">
                                     <tr>
-                                        <th>Nama</th>
-                                        <th>Username</th>
-                                        <th>Email</th>
-                                        <th>Role</th>
-                                        <th>Signature</th>
-                                        <th>Contact</th>
+                                        <th>Code</th>
+                                        <th>Jumlah</th>
+                                        <th>Penanggung Jawab</th>
+                                        <th>Tanggal Peminjaman</th>
+                                        <th>Tanggal Pengembalian</th>
                                         <th width="120">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
                                     <tr>
-                                        <td>Admin</td>
-                                        <td>Masteradmin</td>
-                                        <td>admin@mail.com</td>
-                                        <td class="text-center">
-                                            <span class="badge bg-primary">Super Admin</span>
+                                        <td>001</td>
+                                        <td>2 Barang</td>
+                                        <td>Elys Aulia Tanjung</td>
+                                        <td >
+                                            20 April 2026
                                         </td>
-                                        <td class="text-danger">Not Exist</td>
-                                        <td>-</td>
+                                        <td> 20 April 2026</td>
                                         <td class="text-center">
-                                            <div class="d-flex justify-content-center gap-1">
-                                                <button class="btn btn-sm btn-primary">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger">
-                                                    <i class="bi bi-trash"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
-
-                                    <tr>
-                                        <td>Aidil Adha</td>
-                                        <td>Aidil</td>
-                                        <td>aidil@mail.com</td>
-                                        <td class="text-center">
-                                            <span class="badge bg-info">Sales</span>
-                                        </td>
-                                        <td class="text-danger">Not Exist</td>
-                                        <td>+62 811xxxxxxx</td>
-                                        <td class="text-center">
-                                            <div class="d-flex justify-content-center gap-1">
-                                                <button class="btn btn-sm btn-primary">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
-                                                <button class="btn btn-sm btn-danger">
-                                                    <i class="bi bi-trash"></i>
+                                            <div class="d-flex justify-content-center">
+                                                <button class="btn btn-sm btn-success">
+                                                    <span> Detail </span>
                                                 </button>
                                             </div>
                                         </td>

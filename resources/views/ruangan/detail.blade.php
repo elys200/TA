@@ -102,6 +102,19 @@
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
+                        <li class="sidebar-title">PIC Menu</li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                                <i class="bi bi-door-closed"></i>
+                                <span>Approval Ruangan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                                <i class="bi bi-box-seam"></i>
+                                <span>Approval Barang</span>
+                            </a>
+                        </li>
                         <li class="sidebar-title">Pamdal Menu</li>
                         <li class="sidebar-item  ">
                             <a href="{{ route('kunci') }}" class='sidebar-link'>

@@ -4,24 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Status Peminjaman</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons & CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/iconly/bold.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}" type="image/x-icon">
-
-
+    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}">
 </head>
 
 <body>
     <div id="app">
+
+
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
@@ -81,7 +81,7 @@
                         <li class="sidebar-title">Pamdal Menu</li>
                         <li class="sidebar-item  ">
                             <a href="{{ route('kunci') }}" class='sidebar-link'>
-                               <i class="bi bi-key-fill"></i>
+                                <i class="bi bi-key-fill"></i>
                                 <span>Kunci</span>
                             </a>
                         </li>
@@ -92,7 +92,7 @@
                                 <span>Kelola Ruangan</span>
                             </a>
                         </li>
-                         <li class="sidebar-item  ">
+                        <li class="sidebar-item  ">
                             <a href="{{ url('/ormawa') }}" class='sidebar-link'>
                                 <i class="bi bi-diagram-3"></i>
                                 <span>Ormawa</span>
@@ -115,69 +115,110 @@
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
+        <!-- MAIN -->
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+
             <div class="container-fluid">
+                <h3 class="mb-4">Detail Peminjaman Ruangan</h3>
 
-                <h2> Data User</h2>
+                <!-- CARD -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
 
-                <!-- WRAPPER PUTIH -->
-                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
+                        <form>
+                            <fieldset disabled>
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Code Peminjaman</label>
+                                        <input type="text" class="form-control" placeholder="001">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Penanggung Jawab</label>
+                                        <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">NIM</label>
+                                        <input type="text" class="form-control" placeholder="33120120045">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Nama Ormawa</label>
+                                        <input type="text" class="form-control" placeholder="BEM">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Tanggal Peminjaman</label>
+                                        <input type="text" class="form-control" placeholder="20 April 2026">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Jam Peminjaman</label>
+                                        <input type="text" class="form-control" placeholder="12:00 WIB">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Jam Pengembalian</label>
+                                        <input type="text" class="form-control" placeholder="14:00 WIB">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label fw-bold">Alasan Peminjaman</label>
+                                        <input type="text" class="form-control" placeholder="Rapat Umum">
+                                    </div>
 
-                    <form>
-                        <fieldset disabled>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Nama Lengkap</label>
-                                    <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Email</label>
-                                    <input type="text" class="form-control" placeholder="elysaulia20@gmail.com">
+                            </fieldset>
+                        </form>
+
+                        <hr class="my-5">
+
+
+
+                        <div class="row text-center justify-content-center mt-2">
+
+                            <div class="col-md-4 mb-4 mt-3">
+                                <p class="fw-semibold mb-3">Approve PIC</p>
+                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
+                                        data-bs-target="#modalPemberianKunci">Approved</button>
                                 </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Role</label>
-                                    <input type="text" class="form-control" placeholder="Super Admin">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">NIM</label>
-                                    <input type="text" class="form-control" placeholder="3312301023">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Program Studi</label>
-                                    <input type="text" class="form-control" placeholder="Teknik Informatika">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Angkatan</label>
-                                    <input type="text" class="form-control" placeholder="2023">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">No HP</label>
-                                    <input type="text" class="form-control" placeholder="089505631279">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Status Akun</label>
-                                    <input type="text" class="form-control" placeholder="Aktif">
-                                </div>      
+                                <p class="mb-0">ELys Aulia Tanjung</p>
                             </div>
-                        </fieldset>
-                    </form>
+
+                            <div class="col-md-4 mb-4 mt-3">
+                                <p class="fw-semibold mb-3">Pemberian Kunci</p>
+                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
+                                        data-bs-target="#modalPengembalianKunci">Berhasil</button>
+                                </div>
+                                <a href="">
+                                    <p class="mb-0"> Lihat Bukti Pemberian kunci</p>
+                                </a>
+                            </div>
+
+                            <div class="col-md-4 mb-4 mt-3">
+                                <p class="fw-semibold mb-3">Pengembalian Kunci</p>
+                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
+                                        data-bs-target="#modalPengembalianKunci">Berhasil</button>
+                                </div>
+                                <a href="">
+                                    <p class="mb-0"> Lihat Bukti Pengembalian kunci</p>
+                                </a>
+                            </div>
+
+                        </div>
 
 
-
-                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                    <script src="{{asset('js/main.js')}}"></script>
-
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <!-- JS -->
+            <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+            <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+            <script src="{{ asset('js/main.js') }}"></script>
+
 </body>
 
 </html>

@@ -12,6 +12,8 @@ use App\Http\Controllers\ListPeminjamanBarangController;
 use App\Http\Controllers\ListPeminjamanRuanganController;
 use App\Http\Controllers\StatusPeminjamanController;
 use App\Http\Controllers\TambahRuanganController;
+use App\Http\Controllers\ApprovalBarangController;
+use App\Http\Controllers\ApprovalRuanganController;
 
 Route::get('/', function () {
     return view('login');
@@ -83,6 +85,10 @@ Route::get('/listpeminjamanRuangan/detail', function () {
 })->name('listpeminjamanruangan.detail');
 
 Route::get('/statuspeminjaman', [StatusPeminjamanController::class, 'index'])->name('statuspeminjaman');
+Route::get('/statuspeminjamanruangan', function () {
+    return view('statuspeminjaman.statuspeminjamanruangan');
+})->name('statuspeminjamanruangan');
+
 Route::get('/tambahruangan', [TambahRuanganController::class, 'index'])->name('tambahruangan');
 Route::get('/tambahruangan/form', function () {
     return view('tambahruangan.form ');
@@ -91,3 +97,20 @@ Route::get('/tambahruangan/form', function () {
 Route::get('/listpeminjamanBarang/form', function () {
     return view('listpeminjaman.barang.form');
 })->name('listpeminjamanbarang.form');
+
+Route::get('/statuspeminjaman/detailbarang', function () {
+    return view('statuspeminjaman.detailpeminjamanbarang');
+})->name('statuspeminjaman.detailbarang');
+
+Route::get('/statuspeminjaman/detailruangan', function () {
+    return view('statuspeminjaman.detailpeminjamanruangan');
+})->name('statuspeminjaman.detailruangan');
+
+Route::get('/approvalbarang', [ApprovalBarangController::class, 'index'])->name('approvalbarang');
+Route::get('/approvalruangan', [ApprovalRuanganController::class, 'index'])->name('approvalruangan');
+Route::get('/approvalbarang/detail', function () {
+    return view('approval.detailapprovalbarang');
+})->name('approvalbarang.detail');
+Route::get('/approvalruangan/detail', function () {
+    return view('approval.detailapprovalruangan');
+})->name('approvalruangan.detail');

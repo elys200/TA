@@ -64,10 +64,23 @@
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
+                        <li class="sidebar-title">PIC Menu</li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                                <i class="bi bi-door-closed"></i>
+                                <span>Approval Ruangan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                                <i class="bi bi-box-seam"></i>
+                                <span>Approval Barang</span>
+                            </a>
+                        </li>
                         <li class="sidebar-title">Pamdal Menu</li>
                         <li class="sidebar-item  ">
                             <a href="{{ route('kunci') }}" class='sidebar-link'>
-                               <i class="bi bi-key-fill"></i>
+                                <i class="bi bi-key-fill"></i>
                                 <span>Kunci</span>
                             </a>
                         </li>
@@ -78,7 +91,7 @@
                                 <span>Kelola Ruangan</span>
                             </a>
                         </li>
-                         <li class="sidebar-item  ">
+                        <li class="sidebar-item  ">
                             <a href="{{ url('/ormawa') }}" class='sidebar-link'>
                                 <i class="bi bi-diagram-3"></i>
                                 <span>Ormawa</span>

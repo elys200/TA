@@ -1,27 +1,30 @@
+<div>
+    <!-- Do what you can, with what you have, where you are. - Theodore Roosevelt -->
+</div>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+    <title>Status Peminjaman</title>
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icons & CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/iconly/bold.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
-    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}" type="image/x-icon">
-
-
+    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}">
 </head>
 
 <body>
     <div id="app">
+
+
         <div id="sidebar" class="active">
             <div class="sidebar-wrapper active">
                 <div class="sidebar-header">
@@ -81,7 +84,7 @@
                         <li class="sidebar-title">Pamdal Menu</li>
                         <li class="sidebar-item  ">
                             <a href="{{ route('kunci') }}" class='sidebar-link'>
-                               <i class="bi bi-key-fill"></i>
+                                <i class="bi bi-key-fill"></i>
                                 <span>Kunci</span>
                             </a>
                         </li>
@@ -92,7 +95,7 @@
                                 <span>Kelola Ruangan</span>
                             </a>
                         </li>
-                         <li class="sidebar-item  ">
+                        <li class="sidebar-item  ">
                             <a href="{{ url('/ormawa') }}" class='sidebar-link'>
                                 <i class="bi bi-diagram-3"></i>
                                 <span>Ormawa</span>
@@ -115,69 +118,110 @@
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
             </div>
         </div>
+        <!-- MAIN -->
         <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+
             <div class="container-fluid">
+                <h3 class="mb-4">Status Peminjaman</h3>
 
-                <h2> Data User</h2>
+                <!-- CARD -->
+                <div class="card shadow-sm border-0">
+                    <div class="card-body">
 
-                <!-- WRAPPER PUTIH -->
-                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
-
-                    <form>
-                        <fieldset disabled>
-                            <div class="row g-3">
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Nama Lengkap</label>
-                                    <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Email</label>
-                                    <input type="text" class="form-control" placeholder="elysaulia20@gmail.com">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Role</label>
-                                    <input type="text" class="form-control" placeholder="Super Admin">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">NIM</label>
-                                    <input type="text" class="form-control" placeholder="3312301023">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Program Studi</label>
-                                    <input type="text" class="form-control" placeholder="Teknik Informatika">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Angkatan</label>
-                                    <input type="text" class="form-control" placeholder="2023">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">No HP</label>
-                                    <input type="text" class="form-control" placeholder="089505631279">
-                                </div>
-                                <div class="col-md-6">
-                                    <label class="form-label fw-bold">Status Akun</label>
-                                    <input type="text" class="form-control" placeholder="Aktif">
-                                </div>      
+                        <!-- TOP ACTION -->
+                        <div class="row align-items-center g-2 mb-4">
+                            <div class="col-auto">
+                                <button class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                    <i class="bi bi-archive"></i> Barang
+                                </button>
                             </div>
-                        </fieldset>
-                    </form>
+                            <div class="col-auto">
+                                <button class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                    <i class="bi bi-door-open"></i> Ruangan
+                                </button>
+                            </div>
+                            <div class="col-md-4 ms-auto">
+                                <input type="text" class="form-control" placeholder="Cari data...">
+                            </div>
+                        </div>
 
+                        <!-- FILTER -->
+                        <div class="d-flex flex-wrap align-items-center gap-3 p-3 border rounded mb-4">
+                            <i class="bi bi-filter fs-5 text-muted"></i>
 
+                            <div class="btn-group">
+                                <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                    Status Pengajuan
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Approve</a></li>
+                                    <li><a class="dropdown-item" href="#">Rejected</a></li>
+                                </ul>
+                            </div>
 
-                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                    <script src="{{asset('js/main.js')}}"></script>
+                            <div class="btn-group">
+                                <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                    Status Peminjaman
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Diajukan</a></li>
+                                    <li><a class="dropdown-item" href="#">Dipinjam</a></li>
+                                    <li><a class="dropdown-item" href="#">Selesai</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- TABLE -->
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered align-middle">
+                                <thead class="table-light text-center">
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Ruangan</th>
+                                        <th>Penanggung Jawab</th>
+                                        <th>Tanggal Peminjaman</th>
+                                        <th>Status</th>
+                                        <th width="120">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>RB (Ruangan Bersama)</td>
+                                        <td>Elys Aulia Tanjung</td>
+                                        <td>20 April 2026</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-warning">Waiting Approval</span>
+                                        </td>
+                                        <td class="text-center">
+                                            <a href="{{ route('statuspeminjaman.detailruangan') }}"
+                                                class="btn btn-sm btn-success">
+                                                <span>Detail</span>
+                                            </a>
+                        </div>
+                        </td>
+                        </tr>
+                        </tbody>
+                        </table>
+                    </div>
 
                 </div>
             </div>
         </div>
+    </div>
+    </div>
+
+    <!-- JS -->
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+
 </body>
 
 </html>

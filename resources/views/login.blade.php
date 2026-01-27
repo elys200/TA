@@ -38,7 +38,7 @@
                     <i class='bx  bx-user'></i>  
                 </div>
                 <div class="input-box">
-                    <input type="text" placeholder="Username" required>
+                    <input type="text" placeholder="Nama" required>
                     <i class='bx  bx-user'></i>  
                 </div>
                 <div class="input-box">
