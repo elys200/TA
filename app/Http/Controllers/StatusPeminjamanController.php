@@ -7,6 +7,6 @@ use Illuminate\Http\Request;
 class StatusPeminjamanController extends Controller
 {
     public function index() {
-        return view ('statuspeminjaman.statuspeminjaman');
+        return view ('statuspeminjaman.statuspeminjamanbarang.statuspeminjamanbarang');
     }
 }

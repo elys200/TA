@@ -31,11 +31,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-menu">
+               <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="{{route('dashboard')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -54,26 +54,26 @@
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
                         <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                            <a href="{{route('listpeminjamanbarang')}}" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>List Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('statuspeminjaman') }}" class='sidebar-link'>
+                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-title">PIC Menu</li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
                                 <i class="bi bi-door-closed"></i>
                                 <span>Approval Ruangan</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-box-seam"></i>
                                 <span>Approval Barang</span>
                             </a>
@@ -124,100 +124,100 @@
             </header>
 
             <div class="container-fluid">
-                <h3 class="mb-4">Detail Peminjaman Ruangan</h3>
+                <h3 class="mb-4">Status Peminjaman</h3>
 
                 <!-- CARD -->
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
 
-                        <form>
-                            <fieldset disabled>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Code Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="001">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Penanggung Jawab</label>
-                                        <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">NIM</label>
-                                        <input type="text" class="form-control" placeholder="33120120045">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Nama Ormawa</label>
-                                        <input type="text" class="form-control" placeholder="BEM">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Tanggal Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="20 April 2026">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Jam Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="12:00 WIB">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Jam Pengembalian</label>
-                                        <input type="text" class="form-control" placeholder="14:00 WIB">
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Alasan Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="Rapat Umum">
-                                    </div>
-
-                                </div>
-                            </fieldset>
-                        </form>
-
-                        <hr class="my-5">
-
-
-
-                        <div class="row text-center justify-content-center mt-2">
-
-                            <div class="col-md-4 mb-4 mt-3">
-                                <p class="fw-semibold mb-3">Approve PIC</p>
-                                <div class="d-flex justify-content-center gap-2 mb-4">
-                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPemberianKunci">Approved</button>
-                                </div>
-                                <p class="mb-0">ELys Aulia Tanjung</p>
-                            </div>
-
-                            <div class="col-md-4 mb-4 mt-3">
-                                <p class="fw-semibold mb-3">Pemberian Kunci</p>
-                                <div class="d-flex justify-content-center gap-2 mb-4">
-                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPengembalianKunci">Berhasil</button>
-                                </div>
-                                <a href="">
-                                    <p class="mb-0"> Lihat Bukti Pemberian kunci</p>
+                        <!-- TOP ACTION -->
+                        <div class="row align-items-center g-2 mb-4">
+                            <div class="col-auto">
+                                <a href="{{ route('statuspeminjamanbarang') }}" class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                    <i class="bi bi-archive"></i> Barang
                                 </a>
                             </div>
-
-                            <div class="col-md-4 mb-4 mt-3">
-                                <p class="fw-semibold mb-3">Pengembalian Kunci</p>
-                                <div class="d-flex justify-content-center gap-2 mb-4">
-                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPengembalianKunci">Berhasil</button>
-                                </div>
-                                <a href="">
-                                    <p class="mb-0"> Lihat Bukti Pengembalian kunci</p>
+                            <div class="col-auto">
+                                <a href="{{ route('statuspeminjamanruangan') }}" class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                    <i class="bi bi-door-open"></i> Ruangan
                                 </a>
                             </div>
-
+                            <div class="col-md-4 ms-auto">
+                                <input type="text" class="form-control" placeholder="Cari data...">
+                            </div>
                         </div>
 
+                        <!-- FILTER -->
+                        <div class="d-flex flex-wrap align-items-center gap-3 p-3 border rounded mb-4">
+                            <i class="bi bi-filter fs-5 text-muted"></i>
+
+                            <div class="btn-group">
+                                <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                    Status Pengajuan
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Approve</a></li>
+                                    <li><a class="dropdown-item" href="#">Rejected</a></li>
+                                </ul>
+                            </div>
+
+                            <div class="btn-group">
+                                <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                                    Status Peminjaman
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#">Diajukan</a></li>
+                                    <li><a class="dropdown-item" href="#">Dipinjam</a></li>
+                                    <li><a class="dropdown-item" href="#">Selesai</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- TABLE -->
+                        <div class="table-responsive">
+                            <table class="table table-hover table-bordered align-middle">
+                                <thead class="table-light text-center">
+                                    <tr>
+                                        <th>Code</th>
+                                        <th>Jumlah</th>
+                                        <th>Penanggung Jawab</th>
+                                        <th>Tanggal Peminjaman</th>
+                                        <th>Tanggal Pengembalian</th>
+                                        <th width="120">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>001</td>
+                                        <td>2 Barang</td>
+                                        <td>Elys Aulia Tanjung</td>
+                                        <td >
+                                            20 April 2026
+                                        </td>
+                                        <td> 20 April 2026</td>
+                                        <td class="text-center">
+                                            <div class="d-flex justify-content-center">
+                                                 <a href="{{ route('statuspeminjaman.detailbarang')}}" button class="btn btn-sm btn-success">
+                                                    <span> Detail </span>
+                                                 </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- JS -->
-            <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-            <script src="{{ asset('js/main.js') }}"></script>
+    <!-- JS -->
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 
 </body>
 

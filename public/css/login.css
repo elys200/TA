@@ -90,6 +90,7 @@ body{
     transform: translateY(-50%);
     font-size: 20px;
     color: #888;
+    pointer-events: none;
 }
 
 .btn {
@@ -244,3 +245,25 @@ body{
     flex-wrap: wrap;
 }
 
+
+.input-box select {
+    width: 350px;
+    padding: 13px 50px 13px 20px;
+    background: #eeee;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    color: #888;
+    font-weight: 500;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+}
+
+/* dropdown list */
+.input-box select option {
+    background: #fff;
+    color: #000;
+}

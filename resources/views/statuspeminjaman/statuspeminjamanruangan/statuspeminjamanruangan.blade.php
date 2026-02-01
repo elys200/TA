@@ -1,3 +1,6 @@
+<div>
+    <!-- Do what you can, with what you have, where you are. - Theodore Roosevelt -->
+</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,11 +34,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-menu">
+              <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="{{route('dashboard')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -54,26 +57,26 @@
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
                         <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                            <a href="{{route('listpeminjamanbarang')}}" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>List Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('statuspeminjaman') }}" class='sidebar-link'>
+                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-title">PIC Menu</li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
                                 <i class="bi bi-door-closed"></i>
                                 <span>Approval Ruangan</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-box-seam"></i>
                                 <span>Approval Barang</span>
                             </a>
@@ -133,14 +136,14 @@
                         <!-- TOP ACTION -->
                         <div class="row align-items-center g-2 mb-4">
                             <div class="col-auto">
-                                <a href="{{ route('statuspeminjaman') }}" class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                <button class="btn btn-primary d-flex align-items-center gap-2 px-3">
                                     <i class="bi bi-archive"></i> Barang
-                                </a>
+                                </button>
                             </div>
                             <div class="col-auto">
-                                <a href="{{ route('statuspeminjamanruangan') }}" class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                <button class="btn btn-primary d-flex align-items-center gap-2 px-3">
                                     <i class="bi bi-door-open"></i> Ruangan
-                                </a>
+                                </button>
                             </div>
                             <div class="col-md-4 ms-auto">
                                 <input type="text" class="form-control" placeholder="Cari data...">
@@ -178,11 +181,11 @@
                             <table class="table table-hover table-bordered align-middle">
                                 <thead class="table-light text-center">
                                     <tr>
-                                        <th>Code</th>
-                                        <th>Jumlah</th>
+                                        <th>ID</th>
+                                        <th>Ruangan</th>
                                         <th>Penanggung Jawab</th>
                                         <th>Tanggal Peminjaman</th>
-                                        <th>Tanggal Pengembalian</th>
+                                        <th>Status</th>
                                         <th width="120">Action</th>
                                     </tr>
                                 </thead>
@@ -190,28 +193,28 @@
                                 <tbody>
                                     <tr>
                                         <td>001</td>
-                                        <td>2 Barang</td>
+                                        <td>RB (Ruangan Bersama)</td>
                                         <td>Elys Aulia Tanjung</td>
-                                        <td >
-                                            20 April 2026
-                                        </td>
-                                        <td> 20 April 2026</td>
+                                        <td>20 April 2026</td>
                                         <td class="text-center">
-                                            <div class="d-flex justify-content-center">
-                                                <button class="btn btn-sm btn-success">
-                                                    <span> Detail </span>
-                                                </button>
-                                            </div>
+                                            <span class="badge bg-warning">Waiting Approval</span>
                                         </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                                        <td class="text-center">
+                                            <a href="{{ route('statuspeminjamanruangan.detailruangan') }}"
+                                                class="btn btn-sm btn-success">
+                                                <span>Detail</span>
+                                            </a>
                         </div>
-
+                        </td>
+                        </tr>
+                        </tbody>
+                        </table>
                     </div>
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- JS -->

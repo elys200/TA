@@ -1916,6 +1916,10 @@ a {
     object-fit: contain;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 
 
 

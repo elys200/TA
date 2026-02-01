@@ -35,7 +35,7 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="{{route('dashboard')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -54,26 +54,26 @@
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
                         <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                            <a href="{{route('listpeminjamanbarang')}}" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>List Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('statuspeminjaman') }}" class='sidebar-link'>
+                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-title">PIC Menu</li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
                                 <i class="bi bi-door-closed"></i>
                                 <span>Approval Ruangan</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-box-seam"></i>
                                 <span>Approval Barang</span>
                             </a>
@@ -130,6 +130,10 @@
 
                     <form class="row g-3">
                         <div class="col-md-6">
+                            <label for="disabledTextInput" class="form-label">Nama Ruangan</label>
+                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Ruangan Bersama (RB)" disabled>
+                        </div>
+                        <div class="col-md-6">
                             <label for="exampleInputEmail1" class="form-label">Nama Penaggung Jawab</label>
                             <input type="email" class="form-control" id="exampleInputEmail1"
                                 aria-describedby="emailHelp">
@@ -138,7 +142,7 @@
                             <label for="exampleInputPassword1" class="form-label">NIM</label>
                             <input type="text" class="form-control" id="exampleInputPassword1">
                         </div>
-                         <div class="col-md-6">
+                        <div class="col-md-6">
                             <label for="inputState" class="form-label fw-bold">Nama Ormawa</label>
                             <select id="inputState" class="form-select">
                                 <option>BEM</option>
@@ -158,7 +162,7 @@
                             <label for="exampleInputPassword1" class="form-label">Jam Pengembalian</label>
                             <input type="time" class="form-control" id="exampleInputPassword1">
                         </div>
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <label for="exampleInputPassword1" class="form-label">Alasan Peminjaman</label>
                             <textarea class="form-control" id="exampleInputPassword1"></textarea>
                         </div>

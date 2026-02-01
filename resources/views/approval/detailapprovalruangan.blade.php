@@ -35,7 +35,7 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="{{route('dashboard')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -54,26 +54,26 @@
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
                         <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                            <a href="{{route('listpeminjamanbarang')}}" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>List Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('statuspeminjaman') }}" class='sidebar-link'>
+                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-title">PIC Menu</li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
                                 <i class="bi bi-door-closed"></i>
                                 <span>Approval Ruangan</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-box-seam"></i>
                                 <span>Approval Barang</span>
                             </a>
@@ -138,6 +138,10 @@
                                         <input type="text" class="form-control" placeholder="001">
                                     </div>
                                     <div class="col-md-6">
+                                        <label class="form-label fw-bold">Nama Ruangan</label>
+                                        <input type="text" class="form-control" placeholder="Ruangan Bersama (RB)">
+                                    </div>
+                                    <div class="col-md-6">
                                         <label class="form-label fw-bold">Penanggung Jawab</label>
                                         <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
                                     </div>
@@ -181,6 +185,8 @@
                                 <div class="d-flex justify-content-center gap-2 mb-4">
                                     <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
                                         data-bs-target="#modalPemberianKunci">Approved</button>
+                                     <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal"
+                                        data-bs-target="#modalPemberianKunci">Rejected</button>
                                 </div>
                                 <p class="mb-0">ELys Aulia Tanjung</p>
                             </div>

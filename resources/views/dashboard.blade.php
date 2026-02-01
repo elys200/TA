@@ -34,7 +34,7 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="{{route('dashboard')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -53,26 +53,26 @@
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
                         <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                            <a href="{{route('listpeminjamanbarang')}}" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>List Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('statuspeminjaman') }}" class='sidebar-link'>
+                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-title">PIC Menu</li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
                                 <i class="bi bi-door-closed"></i>
                                 <span>Approval Ruangan</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-box-seam"></i>
                                 <span>Approval Barang</span>
                             </a>
@@ -134,7 +134,7 @@
                             Aplikasi peminjaman barang dan ruangan untuk memudahkan akses dan pemantauan ketersediaan.
                         </p>
 
-                        <a href="#" class="btn btn-primary" style="padding:10px 25px; margin-top:15px;">
+                        <a href="#services" class="btn btn-primary" style="padding:10px 25px; margin-top:15px;">
                             Pinjam Sekarang
                         </a>
                     </div>
@@ -166,7 +166,7 @@
                 </div>
             </div>
 
-            <div class="services-section">
+            <div class="services-section" id="services">
                 <h2 class="services-title"> Ruangan</h2>
                 <p class="services-subtitle">
                     Berikut ini list ruangan Ormawa yang dapat digunakan
@@ -206,14 +206,13 @@
 
                 </div>
 
-                <a class="services-btn" href="#">View All Services</a>
+                <a class="services-btn" href="{{route('ruangan')}}">Lihat Semua Ruangan</a>
             </div>
 
             <div class="services-section" style="margin-top: 30px">
                 <h2 class="services-title"> Barang</h2>
                 <p class="services-subtitle">
-                    Lorem ipsum dolor sit amet, consectetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt
-                    labore.
+                    Berikut ini merupakan list barang Ormawa yang dapat di pinjam
                 </p>
 
                 <div class="services-wrapper">
@@ -249,7 +248,7 @@
 
                 </div>
 
-                <a class="services-btn" href="#" style="width">View All Services</a>
+                <a class="services-btn" href="{{route('barang')}}" style="width">Lihat Semua Barang</a>
             </div>
 
             <div class="about-section">
@@ -292,7 +291,7 @@
 
                         </div>
 
-                        <a href="#" class="about-btn">Lihat Selengkapnya</a>
+                        <a href="https://docs.google.com/document/d/1CHP3zW0nt6l4Jo2kWXtVAtC_eoUo22Y9/edit?usp=drive_link&ouid=102318851600841116319&rtpof=true&sd=true" class="about-btn">Lihat Selengkapnya</a>
                     </div>
 
                 </div>

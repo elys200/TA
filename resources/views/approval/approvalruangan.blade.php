@@ -35,7 +35,7 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
-                            <a href="index.html" class='sidebar-link'>
+                            <a href="{{route('dashboard')}}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
@@ -54,26 +54,26 @@
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
                         <li class="sidebar-item  ">
-                            <a href="ui-file-uploader.html" class='sidebar-link'>
+                            <a href="{{route('listpeminjamanbarang')}}" class='sidebar-link'>
                                 <i class="bi bi-list"></i>
                                 <span>List Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('statuspeminjaman') }}" class='sidebar-link'>
+                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>
                                 <span>Status Peminjaman</span>
                             </a>
                         </li>
                         <li class="sidebar-title">PIC Menu</li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
                                 <i class="bi bi-door-closed"></i>
                                 <span>Approval Ruangan</span>
                             </a>
                         </li>
                         <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-box-seam"></i>
                                 <span>Approval Barang</span>
                             </a>
@@ -181,36 +181,27 @@
                         <table class="table table-bordered align-middle">
                             <thead class="table-light text-center">
                                 <tr>
-                                    <th>Nama</th>
-                                    <th>NIP</th>
-                                    <th>Position</th>
-                                    <th>Username</th>
-                                    <th>Email</th>
-                                    <th>Kode Nama</th>
-                                    <th>Role</th>
+                                    <th>Code Peminjaman</th>
+                                    <th>Penanggung Jawab</th>
+                                    <th>Nama Ormawa</th>
+                                    <th>Tanggal Peminjaman</th>
+                                    <th>Nama Ruangan</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
 
                             <tbody>
                                 <tr>
-                                    <td>Admin</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>Masteradmin</td>
-                                    <td>Jimmy@mtpindo.com</td>
-                                    <td>-</td>
-                                    <td>
-                                        <span class="badge bg-primary">Super Admin</span>
-                                    </td>
-                                    <td class="text-center">
+                                    <td>001</td>
+                                    <td>Elys Aulia Tanjung</td>
+                                    <td>BEM</td>
+                                    <td>20 April 2026</td>
+                                    <td>Ruang Bersama (RB) </td>
+                                    <td class="text-center" style="width: 140px">
                                         <div class="d-flex justify-content-center gap-2">
-                                            <button class="btn btn-success btn-sm">
-                                                <i class="bi bi-justify"></i> Detail
-                                            </button>
-                                            <button class="btn btn-danger btn-sm">
-                                                <i class="bi bi-trash"></i> Delete
-                                            </button>
+                                            <a href="{{route('approvalruangan.detail')}}"button class="btn btn-success btn-sm">
+                                                 Detail
+                                            </a>
                                         </div>
                                     </td>
                                 </tr>

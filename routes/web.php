@@ -15,12 +15,73 @@ use App\Http\Controllers\TambahRuanganController;
 use App\Http\Controllers\ApprovalBarangController;
 use App\Http\Controllers\ApprovalRuanganController;
 
+// Login & Registrasi//
 Route::get('/', function () {
     return view('login');
 });
 
+
+//Dashboard//
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+
+//Ruangan//
+Route::get('/ruangan', [RuanganController::class, 'index'])->name('ruangan');
+Route::get('/ruangan/detail', function () { 
+    return view('ruangan.detail');
+})->name('ruangan.detail');
+
+//form borang ruangan//
+Route::get('/ruangan/detail/form', function () { 
+    return view('ruangan.formruangan');
+})->name('ruangan.detail.form');
+
+//Barang//
+Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+Route::get('/barang/detail', function () {
+    return view('barang.detail');
+})->name('barang.detail');
+
+// Form Pemborangan Barang//
+Route::get('/listpeminjamanBarang/form', function () {
+    return view('listpeminjaman.barang.form');
+})->name('listpeminjamanbarang.form');
+
+//List Peminjaman//
+Route::get('/listpeminjamanbarang', [ListPeminjamanBarangController::class, 'index'])->name('listpeminjamanbarang');
+
+
+//Status Peminjaman//
+  //Barang//
+  Route::get('/statuspeminjamanbarang', [StatusPeminjamanController::class, 'index'])->name('statuspeminjamanbarang');
+  Route::get('/statuspeminjamanbarang/detailbarang', function () {
+    return view('statuspeminjaman.statuspeminjamanbarang.detailpeminjamanbarang');
+  })->name('statuspeminjaman.detailbarang');
+
+  //Ruangan//
+  Route::get('/statuspeminjamanruangan', function () {
+    return view('statuspeminjaman.statuspeminjamanruangan.statuspeminjamanruangan');
+  })->name('statuspeminjamanruangan');
+  Route::get('/statuspeminjamanruangan/detailruangan', function () {
+    return view('statuspeminjaman.statuspeminjamanruangan.detailpeminjamanruangan');
+  })->name('statuspeminjamanruangan.detailruangan');
+
+//
+
+// Ormawa//
 Route::get('/ormawa', [OrmawaController::class, 'index'])->name('ormawa');
+Route::get('/ormawa/detail', function () {
+    return view('ormawa.detail');
+})->name('ormawa.detail');
+Route::get('/ormawa/form', function () {
+    return view('ormawa.form');
+})->name('ormawa.form');
+Route::get('/ormawa/detail/detailbarang', function () {
+    return view('ormawa.detailbarang');
+})->name('ormawa.detailbarang');
+
+
+//User//
 Route::get('/user', [UserController::class, 'index'])->name('user');
 Route::get('/user/detail', function () {
     return view('user.detail');
@@ -29,17 +90,8 @@ Route::get('/user/edit', function () {
     return view('user.edit');
 })->name('user.edit');
 
-Route::get('/ormawa/detail', function () {
-    return view('ormawa.detail');
-})->name('ormawa.detail');
 
-Route::get('/ormawa/form', function () {
-    return view('ormawa.form');
-})->name('ormawa.form');
-Route::get('/ormawa/detail/detailbarang', function () {
-    return view('ormawa.detailbarang');
-})->name('ormawa.detailbarang');
-
+//Role//
 Route::get('/role', [RoleController::class, 'index'])->name('role');
 Route::get('/role/detail', function () {
     return view('role.detail');
@@ -50,67 +102,40 @@ Route::get('/role/edit', function () {
 })->name('role.edit');
 
 
-Route::get('/barang', [BarangController::class, 'index'])->name('barang');
-
-Route::get('/barang/detail', function () {
-    return view('barang.detail');
-})->name('barang.detail');
-
-Route::get('/barang/detail/form', function () {
-    return view('barang.formbarang');
-})->name('barang.detail.form');
-
-Route::get('/ruangan', [RuanganController::class, 'index'])->name('ruangan');
-Route::get('/ruangan/detail', function () {
-    return view('ruangan.detail');
-})->name('ruangan.detail');
-
+//Kunci//
 Route::get('/kunci', [KunciController::class, 'index'])->name('kunci');
 Route::get('/kunci/detail', function() {
     return view('kunci.detail');
 })->name('kunci.detail');
 
-Route::get('/ruangan/detail/form', function () {
-    return view('ruangan.formruangan');
-})->name('ruangan.detail.form');
+//approval//
+ //Barang//
+ Route::get('/approvalbarang', [ApprovalBarangController::class, 'index'])->name('approvalbarang');
+ Route::get('/approvalbarang/detail', function () {
+    return view('approval.detailapprovalbarang');
+  })->name('approvalbarang.detail');
 
-Route::get('/listpeminjamanBarang', [ListPeminjamanBarangController::class, 'index'])->name('listpeminjamanbarang');
-Route::get('/listpeminjamanBarang/detail', function () {
-    return view('listpeminjaman.barang.detail');
-})->name('listpeminjamanbarang.detail');
+ //Ruangan//
+ Route::get('/approvalruangan', [ApprovalRuanganController::class, 'index'])->name('approvalruangan');
+ Route::get('/approvalruangan/detail', function () {
+    return view('approval.detailapprovalruangan');
+  })->name('approvalruangan.detail');
+//
 
-Route::get('/listpeminjamanRuangan', [ListPeminjamanRuanganController::class, 'index'])->name('listpeminjamanruangan');
-Route::get('/listpeminjamanRuangan/detail', function () {
-    return view('listpeminjaman.ruangan.detail');
-})->name('listpeminjamanruangan.detail');
-
-Route::get('/statuspeminjaman', [StatusPeminjamanController::class, 'index'])->name('statuspeminjaman');
-Route::get('/statuspeminjamanruangan', function () {
-    return view('statuspeminjaman.statuspeminjamanruangan');
-})->name('statuspeminjamanruangan');
-
+//Kelola Ruangan//
 Route::get('/tambahruangan', [TambahRuanganController::class, 'index'])->name('tambahruangan');
 Route::get('/tambahruangan/form', function () {
     return view('tambahruangan.form ');
 })->name('tambahruangan.form');
 
-Route::get('/listpeminjamanBarang/form', function () {
-    return view('listpeminjaman.barang.form');
-})->name('listpeminjamanbarang.form');
 
-Route::get('/statuspeminjaman/detailbarang', function () {
-    return view('statuspeminjaman.detailpeminjamanbarang');
-})->name('statuspeminjaman.detailbarang');
 
-Route::get('/statuspeminjaman/detailruangan', function () {
-    return view('statuspeminjaman.detailpeminjamanruangan');
-})->name('statuspeminjaman.detailruangan');
 
-Route::get('/approvalbarang', [ApprovalBarangController::class, 'index'])->name('approvalbarang');
-Route::get('/approvalruangan', [ApprovalRuanganController::class, 'index'])->name('approvalruangan');
-Route::get('/approvalbarang/detail', function () {
-    return view('approval.detailapprovalbarang');
-})->name('approvalbarang.detail');
-Route::get('/approvalruangan/detail', function () {
-    return view('approval.detailapprovalruangan');
-})->name('approvalruangan.detail');
+
+
+
+
+
+
+
+
