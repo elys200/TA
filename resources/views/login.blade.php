@@ -17,10 +17,10 @@
 </head>
 
 <body>
-
     <div class="container">
         <div class="form-box login">
             <form action="">
+                {{-- @csrf --}}
                 <h1>Login</h1>
                 <div class="input-box">
                     <input type="text" placeholder="NIM" required>
@@ -35,28 +35,43 @@
         </div>
 
         <div class="form-box register">
-            <form action="">
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+            @endif
+
+            <form action="{{ route('register')}}" method="POST">
+                @csrf
                 <h1>Registrasi</h1>
                 <div class="input-box">
-                    <input type="text" placeholder="NIM" required>
+                    <input type="text" name="nim" placeholder="NIM" value="{{old('nim')}}">
                 </div>
                 <div class="input-box">
-                    <input type="text" placeholder="Nama Lengkap" required>
+                    <input type="text" name="nama_lengkap" placeholder="Nama Lengkap" value="{{old('nama_lengkap')}}">
                 </div>
                 <div class="input-box">
-                    <input type="email" placeholder="Email" required>
+                    <input type="text" name="jurusan" placeholder="Jurusan" value="{{ old('jurusan')}}">
                 </div>
                 <div class="input-box">
-                    <select required>
-                        <option value="" disabled selected hidden>Pilih Organisasi</option>
-                        <option value="admin">BEM</option>
-                        <option value="user">HMTI</option>
+                    <input type="text" name="program_studi" placeholder="Program Studi"
+                        value="{{ old('program_studi')}}">
+                </div>
+                <div class="input-box">
+                    <input type="email" name="email" placeholder="Email" value="{{ old('email')}}">
+                </div>
+                <div class="input-box">
+                    <select name="ormawa" required>
+                        <option value="">Pilih Organisasi</option>
+                        <option value="BEM" {{ old('ormawa') == 'BEM' ? 'selected' : '' }}>BEM</option>
+                        <option value="HMTI" {{ old('ormawa') == 'HMTI' ? 'selected' : '' }}>HMTI</option>
                     </select>
+
                     <i class="bx bx-chevron-down"> </i>
                 </div>
 
                 <div class="input-box">
-                    <input type="password" placeholder="passwod" required>
+                    <input type="password" name="password" placeholder="passwod" required>
                 </div>
                 <button type="submit" class="btn">Registrasi</button>
             </form>

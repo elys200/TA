@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-             <div class="sidebar-menu">
+                <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
@@ -130,7 +130,8 @@
             <div class="card">
                 <div class="card-body">
 
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
+                    <div
+                        class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
                         <div class="d-flex align-items-center gap-2">
                             <label class="mb-0">Search:</label>
                             <input type="text" class="form-control form-control-sm">
@@ -141,39 +142,42 @@
                         <table class="table table-bordered align-middle">
                             <thead class="table-light text-center">
                                 <tr>
-                                    <th>Nama</th>
-                                    <th>Email</th>
-                                    <th>Role</th>
                                     <th>NIM</th>
+                                    <th>Nama Lengkap</th>
+                                    <th>Jurusan</th>
                                     <th>Program Studi</th>
+                                    <th>Role</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
 
                             <tbody>
+                                @foreach ($users as $user)
                                 <tr>
-                                    <td>Elys Aulia</td>
-                                    <td>elysaulia@gmail.com</td>
+                                    <td>{{ $user->nim}}</td>
+                                    <td>{{ $user->nama_lengkap}}</td>
+                                    <td>{{ $user->jurusan}}</td>
+                                    <td>{{ $user->program_studi}}</td>
                                     <td>
-                                        <span class="badge bg-primary">Super Admin</span>
+                                        <span class="badge bg-primary">{{ $user->role}}</span>
                                     </td>
-                                    <td>3312301023</td>
-                                    <td>Teknik Informatika</td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-2">
-                                            <a href="{{route('user.edit')}}" class="btn btn-primary btn-sm btn-air-primary p-3 pt-2 pb-2" style="white-space: nowrap;">
-                                            <span class="bi bi-pencil"></span>
-                                        </a>
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <a href="{{route('user.detail')}}" class="btn btn-success btn-sm btn-air-primary p-3 pt-2 pb-2" style="white-space: nowrap;">
-                                            <span class="bi bi-justify"></span>
-                                        </a>
-                                        <a href="" class="btn btn-danger btn-sm btn-air-danger p-3 pt-2 pb-2" style="white-space: nowrap;" data-bs-toggle="modal" data-bs-target="#modalHapusUser">
-                                            <span class="bi bi-trash" style="width: 20px;"></span>
-                                        </a>
-                                        </div>
+                                            <a href="{{route('user.edit', $user->id)}}"
+                                                class="btn btn-primary btn-sm btn-air-primary p-3 pt-2 pb-2"
+                                                style="white-space: nowrap;">
+                                                <span class="bi bi-pencil"></span>
+                                            </a>
+                                            <div class="d-flex justify-content-center gap-2">
+                                                <a href="" class="btn btn-danger btn-sm btn-air-danger p-3 pt-2 pb-2"
+                                                    style="white-space: nowrap;" data-bs-toggle="modal"
+                                                    data-bs-target="#modalHapusUser">
+                                                    <span class="bi bi-trash" style="width: 20px;"></span>
+                                                </a>
+                                            </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

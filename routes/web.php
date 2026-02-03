@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OrmawaController;
 use App\Http\Controllers\UserController;
@@ -19,6 +20,9 @@ use App\Http\Controllers\ApprovalRuanganController;
 Route::get('/', function () {
     return view('login');
 });
+
+//Register//
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 
 //Dashboard//
@@ -83,13 +87,8 @@ Route::get('/ormawa/detail/detailbarang', function () {
 
 //User//
 Route::get('/user', [UserController::class, 'index'])->name('user');
-Route::get('/user/detail', function () {
-    return view('user.detail');
-})->name('user.detail');
-Route::get('/user/edit', function () {
-    return view('user.edit');
-})->name('user.edit');
-
+Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
+Route::put('/user/{id}', [UserController::class, 'update'])->name('user.update');
 
 //Role//
 Route::get('/role', [RoleController::class, 'index'])->name('role');

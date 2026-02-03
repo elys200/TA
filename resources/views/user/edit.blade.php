@@ -128,44 +128,37 @@
                 <!-- WRAPPER PUTIH -->
                 <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
 
-                    <form class="row g-3">
+                    <form class="row g-3" action="{{route('user.update', $users->id)}}" method="POST">
+                        @csrf
+                        @method('PUT')
                         <div class="col-md-6">
                             <label for="" class="form-label fw-bold">Nama Lengkap</label>
-                            <input type="text" class="form-control" id="">
+                            <input type="text" name="nama_lengkap" class="form-control" value="{{$users->nama_lengkap}}">
                         </div>
                         <div class="col-md-6">
                             <label for="" class="form-label fw-bold">Email</label>
-                            <input type="" class="form-control" id="">
+                            <input type="email" name="email" class="form-control" value="{{ $users->email}}">
                         </div>
                         <div class="col-md-6">
                             <label for="inputState" class="form-label fw-bold">Role</label>
-                            <select id="inputState" class="form-select">
-                                <option>Super Admin</option>
-                                <option>PIC</option>
-                                <option>Mahasiswa</option>
+                            <select name="role" class="form-select">
+                                <option value="super_admin" {{$users->role == 'super_admin' ? 'selected' : ''}}>Super Admin</option>
+                                <option value="pic" {{$users->role == 'pic' ? 'selected' : ''}}>PIC</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="" class="form-label fw-bold">NIM</label>
-                            <input type="" class="form-control" id="">
+                            <input type="text" name="nim" class="form-control" value="{{ $users->nim}}">
                         </div>
                         <div class="col-md-6">
                             <label for="" class="form-label fw-bold">Program Studi</label>
-                            <input type="" class="form-control" id="">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="form-label fw-bold">Angkatan</label>
-                            <input type="" class="form-control" id="">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="form-label fw-bold">NO Hp</label>
-                            <input type="" class="form-control" id="">
+                            <input type="text" name="program_studi"  class="form-control" value="{{ $users->program_studi}}">
                         </div>
                         <div class="col-md-6">
                             <label for="inputState" class="form-label fw-bold">Status User</label>
-                            <select id="inputState" class="form-select">
-                                <option>Aktif</option>
-                                <option>Non Aktif</option>
+                            <select name="status" class="form-select">
+                                <option value="aktif" {{ $users->status == 'aktif' ? 'selected' : ''}}>Aktif</option>
+                                <option value="non_aktif" {{ $users->status == 'non_aktif' ? 'selected' : ''}}>Non Aktif</option>
                             </select>
                         </div>
                         <div class="col-12">
@@ -178,6 +171,7 @@
                         <script src="{{asset('js/pages/dashboard.js')}}"></script>
                         <script src="{{asset('js/main.js')}}"></script>
                     </form>
+                
                 </div>
             </div>
         </div>
