@@ -119,6 +119,7 @@
             </div>
         </div>
         <div id="main">
+
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
@@ -126,6 +127,21 @@
             </header>
 
             <div class="container-fluid">
+                @if (session('success'))
+                <div class="alert alert-primary mt-3" id="successAlert">
+                    {{ session('success') }}
+                </div>
+
+                <script>
+                    setTimeout(() => {
+                        const alert = document.getElementById('successAlert');
+                        if (alert) {
+                            alert.remove();
+                        }
+                    }, 5000);
+
+                </script>
+                @endif
 
                 <!-- WRAPPER PUTIH -->
                 <div class="bg-white p-4 rounded-3 shadow-sm">
@@ -145,7 +161,8 @@
                         </div>
 
                         <div class="col ms-auto">
-                            <a href="{{ route('tambahruangan.form') }}" class="btn btn-primary d-flex align-items-center gap-1 float-end">
+                            <a href="{{ route('tambahruangan.form') }}"
+                                class="btn btn-primary d-flex align-items-center gap-1 float-end">
                                 <i class="bi bi-plus-circle"></i>
                                 Tambah
                             </a>
@@ -155,41 +172,37 @@
 
                     <div class="services-wrapper2">
                         <div class="row g-3">
-
+                            @foreach($ruangan as $r)
                             <div class="col-12 col-md-6">
                                 <div class="card h-100" style="border: 1px solid #ddd;">
-                                    <img src="{{ asset('images/ruangan2.jpg') }}" class="card-img-top card-img-fit"
-                                        alt="">
+
+                                    @if($r->foto)
+                                    <img src="{{ asset('storage/' . $r->foto) }}" class="card-img-top card-img-fit"
+                                        alt="Foto Ruangan">
+                                    @endif
+
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build the card...</p>
-                                          <button class="btn btn-success  align-items-center" data-bs-toggle="modal"
-                                            data-bs-target="#modalHapusBarang">
+                                        <h5 class="card-title">{{ $r->nama_ruangan }}</h5>
+                                        <p class="card-text">{{ $r->deskripsi }}</p>
+
+                                        <button class="btn btn-success">
                                             <i class="bi bi-list"></i>
                                         </button>
-                                        <button class="btn btn-warning  me-1 align-items-center"
-                                            data-bs-toggle="modal" data-bs-target="#modalEditBarang">
+
+                                        <button class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
-                                        <button class="btn btn-danger  align-items-center" data-bs-toggle="modal"
-                                            data-bs-target="#modalHapusBarang">
+
+                                        <button class="btn btn-danger">
                                             <i class="bi bi-trash3"></i>
                                         </button>
                                     </div>
                                 </div>
                             </div>
+                            @endforeach
 
-                            <div class="col-12 col-md-6">
-                                <div class="card h-100" style="border: 1px solid #ddd;">
-                                    <img src="{{ asset('images/ruangan2.jpg') }}" class="card-img-top card-img-fit"
-                                        alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build the card...</p>
 
-                                    </div>
-                                </div>
-                            </div>
+
 
 
                         </div>

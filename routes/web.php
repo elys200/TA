@@ -124,9 +124,8 @@ Route::get('/kunci/detail', function() {
 
 //Kelola Ruangan//
 Route::get('/tambahruangan', [TambahRuanganController::class, 'index'])->name('tambahruangan');
-Route::get('/tambahruangan/form', function () {
-    return view('tambahruangan.form ');
-})->name('tambahruangan.form');
+Route::get('/tambahruangan/form', [TambahRuanganController::class, 'create'])->name('tambahruangan.form');
+Route::post('/tambahruangan/tambah', [TambahRuanganController::class, 'store'])->name('ruangan.store');
 
 
 
