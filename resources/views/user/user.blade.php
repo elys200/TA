@@ -116,6 +116,23 @@
             </div>
         </div>
         <div id="main">
+            @if (session('success'))
+            <div class="alert alert-primary mt-3" id="successAlert">
+                {{ session('success') }}
+            </div>
+
+            <script>
+                setTimeout(() => {
+                    const alert = document.getElementById('successAlert');
+                    if (alert) {
+                        alert.remove();
+                    }
+                }, 5000);
+
+            </script>
+            @endif
+
+
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
@@ -169,11 +186,15 @@
                                                 <span class="bi bi-pencil"></span>
                                             </a>
                                             <div class="d-flex justify-content-center gap-2">
-                                                <a href="" class="btn btn-danger btn-sm btn-air-danger p-3 pt-2 pb-2"
-                                                    style="white-space: nowrap;" data-bs-toggle="modal"
-                                                    data-bs-target="#modalHapusUser">
-                                                    <span class="bi bi-trash" style="width: 20px;"></span>
-                                                </a>
+                                                <form action="{{ route('user.destroy', $user->id) }}" method="POST"
+                                                    onsubmit="return confirm('Yakin mau menghapus user ini?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <span class="bi bi-trash"></span> Hapus
+                                                    </button>
+                                                </form>
+
                                             </div>
                                     </td>
                                 </tr>

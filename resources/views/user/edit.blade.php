@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-               <div class="sidebar-menu">
+                <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
@@ -133,48 +133,55 @@
                         @method('PUT')
                         <div class="col-md-6">
                             <label for="" class="form-label fw-bold">Nama Lengkap</label>
-                            <input type="text" name="nama_lengkap" class="form-control" value="{{$users->nama_lengkap}}">
+                            <input type="text" name="nama_lengkap" class="form-control"
+                                value="{{ old('nama_lengkap', $users->nama_lengkap) }}">
                         </div>
                         <div class="col-md-6">
                             <label for="" class="form-label fw-bold">Email</label>
-                            <input type="email" name="email" class="form-control" value="{{ $users->email}}">
+                            <input type="email" name="email" class="form-control"
+                                value="{{ old('email', $users->email) }}">
                         </div>
                         <div class="col-md-6">
                             <label for="inputState" class="form-label fw-bold">Role</label>
                             <select name="role" class="form-select">
-                                <option value="super_admin" {{$users->role == 'super_admin' ? 'selected' : ''}}>Super Admin</option>
-                                <option value="pic" {{$users->role == 'pic' ? 'selected' : ''}}>PIC</option>
+                                <option value="super_admin" {{ old('role', $users->role) == 'super_admin' ? 'selected' : '' }}>Super
+                                    Admin</option>
+                                <option value="pic" {{ old('role', $users->role) == 'pic' ? 'selected' : '' }}>PIC</option>
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="" class="form-label fw-bold">NIM</label>
-                            <input type="text" name="nim" class="form-control" value="{{ $users->nim}}">
+                            <input type="text" name="nim" class="form-control" value="{{ old('nim', $users->nim) }}">
                         </div>
                         <div class="col-md-6">
                             <label for="" class="form-label fw-bold">Program Studi</label>
-                            <input type="text" name="program_studi"  class="form-control" value="{{ $users->program_studi}}">
+                            <input type="text" name="program_studi" class="form-control"
+                                value="{{ old('program_studi', $users->program_studi) }}">
                         </div>
                         <div class="col-md-6">
                             <label for="inputState" class="form-label fw-bold">Status User</label>
                             <select name="status" class="form-select">
-                                <option value="aktif" {{ $users->status == 'aktif' ? 'selected' : ''}}>Aktif</option>
-                                <option value="non_aktif" {{ $users->status == 'non_aktif' ? 'selected' : ''}}>Non Aktif</option>
+                                <option value="aktif" {{ old('status', $users->status) == 'aktif' ? 'selected' : ''}}>Aktif</option>
+                                <option value="non_aktif" {{ old('status', $users->status) == 'non_aktif' ? 'selected' : ''}}>Non Aktif
+                                </option>
                             </select>
                         </div>
                         <div class="col-12">
                             <button class="btn btn-primary" type="submit">Update</button>
                         </div>
 
-                        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                        <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                        <script src="{{asset('js/main.js')}}"></script>
+
                     </form>
-                
+
                 </div>
             </div>
         </div>
+        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+        <script src="{{asset('js/pages/dashboard.js')}}"></script>
+        <script src="{{asset('js/main.js')}}"></script>
+
 </body>
 
 </html>

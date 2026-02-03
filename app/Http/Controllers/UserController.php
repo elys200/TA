@@ -19,39 +19,32 @@ class UserController extends Controller
     }
 
     public function update(Request $request, $id)
-{
-    $users = Users::findOrFail($id);
+    {
+        $users = Users::findOrFail($id);
 
-    $request->validate([
-        'nama_lengkap' => 'required',
-        'email' => 'required|email|unique:users,email,' . $id,
-        'jurusan' => 'required',
-        'program_studi' => 'required',
-        'nim' => 'required|unique:users,nim,' . $id,
-        'ormawa' => 'required',
-        'role' => 'nullable',
-        'status' => 'nullable',
-    ]);
+        $validate = $request->validate([
+            'nim' => 'nullable|string|max:255|unique:users,nim,' . $users->id,
+            'nama_lengkap' => 'nullable|string|max:255',
+            'jurusan' => 'nullable|string|max:255',
+            'program_studi' => 'nullable|string|max:255',
+            'email' => 'nullable|email|max:255|unique:users,email,' . $users->id,
+            'ormawa' => 'nullable|string|max:255',
+            'role' => 'nullable|string|max:50',
+            'status' => 'nullable|string|max:50',
+        ]);
 
-    $data = array_filter(
-        $request->only([
-            'nama_lengkap',
-            'email',
-            'nim',
-            'jurusan',
-            'program_studi',
-            'ormawa',
-            'role',
-            'status',
-        ]),
-        fn ($value) => $value !== null
-    );
+        $data = array_filter($validate, function ($value) {
+            return !is_null($value);
+        });
 
-    dd($data); // 👈 TARUH DI SINI
+        $users->update($data);
+        return redirect()->route('user')->with('success', 'Data user berhasil diperbarui.');
+    }
 
-    $users->update($data);
-
-    return redirect()->route('user.index')->with('success', 'Data berhasil diupdate');
-}
-
+    public function destroy($id)
+    {
+        $users = Users::findOrFail($id);
+        $users->delete();
+        return redirect()->route('user')->with('success', 'Data user berhasil dihapus.');
+    }
 }
