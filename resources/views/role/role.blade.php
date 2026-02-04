@@ -145,9 +145,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($roles as $role)
                                 <tr>
-                                    <td>1</td>
-                                    <td>Purchasing</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ Str::title($role->name) }}</td>
                                     <td>
                                         <div class="d-flex gap-2">
                                             <a href="{{ route('role.detail') }}">
@@ -160,30 +161,7 @@
                                         </div>
                                     </td>
                                 </tr>
-
-                                <tr>
-                                    <td>2</td>
-                                    <td>Admin Invoice</td>
-                                    <td>
-                                        <div class="d-flex gap-2">
-                                            <button class="btn btn-info btn-sm text-white">Show</button>
-                                            <button class="btn btn-primary btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>3</td>
-                                    <td>Admin SPK</td>
-                                    <td>
-                                        <div class="d-flex gap-2">
-                                            <button class="btn btn-info btn-sm text-white">Show</button>
-                                            <button class="btn btn-primary btn-sm">Edit</button>
-                                            <button class="btn btn-danger btn-sm">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
