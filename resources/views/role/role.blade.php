@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-               <div class="sidebar-menu">
+                <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
@@ -128,7 +128,8 @@
 
             <div class="container-fluid">
                 <div class="bg-white p-4 rounded-3 shadow-sm">
-                    <div class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3">
+                    <div
+                        class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3">
                         <h4 class="mb-0">Role Management</h4>
                         <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambahRole">
                             Create New Role
@@ -150,15 +151,26 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ Str::title($role->name) }}</td>
                                     <td>
-                                        <div class="d-flex gap-2">
-                                            <a href="{{ route('role.detail') }}">
-                                            <button class="btn btn-info btn-sm text-white">Show</button>
+                                        <div class="d-flex gap-2 align-items-center">
+                                            <a href="{{ route('role.permissions', $role->id) }}" class="btn btn-info btn-sm text-white">
+                                                Show
                                             </a>
-                                            <a href="{{ route('role.edit') }}">
-                                            <button class="btn btn-primary btn-sm">Edit</button>
-                                            </a>
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modalHapusRole">Delete</button>
+
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#modalEditRole">
+                                                Edit
+                                            </button>
+
+                                            <form action="{{ route('role.destroy', $role->id) }}" method="POST"
+                                                onsubmit="return confirm('Yakin mau menghapus role ini?')" class="m-0">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    Hapus
+                                                </button>
+                                            </form>
                                         </div>
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -177,6 +189,7 @@
     <script src="{{asset('js/main.js')}}"></script>
     @include('role.modal.tambah')
     @include('role.modal.hapus')
+    @include('role.modal.edit')
 </body>
 
 </html>

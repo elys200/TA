@@ -12,6 +12,7 @@ class Users extends Model
 {
     use HasFactory, HasRoles;
 
+    protected $guard_name = 'web';
     protected $table = 'users';
 
     protected $fillable = [

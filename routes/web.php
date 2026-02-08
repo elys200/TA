@@ -93,13 +93,18 @@ Route::delete('/user/{id}', [UserController::class, 'destroy'])->name('user.dest
 
 //Role//
 Route::get('/role', [RoleController::class, 'index'])->name('role');
-Route::get('/role/detail', function () {
-    return view('role.detail');
-})->name('role.detail');
-
+Route::post('/role/store', [RoleController::class, 'store'])->name('role.store');
+Route::delete('role/{id}', [RoleController::class, 'destroy'])->name('role.destroy');
+Route::put('role/{id}', [RoleController::class, 'update'])->name('role.update');
+Route::get('/role/{id}/permissions', [RoleController::class, 'permissions'])->name('role.permissions');
 Route::get('/role/edit', function () {
     return view('role.edit');
 })->name('role.edit');
+Route::post(
+    '/role/{id}/permissions',
+    [RoleController::class, 'updatePermissions']
+)->name('role.permissions.update');
+
 
 
 //Kunci//

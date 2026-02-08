@@ -176,7 +176,10 @@
                                     <td>{{ $user->jurusan}}</td>
                                     <td>{{ $user->program_studi}}</td>
                                     <td>
-                                        <span class="badge bg-primary">{{ $user->role}}</span>
+                                        <span
+                                            class="badge {{ $user->roles->isEmpty() ? 'bg-secondary' : 'bg-primary' }}">
+                                            {{ $user->roles->isEmpty() ? 'PENDING' : strtoupper($user->getRoleNames()->first()) }}
+                                        </span>
                                     </td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-2">

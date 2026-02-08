@@ -144,9 +144,12 @@
                         <div class="col-md-6">
                             <label for="inputState" class="form-label fw-bold">Role</label>
                             <select name="role" class="form-select">
-                                <option value="super_admin" {{ old('role', $users->role) == 'super_admin' ? 'selected' : '' }}>Super
-                                    Admin</option>
-                                <option value="pic" {{ old('role', $users->role) == 'pic' ? 'selected' : '' }}>PIC</option>
+                                @foreach ($roles as $role)
+                                <option value="{{ $role->name }}" {{ $users->hasRole($role->name) ? 'selected' : '' }}>
+                                    {{ \Illuminate\Support\Str::title(str_replace('_', ' ', $role->name)) }}
+                                    
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-6">
@@ -161,8 +164,10 @@
                         <div class="col-md-6">
                             <label for="inputState" class="form-label fw-bold">Status User</label>
                             <select name="status" class="form-select">
-                                <option value="aktif" {{ old('status', $users->status) == 'aktif' ? 'selected' : ''}}>Aktif</option>
-                                <option value="non_aktif" {{ old('status', $users->status) == 'non_aktif' ? 'selected' : ''}}>Non Aktif
+                                <option value="aktif" {{ old('status', $users->status) == 'aktif' ? 'selected' : ''}}>
+                                    Aktif</option>
+                                <option value="non_aktif"
+                                    {{ old('status', $users->status) == 'non_aktif' ? 'selected' : ''}}>Non Aktif
                                 </option>
                             </select>
                         </div>
