@@ -75,7 +75,7 @@
 
         {{-- LOGIN FORM --}}
         <div class="form-box login">
-            <form action="" method="POST">
+            <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <h1>Login</h1>
 
@@ -88,6 +88,14 @@
                     <input type="password" name="password" placeholder="Password" required>
                     <i class="bx bx-lock"></i>
                 </div>
+
+                @error('email')
+                <div style="color:red">{{ $message }}</div>
+                @enderror
+
+                @error('password')
+                <div style="color:red">{{ $message }}</div>
+                @enderror
 
                 <button type="submit" class="btn">Login</button>
             </form>

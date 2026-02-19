@@ -185,17 +185,26 @@
                                         <h5 class="card-title">{{ $r->nama_ruangan }}</h5>
                                         <p class="card-text">{{ $r->deskripsi }}</p>
 
-                                        <button class="btn btn-success">
+                                        <a href="{{ route('tambahruangan.detail', $r->id) }}" class="btn btn-success">
                                             <i class="bi bi-list"></i>
-                                        </button>
+                                        </a>
 
-                                        <button class="btn btn-warning">
+                                        <a href="{{ route('tambahruangan.edit', $r->id) }}" class="btn btn-warning">
                                             <i class="bi bi-pencil-square"></i>
-                                        </button>
+                                        </a>
 
-                                        <button class="btn btn-danger">
-                                            <i class="bi bi-trash3"></i>
-                                        </button>
+                                         
+                                                <form action="{{ route('tambahruangan.destroy', $r->id) }}" method="POST"
+                                                    onsubmit="return confirm('Yakin mau menghapus ruangan ini?')">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <span class="bi bi-trash"></span> Hapus
+                                                    </button>
+                                                </form>
+
+                                        
+                                    </div>
                                     </div>
                                 </div>
                             </div>

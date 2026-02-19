@@ -6,6 +6,10 @@ use Spatie\Permission\Models\Role;
 
 
 class UserController extends Controller {
+    public function __construct() {
+        $this->middleware(['auth', 'role:admin']);
+    }
+
     public function index() {
         $users=Users::all();
         $roles=Role::all();
@@ -28,7 +32,7 @@ class UserController extends Controller {
             'email'=> 'nullable|email|max:255|unique:users,email,'. $users->id,
             'ormawa'=> 'nullable|string|max:255',
             'role'=> 'nullable|exists:roles,name',
-            'status'=> 'nullable|string|max:50',
+            'status'=> 'nullable|in:0,1',
             ]);
 
         $userData=collect($validate)->except('role')->toArray();

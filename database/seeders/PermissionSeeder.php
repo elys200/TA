@@ -23,5 +23,10 @@ class PermissionSeeder extends Seeder
             ],
             ['name' => 'view_ruangan']
         );
+        Permission::updateOrCreate([
+            'name' => 'user_all',
+            ],
+            ['name' => 'user_all']
+        );
     }
 }

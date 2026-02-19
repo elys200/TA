@@ -164,10 +164,10 @@
                         <div class="col-md-6">
                             <label for="inputState" class="form-label fw-bold">Status User</label>
                             <select name="status" class="form-select">
-                                <option value="aktif" {{ old('status', $users->status) == 'aktif' ? 'selected' : ''}}>
+                                <option value="1" {{ old('status', $users->status) == '1' ? 'selected' : ''}}>
                                     Aktif</option>
-                                <option value="non_aktif"
-                                    {{ old('status', $users->status) == 'non_aktif' ? 'selected' : ''}}>Non Aktif
+                                <option value="0"
+                                    {{ old('status', $users->status) == '0' ? 'selected' : ''}}>Non Aktif
                                 </option>
                             </select>
                         </div>

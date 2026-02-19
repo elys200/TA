@@ -121,73 +121,65 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
+            <div class="container-fluid">
 
-            <div class="page-heading mb-3">
-                <h3>Organisasi Mahasiswa</h3>
-            </div>
+                <h2> Edit Ruangan {{ $ruangan->kode_ruangan }}</h2>
 
-            <div class="bg-white p-4 rounded-3 shadow-sm">
-                <div class="main" style="padding: 20px;">
-                    <div class="d-flex justify-content-between align-items-center mb-4">
-                        <div class="input-group" style="max-width: 250px;">
-                            <span class="input-group-text">
-                                <i class="bi bi-search"></i>
-                            </span>
-                            <input type="text" class="form-control" placeholder="Cari organisasi...">
+                <!-- WRAPPER PUTIH -->
+                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
+
+                    <form action="{{ route('tambahruangan.update', $ruangan->id) }}" method="POST" class="row g-3" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Nama Ruangan</label>
+                            <input type="text" name="nama_ruangan" class="form-control" id="nama_ruangan" value="{{old('nama_ruangan', $ruangan->nama_ruangan)}}">
                         </div>
-                        <a href="{{ route('ormawa.form') }}">
-                            <button class="btn btn-primary d-flex align-items-center gap-1">
-                                <i class="bi bi-plus-circle"></i>
-                                Tambah
-                            </button>
-                        </a>
-                    </div>
-
-                    <div class="row g-4">
-                        @foreach ($ormawa as $ormawas)
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-
-                            <a href="{{ route('ormawa.detail') }}" class="text-decoration-none text-dark">
-                                <div class="card h-100 shadow-sm border-0 card-hover">
-
-
-                                    <img src="{{ asset('storage/' . $ormawas->foto_organisasi) }}" class="card-img-top"
-                                        style="height: 220px; object-fit: cover;" alt="BEM">
-
-                                    <div class="card-body d-flex flex-column">
-
-                                        <h6 class="fw-bold mb-2">
-                                           {{ $ormawas->nama_ormawa}}
-                                        </h6>
-
-                                        <p class="text-muted small flex-grow-1">
-                                           {{ $ormawas->deskripsi}}
-                                        </p>
-
-                                        <div class="d-flex justify-content-end gap-2">
-                                            <button class="btn btn-warning btn-sm d-flex align-items-center gap-1">
-                                                <i class="bi bi-pencil-square"></i>
-                                            </button>
-                                            <button class="btn btn-danger btn-sm d-flex align-items-center gap-1">
-                                                <i class="bi bi-trash3"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Kode Ruangan</label>
+                            <input type="text" name="kode_ruangan" class="form-control" id="kode_ruangan" value="{{old('kode_ruangan', $ruangan->kode_ruangan)}}">
                         </div>
-                        @endforeach
-                    </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Lokasi Ruangan</label>
+                            <input type="text" name="lokasi" class="form-control" id="lokasi" value="{{old('lokasi', $ruangan->lokasi)}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Deskripsi Ruangan</label>
+                            <input type="text" name="deskripsi" class="form-control" id="deskripsi" value="{{old('deskripsi', $ruangan->deskripsi)}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Kapasitas Ruangan</label>
+                            <input type="number" name="kapasitas" class="form-control" id="kapasitas" value="{{old('kapasitas', $ruangan->kapasitas)}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="formFile" class="form-label fw-bold">Foto Ruangan</label>
+                            <input class="form-control" name="foto" type="file" id="formFile" value="{{old('foto', $ruangan->foto)}}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="formFile" class="form-label fw-bold">Jam Operasional</label>
+                            <input class="form-control" name="jam_operasional" type="time" id="jam_operasional" value="{{old('jam_operasional', $ruangan->jam_operasional)}}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="pic_id" class="form-label fw-bold">PIC Ruangan</label>
+                            <select name="pic_id" id="pic_id" class="form-select">
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}" {{ old('pic_id', $ruangan->pic_id) == $user->id ? 'selected' : '' }}>
+                                        {{ $user->nama_lengkap }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div>
-
-    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-    <script src="{{asset('js/main.js')}}"></script>
+        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+        <script src="{{asset('js/pages/dashboard.js')}}"></script>
+        <script src="{{asset('js/main.js')}}"></script>
 </body>
 
 </html>

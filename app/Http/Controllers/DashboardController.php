@@ -8,6 +8,10 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard');
+        if(auth()->user()->can('view_dashboard')){
+           return view('dashboard');
+        }else{
+            abort(403, 'Unauthorized');
+        }
     }
 }

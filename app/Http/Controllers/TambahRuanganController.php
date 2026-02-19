@@ -38,4 +38,44 @@ class TambahRuanganController extends Controller {
     return redirect()->route('tambahruangan')->with('success', 'Ruangan berhasil ditambahkan.');
 }
 
+public function detail($id) {
+    $ruangan = Ruangan::findOrFail($id);
+    return view('tambahruangan.detail', compact('ruangan'));
+}
+
+public function edit($id) {
+    $ruangan=Ruangan::findOrfail($id);
+    $users=Users::all();
+    return view('tambahruangan.edit', compact('ruangan', 'users'));
+}
+
+public function update(Request $request, $id) {
+    $ruangan=Ruangan::findOrFail($id);
+
+    $validate=$request->validate([
+        'nama_ruangan'    => 'required|string|max:255',
+        'kode_ruangan'    => 'required|string|max:50|unique:ruangan,kode_ruangan,'. $ruangan->id,
+        'lokasi'          => 'required|string|max:255',
+        'deskripsi'       => 'nullable|string',
+        'kapasitas'       => 'required|integer|min:1',
+        'foto'            => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'jam_operasional' => 'required',
+        'pic_id'          => 'nullable|exists:users,id',
+    ]);
+
+    if ($request->hasFile('foto')) {
+        $validate['foto'] = $request->file('foto')->store('ruangan', 'public');
+    }
+
+    $ruangan->update($validate);
+
+    return redirect()->route('tambahruangan')->with('success', 'Data ruangan berhasil diperbarui.');
+}
+
+public function destroy($id) {
+    $ruangan=Ruangan::findOrFail($id);
+    $ruangan->delete();
+
+    return redirect()->route('tambahruangan')->with('success', 'Data ruangan berhasil dihapus.');   
+}
 }
