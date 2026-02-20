@@ -147,7 +147,7 @@
                         @foreach ($ormawa as $ormawas)
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3">
 
-                            <a href="{{ route('ormawa.detail') }}" class="text-decoration-none text-dark">
+                           
                                 <div class="card h-100 shadow-sm border-0 card-hover">
 
 
@@ -164,17 +164,25 @@
                                            {{ $ormawas->deskripsi}}
                                         </p>
 
-                                        <div class="d-flex justify-content-end gap-2">
-                                            <button class="btn btn-warning btn-sm d-flex align-items-center gap-1">
+                                        <div class="d-flex gap-2">
+                                            <a href="{{ route('ormawa.detail', $ormawas->id) }}" class="btn btn-success btn d-flex align-items-center gap-2">
+                                                <i class="bi bi-justify"></i>
+                                            </a>
+                                            <a href="{{ route('ormawa.edit', $ormawas->id) }}" class="btn btn-warning btn-sm d-flex align-items-center gap-1">
                                                 <i class="bi bi-pencil-square"></i>
-                                            </button>
-                                            <button class="btn btn-danger btn-sm d-flex align-items-center gap-1">
-                                                <i class="bi bi-trash3"></i>
-                                            </button>
+                                            </a>
+                                           <form action="{{ route('ormawa.destroy', $ormawas->id) }}" method="POST"
+                                                onsubmit="return confirm('Yakin mau menghapus organisasi ini?')"
+                                                class="m-0">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                            </a>
                         </div>
                         @endforeach
                     </div>

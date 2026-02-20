@@ -185,47 +185,44 @@
                                         <h5 class="card-title">{{ $r->nama_ruangan }}</h5>
                                         <p class="card-text">{{ $r->deskripsi }}</p>
 
-                                        <a href="{{ route('tambahruangan.detail', $r->id) }}" class="btn btn-success">
-                                            <i class="bi bi-list"></i>
-                                        </a>
 
-                                        <a href="{{ route('tambahruangan.edit', $r->id) }}" class="btn btn-warning">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
+                                        <div class="d-flex gap-2">
+                                            <a href="{{ route('tambahruangan.detail', $r->id) }}"
+                                                class="btn btn-success btn">
+                                                <i class="bi bi-list"></i>
+                                            </a>
 
-                                         
-                                                <form action="{{ route('tambahruangan.destroy', $r->id) }}" method="POST"
-                                                    onsubmit="return confirm('Yakin mau menghapus ruangan ini?')">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                        <span class="bi bi-trash"></span> Hapus
-                                                    </button>
-                                                </form>
+                                            <a href="{{ route('tambahruangan.edit', $r->id) }}"
+                                                class="btn btn-warning btn">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
 
-                                        
-                                    </div>
+                                            <form action="{{ route('tambahruangan.destroy', $r->id) }}" method="POST"
+                                                onsubmit="return confirm('Yakin mau menghapus ruangan ini?')"
+                                                class="m-0">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </button>
+                                            </form>
+
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             @endforeach
-
-
-
-
-
                         </div>
                     </div>
-
-
                 </div>
-
-
-                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                <script src="{{asset('js/main.js')}}"></script>
+            </div>
+        </div>
+    </div>
+    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+    <script src="{{asset('js/pages/dashboard.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
 </body>
 
 </html>

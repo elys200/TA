@@ -8,7 +8,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\KunciController;
 use App\Http\Controllers\ListPeminjamanBarangController;
-use App\Http\Controllers\ListPeminjamanRuanganController;
+// use App\Http\Controllers\ListPeminjamanRuanganController;   
 use App\Http\Controllers\StatusPeminjamanController;
 use App\Http\Controllers\TambahRuanganController;
 use App\Http\Controllers\ApprovalBarangController;
@@ -95,15 +95,16 @@ Route::middleware(['auth'])->group(function () {
 
         // Ormawa//
         Route::get('/ormawa', [OrmawaController::class, 'index'])->name('ormawa');
-
-        Route::get('/ormawa/detail', function () {
-                return view('ormawa.detail');
-            }
-
-        )->name('ormawa.detail');
-
         Route::get('/ormawa/form', [OrmawaController::class, 'create'])->name('ormawa.form');
         Route::post('/ormawa/tambah', [OrmawaController::class, 'store'])->name('ormawa.tambah');
+        Route::get('/ormawa/{id}', [OrmawaController::class, 'detail'])->name('ormawa.detail');
+        Route::get('/ormawa/{id}/edit', [OrmawaController::class, 'edit'])->name('ormawa.edit');
+        Route::put('/ormawa/{id}', [OrmawaController::class, 'update'])->name('ormawa.update');
+        Route::delete('/ormawa/{id}', [OrmawaController::class, 'destroy'])->name('ormawa.destroy');
+
+        Route::post('/ormawa/{id}/barang', [OrmawaController::class, 'storeBarang'])->name('ormawa.barang.store');
+        Route::put('/ormawa/{id}/barang/{barangId}', [OrmawaController::class, 'updateBarang'])->name('ormawa.barang.update');
+        Route::delete('/ormawa/{id}/barang/{barangId}', [OrmawaController::class, 'destroyBarang'])->name('ormawa.barang.destroy');
 
         Route::get('/ormawa/detail/detailbarang', function () {
                 return view('ormawa.detailbarang');

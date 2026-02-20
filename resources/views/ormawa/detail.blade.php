@@ -123,7 +123,7 @@
             </header>
 
             <div class="page-heading mb-4">
-                <h3 class="fw-bold">Badan Eksekutif Mahasiswa</h3>
+                <h3 class="fw-bold">{{ $ormawa->nama_ormawa }}</h3>
                 <p class="text-muted mb-0">Detail Organisasi Mahasiswa</p>
             </div>
             <div class="card shadow-sm mb-4">
@@ -132,7 +132,7 @@
 
                         <!-- Logo / Foto -->
                         <div class="col-md-4 text-center">
-                            <img src="{{ asset('images/ormawa/bem.jpg') }}" class="img-fluid rounded mb-2"
+                            <img src="{{ asset('storage/' . $ormawa->foto_organisasi) }}" class="img-fluid rounded mb-2"
                                 style="max-height: 300px; object-fit: contain;">
                         </div>
 
@@ -142,50 +142,50 @@
                                 <tr>
                                     <th width="30%">Nama Organisasi</th>
                                     <td>:</td>
-                                    <td>Badan Eksekutif Mahasiswa</td>
+                                    <td>{{ $ormawa->nama_ormawa }}</td>
                                 </tr>
                                 <tr>
                                     <th>Singkatan</th>
                                     <td>:</td>
-                                    <td>BEM</td>
+                                    <td>{{ $ormawa->singkatan }}</td>
                                 </tr>
                                 <tr>
                                     <th>Jenis Ormawa</th>
                                     <td>:</td>
-                                    <td>BEM</td>
+                                    <td>{{ $ormawa->jenis_ormawa }}</td>
                                 </tr>
                                 <tr>
                                     <th>Tahun Berdiri</th>
                                     <td>:</td>
-                                    <td>10 November 2004</td>
+                                    <td>{{ $ormawa->tahun_berdiri }}</td>
                                 </tr>
                                 <tr>
                                     <th>Status</th>
                                     <td>:</td>
                                     <td>
-                                        <span class="badge bg-success px-3 py-2">Aktif</span>
+                                        <span class="badge bg-success px-3 py-2">{{ $ormawa->status_ormawa == 1 ? 'Aktif' : 'Tidak Aktif' }}</span>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>PIC</th>
                                     <td>:</td>
-                                    <td>Elys Aulia Tanjung</td>
+                                    <td>{{ $ormawa->users->name ?? 'Tidak Ada PIC' }}</td>
                                 </tr>
                                 <tr>
                                     <th>Email</th>
                                     <td>:</td>
-                                    <td>bempolibatam@gmail.com</td>
+                                    <td>{{ $ormawa->email }}</td>
                                 </tr>
                                 <tr>
                                     <th>Kontak</th>
                                     <td>:</td>
-                                    <td>081270889291</td>
+                                    <td>{{ $ormawa->kontak }}</td>
                                 </tr>
                                 <tr>
                                     <th>Logo</th>
                                     <th>:</th>
                                     <th>
-                                        <img src="{{ asset('images/bem.png') }}" class="img-fluid rounded"
+                                        <img src="{{ asset('/storage' . $ormawa->logo) }}" class="img-fluid rounded"
                                 style="max-height: 70px; object-fit: contain;">
                                     </th>
                                 </tr>

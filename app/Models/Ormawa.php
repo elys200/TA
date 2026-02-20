@@ -28,4 +28,9 @@ class Ormawa extends Model
         'pic_id',
         'deskripsi'
     ];
+
+    public function barang()
+    {
+        return $this->hasMany(barang::class, 'ormawa_id');
+    }
 }

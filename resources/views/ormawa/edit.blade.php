@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Mazer Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/iconly/bold.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-icons/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}" type="image/x-icon">
+
+
+</head>
+
+<body>
+    <div id="app">
+        <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">Menu</li>
+                        <li class="sidebar-item active ">
+                            <a href="{{route('dashboard')}}" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('ruangan') }}" class='sidebar-link'>
+                                <i class="bi bi-door-open-fill"></i>
+                                <span> Ruangan </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('barang') }}" class='sidebar-link'>
+                                <i class="bi bi-archive-fill"></i>
+                                <span> Barang </span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">Peminjaman</li>
+                        <li class="sidebar-item  ">
+                            <a href="{{route('listpeminjamanbarang')}}" class='sidebar-link'>
+                                <i class="bi bi-list"></i>
+                                <span>List Peminjaman</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
+                                <i class="bi bi-exclamation-circle-fill"></i>
+                                <span>Status Peminjaman</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">PIC Menu</li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
+                                <i class="bi bi-door-closed"></i>
+                                <span>Approval Ruangan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
+                                <i class="bi bi-box-seam"></i>
+                                <span>Approval Barang</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">Pamdal Menu</li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('kunci') }}" class='sidebar-link'>
+                                <i class="bi bi-key-fill"></i>
+                                <span>Kunci</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-title">Other</li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('tambahruangan') }}" class='sidebar-link'>
+                                <i class="bi bi-door-open-fill"></i>
+                                <span>Kelola Ruangan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ url('/ormawa') }}" class='sidebar-link'>
+                                <i class="bi bi-diagram-3"></i>
+                                <span>Ormawa</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('user') }}" class='sidebar-link'>
+                                <i class="bi bi-people-fill"></i>
+                                <span>User</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="{{ route('role') }}" class='sidebar-link'>
+                                <i class="bi bi-shield-lock"></i>
+                                <span>Role</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+        <div id="main">
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
+            <div class="container-fluid">
+
+                <h2> Edit Ormawa</h2>
+
+                <!-- WRAPPER PUTIH -->
+                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
+
+                    <form action={{route('ormawa.update', $ormawa->id)}} method="POST" class="row g-3" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Nama Ormawa</label>
+                            <input type="text" class="form-control" id="" name="nama_ormawa" value="{{ old('nama_ormawa', $ormawa->nama_ormawa) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Singkatan</label>
+                            <input type="text" class="form-control" id="" name="singkatan" value="{{ old('singkatan', $ormawa->singkatan) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label fw-bold">Jenis Ormawa</label>
+                            <select id="inputState" class="form-select" name="jenis_ormawa">
+                                <option value="" disabled {{ old('jenis_ormawa', $ormawa->jenis_ormawa ?? '') == '' ? 'selected' : '' }}>
+                                    -- Pilih Jenis Ormawa --
+                                </option>
+                                <option value="bem" {{ old('jenis_ormawa', $ormawa->jenis_ormawa ?? '') == 'bem' ? 'selected' : '' }}>BEM</option>
+                                <option value="himpunan" {{ old('jenis_ormawa', $ormawa->jenis_ormawa ?? '') == 'himpunan' ? 'selected' : '' }}>
+                                    Himpunan</option>
+                                <option value="ukm" {{ old('jenis_ormawa', $ormawa->jenis_ormawa ?? '') == 'ukm' ? 'selected' : '' }}>UKM</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label fw-bold">Status Ormawa</label>
+                            <select id="inputState" class="form-select" name="status_ormawa">
+                                <option value="" disabled {{ old('status_ormawa', $ormawa->status_ormawa ?? '') == '' ? 'selected' : '' }}>
+                                    -- Pilih Status Ormawa --
+                                </option>
+                                <option value="1" {{ old('status_ormawa', $ormawa->status_ormawa ?? '') == '1' ? 'selected' : '' }}>Aktif</option>
+                                <option value="0" {{ old('status_ormawa', $ormawa->status_ormawa ?? '') == '0' ? 'selected' : '' }}>Non Aktif</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="tanggal" class="form-label fw-bold">Tahun Berdiri</label>
+                            <input type="date" class="form-control" id="tanggal" name="tahun_berdiri" value="{{ old('tahun_berdiri', $ormawa->tahun_berdiri) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Ketua</label>
+                            <input type="text" class="form-control" id="" name="ketua" value="{{ old('ketua', $ormawa->ketua) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="formFile" class="form-label fw-bold">Foto Organisasi</label>
+                            @if(!empty($ormawa->foto_organisasi))
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/' . $ormawa->foto_organisasi) }}" alt="Foto Organisasi" class="img-thumbnail" style="max-width: 500px;">
+                            </div>
+                            @endif
+                            <input class="form-control" type="file" id="formFile" name="foto_organisasi">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="formFile" class="form-label fw-bold">Logo</label>
+                            @if(!empty($ormawa->logo))
+                            <div class="mb-2">
+                                <img src="{{ asset('storage/' . $ormawa->logo) }}" alt="Logo" class="img-thumbnail" style="max-width: 300px;">
+                            </div>
+                            @endif
+                            <input class="form-control" type="file" id="formFile" name="logo">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Email</label>
+                            <input type="text" class="form-control" id="" name="email" value="{{ old('email', $ormawa->email) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Kontak</label>
+                            <input type="text" class="form-control" id="" name="kontak" value="{{ old('kontak', $ormawa->kontak) }}">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputState" class="form-label fw-bold">PIC Ormawa</label>
+                            <select id="inputState" class="form-select" name="pic_id">
+                                <option value="" disabled {{ old('pic_id', $ormawa->pic_id ?? '') == '' ? 'selected' : '' }}>
+                                    -- Pilih PIC Ormawa --
+                                </option>
+                                @foreach($users as $user)
+                                    <option value="{{ $user->id }}" {{ old('pic_id', $ormawa->pic_id ?? '') == $user->id ? 'selected' : '' }}>{{ $user->nama_lengkap }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleFormControlTextarea1" class="form-label fw-bold">Deskripsi</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                name="deskripsi">{{ old('deskripsi', $ormawa->deskripsi) }}</textarea>
+                        </div>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+
+                        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+                        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+                        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+                        <script src="{{asset('js/pages/dashboard.js')}}"></script>
+                        <script src="{{asset('js/main.js')}}"></script>
+                    </form>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
