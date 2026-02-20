@@ -31,6 +31,6 @@ class Ormawa extends Model
 
     public function barang()
     {
-        return $this->hasMany(barang::class, 'ormawa_id');
+        return $this->hasMany(Barang::class, 'ormawa_id');
     }
 }

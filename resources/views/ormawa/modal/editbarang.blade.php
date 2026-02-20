@@ -1,4 +1,4 @@
-<!-- <div class="modal fade" id="modalEditBarang" tabindex="-1" aria-hidden="true">
+<div class="modal fade" id="modalEditBarang" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
 
@@ -10,7 +10,7 @@
 
             BODY
             <div class="modal-body">
-                <form action="{{ route('ormawa.barang.update', ['id' => $ormawa->id, 'barangId' => $barang->id]) }}"
+                <form action="#"
                     method="POST" class="row g-3">
                     @csrf
                     @method('PUT')
@@ -78,16 +78,16 @@
                 </form>
             </div>
 
-            FOOTER -->
-            <!-- <div class="modal-footer">
+            
+            <div class="modal-footer">
                 <button type="button" class="btn btn-primary">
                     <i class="bi bi-save me-1"></i> Save
                 </button>
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
                     Cancel
                 </button>
-            </div> -->
-<!-- 
+            </div> 
+< 
         </div>
     </div>
-</div> -->
+</div>

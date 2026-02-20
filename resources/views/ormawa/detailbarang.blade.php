@@ -19,6 +19,20 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
     <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}" type="image/x-icon">
+    <style>
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+        }
+
+        @media (max-width: 768px) {
+            h5 {
+                text-align: center;
+            }
+        }
+
+    </style>
 
 
 </head>
@@ -34,7 +48,7 @@
                         </div>
                     </div>
                 </div>
-               <div class="sidebar-menu">
+                <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
@@ -125,151 +139,118 @@
                 </a>
             </header>
 
-            <div class="container-fluid">
-                <div class="bg-white p-4 rounded-3 shadow-sm" style="height:400px;">
-                    <div class="row">
-                        <div class="col-lg-5 col-md-12 col-12">
-                            <div class="col-lg-9 col-md-12 col-12" style="margin-left: 30px;">
-                                <div class="image-wrapper h-100">
-                                    <img src="{{ asset('images/baranglokal.jpg') }}" alt="">
-                                </div>
-                            </div>
+            <div class="container-fluid py-1">
 
+                <!-- CARD DETAIL -->
+                <div class="bg-white p-4 rounded-3 shadow-sm">
+                    <div class="row align-items-center">
+
+                        <!-- GAMBAR -->
+                        <div class="col-12 col-lg-5 mb-4 mb-lg-0">
+                            <div class="image-wrapper">
+                                <img src="{{ asset('storage/'.$barang->foto_barang) }}" class="img-fluid shadow-sm"
+                                    style="object-fit:cover; max-height:350px;">
+                            </div>
                         </div>
 
-                        <div class="col-lg-6 col-md-12">
+                        <!-- TABEL DETAIL -->
+                        <div class="col-12 col-lg-7">
                             <h5 class="fw-bold mb-3">Detail Barang</h5>
 
-                            <table class="table table-sm">
-                                <tbody>
-                                    <tr>
-                                        <th width="40%">Nama Organisasi</th>
-                                        <td>Badan Eksekutif Mahasiswa</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Tahun Dibentuk</th>
-                                        <td>: 2003</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Dosen Pembimbing</th>
-                                        <td>: Muhammad Idris Str.M.Kom</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Nama Ketua</th>
-                                        <td>: Elys Aulia Tanjung</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="container my-4" style="background-color: transparent;">
-                    <div class="card" style="border:2px solid #a855f7;border-radius:12px;">
-
-                        <!-- Header -->
-                        <div class="card-header bg-white">
-                            <h5 class="fw-semibold text-primary mb-0">
-                                <i class="bi bi-journal-text me-1"></i> Riwayat Peminjaman Extension
-                            </h5>
-                        </div>
-
-                        <!-- Body -->
-                        <div class="card-body">
-
-                            <!-- Timeline -->
-                            <div style="position:relative;padding-left:30px;">
-
-                                <!-- Line -->
-                                <div style="position:absolute;left:6px;top:0;bottom:0;width:2px;background:#e5e7eb;">
-                                </div>
-
-                                <!-- Item -->
-                                <div class="mb-4 position-relative">
-                                    <div
-                                        style="position:absolute;left:-2px;top:6px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #facc15;">
-                                    </div>
-
-                                    <div class="ps-4">
-                                        <div class="fw-semibold text-warning">Borrowed</div>
-                                        <div class="small">
-                                            Date : 21 Feb, 2025
-                                            <span class="float-end text-muted">10 months ago</span>
-                                        </div>
-                                        <div class="small">Estimate : 21 Feb, 2025</div>
-                                        <div class="small text-muted">
-                                            By: Yudha P. (7012207016)
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Item -->
-                                <div class="mb-4 position-relative">
-                                    <div
-                                        style="position:absolute;left:-2px;top:6px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #6366f1;">
-                                    </div>
-
-                                    <div class="ps-4">
-                                        <div class="fw-semibold text-primary">Returned</div>
-                                        <div class="small">
-                                            20 Aug, 2024
-                                            <span class="float-end text-muted">1 year ago</span>
-                                        </div>
-
-                                        <a href="#" class="badge bg-light text-primary mt-1">return_photo</a>
-
-                                        <div class="small text-muted mt-1">
-                                            By: Yudha P. (7012207016) → To: Martauli S. (7011510009)
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Item -->
-                                <div class="mb-4 position-relative">
-                                    <div
-                                        style="position:absolute;left:-2px;top:6px;width:14px;height:14px;border-radius:50%;background:#fff;border:3px solid #facc15;">
-                                    </div>
-
-                                    <div class="ps-4">
-                                        <div class="fw-semibold text-warning">Borrowed</div>
-                                        <div class="small">
-                                            Date : 20 Aug, 2024
-                                            <span class="float-end text-muted">1 year ago</span>
-                                        </div>
-                                        <div class="small">Estimate : 20 Aug, 2024</div>
-
-                                        <a href="#" class="badge bg-light text-primary mt-1">borrow_photo</a>
-
-                                        <div class="small text-muted mt-1">
-                                            Perbaiki AC bocor Panin pelita.
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Pagination -->
-                                <div class="d-flex justify-content-end mt-4">
-                                    <nav aria-label="Pagination">
-                                        <ul class="pagination mb-0">
-                                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                            <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                                        </ul>
-                                    </nav>
-                                </div>
-
+                            <div class="table-responsive">
+                                <table class="table table-sm">
+                                    <tbody>
+                                        <tr>
+                                            <th width="35%">Nama Barang</th>
+                                            <td width="5%">:</td>
+                                            <td>{{ $barang->nama_barang }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Kode Barang</th>
+                                            <td>:</td>
+                                            <td>{{ $barang->kode_barang }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Jumlah Barang</th>
+                                            <td>:</td>
+                                            <td>{{ $barang->jumlah_barang }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Kondisi Barang</th>
+                                            <td>:</td>
+                                            <td>{{ $barang->kondisi_barang }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Deskripsi Barang</th>
+                                            <td>:</td>
+                                            <td>{{ $barang->deskripsi_barang }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
                 </div>
 
+                <!-- TIMELINE CARD -->
+                <div class="card mt-4 shadow-sm" style="border-radius:12px;">
+                    <div class="card-header bg-white">
+                        <h5 class="fw-semibold text-primary mb-0">
+                            <i class="bi bi-journal-text me-1"></i> Riwayat Peminjaman
+                        </h5>
+                    </div>
 
-                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                <script src="{{asset('js/main.js')}}"></script>
+                    <div class="card-body">
+                        <div class="position-relative ps-4">
+
+                            <!-- Garis -->
+                            <div class="position-absolute"
+                                style="left:8px; top:0; bottom:0; width:2px; background:#e5e7eb;">
+                            </div>
+
+                            <!-- Item 1 -->
+                            <div class="mb-4 position-relative">
+                                <div
+                                    style="position:absolute; left:-1px; top:5px; width:14px; height:14px; border-radius:50%; background:#fff; border:3px solid #facc15;">
+                                </div>
+                                <div class="ps-4">
+                                    <div class="fw-semibold text-warning">Borrowed</div>
+                                    <div class="small">21 Feb 2025</div>
+                                    <div class="small text-muted">By: Yudha P.</div>
+                                </div>
+                            </div>
+
+                            <!-- Item 2 -->
+                            <div class="mb-4 position-relative">
+                                <div
+                                    style="position:absolute; left:-1px; top:5px; width:14px; height:14px; border-radius:50%; background:#fff; border:3px solid #6366f1;">
+                                </div>
+                                <div class="ps-4">
+                                    <div class="fw-semibold text-primary">Returned</div>
+                                    <div class="small">20 Aug 2024</div>
+                                    <div class="small text-muted">By: Yudha P.</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
+    </div>
+    </div>
+
+    </div>
+    </div>
+
+
+    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+    <script src="{{asset('js/pages/dashboard.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
+    </div>
+    </div>
     </div </body> </html>

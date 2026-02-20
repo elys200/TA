@@ -163,7 +163,8 @@
                                     <th>Status</th>
                                     <td>:</td>
                                     <td>
-                                        <span class="badge bg-success px-3 py-2">{{ $ormawa->status_ormawa == 1 ? 'Aktif' : 'Tidak Aktif' }}</span>
+                                        <span
+                                            class="badge bg-success px-3 py-2">{{ $ormawa->status_ormawa == 1 ? 'Aktif' : 'Tidak Aktif' }}</span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -186,7 +187,7 @@
                                     <th>:</th>
                                     <th>
                                         <img src="{{ asset('/storage' . $ormawa->logo) }}" class="img-fluid rounded"
-                                style="max-height: 70px; object-fit: contain;">
+                                            style="max-height: 70px; object-fit: contain;">
                                     </th>
                                 </tr>
                             </table>
@@ -201,8 +202,8 @@
 
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h5 class="fw-bold mb-0">Daftar Barang</h5>
-                        <button class="btn btn-primary btn-sm d-flex align-items-center"
-                        data-bs-toggle="modal" data-bs-target="#modalTambahBarang">
+                        <button class="btn btn-primary btn-sm d-flex align-items-center" data-bs-toggle="modal"
+                            data-bs-target="#modalTambahBarang">
                             <i class="bi bi-plus-lg me-1"></i> Tambah
                         </button>
                     </div>
@@ -220,28 +221,34 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach ($ormawa->barang as $barang)
                                 <tr>
-                                    <td>1</td>
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>
-                                        <img src="{{ asset('images/logo/logo1.png') }}"
+                                        <img src="{{ asset('storage/' . $barang->foto_barang) }}"
                                             style="width: 80px; height: 60px; object-fit: contain;">
                                     </td>
-                                    <td>Kain Hitam</td>
-                                    <td>5</td>
-                                    <td>Kain Hitam 3 meter</td>
+                                    <td>{{ $barang->nama_barang }}</td>
+                                    <td>{{ $barang->jumlah_barang }}</td>
+                                    <td>{{ $barang->deskripsi_barang }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('ormawa.detailbarang') }}" class="btn btn-success  me-1 align-items-center">
-                                         <i class="bi bi-justify"></i>
+                                        <a href="{{ route('ormawa.barang.detail', [
+    'id' => $ormawa->id,
+    'barangId' => $barang->id
+]) }}" class="btn btn-success">
+                                            <i class="bi bi-justify"></i>
                                         </a>
-                                        <button class="btn btn-warning  me-1 align-items-center"
-                                         data-bs-toggle="modal" data-bs-target="#modalEditBarang">
+                                        <button class="btn btn-warning  me-1 align-items-center" data-bs-toggle="modal"
+                                            data-bs-target="#modalEditBarang">
                                             <i class="bi bi-pencil-square"></i>
                                         </button>
-                                        <button class="btn btn-danger align-items-center" data-bs-toggle="modal" data-bs-target="#modalHapusBarang" >
+                                        <button class="btn btn-danger align-items-center" data-bs-toggle="modal"
+                                            data-bs-target="#modalHapusBarang">
                                             <i class="bi bi-trash3"></i>
                                         </button>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
