@@ -34,19 +34,8 @@ Route::middleware(['auth'])->group(function () {
 
         //Ruangan//
         Route::get('/ruangan', [RuanganController::class, 'index'])->name('ruangan');
-
-        Route::get('/ruangan/detail', function () {
-                return view('ruangan.detail');
-            }
-
-        )->name('ruangan.detail');
-
-        //form borang ruangan//
-        Route::get('/ruangan/detail/form', function () {
-                return view('ruangan.formruangan');
-            }
-
-        )->name('ruangan.detail.form');
+        Route::get('/ruangan/{id}', [RuanganController::class, 'detail'])->name('ruangan.detail');
+        Route::get('/ruangan/{id}/form', [RuanganController::class, 'form'])->name('ruangan.form');
 
         //Barang//
         Route::get('/barang', [BarangController::class, 'index'])->name('barang');

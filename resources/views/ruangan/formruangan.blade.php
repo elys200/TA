@@ -131,7 +131,7 @@
                     <form class="row g-3">
                         <div class="col-md-6">
                             <label for="disabledTextInput" class="form-label">Nama Ruangan</label>
-                            <input type="text" id="disabledTextInput" class="form-control" placeholder="Ruangan Bersama (RB)" disabled>
+                            <input type="text" id="disabledTextInput" class="form-control" value="{{ $ruangan->nama_ruangan }}" disabled>
                         </div>
                         <div class="col-md-6">
                             <label for="exampleInputEmail1" class="form-label">Nama Penaggung Jawab</label>

@@ -34,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-               <div class="sidebar-menu">
+                <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
@@ -152,45 +152,32 @@
 
                     <div class="services-wrapper2">
                         <div class="row g-3">
+                            @foreach($ruangan as $ruangans)
 
                             <div class="col-12 col-md-6">
                                 <div class="card h-100" style="border: 1px solid #ddd;">
-                                    <img src="{{ asset('images/ruangan2.jpg') }}" class="card-img-top card-img-fit"
+                                    <img src="{{ asset('storage/'.$ruangans->foto) }}" class="card-img-top card-img-fit"
                                         alt="">
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build the card...</p>
-                                        <a href="#" class="btn btn-primary w-100">Detail Ruangan</a>
+                                        <h5 class="card-title">{{ $ruangans->nama_ruangan }}</h5>
+                                        <p class="card-text">{{ $ruangans->deskripsi }}</p>
+                                        <a href="{{ route('ruangan.detail', $ruangans->id) }}" class="btn btn-primary w-100">Detail Ruangan</a>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-12 col-md-6">
-                                <div class="card h-100" style="border: 1px solid #ddd;">
-                                    <img src="{{ asset('images/ruangan2.jpg') }}" class="card-img-top card-img-fit"
-                                        alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build the card...</p>
-                                        <a href="{{ route('ruangan.detail') }}" class="btn btn-primary w-100">Detail
-                                            Ruangan</a>
-                                    </div>
-                                </div>
-                            </div>
-
+                            @endforeach
 
                         </div>
                     </div>
 
 
                 </div>
-
-
-                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                <script src="{{asset('js/main.js')}}"></script>
 </body>
+<script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+<script src="{{asset('js/pages/dashboard.js')}}"></script>
+<script src="{{asset('js/main.js')}}"></script>
 
 </html>

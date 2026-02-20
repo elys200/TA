@@ -160,10 +160,10 @@
             </header>
             <div class="container-fluid">
                 <div class="page-content-wrapper">
-                    <h3 class="mb-3">Ruangan / Ruangan HMJ</h3>
+                    <h3 class="mb-3">{{ $ruangan->nama_ruangan }}</h3>
 
                     <div class="image-wrapper mb-4">
-                        <img src="{{ asset('images/ruangan2.jpg') }}" alt="">
+                        <img src="{{ asset('storage/'.$ruangan->foto) }}" alt="" max-width="200px" class="rounded-3 shadow-sm">
                     </div>
 
 
@@ -177,19 +177,19 @@
                             <tbody>
                                 <tr>
                                     <th>Lokasi Ruangan</th>
-                                    <td>Study Center Lt.1</td>
+                                    <td>{{ $ruangan->lokasi }}</td>
                                 </tr>
                                 <tr>
                                     <th>Kode Ruangan</th>
-                                    <td>RB (Ruangan Bersama)</td>
+                                    <td>{{ $ruangan->kode_ruangan }}</td>
                                 </tr>
                                 <tr>
                                     <th>Kapasitas Ruangan</th>
-                                    <td>100 Orang</td>
+                                    <td>{{ $ruangan->kapasitas }} Orang</td>
                                 </tr>
                                 <tr>
                                     <th>PIC Ruangan</th>
-                                    <td>Elys Aulia Tanjung</td>
+                                    <td>{{ $ruangan->pic->nama_lengkap ?? '-' }}</td>
                                 </tr>
                                 <tr>
                                     <th>No Telp PIC</th>
@@ -199,7 +199,7 @@
                         </table>
 
                         <div class="d-grid gap-2">
-                            <a href="{{ route('ruangan.detail.form') }}" class="btn btn-primary">
+                            <a href="{{ route('ruangan.form', $ruangan->id) }}" class="btn btn-primary">
                                 Ajukan Peminjaman
                             </a>
                         </div>
