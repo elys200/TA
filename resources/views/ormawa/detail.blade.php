@@ -186,7 +186,7 @@
                                     <th>Logo</th>
                                     <th>:</th>
                                     <th>
-                                        <img src="{{ asset('/storage' . $ormawa->logo) }}" class="img-fluid rounded"
+                                        <img src="{{ asset('storage/' . $ormawa->logo) }}" class="img-fluid rounded"
                                             style="max-height: 70px; object-fit: contain;">
                                     </th>
                                 </tr>
@@ -232,20 +232,31 @@
                                     <td>{{ $barang->jumlah_barang }}</td>
                                     <td>{{ $barang->deskripsi_barang }}</td>
                                     <td class="text-center">
-                                        <a href="{{ route('ormawa.barang.detail', [
-    'id' => $ormawa->id,
-    'barangId' => $barang->id
-]) }}" class="btn btn-success">
-                                            <i class="bi bi-justify"></i>
-                                        </a>
-                                        <button class="btn btn-warning  me-1 align-items-center" data-bs-toggle="modal"
-                                            data-bs-target="#modalEditBarang">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </button>
-                                        <button class="btn btn-danger align-items-center" data-bs-toggle="modal"
-                                            data-bs-target="#modalHapusBarang">
-                                            <i class="bi bi-trash3"></i>
-                                        </button>
+                                        <div class="d-flex justify-content-center align-items-center gap-2">
+
+                                            <a href="{{ route('ormawa.barang.detail', ['id' => $ormawa->id, 'barangId' => $barang->id]) }}"
+                                                class="btn btn-success btn-sm">
+                                                <i class="bi bi-justify"></i>
+                                            </a>
+
+                                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                                data-bs-target="#modalEditBarang">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </button>
+
+                                            <form
+                                                action="{{ route('ormawa.barang.destroy', ['id' => $ormawa->id, 'barangId' => $barang->id]) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Yakin mau menghapus barang ini?')"
+                                                class="m-0">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="bi bi-trash3-fill"></i>
+                                                </button>
+                                            </form>
+
+                                        </div>
                                     </td>
                                 </tr>
                                 @endforeach

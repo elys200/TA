@@ -178,4 +178,38 @@ class OrmawaController extends Controller {
         return view('ormawa.detailbarang', compact('ormawa', 'barang'));
     }
 
+    public function updateBarang(Request $request, $id, $barangId) {
+        $validated=$request->validate([
+            'nama_barang'=> 'required|string|max:255',
+            'kode_barang'=> 'required|string|max:50|unique:barang,kode_barang,'. $barangId,
+            'deskripsi_barang'=> 'nullable|string',
+            'jumlah_barang'=> 'required|integer|min:1',
+            'kondisi_barang'=> 'required|string|max:50',
+            'status_barang'=> 'required|boolean',
+            'foto_barang'=> 'nullable|image|mimes:jpg,jpeg,png,gif|max:2048',
+        ]);
+
+        $ormawa=Ormawa::findOrFail($id);
+        $barang=Barang::where('ormawa_id', $id)->findOrFail($barangId);
+
+        if ($request->hasFile('foto_barang')) {
+            // hapus foto lama jika ada
+            if ($barang->foto_barang) {
+                Storage::disk('public')->delete($barang->foto_barang);
+            }
+
+            $file=$request->file('foto_barang');
+            $path=$file->store('barang', 'public');
+            $validated['foto_barang']=$path;
+        }
+
+        $validated['jumlah_barang']=(int) $validated['jumlah_barang'];
+        $validated['status_barang']=(int) $validated['status_barang'];  
+
+        $barang->update($validated);
+
+        return redirect()->route('ormawa.detail', $id)->with('success', 'Barang berhasil diperbarui.');
+    }
+
 }
+

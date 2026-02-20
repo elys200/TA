@@ -103,9 +103,9 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/ormawa/{id}', [OrmawaController::class, 'destroy'])->name('ormawa.destroy');
 
         Route::post('/ormawa/{id}/barang', [OrmawaController::class, 'storeBarang'])->name('ormawa.barang.store');
-        Route::get('/ormawa/{id}/barang/{barangId}', 
-    [OrmawaController::class, 'detailBarang']
-)->name('ormawa.barang.detail');
+        Route::get('/ormawa/{id}/barang/{barangId}', [OrmawaController::class, 'detailBarang'])->name('ormawa.barang.detail');
+        Route::put('/ormawa/{id}/barang/{barangId}', [OrmawaController::class, 'updateBarang'])->name('ormawa.barang.update');
+        Route::delete('/ormawa/{id}/barang/{barangId}', [OrmawaController::class, 'destroyBarang'])->name('ormawa.barang.destroy');
         // Route::put('/ormawa/{id}/barang/{barangId}', [OrmawaController::class, 'updateBarang'])->name('ormawa.barang.update');
         // Route::delete('/ormawa/{id}/barang/{barangId}', [OrmawaController::class, 'destroyBarang'])->name('ormawa.barang.destroy');
 

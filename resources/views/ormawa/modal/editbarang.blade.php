@@ -1,16 +1,13 @@
 <div class="modal fade" id="modalEditBarang" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
-
-            HEADER
             <div class="modal-header">
                 <h5 class="modal-title fw-bold">Edit Barang</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
 
-            BODY
             <div class="modal-body">
-                <form action="#"
+                <form action="{{ route('ormawa.barang.update', ['id' => $barang->ormawa_id, 'barangId' => $barang->id]) }}" enctype="multipart/form-data"
                     method="POST" class="row g-3">
                     @csrf
                     @method('PUT')
@@ -57,7 +54,7 @@
                         <label class="form-label">Foto Barang</label>
                         @if(!empty($barang->foto_barang))
                             <div class="mb-2">
-                                <img src="{{ asset('storage/' . $barang->foto_barang) }}" alt="Foto Barang" class="img-thumbnail" style="max-width: 500px;">
+                                <img src="{{ asset('storage/' . $barang->foto_barang) }}" alt="Foto Barang" class="img-thumbnail" style="width: 200px; height: auto;">
                             </div>
                             @endif
                         <input class="form-control" type="file" name="foto_barang">
@@ -77,17 +74,6 @@
 
                 </form>
             </div>
-
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">
-                    <i class="bi bi-save me-1"></i> Save
-                </button>
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    Cancel
-                </button>
-            </div> 
-< 
         </div>
     </div>
 </div>
