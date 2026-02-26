@@ -181,7 +181,7 @@
                         <table class="table table-bordered align-middle">
                             <thead class="table-light text-center">
                                 <tr>
-                                    <th>Code Peminjaman</th>
+                                    <th>No.</th>
                                     <th>Penanggung Jawab</th>
                                     <th>Nama Ormawa</th>
                                     <th>Tanggal Peminjaman</th>
@@ -191,12 +191,13 @@
                             </thead>
 
                             <tbody>
+                                @foreach($peminjamanRuangan as $peminjaman)
                                 <tr>
-                                    <td>001</td>
-                                    <td>Elys Aulia Tanjung</td>
-                                    <td>BEM</td>
-                                    <td>20 April 2026</td>
-                                    <td>Ruang Bersama (RB) </td>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$peminjaman->nama_penanggung_jawab}}</td>
+                                    <td>{{$peminjaman->ormawa->nama_ormawa}}</td>
+                                    <td>{{$peminjaman->tanggal_peminjaman}}</td>
+                                    <td>{{$peminjaman->nama_ruangan}}</td>
                                     <td class="text-center" style="width: 140px">
                                         <div class="d-flex justify-content-center gap-2">
                                             <a href="{{route('approvalruangan.detail')}}"button class="btn btn-success btn-sm">
@@ -205,6 +206,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

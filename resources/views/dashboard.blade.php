@@ -26,7 +26,7 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
+                            <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo" srcset="">
                         </div>
                     </div>
                 </div>

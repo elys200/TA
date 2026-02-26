@@ -27,7 +27,7 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
+                            <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo" srcset="">
                         </div>
                     </div>
                 </div>
@@ -127,60 +127,100 @@
 
                 <!-- WRAPPER PUTIH -->
                 <div class="bg-white p-4 rounded-3 shadow-sm">
+                    @if ($errors->any())
+                    <div id="error-alert" class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
 
-                    <form class="row g-3">
+                    <form action="{{route('ruangan.borang', $ruangan->id)}}" method="POST" class="row g-3">
+                        @csrf
                         <div class="col-md-6">
                             <label for="disabledTextInput" class="form-label">Nama Ruangan</label>
-                            <input type="text" id="disabledTextInput" class="form-control" value="{{ $ruangan->nama_ruangan }}" disabled>
+                            <input type="text" id="disabledTextInput" class="form-control"
+                                value="{{ $ruangan->nama_ruangan }}" disabled>
                         </div>
                         <div class="col-md-6">
                             <label for="exampleInputEmail1" class="form-label">Nama Penaggung Jawab</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1"
-                                aria-describedby="emailHelp">
+                            <input type="text" class="form-control" id="nama_penanggung_jawab"
+                                aria-describedby="emailHelp" name="nama_penanggung_jawab"
+                                value="{{old('nama_penanggung_jawab')}}" required>
                         </div>
                         <div class="col-md-6">
                             <label for="exampleInputPassword1" class="form-label">NIM</label>
-                            <input type="text" class="form-control" id="exampleInputPassword1">
+                            <input type="text" class="form-control" id="nim" name="nim" value="{{old('nim')}}" required>
                         </div>
                         <div class="col-md-6">
-                            <label for="inputState" class="form-label fw-bold">Nama Ormawa</label>
-                            <select id="inputState" class="form-select">
-                                <option>BEM</option>
-                                <option>HMTI</option>
-                                <option>UKM</option>
+                            <label class="form-label fw-bold">Nama Ormawa</label>
+                            <select class="form-select" name="ormawa_id" required>
+                                <option value="" disabled {{ old('ormawa_id') ? '' : 'selected' }}>
+                                    -- Pilih Jenis Ormawa --
+                                </option>
+
+                                @foreach($ormawa as $ormawas)
+                                <option value="{{ $ormawas->id }}"
+                                    {{ old('ormawa_id') == $ormawas->id ? 'selected' : '' }}>
+                                    {{ $ormawas->nama_ormawa }}
+                                </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="col-md-6">
                             <label for="exampleInputPassword1" class="form-label">Tanggal Peminjaman</label>
-                            <input type="date" class="form-control" id="exampleInputPassword1">
+                            <input type="date" class="form-control" id="exampleInputPassword1" name="tanggal_peminjaman"
+                                value="{{old('tanggal_peminjaman')}}" min="{{ now()->addDays(2)->toDateString() }}"
+                                required>
                         </div>
                         <div class="col-md-6">
                             <label for="exampleInputPassword1" class="form-label">Jam Penggunaan</label>
-                            <input type="time" class="form-control" id="exampleInputPassword1">
+                            <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror"
+                                id="exampleInputPassword1" name="jam_mulai" value="{{old('jam_mulai')}}" required>
+
                         </div>
                         <div class="col-md-6">
                             <label for="exampleInputPassword1" class="form-label">Jam Pengembalian</label>
-                            <input type="time" class="form-control" id="exampleInputPassword1">
+                            <input type="time" class="form-control @error('jam_selesai') is-invalid @enderror"
+                                id="exampleInputPassword1" name="jam_selesai" value="{{old('jam_selesai')}}" required>
+
                         </div>
                         <div class="col-md-6">
                             <label for="exampleInputPassword1" class="form-label">Alasan Peminjaman</label>
-                            <textarea class="form-control" id="exampleInputPassword1"></textarea>
+                            <textarea class="form-control" id="exampleInputPassword1" required
+                                name="alasan_peminjaman">{{ old('alasan_peminjaman') }} </textarea>
                         </div>
+                        <small class="text-danger">
+                            Senin – Jumat: 08:00–17:00 <br>
+                            Sabtu: 08:00–12:00 <br>
+                            Minggu: Tidak tersedia
+                        </small>
                         <button type="submit" class="btn btn-primary">Ajukan</button>
 
                     </form>
                 </div>
 
-
-
-                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                <script src="{{asset('js/main.js')}}"></script>
             </div>
         </div>
     </div>
+    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+    <script src="{{asset('js/pages/dashboard.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
+    <script>
+        setTimeout(function () {
+            let alertBox = document.getElementById('error-alert');
+            if (alertBox) {
+                alertBox.style.transition = "opacity 0.5s";
+                alertBox.style.opacity = "0";
+                setTimeout(() => alertBox.remove(), 500);
+            }
+        }, 5000); // 5000 = 5 detik
+
+    </script>
 </body>
 
 </html>

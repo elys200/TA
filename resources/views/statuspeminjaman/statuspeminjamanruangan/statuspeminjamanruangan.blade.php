@@ -136,7 +136,7 @@
                         <!-- TOP ACTION -->
                         <div class="row align-items-center g-2 mb-4">
                             <div class="col-auto">
-                                <button class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                <button class="btn btn-outline-secondary d-flex align-items-center gap-2 px-3">
                                     <i class="bi bi-archive"></i> Barang
                                 </button>
                             </div>

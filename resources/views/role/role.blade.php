@@ -30,7 +30,7 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
+                            <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo" srcset="">
                         </div>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                     <div class="table-responsive">
                         <table class="table table-bordered align-middle">
                             <thead class="table-light">
-                                <tr>
+                                <tr style="text-align: center;">
                                     <th style="width: 80px;">No</th>
                                     <th>Name</th>
                                     <th style="width: 260px;">Action</th>
@@ -148,15 +148,18 @@
                             <tbody>
                                 @foreach ($roles as $role)
                                 <tr>
-                                    <td>{{ $loop->iteration }}</td>
+                                    <td style="text-align: center;">{{ $loop->iteration }}.</td>
                                     <td>{{ Str::title($role->name) }}</td>
                                     <td>
                                         <div class="d-flex gap-2 align-items-center">
-                                            <a href="{{ route('role.permissions', $role->id) }}" class="btn btn-info btn-sm text-white">
+                                            <a href="{{ route('role.permissions', $role->id) }}"
+                                                class="btn btn-info btn-sm text-white">
                                                 Show
                                             </a>
 
-                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                        
+                                            <button type="button" class="btn btn-primary btn-sm btn-edit" data-id="{{$role->id}}"
+                                                data-name="{{$role->name}}" data-bs-toggle="modal"
                                                 data-bs-target="#modalEditRole">
                                                 Edit
                                             </button>
@@ -181,6 +184,22 @@
             </div>
         </div>
     </div>
+    {{-- HTML kamu di atas --}}
+
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll('.btn-edit').forEach(button => {
+        button.addEventListener('click', function () {
+
+            let id = this.dataset.id;
+            let name = this.dataset.name;
+
+            document.getElementById('editRoleName').value = name;
+            document.getElementById('editRoleForm').action = '/role/' + id;
+        });
+    });
+});
+</script>
 
     <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>

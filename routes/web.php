@@ -15,11 +15,14 @@ use App\Http\Controllers\ApprovalBarangController;
 use App\Http\Controllers\ApprovalRuanganController;
 use App\Http\Controllers\Auth\LoginController;
 
+
 // Login & Registrasi//
 Route::get('/', function () {
+    return redirect()->route('login'); // langsung redirect ke login
+});
+Route::get('/login', function () {
         return view('login');
     }
-
 );
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
@@ -36,6 +39,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/ruangan', [RuanganController::class, 'index'])->name('ruangan');
         Route::get('/ruangan/{id}', [RuanganController::class, 'detail'])->name('ruangan.detail');
         Route::get('/ruangan/{id}/form', [RuanganController::class, 'form'])->name('ruangan.form');
+        Route::post('/ruangan/{id}/borang', [RuanganController::class, 'store'])->name('ruangan.borang');
+        
 
         //Barang//
         Route::get('/barang', [BarangController::class, 'index'])->name('barang');
@@ -68,11 +73,7 @@ Route::middleware(['auth'])->group(function () {
         )->name('statuspeminjaman.detailbarang');
 
         //Ruangan//
-        Route::get('/statuspeminjamanruangan', function () {
-                return view('statuspeminjaman.statuspeminjamanruangan.statuspeminjamanruangan');
-            }
-
-        )->name('statuspeminjamanruangan');
+        Route::get('/statuspeminjamanruangan',[StatusPeminjamanController::class, 'indexRuangan'])->name('statuspeminjamanruangan');
 
         Route::get('/statuspeminjamanruangan/detailruangan', function () {
                 return view('statuspeminjaman.statuspeminjamanruangan.detailpeminjamanruangan');
@@ -97,8 +98,6 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/ormawa/{id}/barang/{barangId}', [OrmawaController::class, 'destroyBarang'])->name('ormawa.barang.destroy');
         // Route::put('/ormawa/{id}/barang/{barangId}', [OrmawaController::class, 'updateBarang'])->name('ormawa.barang.update');
         // Route::delete('/ormawa/{id}/barang/{barangId}', [OrmawaController::class, 'destroyBarang'])->name('ormawa.barang.destroy');
-
-        
 
 
         //User//

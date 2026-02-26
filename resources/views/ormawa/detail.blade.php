@@ -239,7 +239,15 @@
                                                 <i class="bi bi-justify"></i>
                                             </a>
 
-                                            <button class="btn btn-warning btn-sm" data-bs-toggle="modal"
+                                            <button class="btn btn-warning btn-sm btn-edit-barang"
+                                                data-id="{{ $barang->id }}" data-ormawa="{{ $ormawa->id }}"
+                                                data-nama="{{ $barang->nama_barang }}"
+                                                data-kode="{{ $barang->kode_barang }}"
+                                                data-deskripsi="{{ $barang->deskripsi_barang }}"
+                                                data-jumlah="{{ $barang->jumlah_barang }}"
+                                                data-kondisi="{{ $barang->kondisi_barang }}"
+                                                data-status="{{ $barang->status_barang }}"
+                                                data-foto="{{ $barang->foto_barang }}" data-bs-toggle="modal"
                                                 data-bs-target="#modalEditBarang">
                                                 <i class="bi bi-pencil-square"></i>
                                             </button>
@@ -269,11 +277,54 @@
 
         </div>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+
+                document.querySelectorAll('.btn-edit-barang').forEach(button => {
+
+                    button.addEventListener('click', function () {
+
+                        let id = this.dataset.id;
+                        let ormawaId = this.dataset.ormawa;
+
+                        document.getElementById('editNamaBarang').value = this.dataset.nama;
+                        document.getElementById('editKodeBarang').value = this.dataset.kode;
+                        document.getElementById('editDeskripsiBarang').value = this.dataset
+                            .deskripsi;
+                        document.getElementById('editJumlahBarang').value = this.dataset.jumlah;
+
+                        document.getElementById('editKondisiBarang').value = this.dataset
+                            .kondisi;
+                        document.getElementById('editStatusBarang').value = this.dataset.status;
+
+                        // preview foto
+                        let foto = this.dataset.foto;
+                        let preview = document.getElementById('previewFoto');
+
+                        if (foto) {
+                            preview.innerHTML =
+                                `<img src="/storage/${foto}" class="img-thumbnail" style="width:200px;">`;
+                        } else {
+                            preview.innerHTML = "";
+                        }
+
+                        // set action form
+                        document.getElementById('editBarangForm').action =
+                            `/ormawa/${ormawaId}/barang/${id}`;
+                    });
+
+                });
+
+            });
+
+        </script>
+
         <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
         <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
         <script src="{{asset('js/pages/dashboard.js')}}"></script>
         <script src="{{asset('js/main.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
         @include('ormawa.modal.tambahbarang')
         @include('ormawa.modal.editbarang')
         @include('ormawa.modal.hapusbarang')

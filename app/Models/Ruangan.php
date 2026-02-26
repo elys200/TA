@@ -26,4 +26,9 @@ class Ruangan extends Model
     {
         return $this->belongsTo(Users::class, 'pic_id');
     }
+
+    public function peminjamanRuangan()
+    {
+        return $this->hasMany(PeminjamanRuangan::class, 'ruangan_id');
+    }
 }

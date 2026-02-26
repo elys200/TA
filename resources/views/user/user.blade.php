@@ -159,6 +159,7 @@
                         <table class="table table-bordered align-middle">
                             <thead class="table-light text-center">
                                 <tr>
+                                    <th>No</th>
                                     <th>NIM</th>
                                     <th>Nama Lengkap</th>
                                     <th>Jurusan</th>
@@ -171,14 +172,24 @@
                             <tbody>
                                 @foreach ($users as $user)
                                 <tr>
+                                    <td style="text-align: center;">{{ $loop->iteration }}.</td>
                                     <td>{{ $user->nim}}</td>
                                     <td>{{ $user->nama_lengkap}}</td>
                                     <td>{{ $user->jurusan}}</td>
                                     <td>{{ $user->program_studi}}</td>
-                                    <td>
+                                    <td style="text-align: center;">
+                                        @php
+                                          $role = $user->roles->isEmpty() ? 'PENDING' : strtoupper($user->getRoleNames()->first());
+                                            $badgeColor = match($role) {
+                                                'PENDING' => 'bg-secondary',
+                                                'ADMIN' => 'bg-primary',
+                                                'MAHASISWA' => 'bg-success',
+                                                default => 'bg-secondary',
+                                            }
+                                        @endphp
                                         <span
-                                            class="badge {{ $user->roles->isEmpty() ? 'bg-secondary' : 'bg-primary' }}">
-                                            {{ $user->roles->isEmpty() ? 'PENDING' : strtoupper($user->getRoleNames()->first()) }}
+                                            class="badge {{ $badgeColor }} px-3 py-2" style="font-size: 0.875rem;">
+                                            {{ $role }}
                                         </span>
                                     </td>
                                     <td class="text-center">
@@ -193,8 +204,8 @@
                                                     onsubmit="return confirm('Yakin mau menghapus user ini?')">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-danger btn-sm">
-                                                        <span class="bi bi-trash"></span> Hapus
+                                                    <button type="submit" class="btn btn-danger btn-sm btn-air-danger p-3 pt-2 pb-2" style="white-space: nowrap;">
+                                                        <span class="bi bi-trash"></span>
                                                     </button>
                                                 </form>
 
