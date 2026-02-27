@@ -6,6 +6,7 @@ use App\Models\Ruangan;
 use App\Models\Ormawa;
 use App\Models\PeminjamanRuangan;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class RuanganController extends Controller {
     public function index() {
@@ -24,6 +25,24 @@ class RuanganController extends Controller {
         return view('ruangan.formruangan', compact('ruangan', 'ormawa'));
     }
 
+ public function generateKode($ruangan_id, $tanggal)
+{
+    $ruangan = Ruangan::findOrFail($ruangan_id);
+
+    $tgl = Carbon::parse($tanggal);
+    $tanggalFormat = $tgl->format('Ymd');
+
+    $count = PeminjamanRuangan::where('ruangan_id', $ruangan_id)
+        ->whereDate('tanggal_peminjaman', $tanggal)
+        ->lockForUpdate()
+        ->count();
+
+    $urutan = str_pad($count + 1, 3, '0', STR_PAD_LEFT);
+
+    $kodeRuangan = strtoupper(str_replace(' ', '', $ruangan->kode_ruangan));
+
+    return $kodeRuangan . '_' . $tanggalFormat . '_' . $urutan;
+}
 
    public function store(Request $request, $id)
 {
@@ -77,9 +96,18 @@ class RuanganController extends Controller {
             ->withInput();
     }
 
+       DB::transaction(function () use ($validatedData, $ruangan) {
+
+        // 🔥 generate kode DI DALAM transaction
+        $kode = $this->generateKode(
+            $ruangan->id,
+            $validatedData['tanggal_peminjaman']
+        );
+
 
     // ✅ Simpan data (di luar kondisi hari!)
     PeminjamanRuangan::create([
+        'code_peminjaman' => $kode,
         'ruangan_id' => $ruangan->id,
         'user_id' => auth()->id(),
         'ormawa_id' => $validatedData['ormawa_id'],
@@ -91,6 +119,7 @@ class RuanganController extends Controller {
         'alasan_peminjaman' => $validatedData['alasan_peminjaman'],
         'status_peminjaman' => 0,
     ]);
+       });
 
     return redirect()->route('statuspeminjamanruangan')
         ->with('success', 'Peminjaman ruangan berhasil diajukan!');

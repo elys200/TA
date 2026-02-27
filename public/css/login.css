@@ -178,6 +178,10 @@ body{
     box-shadow: none;
 }
 
+.select-active {
+    background-color: #dbeafe !important;
+}
+
 @media screen and (max-width:768px) {
     .container {
         height: 100vh;

@@ -13,4 +13,11 @@ class ApprovalRuanganController extends Controller
         $ormawa = Ormawa::all();
         return view ('approval.approvalruangan', compact('peminjamanRuangan', 'ormawa'));
     }
+
+    public function detail($id){
+        $peminjamanRuangan = PeminjamanRuangan::find($id);
+        $ormawa = Ormawa::all();
+        $user = $peminjamanRuangan->user; // Mengambil data user yang melakukan peminjaman
+        return view('approval.detailapprovalruangan', compact('peminjamanRuangan', 'ormawa', 'user'));
+    }
 }

@@ -11,6 +11,7 @@ class PeminjamanRuangan extends Model
     protected $table = 'peminjaman_ruangan';
     protected $fillable = [
         'nama_penanggung_jawab',
+        'code_peminjaman',
         'nim',
         'tanggal_peminjaman',
         'jam_mulai',

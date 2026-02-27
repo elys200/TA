@@ -27,7 +27,7 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
+                            <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo" srcset="">
                         </div>
                     </div>
                 </div>
@@ -130,44 +130,53 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
 
-                        <form>
+                        <form action="{{ route('statuspeminjamanruangan.detailpeminjaman', $peminjaman->id) }}"
+                            method="POST">
                             <fieldset disabled>
                                 <div class="row g-3">
                                     <div class="col-md-6">
-                                        <label class="form-label fw-bold">Code Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="001">
+                                        <label class="form-label fw-bold">Kode Peminjaman</label>
+                                        <input type="text" class="form-control"
+                                            value="{{ $peminjaman->code_peminjaman }}" readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Nama Ruangan</label>
-                                        <input type="text" class="form-control" placeholder="Ruangan Bersama (RB)">
+                                        <input type="text" class="form-control"
+                                            value="{{ $peminjaman->ruangan->nama_ruangan }}" readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Penanggung Jawab</label>
-                                        <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
+                                        <input type="text" class="form-control"
+                                            value="{{ $peminjaman->nama_penanggung_jawab }}" readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">NIM</label>
-                                        <input type="text" class="form-control" placeholder="33120120045">
+                                        <input type="text" class="form-control" value="{{ $peminjaman->nim }}" readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Nama Ormawa</label>
-                                        <input type="text" class="form-control" placeholder="BEM">
+                                        <input type="text" class="form-control"
+                                            value="{{ $peminjaman->ormawa->nama_ormawa }}" readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Tanggal Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="20 April 2026">
+                                        <input type="text" class="form-control"
+                                            value="{{ $peminjaman->tanggal_peminjaman }}" readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Jam Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="12:00 WIB">
+                                        <input type="text" class="form-control" value="{{ $peminjaman->jam_mulai }}"
+                                            readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Jam Pengembalian</label>
-                                        <input type="text" class="form-control" placeholder="14:00 WIB">
+                                        <input type="text" class="form-control" value="{{ $peminjaman->jam_selesai }}"
+                                            readonly>
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Alasan Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="Rapat Umum">
+                                        <input type="text" class="form-control"
+                                            value="{{ $peminjaman->alasan_peminjaman }}" readonly>
                                     </div>
 
                                 </div>
@@ -183,10 +192,15 @@
                             <div class="col-md-4 mb-4 mt-3">
                                 <p class="fw-semibold mb-3">Approve PIC</p>
                                 <div class="d-flex justify-content-center gap-2 mb-4">
-                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPemberianKunci">Approved</button>
+                                    @if($peminjaman->status_peminjaman == '0')
+                                    <button type="button" class="btn btn-warning">Waiting Reviewer</button>
+                                    @elseif($peminjaman->status_peminjaman == '1')
+                                    <button type="button" class="btn btn-success">Approve</button>
+                                    @elseif($peminjaman->status_peminjaman == '2')
+                                    <button type="button" class="btn btn-danger">Rejected</button>
+                                    @endif
                                 </div>
-                                <p class="mb-0">ELys Aulia Tanjung</p>
+                                <p class="mb-0">{{ $peminjaman->approver?->nama_lengkap}}</p>
                             </div>
 
                             <div class="col-md-4 mb-4 mt-3">

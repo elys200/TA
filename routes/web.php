@@ -74,12 +74,16 @@ Route::middleware(['auth'])->group(function () {
 
         //Ruangan//
         Route::get('/statuspeminjamanruangan',[StatusPeminjamanController::class, 'indexRuangan'])->name('statuspeminjamanruangan');
+        Route::get('/statuspeminjamanruangan/detailpeminjaman/{id}', [StatusPeminjamanController::class, 'detail'])->name('statuspeminjamanruangan.detailpeminjaman');
+        Route::get('/statuspeminjamanruangan/editpeminjaman/{id}', [StatusPeminjamanController::class, 'edit'])->name('statuspeminjamanruangan.editpeminjaman');
+        Route::put('/statuspeminjamanruangan/updatepeminjaman/{id}', [StatusPeminjamanController::class, 'update'])->name('statuspeminjamanruangan.updatepeminjaman');
+        Route::delete('/statuspeminjamanruangan/deletepeminjaman/{id}', [StatusPeminjamanController::class, 'destroy'])->name('statuspeminjamanruangan.deletepeminjaman');
 
-        Route::get('/statuspeminjamanruangan/detailruangan', function () {
-                return view('statuspeminjaman.statuspeminjamanruangan.detailpeminjamanruangan');
-            }
+        // Route::get('/statuspeminjamanruangan/detailruangan', function () {
+        //         return view('statuspeminjaman.statuspeminjamanruangan.detailpeminjamanruangan');
+        //     }
 
-        )->name('statuspeminjamanruangan.detailruangan');
+        // )->name('statuspeminjamanruangan.detailruangan');
 
         //
 
@@ -144,12 +148,13 @@ Route::middleware(['auth'])->group(function () {
 
         //Ruangan//
         Route::get('/approvalruangan', [ApprovalRuanganController::class, 'index'])->name('approvalruangan');
+        Route::get('/approvalruangan/{id}/detail', [ApprovalRuanganController::class, 'detail'])->name('approvalruangan.detail');
 
-        Route::get('/approvalruangan/detail', function () {
-                return view('approval.detailapprovalruangan');
-            }
+        // Route::get('/approvalruangan/detail', function () {
+        //         return view('approval.detailapprovalruangan');
+        //     }
 
-        )->name('approvalruangan.detail');
+        // )->name('approvalruangan.detail');
         //
 
         //Kelola Ruangan//

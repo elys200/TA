@@ -30,11 +30,11 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
+                            <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo" srcset="">
                         </div>
                     </div>
                 </div>
-              <div class="sidebar-menu">
+                <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
@@ -181,40 +181,75 @@
                             <table class="table table-hover table-bordered align-middle">
                                 <thead class="table-light text-center">
                                     <tr>
-                                        <th>ID</th>
+                                        <th>No</th>
+                                        <th>Kode peminjaman</th>
                                         <th>Ruangan</th>
                                         <th>Penanggung Jawab</th>
                                         <th>Tanggal Peminjaman</th>
                                         <th>Status</th>
-                                        <th width="120">Action</th>
+                                        <th width="160">Action</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
+                                    @foreach($peminjamanRuangan as $peminjaman)
                                     <tr>
-                                        <td>001</td>
-                                        <td>RB (Ruangan Bersama)</td>
-                                        <td>Elys Aulia Tanjung</td>
-                                        <td>20 April 2026</td>
+                                        <td class="text-center">{{ $loop->iteration }}.</td>
+                                        <td>{{ $peminjaman->code_peminjaman }}</td>
+                                        <td>{{ $peminjaman->ruangan->nama_ruangan }}</td>
+                                        <td>{{ $peminjaman->nama_penanggung_jawab }}</td>
+                                        <td>{{ $peminjaman->tanggal_peminjaman }}</td>
                                         <td class="text-center">
-                                            <span class="badge bg-warning">Waiting Approval</span>
+                                            @if ($peminjaman->status_peminjaman == '0')
+                                            <span class="badge bg-warning">Waiting Review</span>
+                                            @elseif ($peminjaman->status_peminjaman == '1')
+                                            <span class="badge bg-success">Approve</span>
+                                            @elseif ($peminjaman->status_peminjaman == '2')
+                                            <span class="badge bg-danger">Rejected</span>
+                                            @endif
                                         </td>
                                         <td class="text-center">
-                                            <a href="{{ route('statuspeminjamanruangan.detailruangan') }}"
-                                                class="btn btn-sm btn-success">
-                                                <span>Detail</span>
-                                            </a>
-                        </div>
-                        </td>
-                        </tr>
-                        </tbody>
-                        </table>
-                    </div>
+                                            <div class="d-flex justify-content-center gap-2">
 
+                                                {{-- Detail --}}
+                                                <a href="{{ route('statuspeminjamanruangan.detailpeminjaman', $peminjaman->id) }}"
+                                                    class="btn btn-success">
+                                                    <i class="bi bi-justify"></i>
+                                                </a>
+
+                                                {{-- Edit --}}
+                                                <a href="{{ route('statuspeminjamanruangan.editpeminjaman', $peminjaman->id) }}"
+                                                    class="btn btn-warning">
+                                                    <i class="bi bi-pencil-square"></i>
+                                                </a>
+
+                                                {{-- Delete --}}
+                                                <form
+                                                    action="{{ route('statuspeminjamanruangan.deletepeminjaman', $peminjaman->id) }}"
+                                                    method="POST"
+                                                    onsubmit="return confirm('Yakin mau menghapus peminjaman ini?')"
+                                                    class="d-inline">
+                                                    @csrf
+                                                    @method('DELETE')
+
+                                                    <button type="submit" class="btn btn-danger">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <!-- JS -->

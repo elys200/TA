@@ -1,6 +1,3 @@
-<div>
-    <!-- Live as if you were to die tomorrow. Learn as if you were to live forever. - Mahatma Gandhi -->
-</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -124,91 +121,111 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-
-
             <div class="container-fluid">
+
+                <h3> Form Pemborang Ruangan</h3>
+
+                <!-- WRAPPER PUTIH -->
                 <div class="bg-white p-4 rounded-3 shadow-sm">
-                    <div
-                        class="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center gap-2 mb-3">
-                        <h4 class="mb-0">Role Management</h4>
-                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalTambahRole">
-                            Create New Role
-                        </a>
+                    @if ($errors->any())
+                    <div id="error-alert" class="alert alert-danger">
+                        <ul class="mb-0">
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
                     </div>
+                    @endif
 
-                    <div class="table-responsive">
-                        <table class="table table-bordered align-middle">
-                            <thead class="table-light">
-                                <tr style="text-align: center;">
-                                    <th style="width: 80px;">No</th>
-                                    <th>Name</th>
-                                    <th style="width: 260px;">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($roles as $role)
-                                <tr>
-                                    <td style="text-align: center;">{{ $loop->iteration }}.</td>
-                                    <td>{{ Str::title($role->name) }}</td>
-                                    <td class="text-center align-middle">
-                                        <div class="d-flex justify-content-center align-items-center gap-2">
-                                            <a href="{{ route('role.permissions', $role->id) }}"
-                                                class="btn btn-info btn-sm text-white">
-                                                Show
-                                            </a>
+                    <form action="{{route('statuspeminjamanruangan.updatepeminjaman', $peminjaman->id)}}" method="POST"
+                        class="row g-3">
+                        @csrf
+                        @method('PUT')
+                        <div class="col-md-6">
+                            <label for="disabledTextInput" class="form-label">Nama Ruangan</label>
+                            <input type="text" id="disabledTextInput" class="form-control"
+                                value="{{ $peminjaman->ruangan->nama_ruangan }}" disabled>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputEmail1" class="form-label">Nama Penaggung Jawab</label>
+                            <input type="text" class="form-control" id="nama_penanggung_jawab"
+                                aria-describedby="emailHelp" name="nama_penanggung_jawab"
+                                value="{{old('nama_penanggung_jawab', $peminjaman->nama_penanggung_jawab)}}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">NIM</label>
+                            <input type="text" class="form-control" id="nim" name="nim"
+                                value="{{old('nim', $peminjaman->nim)}}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Nama Ormawa</label>
+                            <select class="form-select" name="ormawa_id" required>
+                                <option value="" disabled>
+                                    -- Pilih Jenis Ormawa --
+                                </option>
 
-                                        
-                                            <button type="button" class="btn btn-primary btn-sm btn-edit" data-id="{{$role->id}}"
-                                                data-name="{{$role->name}}" data-bs-toggle="modal"
-                                                data-bs-target="#modalEditRole">
-                                                Edit
-                                            </button>
-
-                                            <form action="{{ route('role.destroy', $role->id) }}" method="POST"
-                                                onsubmit="return confirm('Yakin mau menghapus role ini?')" class="m-0">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger btn-sm">
-                                                    Hapus
-                                                </button>
-                                            </form>
-                                        </div>
-
-                                    </td>
-                                </tr>
+                                @foreach($ormawa as $ormawas)
+                                <option value="{{ $ormawas->id }}"
+                                    {{ old('ormawa_id', $peminjaman->ormawa_id) == $ormawas->id ? 'selected' : '' }}>
+                                    {{ $ormawas->nama_ormawa }}
+                                </option>
                                 @endforeach
-                            </tbody>
-                        </table>
-                    </div>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">Tanggal Peminjaman</label>
+                            <input type="date" class="form-control" id="exampleInputPassword1" name="tanggal_peminjaman"
+                                value="{{old('tanggal_peminjaman', $peminjaman->tanggal_peminjaman)}}"
+                                min="{{ now()->addDays(2)->toDateString() }}" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">Jam Penggunaan</label>
+                            <input type="time" class="form-control @error('jam_mulai') is-invalid @enderror"
+                                id="exampleInputPassword1" name="jam_mulai"
+                                value="{{old('jam_mulai', $peminjaman->jam_mulai)}}" required>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">Jam Pengembalian</label>
+                            <input type="time" class="form-control @error('jam_selesai') is-invalid @enderror"
+                                id="exampleInputPassword1" name="jam_selesai"
+                                value="{{old('jam_selesai', $peminjaman->jam_selesai)}}" required>
+
+                        </div>
+                        <div class="col-md-6">
+                            <label for="exampleInputPassword1" class="form-label">Alasan Peminjaman</label>
+                            <textarea class="form-control" id="exampleInputPassword1" required
+                                name="alasan_peminjaman">{{ old('alasan_peminjaman', $peminjaman->alasan_peminjaman) }} </textarea>
+                        </div>
+                        <small class="text-danger">
+                            Senin – Jumat: 08:00–17:00 <br>
+                            Sabtu: 08:00–12:00 <br>
+                            Minggu: Tidak tersedia
+                        </small>
+                        <button type="submit" class="btn btn-primary">Update</button>
+
+                    </form>
                 </div>
+
             </div>
         </div>
     </div>
-    {{-- HTML kamu di atas --}}
-
-    <script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll('.btn-edit').forEach(button => {
-        button.addEventListener('click', function () {
-
-            let id = this.dataset.id;
-            let name = this.dataset.name;
-
-            document.getElementById('editRoleName').value = name;
-            document.getElementById('editRoleForm').action = '/role/' + id;
-        });
-    });
-});
-</script>
-
     <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
     <script src="{{asset('js/pages/dashboard.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
-    @include('role.modal.tambah')
-    @include('role.modal.hapus')
-    @include('role.modal.edit')
+    <script>
+        setTimeout(function () {
+            let alertBox = document.getElementById('error-alert');
+            if (alertBox) {
+                alertBox.style.transition = "opacity 0.5s";
+                alertBox.style.opacity = "0";
+                setTimeout(() => alertBox.remove(), 500);
+            }
+        }, 5000); // 5000 = 5 detik
+
+    </script>
 </body>
 
 </html>

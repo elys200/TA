@@ -124,7 +124,7 @@
                 </div>
 
                 <div class="input-box">
-                    <select name="jurusan" id="jurusan" required>
+                    <select class="form-select" name="jurusan" id="jurusan" required>
                         <option value="">Pilih Jurusan</option>
                         <option value="Manajemen Bisnis" {{ old('jurusan') == 'Manajemen Bisnis' ? 'selected' : '' }}>
                             Manajemen Bisnis</option>
@@ -233,6 +233,23 @@
         });
 
     </script>
+
+    <script>
+    document.querySelectorAll('select').forEach(function(select) {
+        select.addEventListener('change', function() {
+            if (this.value !== "") {
+                this.classList.add('select-active');
+            } else {
+                this.classList.remove('select-active');
+            }
+        });
+
+        // Supaya saat reload tetap biru kalau sudah ada value
+        if (select.value !== "") {
+            select.classList.add('select-active');
+        }
+    });
+</script>
 
 
 </body>

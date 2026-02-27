@@ -27,7 +27,7 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
+                            <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo" srcset="">
                         </div>
                     </div>
                 </div>
@@ -130,44 +130,48 @@
                 <div class="card shadow-sm border-0">
                     <div class="card-body">
 
-                        <form>
+                        <form class="{{ route('approvalruangan.detail', $peminjamanRuangan->id) }}" method="POST">
                             <fieldset disabled>
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Code Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="001">
+                                        <input type="text" class="form-control" placeholder="{{ $peminjamanRuangan->code_peminjaman }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Nama Ruangan</label>
-                                        <input type="text" class="form-control" placeholder="Ruangan Bersama (RB)">
+                                        <input type="text" class="form-control" placeholder="{{ $peminjamanRuangan->ruangan->nama_ruangan }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Penanggung Jawab</label>
-                                        <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
+                                        <input type="text" class="form-control" placeholder="{{ $peminjamanRuangan->nama_penanggung_jawab }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">NIM</label>
-                                        <input type="text" class="form-control" placeholder="33120120045">
+                                        <input type="text" class="form-control" placeholder="{{ $peminjamanRuangan->nim }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Nama Ormawa</label>
-                                        <input type="text" class="form-control" placeholder="BEM">
+                                        <input type="text" class="form-control" placeholder="{{ $peminjamanRuangan->ormawa->nama_ormawa }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Tanggal Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="20 April 2026">
+                                        <input type="text" class="form-control" placeholder="{{ $peminjamanRuangan->tanggal_peminjaman }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Jam Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="12:00 WIB">
+                                        <input type="text" class="form-control" placeholder="{{ $peminjamanRuangan->jam_mulai}}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Jam Pengembalian</label>
-                                        <input type="text" class="form-control" placeholder="14:00 WIB">
+                                        <input type="text" class="form-control" placeholder="{{ $peminjamanRuangan->jam_selesai }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Alasan Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="Rapat Umum">
+                                        <input type="text" class="form-control" placeholder="{{ $peminjamanRuangan->alasan_peminjaman }}">
+                                    </div>
+                                     <div class="col-md-6">
+                                        <label class="form-label fw-bold">Nama Pengaju</label>
+                                        <input type="text" class="form-control" placeholder="{{ $peminjamanRuangan->user->nama_lengkap }}">
                                     </div>
 
                                 </div>

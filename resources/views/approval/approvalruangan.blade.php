@@ -128,6 +128,7 @@
                 <!-- WRAPPER PUTIH -->
                 <div class="bg-white p-4 rounded-3 shadow-sm">
                     <div class="container">
+                        @foreach($peminjamanRuangan as $peminjaman)
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="card-body d-flex align-items-center"
@@ -137,7 +138,7 @@
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Reviewing</b></span>
-                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">1</h4>
+                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{ $peminjaman->where('status_peminjaman', 0)->count() }}</h4>
                                     </div>
 
                                 </div>
@@ -150,7 +151,7 @@
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Approve</b></span>
-                                        <h4 id="counterApprove" class="mb-0" style="color: white;">1</h4>
+                                        <h4 id="counterApprove" class="mb-0" style="color: white;">{{ $peminjaman->where('status_peminjaman', 1)->count() }}</h4>
                                     </div>
 
                                 </div>
@@ -163,7 +164,7 @@
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Rejected</b></span>
-                                        <h4 id="counterRejected" class="mb-0" style="color: white;">0</h4>
+                                        <h4 id="counterRejected" class="mb-0" style="color: white;">{{ $peminjaman->where('status_peminjaman', 2)->count() }}</h4>
                                     </div>
 
                                 </div>
@@ -182,25 +183,37 @@
                             <thead class="table-light text-center">
                                 <tr>
                                     <th>No.</th>
+                                    <th>Kode Peminjaman</th>
+                                    <th>Nama Ruangan</th>
                                     <th>Penanggung Jawab</th>
                                     <th>Nama Ormawa</th>
                                     <th>Tanggal Peminjaman</th>
-                                    <th>Nama Ruangan</th>
+                                    <th>Status Peminjaman</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
 
                             <tbody>
-                                @foreach($peminjamanRuangan as $peminjaman)
+                                
                                 <tr>
-                                    <td>{{$loop->iteration}}</td>
+                                    <td style="text-align: center;">{{$loop->iteration}}.</td>
+                                    <td>{{$peminjaman->code_peminjaman}}</td>
+                                    <td>{{$peminjaman->ruangan->nama_ruangan}}</td>
                                     <td>{{$peminjaman->nama_penanggung_jawab}}</td>
-                                    <td>{{$peminjaman->ormawa->nama_ormawa}}</td>
+                                    <td>{{$peminjaman->ormawa->singkatan}}</td>
                                     <td>{{$peminjaman->tanggal_peminjaman}}</td>
-                                    <td>{{$peminjaman->nama_ruangan}}</td>
+                                    <td class="text-center">
+                                        @if($peminjaman->status_peminjaman == 0)
+                                        <span class="badge bg-warning">Reviewing</span>
+                                        @elseif($peminjaman->status_peminjaman == 1)
+                                        <span class="badge bg-success">Approved</span>
+                                        @elseif($peminjaman->status_peminjaman == 2)
+                                        <span class="badge bg-danger">Rejected</span>
+                                        @endif
+                                    </td>
                                     <td class="text-center" style="width: 140px">
                                         <div class="d-flex justify-content-center gap-2">
-                                            <a href="{{route('approvalruangan.detail')}}"button class="btn btn-success btn-sm">
+                                            <a href="{{route('approvalruangan.detail', $peminjaman->id)}}" class="btn btn-success btn-sm">
                                                  Detail
                                             </a>
                                         </div>
