@@ -181,18 +181,30 @@
                         <hr class="my-5">
 
 
-
                         <div class="row text-center justify-content-center mt-2">
 
                             <div class="col-md-4 mb-4 mt-3">
                                 <p class="fw-semibold mb-3">Approve PIC</p>
+                                @if($peminjamanRuangan->status_peminjaman == '0')
                                 <div class="d-flex justify-content-center gap-2 mb-4">
                                     <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPemberianKunci">Approved</button>
+                                        data-bs-target="#modalApprove">Approved</button>
                                      <button type="button" class="btn btn-danger btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPemberianKunci">Rejected</button>
+                                        data-bs-target="#modalReject">Rejected</button>
                                 </div>
-                                <p class="mb-0">ELys Aulia Tanjung</p>
+
+                                @elseif($peminjamanRuangan->status_peminjaman == '1')
+                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                    <button type="button" class="btn btn-success btn-lg" disabled>Approved</button>
+                                </div>
+                                @elseif($peminjamanRuangan->status_peminjaman == '2')
+                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                    <button type="button" class="btn btn-danger btn-lg" disabled>Rejected</button>
+                                </div>
+
+                                @endif
+
+                                <p class="mb-0"> {{ $peminjamanRuangan->approver?->nama_lengkap ?? 'Belum disetujui' }}</p>
                             </div>
 
                             <div class="col-md-4 mb-4 mt-3">
@@ -228,6 +240,8 @@
             <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
             <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
             <script src="{{ asset('js/main.js') }}"></script>
+            @include('approval.modal.modalapprove')
+            @include('approval.modal.modalrejected')
 
 </body>
 

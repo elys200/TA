@@ -21,6 +21,8 @@
     <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.20/main.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.20/main.min.css" rel="stylesheet" />
 
+
+
     <script type="importmap">
         {
         "imports": {
@@ -32,27 +34,6 @@
       }
     </script>
 
-    <script type="module">
-        import { Calendar } from "@fullcalendar/core";
-      import dayGridPlugin from "@fullcalendar/daygrid";
-      import timeGridPlugin from "@fullcalendar/timegrid";
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const calendarEl = document.getElementById("calendar");
-
-        const calendar = new Calendar(calendarEl, {
-          plugins: [dayGridPlugin, timeGridPlugin],
-          initialView: "dayGridMonth",
-          headerToolbar: {
-            left: "prev,next today",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay"
-          }
-        });
-
-        calendar.render();
-      });
-    </script>
 
 
 </head>
@@ -68,7 +49,7 @@
                         </div>
                     </div>
                 </div>
-               <div class="sidebar-menu">
+                <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
@@ -163,7 +144,8 @@
                     <h3 class="mb-3">{{ $ruangan->nama_ruangan }}</h3>
 
                     <div class="image-wrapper mb-4">
-                        <img src="{{ asset('storage/'.$ruangan->foto) }}" alt="" max-width="200px" class="rounded-3 shadow-sm">
+                        <img src="{{ asset('storage/'.$ruangan->foto) }}" alt="" max-width="200px"
+                            class="rounded-3 shadow-sm">
                     </div>
 
 
@@ -211,6 +193,44 @@
                         <hr class="my-2">
 
                         <div id='calendar'></div>
+                        <script type="module">
+import { Calendar } from "@fullcalendar/core";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const calendarEl = document.getElementById("calendar");
+    const ruanganId = {{ $ruangan->id }};
+
+    const calendar = new Calendar(calendarEl, {
+        plugins: [dayGridPlugin, timeGridPlugin],
+        initialView: "dayGridMonth",
+
+        headerToolbar: {
+            left: "prev,next today",
+            center: "title",
+            right: "dayGridMonth,timeGridWeek,timeGridDay"
+        },
+
+        events: `/calendar-events/${ruanganId}`,
+
+        eventTimeFormat: {
+            hour: '2-digit',
+            minute: '2-digit',
+            hour12: false
+        },
+
+        // 🔥 TARUH DI SINI
+        eventDidMount: function(info) {
+            console.log(info.event);
+        }
+
+    });
+
+    calendar.render();
+});
+</script>
 
 
                     </div>

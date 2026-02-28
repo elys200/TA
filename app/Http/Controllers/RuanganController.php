@@ -124,4 +124,31 @@ class RuanganController extends Controller {
     return redirect()->route('statuspeminjamanruangan')
         ->with('success', 'Peminjaman ruangan berhasil diajukan!');
 }
+
+public function calendarEvents($ruanganId)
+{
+    try {
+
+        $events = PeminjamanRuangan::where('ruangan_id', $ruanganId)
+            ->where('status_peminjaman', 1)
+            ->get()
+            ->map(function ($item) {
+
+                return [
+                    'title' => $item->nama_kegiatan ?? 'Dipakai',
+                    'start' => $item->tanggal_peminjaman . 'T' . $item->jam_mulai,
+                    'end'   => $item->tanggal_peminjaman . 'T' . $item->jam_selesai,
+                    'backgroundColor' => '#28a745',
+                    'borderColor' => '#28a745',
+                ];
+            });
+
+        return response()->json($events);
+
+    } catch (\Exception $e) {
+        return response()->json([
+            'error' => $e->getMessage()
+        ], 500);
+    }
+}
 }

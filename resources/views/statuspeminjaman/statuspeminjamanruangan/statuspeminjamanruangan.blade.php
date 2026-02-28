@@ -136,9 +136,9 @@
                         <!-- TOP ACTION -->
                         <div class="row align-items-center g-2 mb-4">
                             <div class="col-auto">
-                                <button class="btn btn-outline-secondary d-flex align-items-center gap-2 px-3">
+                                 <a href="{{ route('statuspeminjamanbarang') }}" class="btn btn-outline-secondary d-flex align-items-center gap-2 px-3">
                                     <i class="bi bi-archive"></i> Barang
-                                </button>
+                                </a>
                             </div>
                             <div class="col-auto">
                                 <button class="btn btn-primary d-flex align-items-center gap-2 px-3">
@@ -211,11 +211,14 @@
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center gap-2">
 
+                                                @if($peminjaman->status_peminjaman == '1' || $peminjaman->status_peminjaman == '2')
                                                 {{-- Detail --}}
                                                 <a href="{{ route('statuspeminjamanruangan.detailpeminjaman', $peminjaman->id) }}"
                                                     class="btn btn-success">
                                                     <i class="bi bi-justify"></i>
                                                 </a>
+                                                
+                                                @elseif($peminjaman->status_peminjaman == '0')
 
                                                 {{-- Edit --}}
                                                 <a href="{{ route('statuspeminjamanruangan.editpeminjaman', $peminjaman->id) }}"
@@ -237,6 +240,7 @@
                                                     </button>
                                                 </form>
 
+                                                @endif
                                             </div>
                                         </td>
                                     </tr>

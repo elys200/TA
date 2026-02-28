@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Ruangan;
+use App\Models\Users;
+use App\Models\Ormawa;
 
 class PeminjamanRuangan extends Model
 {
@@ -43,6 +46,16 @@ class PeminjamanRuangan extends Model
 
     public function approver()
     {
-        return $this->belongsTo(Users::class,);
+        return $this->belongsTo(Users::class, 'approved_by');
+    }
+
+    public function pemberianKunci()
+    {
+        return $this->hasOne(PemberianKunci::class,);
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->where('status_peminjaman', 1);
     }
 }

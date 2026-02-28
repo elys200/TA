@@ -138,7 +138,7 @@
                                 </a>
                             </div>
                             <div class="col-auto">
-                                <a href="{{ route('statuspeminjamanruangan') }}" class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                <a href="{{ route('statuspeminjamanruangan') }}" class="btn btn-outline-secondary d-flex align-items-center gap-2 px-3">
                                     <i class="bi bi-door-open"></i> Ruangan
                                 </a>
                             </div>

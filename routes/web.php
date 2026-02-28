@@ -40,7 +40,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/ruangan/{id}', [RuanganController::class, 'detail'])->name('ruangan.detail');
         Route::get('/ruangan/{id}/form', [RuanganController::class, 'form'])->name('ruangan.form');
         Route::post('/ruangan/{id}/borang', [RuanganController::class, 'store'])->name('ruangan.borang');
-        
+        Route::get('/calendar-events/{ruangan}', [RuanganController::class, 'calendarEvents']);
 
         //Barang//
         Route::get('/barang', [BarangController::class, 'index'])->name('barang');
@@ -129,6 +129,7 @@ Route::middleware(['auth'])->group(function () {
 
         //Kunci//
         Route::get('/kunci', [KunciController::class, 'index'])->name('kunci');
+        // Route::get('/kunci/{id}/detail', [KunciController::class, 'detail'])->name('kunci.detail');
 
         Route::get('/kunci/detail', function() {
                 return view('kunci.detail');
@@ -149,6 +150,7 @@ Route::middleware(['auth'])->group(function () {
         //Ruangan//
         Route::get('/approvalruangan', [ApprovalRuanganController::class, 'index'])->name('approvalruangan');
         Route::get('/approvalruangan/{id}/detail', [ApprovalRuanganController::class, 'detail'])->name('approvalruangan.detail');
+        Route::put('/approvalruangan/{id}/approve', [ApprovalRuanganController::class, 'approval'])->name('approvalruangan.approval');
 
         // Route::get('/approvalruangan/detail', function () {
         //         return view('approval.detailapprovalruangan');
@@ -166,6 +168,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/tambahruangan/{id}', [TambahRuanganController::class, 'update'])->name('tambahruangan.update');
         Route::delete('/tambahruangan/{id}', [TambahRuanganController::class, 'destroy'])->name('tambahruangan.destroy');
 
+        
     }
 
 );
