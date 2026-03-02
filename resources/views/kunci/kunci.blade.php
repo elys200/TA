@@ -204,7 +204,7 @@
                                     <td>{{ $peminjaman->jam_selesai }}</td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-2">
-                                            <a href="{{route('kunci.detail')}}">
+                                            <a href="{{route('kunci.detail', $peminjaman->id)}}">
                                              <button class="btn btn-success btn-sm">
                                                <i class="bi bi-justify"></i> Detail
                                             </button>

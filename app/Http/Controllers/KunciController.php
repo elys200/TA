@@ -17,4 +17,9 @@ class KunciController extends Controller
     $totalReturn = PeminjamanRuangan::whereNotNull('time_returned')->count();
         return view ('kunci/kunci', compact('peminjamanRuangan', 'totalApproved', 'totalGiven', 'totalReturn'));
     }
+
+    public function detail($id){
+        $PeminjamanRuangan = PeminjamanRuangan::findOrFail($id);
+        return view('kunci.detail', compact('PeminjamanRuangan'));
+    }
 }

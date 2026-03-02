@@ -135,39 +135,39 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Code Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="001">
+                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->code_peminjaman }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Nama Ruangan</label>
-                                        <input type="text" class="form-control" placeholder="Ruangan Bersama (RB)">
+                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->ruangan->nama_ruangan }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Penanggung Jawab</label>
-                                        <input type="text" class="form-control" placeholder="Elys Aulia Tanjung">
+                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->nama_penanggung_jawab }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">NIM</label>
-                                        <input type="text" class="form-control" placeholder="33120120045">
+                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->nim }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Nama Ormawa</label>
-                                        <input type="text" class="form-control" placeholder="BEM">
+                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->ormawa->nama_ormawa }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Tanggal Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="20 April 2026">
+                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->tanggal_peminjaman }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Jam Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="12:00 WIB">
+                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->jam_mulai }} WIB">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Jam Pengembalian</label>
-                                        <input type="text" class="form-control" placeholder="14:00 WIB">
+                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->jam_selesai }} WIB">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Alasan Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="Rapat Umum">
+                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->alasan_peminjaman }}">
                                     </div>
 
                                 </div>

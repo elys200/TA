@@ -129,13 +129,13 @@ Route::middleware(['auth'])->group(function () {
 
         //Kunci//
         Route::get('/kunci', [KunciController::class, 'index'])->name('kunci');
-        // Route::get('/kunci/{id}/detail', [KunciController::class, 'detail'])->name('kunci.detail');
+        Route::get('/kunci/detail/{id}', [KunciController::class, 'detail'])->name('kunci.detail');
 
-        Route::get('/kunci/detail', function() {
-                return view('kunci.detail');
-            }
+        // Route::get('/kunci/detail', function() {
+        //         return view('kunci.detail');
+        //     }
 
-        )->name('kunci.detail');
+        // )->name('kunci.detail');
 
         //approval//
         //Barang//
