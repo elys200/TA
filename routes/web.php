@@ -130,7 +130,9 @@ Route::middleware(['auth'])->group(function () {
         //Kunci//
         Route::get('/kunci', [KunciController::class, 'index'])->name('kunci');
         Route::get('/kunci/detail/{id}', [KunciController::class, 'detail'])->name('kunci.detail');
+        Route::put('/kunci/{id}/given', [KunciController::class, 'given'])->name('kunci.given');
 
+        
         // Route::get('/kunci/detail', function() {
         //         return view('kunci.detail');
         //     }

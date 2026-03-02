@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\PeminjamanRuangan;
 use App\Models\Ormawa;
 use App\Models\Users;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+
 
 class ApprovalRuanganController extends Controller
 {
@@ -27,18 +30,23 @@ class ApprovalRuanganController extends Controller
         return view('approval.detailapprovalruangan', compact('peminjamanRuangan', 'ormawa', 'user'));
     }
 
-  public function approval(Request $request, $id)
+ 
+
+ public function approval(Request $request, $id)
 {
     $request->validate([
-        'status_peminjaman' => 'required|in:1,2'
+        'password' => 'required'
     ]);
+
+    if(!Hash::check($request->password, Auth::user()->password)){
+        return redirect()->route('approvalruangan')
+        ->with('error', 'Password Salah');
+    }
 
     $peminjaman = PeminjamanRuangan::findOrFail($id);
-
-    $peminjaman->update([
-        'status_peminjaman' => $request->status_peminjaman,
-        'approved_by' => auth()->id(),
-    ]);
+    $peminjaman->status_peminjaman = 1;
+    $peminjaman->approved_by = auth()->id();
+    $peminjaman->save();
 
     return redirect()->route('approvalruangan')
         ->with('success', 'Status peminjaman ruangan berhasil diperbarui.');

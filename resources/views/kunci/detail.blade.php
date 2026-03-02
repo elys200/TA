@@ -135,39 +135,48 @@
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Code Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->code_peminjaman }}">
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ $PeminjamanRuangan->code_peminjaman }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Nama Ruangan</label>
-                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->ruangan->nama_ruangan }}">
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ $PeminjamanRuangan->ruangan->nama_ruangan }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Penanggung Jawab</label>
-                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->nama_penanggung_jawab }}">
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ $PeminjamanRuangan->nama_penanggung_jawab }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">NIM</label>
-                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->nim }}">
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ $PeminjamanRuangan->nim }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Nama Ormawa</label>
-                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->ormawa->nama_ormawa }}">
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ $PeminjamanRuangan->ormawa->nama_ormawa }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Tanggal Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->tanggal_peminjaman }}">
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ $PeminjamanRuangan->tanggal_peminjaman }}">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Jam Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->jam_mulai }} WIB">
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ $PeminjamanRuangan->jam_mulai }} WIB">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Jam Pengembalian</label>
-                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->jam_selesai }} WIB">
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ $PeminjamanRuangan->jam_selesai }} WIB">
                                     </div>
                                     <div class="col-md-6">
                                         <label class="form-label fw-bold">Alasan Peminjaman</label>
-                                        <input type="text" class="form-control" placeholder="{{ $PeminjamanRuangan->alasan_peminjaman }}">
+                                        <input type="text" class="form-control"
+                                            placeholder="{{ $PeminjamanRuangan->alasan_peminjaman }}">
                                     </div>
 
                                 </div>
@@ -177,23 +186,35 @@
                         <hr class="my-5">
 
 
-
                         <div class="row text-center justify-content-center mt-2">
-
                             <div class="col-md-4 mb-4 mt-3">
                                 <p class="fw-semibold mb-3">Approve PIC</p>
                                 <div class="d-flex justify-content-center gap-2 mb-4">
-                                    <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPemberianKunci">Approved</button>
-                                </div>
-                                <p class="mb-0">ELys Aulia Tanjung</p>
-                            </div>
+                                    @if($PeminjamanRuangan->status_peminjaman == '0')
+                                    <button type="button" class="btn btn-warning" disabled>Waiting Reviewer</button>
+                                    @elseif($PeminjamanRuangan->status_peminjaman == '1')
+                                    <button type="button" class="btn btn-success" disabled>Approve</button>
+                                    @elseif($PeminjamanRuangan->status_peminjaman == '2')
+                                    <div class="d-flex flex-column align-items-center gap-2 mb-4">
+                                        <button type="button" class="btn btn-danger btn-lg" disabled>
+                                            Rejected
+                                        </button>
 
+                                        <a href="#" class="text-danger text-decoration-underline" data-bs-toggle="modal"
+                                            data-bs-target="#ModalReasonRejected">
+                                            Lihat Alasan Penolakan
+                                        </a>
+                                    </div>
+                                    @endif
+                                </div>
+                                <p class="mb-0">{{ $PeminjamanRuangan->approver?->nama_lengkap}}</p>
+                            </div>
                             <div class="col-md-4 mb-4 mt-3">
                                 <p class="fw-semibold mb-3">Pemberian Kunci</p>
+                               
                                 <div class="d-flex justify-content-center gap-2 mb-4">
                                     <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPengembalianKunci">Upload Bukti</button>
+                                        data-bs-target="#modalPemberianKunci">Upload Bukti</button>
                                 </div>
                                 <a href="">
                                     <p class="mb-0"> Lihat Bukti Pemberian kunci</p>
@@ -222,6 +243,7 @@
             <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
             <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
             <script src="{{ asset('js/main.js') }}"></script>
+            @include('kunci.modal.pemberiankunci')
 
 </body>
 

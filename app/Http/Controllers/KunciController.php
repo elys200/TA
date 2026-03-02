@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Users;
 use App\Models\PeminjamanRuangan;
 
 class KunciController extends Controller
@@ -22,4 +23,23 @@ class KunciController extends Controller
         $PeminjamanRuangan = PeminjamanRuangan::findOrFail($id);
         return view('kunci.detail', compact('PeminjamanRuangan'));
     }
+
+    public function given($id)
+{
+    $peminjaman = PeminjamanRuangan::findOrFail($id);
+
+    if ($peminjaman->given_by !== null) {
+        return back()->with('error', 'Kunci sudah diberikan');
+    }
+
+    $peminjaman->update([
+        'given_by' => auth()->id(),
+        'foto_pemberian' => 'Required',
+        'time_given' => now()
+    ]);
+
+    return back()->with('success', 'Kunci berhasil diberikan');
+}
+
+
 }
