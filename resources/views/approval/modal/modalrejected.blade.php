@@ -7,11 +7,16 @@
                 @method('PUT')
 
                 <div class="modal-header">
-                    <h5 class="modal-title">Konfirmasi Reject</h5>
+                    <h5 class="modal-title" style="margin-left: 170px; color: red;">Konfirmasi Reject</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 
                 <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="" class="form-label">Masukkan Password Akun</label>
+                        <input type="password" class="form-control" id="" name="password" required>
+                        <div id="" class="form-text" ></div>
+                    </div>
                     <div class="mb-3">
                         <label for="" class="form-label">Alasan Penolakan</label>
                         <input type="text" class="form-control" id="" name="rejected_reason" required>

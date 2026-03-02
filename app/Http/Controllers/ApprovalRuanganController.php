@@ -8,7 +8,7 @@ use App\Models\Ormawa;
 use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
+use Symfony\Contracts\Service\Attribute\Required;
 
 class ApprovalRuanganController extends Controller
 {
@@ -54,17 +54,19 @@ class ApprovalRuanganController extends Controller
 
 public function rejected(Request $request, $id){
     $request->validate([
-        'status_peminjaman' => 'required|in:2',
-        'rejected_reason' => 'required|string'
+       'password' => 'required',
+       'rejected_reason' => 'required'
     ]);
+
+     if(!Hash::check($request->password, Auth::user()->password)){
+        return redirect()->route('approvalruangan')
+        ->with('error', 'Password Salah');
+    }
 
     $peminjaman = PeminjamanRuangan::findOrFail($id);
-
-    $peminjaman->update([
-        'status_peminjaman' => $request->status_peminjaman,
-        'rejected_reason' => $request->rejected_reason
-    ]);
-
+    $peminjaman->status_peminjaman = 2;
+    $peminjaman->rejected_reason = $request->rejected_reason;
+    $peminjaman->save();
    return redirect()->route('approvalruangan')
         ->with('success', 'Status peminjaman ruangan berhasil diperbarui.');
 }
