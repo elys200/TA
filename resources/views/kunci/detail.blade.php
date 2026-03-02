@@ -211,27 +211,38 @@
                             </div>
                             <div class="col-md-4 mb-4 mt-3">
                                 <p class="fw-semibold mb-3">Pemberian Kunci</p>
-                               
+
+                                @if(is_null($PeminjamanRuangan->given_by))
                                 <div class="d-flex justify-content-center gap-2 mb-4">
                                     <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPemberianKunci">Upload Bukti</button>
+                                        data-bs-target="#modalPemberianKunci">
+                                        Upload Bukti
+                                    </button>
                                 </div>
+                                @else
                                 <a href="">
-                                    <p class="mb-0"> Lihat Bukti Pemberian kunci</p>
+                                    <p class="mb-0 text-center">Lihat Bukti Pemberian Kunci</p>
                                 </a>
+                                @endif
                             </div>
 
+                            {{-- PENGEMBALIAN KUNCI --}}
                             <div class="col-md-4 mb-4 mt-3">
                                 <p class="fw-semibold mb-3">Pengembalian Kunci</p>
+
+                                @if(!is_null($PeminjamanRuangan->given_by) && is_null($PeminjamanRuangan->returned_by))
                                 <div class="d-flex justify-content-center gap-2 mb-4">
                                     <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPengembalianKunci">Upload Bukti</button>
+                                        data-bs-target="#modalPengembalianKunci">
+                                        Upload Bukti
+                                    </button>
                                 </div>
+                                @elseif(!is_null($PeminjamanRuangan->returned_by))
                                 <a href="">
-                                    <p class="mb-0"> Lihat Bukti Pengembalian kunci</p>
+                                    <p class="mb-0 text-center">Lihat Bukti Pengembalian Kunci</p>
                                 </a>
+                                @endif
                             </div>
-
                         </div>
 
 
