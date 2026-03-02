@@ -197,7 +197,16 @@
                                     @elseif($peminjaman->status_peminjaman == '1')
                                     <button type="button" class="btn btn-success">Approve</button>
                                     @elseif($peminjaman->status_peminjaman == '2')
-                                    <button type="button" class="btn btn-danger">Rejected</button>
+                                    <div class="d-flex flex-column align-items-center gap-2 mb-4">
+                                        <button type="button" class="btn btn-danger btn-lg" disabled>
+                                            Rejected
+                                        </button>
+
+                                        <a href="#" class="text-danger text-decoration-underline" data-bs-toggle="modal"
+                                            data-bs-target="#ModalReasonRejected">
+                                            Lihat Alasan Penolakan
+                                        </a>
+                                    </div>
                                     @endif
                                 </div>
                                 <p class="mb-0">{{ $peminjaman->approver?->nama_lengkap}}</p>
@@ -236,6 +245,7 @@
             <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
             <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
             <script src="{{ asset('js/main.js') }}"></script>
+            @include('statuspeminjaman.modal.modalalasanrejected')
 
 </body>
 

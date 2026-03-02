@@ -12,7 +12,11 @@ class ApprovalRuanganController extends Controller
     public function index() {
         $peminjamanRuangan = PeminjamanRuangan::all();
         $ormawa = Ormawa::all();
-        return view ('approval.approvalruangan', compact('peminjamanRuangan', 'ormawa'));
+
+        $totalReview = PeminjamanRuangan::where('status_peminjaman', 0)->count();
+        $totalApprove = PeminjamanRuangan::where('status_peminjaman', 1)->count();
+        $totalRejected = PeminjamanRuangan::where('status_peminjaman', 2)->count();
+        return view ('approval.approvalruangan', compact('peminjamanRuangan', 'ormawa', 'totalReview', 'totalRejected', 'totalApprove'));
     }
 
     public function detail($id){
@@ -37,6 +41,23 @@ class ApprovalRuanganController extends Controller
     ]);
 
     return redirect()->route('approvalruangan')
+        ->with('success', 'Status peminjaman ruangan berhasil diperbarui.');
+}
+
+public function rejected(Request $request, $id){
+    $request->validate([
+        'status_peminjaman' => 'required|in:2',
+        'rejected_reason' => 'required|string'
+    ]);
+
+    $peminjaman = PeminjamanRuangan::findOrFail($id);
+
+    $peminjaman->update([
+        'status_peminjaman' => $request->status_peminjaman,
+        'rejected_reason' => $request->rejected_reason
+    ]);
+
+   return redirect()->route('approvalruangan')
         ->with('success', 'Status peminjaman ruangan berhasil diperbarui.');
 }
 }

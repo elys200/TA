@@ -151,6 +151,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/approvalruangan', [ApprovalRuanganController::class, 'index'])->name('approvalruangan');
         Route::get('/approvalruangan/{id}/detail', [ApprovalRuanganController::class, 'detail'])->name('approvalruangan.detail');
         Route::put('/approvalruangan/{id}/approve', [ApprovalRuanganController::class, 'approval'])->name('approvalruangan.approval');
+        Route::put('/approvalruangan/{id}/rejected', [ApprovalRuanganController::class, 'rejected'])->name('approvalruangan.rejected');
 
         // Route::get('/approvalruangan/detail', function () {
         //         return view('approval.detailapprovalruangan');

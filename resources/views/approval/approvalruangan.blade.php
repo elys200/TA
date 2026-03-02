@@ -128,7 +128,6 @@
                 <!-- WRAPPER PUTIH -->
                 <div class="bg-white p-4 rounded-3 shadow-sm">
                     <div class="container">
-                        @foreach($peminjamanRuangan as $peminjaman)
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="card-body d-flex align-items-center"
@@ -138,9 +137,8 @@
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Reviewing</b></span>
-                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{ $peminjaman->where('status_peminjaman', 0)->count() }}</h4>
+                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{ $totalReview }}</h4>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -151,9 +149,8 @@
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Approve</b></span>
-                                        <h4 id="counterApprove" class="mb-0" style="color: white;">{{ $peminjaman->where('status_peminjaman', 1)->count() }}</h4>
+                                        <h4 id="counterApprove" class="mb-0" style="color: white;">{{ $totalApprove }}</h4>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="col-sm-4">
@@ -164,7 +161,7 @@
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Rejected</b></span>
-                                        <h4 id="counterRejected" class="mb-0" style="color: white;">{{ $peminjaman->where('status_peminjaman', 2)->count() }}</h4>
+                                        <h4 id="counterRejected" class="mb-0" style="color: white;">{{ $totalRejected }}</h4>
                                     </div>
 
                                 </div>
@@ -194,7 +191,7 @@
                             </thead>
 
                             <tbody>
-                                
+                                @foreach($peminjamanRuangan as $peminjaman)
                                 <tr>
                                     <td style="text-align: center;">{{$loop->iteration}}.</td>
                                     <td>{{$peminjaman->code_peminjaman}}</td>

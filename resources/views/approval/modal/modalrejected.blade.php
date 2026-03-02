@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
 
-            <form action="{{ route('approvalruangan.approval', $peminjamanRuangan->id) }}" method="POST">
+            <form action="{{ route('approvalruangan.rejected', $peminjamanRuangan->id) }}" method="POST">
                 @csrf
                 @method('PUT')
 
@@ -12,7 +12,11 @@
                 </div>
 
                 <div class="modal-body">
-                    Yakin ingin menolak peminjaman ini?
+                    <div class="mb-3">
+                        <label for="" class="form-label">Alasan Penolakan</label>
+                        <input type="text" class="form-control" id="" name="rejected_reason" required>
+                        <div id="" class="form-text" ></div>
+                    </div>
                 </div>
 
                 <input type="hidden" name="status_peminjaman" value="2">

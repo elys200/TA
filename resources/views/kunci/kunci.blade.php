@@ -131,13 +131,26 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="card-body d-flex align-items-center"
+                                    style="background-color: blue; border-radius: 10px; height: 130px;">
+                                    <div class="me-3">
+                                        <i class="bi bi-check2-circle" style="font-size: 50px; color: white;"></i>
+                                    </div>
+                                    <div style="margin-left: 5px;">
+                                        <span style="color: white; font-size: 25px;"><b>Peminjaman Approve</b></span>
+                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{ $totalApproved }}</h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card-body d-flex align-items-center"
                                     style="background-color: #6EC207; border-radius: 10px; height: 130px;">
                                     <div class="me-3">
                                         <i class="bi bi-arrow-up-circle" style="font-size: 50px; color: white;"></i>
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Pemberian</b></span>
-                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">1</h4>
+                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{  $totalGiven }}</h4>
                                     </div>
 
                                 </div>
@@ -150,7 +163,7 @@
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Pengembalian</b></span>
-                                        <h4 id="counterApprove" class="mb-0" style="color: white;">1</h4>
+                                        <h4 id="counterApprove" class="mb-0" style="color: white;">{{ $totalReturn }}</h4>
                                     </div>
 
                                 </div>
@@ -168,26 +181,27 @@
                         <table class="table table-bordered align-middle">
                             <thead class="table-light text-center">
                                 <tr>
+                                    <td>No.</td>
                                     <th>Code Peminjaman</th>
-                                    <th>Nama Peminjam</th>
+                                    <th>Nama Penanggung Jawab</th>
                                     <th>Ruangan</th>
                                     <th>Tanggal</th>
                                     <th>Jam Mulai</th>
                                     <th>Jam Selesai</th>
-                                    <th>Tujuan Peminjaman</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
 
                             <tbody>
+                                @foreach($peminjamanRuangan as $peminjaman)
                                 <tr>
-                                    <td>001</td>
-                                    <td>Elys Aulia Tanjung</td>
-                                    <td>Ruang HMJ</td>
-                                    <td>20 April 2026</td>
-                                    <td>11:00 WIB</td>
-                                    <td>21:00 WIB</td>
-                                    <td>Rapat Umum</td>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $peminjaman->code_peminjaman }}</td>
+                                    <td>{{ $peminjaman->nama_penanggung_jawab }}</td>
+                                    <td>{{ $peminjaman->ruangan->nama_ruangan }}</td>
+                                    <td>{{ $peminjaman->tanggal_peminjaman }}</td>
+                                    <td>{{ $peminjaman->jam_mulai}}</td>
+                                    <td>{{ $peminjaman->jam_selesai }}</td>
                                     <td class="text-center">
                                         <div class="d-flex justify-content-center gap-2">
                                             <a href="{{route('kunci.detail')}}">
@@ -198,6 +212,7 @@
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

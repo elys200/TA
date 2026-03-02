@@ -27,6 +27,12 @@ class PeminjamanRuangan extends Model
         'approved_by',
         'approved_at',
         'rejected_reason',
+        'given_by',
+        'time_given',
+        'foto_pemberian',
+        'returned_by',
+        'time_returned',
+        'foto_pengembalian'
     ];
 
     public function ruangan()
@@ -49,13 +55,14 @@ class PeminjamanRuangan extends Model
         return $this->belongsTo(Users::class, 'approved_by');
     }
 
-    public function pemberianKunci()
+    public function given()
     {
-        return $this->hasOne(PemberianKunci::class,);
+        return $this->belongsTo(Users::class, 'given_by');
     }
 
-    public function scopeApproved($query)
+     public function returned()
     {
-        return $query->where('status_peminjaman', 1);
+        return $this->belongsTo(Users::class, 'returned_by');
     }
+    
 }
