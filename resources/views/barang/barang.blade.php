@@ -149,52 +149,33 @@
                     <!-- GRID BARANG -->
                     <div class="row g-3">
                         <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                            <a href="{{ route('barang.detail') }}" class="text-decoration-none text-dark">
+                            @foreach ($barang as $item )
+                            
+                            <a href="#" class="text-decoration-none text-dark">
                                 <div class="card product-card h-100 border-0"
                                     style="border:1px solid #e5e7eb !important;">
-                                    <img src="{{ asset('images/barang.jpg') }}" alt="Barang">
+                                    <img src="{{ asset('storage/'. $item->foto_barang) }}" alt="Barang">
 
                                     <div class="card-body p-2">
                                         <p class="product-title mb-1">
-                                            Kamera DSLR Canon EOS
+                                            {{ $item->nama_barang }}
                                         </p>
 
                                         <div class="d-flex justify-content-between align-items-center">
                                             <span class="stock-text">
-                                                Stok: <strong>3</strong>
+                                                Stok: <strong>{{ $item->jumlah_barang }}</strong>
                                             </span>
 
+                                            @if($item->status_barang == 0)
                                             <span class="badge bg-success">
-                                                Tersedia
+                                                Dipinjam
                                             </span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </a>
-                        </div>
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                            <a href="" class="text-decoration-none text-dark">
-                                <div class="card product-card h-100 border-0"
-                                    style="border:1px solid #e5e7eb !important;">
-                                    <img src="{{ asset('images/barang.jpg') }}" alt="Barang">
-
-                                    <div class="card-body p-2">
-                                        <p class="product-title mb-1">
-                                            Kamera DSLR Canon EOS
-                                        </p>
-
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="stock-text">
-                                                Stok: <strong>3</strong>
-                                            </span>
-
-                                            <span class="badge bg-success">
-                                                Tersedia
-                                            </span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
+                            @endforeach
                         </div>
                     </div>
 

@@ -149,10 +149,6 @@
             </label>
         </div>
     @endforeach
-
-    <button type="submit" class="btn btn-primary mt-3">
-        Save
-    </button>
 </form>
 
                 </div>

@@ -173,37 +173,23 @@
                 </p>
 
                 <div class="container">
-                    <div class="services-wrapper2">
+                    <div class="services-wrapper2 mx-4 mt-4">
                         <div class="row g-3">
-
+                            @foreach ($ruangan->take(2) as $ruang)
                             <div class="col-sm-6">
                                 <div class="card h-100" style="border: 1px solid #ddd;">
-                                    <img src="{{ asset('images/ruangan2.jpg') }}" class="card-img-top card-img-fit"
+                                    <img src="{{ asset('storage/'. $ruang->foto) }}" class="card-img-top card-img-fit"
                                         alt="">
                                     <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build the card...</p>
-                                        <a href="#" class="btn btn-primary w-100">Go somewhere</a>
+                                        <h5 class="card-title">{{ $ruang->nama_ruangan }}</h5>
+                                        <p class="card-text">{{ $ruang->deskripsi }}</p>
+                                        <a href="#" class="btn btn-primary w-100">Detail</a>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="col-sm-6">
-                                <div class="card h-100" style="border: 1px solid #ddd;">
-                                    <img src="{{ asset('images/ruangan2.jpg') }}" class="card-img-top card-img-fit"
-                                        alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">Card title</h5>
-                                        <p class="card-text">Some quick example text to build the card...</p>
-                                        <a href="#" class="btn btn-primary w-100">Go somewhere</a>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                            @endforeach
                         </div>
                     </div>
-
                 </div>
 
                 <a class="services-btn" href="{{route('ruangan')}}">Lihat Semua Ruangan</a>
@@ -217,36 +203,16 @@
 
                 <div class="services-wrapper">
 
+                @foreach($barang->take(4) as $item)
                     <div class="service-card">
                         <div class="icon bg-1">
-                            <img src="{{ asset('images/barang.jpg') }}" alt="">
+                            <img src="{{ asset('storage/' . $item->foto_barang) }}" alt="">
                         </div>
-                        <p style="margin-top: 10px; font-weight: bold; color: #0a2d62">Extension</p>
+                        <p style="margin-top: 10px; font-weight: bold; color: #0a2d62">{{ $item->nama_barang }}</p>
                     </div>
-
-                    <div class="service-card">
-                        <div class="icon bg-1">
-                            <img src="{{ asset('images/nampan.jpg') }}" alt="">
-                        </div>
-                        <p style="margin-top: 10px; font-weight: bold; color: #0a2d62">Nampan</p>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="icon bg-1">
-                            <img src="{{ asset('images/spidol.jpg') }}" alt="">
-                        </div>
-                        <p style="margin-top: 10px; font-weight: bold; color: #0a2d62">Spidol</p>
-                    </div>
-
-                    <div class="service-card">
-                        <div class="icon bg-1">
-                            <img src="{{ asset('images/barang.jpg') }}" alt="">
-                        </div>
-                        <p style="margin-top: 10px; font-weight: bold; color: #0a2d62">Extension</p>
-                    </div>
-
 
                 </div>
+                @endforeach
 
                 <a class="services-btn" href="{{route('barang')}}" style="width">Lihat Semua Barang</a>
             </div>

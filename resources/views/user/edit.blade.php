@@ -157,6 +157,11 @@
                             <input type="text" name="nim" class="form-control" value="{{ old('nim', $users->nim) }}">
                         </div>
                         <div class="col-md-6">
+                            <label for="" class="form-label fw-bold">Jurusan</label>
+                            <input type="text" name="program_studi" class="form-control"
+                                value="{{ old('jurusan', $users->jurusan) }}">
+                        </div>
+                        <div class="col-md-6">
                             <label for="" class="form-label fw-bold">Program Studi</label>
                             <input type="text" name="program_studi" class="form-control"
                                 value="{{ old('program_studi', $users->program_studi) }}">

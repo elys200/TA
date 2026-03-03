@@ -44,12 +44,10 @@ Route::middleware(['auth'])->group(function () {
 
         //Barang//
         Route::get('/barang', [BarangController::class, 'index'])->name('barang');
+        Route::get('/barang/detail/{id}', [BarangController::class, 'detail'])->name('barang.detail');
+        
 
-        Route::get('/barang/detail', function () {
-                return view('barang.detail');
-            }
-
-        )->name('barang.detail');
+        
 
         // Form Pemborangan Barang//
         Route::get('/listpeminjamanBarang/form', function () {

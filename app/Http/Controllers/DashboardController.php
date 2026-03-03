@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Barang;
+use App\Models\Ruangan;
 
 class DashboardController extends Controller
 {
@@ -13,6 +15,9 @@ class DashboardController extends Controller
         // }else{
         //     abort(403, 'Unauthorized');
         // }
-        return view('dashboard');
+
+        $ruangan = Ruangan::all();
+        $barang = Barang::all();
+        return view('dashboard', compact('ruangan', 'barang'));
     }
 }
