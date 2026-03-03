@@ -52,4 +52,29 @@ class KunciController extends Controller
     return redirect()->route('kunci.detail', $id)
         ->with('success', 'Data berhasil diperbaharui');
 }
+
+public function return(Request $request, $id){
+    $request->validate([
+        'password' => 'required',
+        'foto_pengembalian' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+    ]);
+
+     if (!Hash::check($request->password, Auth::user()->password)) {
+        return redirect()->route('kunci')
+            ->with('error', 'Password Salah');
+    }
+
+    $peminjaman = PeminjamanRuangan::findOrFail($id);
+    $file = $request->file('foto_pengembalian');
+    $path = $file->store('foto_pengembalian', 'public');
+
+    $peminjaman->returned_by = auth()->id();
+    $peminjaman->foto_pengembalian = $path;
+    $peminjaman->time_returned = now();
+    $peminjaman->save();
+
+    return redirect()->route('kunci.detail', $id)
+        ->with('success', 'Data berhasil diperbaharui');
+
+}
 }

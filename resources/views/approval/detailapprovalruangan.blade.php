@@ -204,8 +204,9 @@
                                 </div>
 
                                 @elseif($peminjamanRuangan->status_peminjaman == '1')
-                                <div class="d-flex justify-content-center gap-2 mb-4">
+                                <div class="d-flex flex-column align-items-center gap-2 mb-4">
                                     <button type="button" class="btn btn-success btn-lg" disabled>Approved</button>
+                                    <p class="mb-0 mt-3"> {{ $peminjamanRuangan->approver?->nama_lengkap}}
                                 </div>
                                 @elseif($peminjamanRuangan->status_peminjaman == '2')
                                 <div class="d-flex flex-column align-items-center gap-2 mb-4">
@@ -217,35 +218,65 @@
                                         data-bs-target="#ModalReasonRejected">
                                         Lihat Alasan Penolakan
                                     </a>
+                                    <p class="mb-0"> {{ $peminjamanRuangan->rejector?->nama_lengkap}}
                                 </div>
 
                                 @endif
 
-                                <p class="mb-0"> {{ $peminjamanRuangan->approver?->nama_lengkap}}
+                              
                                 </p>
                             </div>
 
-                            <div class="col-md-4 mb-4 mt-3">
-                                <p class="fw-semibold mb-3">Pemberian Kunci</p>
-                                <div class="d-flex justify-content-center gap-2 mb-4">
-                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPengembalianKunci">Berhasil</button>
+                             <div class="col-md-4 mb-4 mt-3 d-flex">
+                                <div class="w-100">
+
+                                    <p class="fw-semibold mb-3">Pemberian Kunci</p>
+
+                                    @if(is_null($peminjamanRuangan->given_by))
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        Waiting
+                                    </button>
+                                    @else
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalTampilkanBuktiPemberian"
+                                        class="d-block mb-2">
+                                        Lihat Bukti Pemberian Kunci
+                                    </a>
+
+                                    <p class="mb-1 mt-3">
+                                        {{ $peminjamanRuangan->given?->nama_lengkap }}
+                                    </p>
+
+                                    <p class="mb-0">
+                                        {{ $peminjamanRuangan->time_given }}
+                                    </p>
+                                    @endif
+
                                 </div>
-                                <a href="">
-                                    <p class="mb-0"> Lihat Bukti Pemberian kunci</p>
-                                </a>
                             </div>
 
-                            <div class="col-md-4 mb-4 mt-3">
-                                <p class="fw-semibold mb-3">Pengembalian Kunci</p>
-                                <div class="d-flex justify-content-center gap-2 mb-4">
-                                    <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
-                                        data-bs-target="#modalPengembalianKunci">Berhasil</button>
+
+                            {{-- ================= PENGEMBALIAN KUNCI ================= --}}
+                            <div class="col-md-4 mb-4 mt-3 d-flex">
+                                <div class="w-100">
+
+                                    <p class="fw-semibold mb-3">Pengembalian Kunci</p>
+
+                                    @if(!is_null($peminjamanRuangan->given_by) && is_null($peminjamanRuangan->returned_by))
+                                    <button type="button" class="btn btn-outline-secondary">
+                                        Waiting
+                                    </button>
+
+                                    @elseif(!is_null($peminjamanRuangan->returned_by))
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalTampilkanBuktiPengembalian"
+                                        class="d-block mt-2">
+                                        <p class="mb-0 text-center">Lihat Bukti Pengembalian Kunci</p>
+                                    </a>
+
+                                    <p class="mb-0 mt-3"> {{ $peminjamanRuangan->returned?->nama_lengkap}}</p>
+                                    <p class="mb-0">{{ $peminjamanRuangan->time_returned }} </p>
+                                    @endif
+
                                 </div>
-                                <a href="">
-                                    <p class="mb-0"> Lihat Bukti Pengembalian kunci</p>
-                                </a>
-                            </div>
 
                         </div>
 
@@ -261,6 +292,8 @@
             @include('approval.modal.modalapprove')
             @include('approval.modal.modalrejected')
             @include('approval.modal.modalalasanrejected')
+            @include('approval.modal.tampilanbuktipemberian')
+            @include('approval.modal.tampilanbuktipengembalian')
 
 </body>
 

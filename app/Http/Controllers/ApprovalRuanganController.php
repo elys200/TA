@@ -65,6 +65,7 @@ public function rejected(Request $request, $id){
 
     $peminjaman = PeminjamanRuangan::findOrFail($id);
     $peminjaman->status_peminjaman = 2;
+    $peminjaman->rejected_by = auth()->id();
     $peminjaman->rejected_reason = $request->rejected_reason;
     $peminjaman->save();
    return redirect()->route('approvalruangan')

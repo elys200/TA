@@ -193,25 +193,28 @@
                                     @if($PeminjamanRuangan->status_peminjaman == '0')
                                     <button type="button" class="btn btn-warning" disabled>Waiting Reviewer</button>
                                     @elseif($PeminjamanRuangan->status_peminjaman == '1')
-                                    <button type="button" class="btn btn-success" disabled>Approve</button>
+                                    <div class="d-flex flex-column align-items-center">
+                                        <button type="button" class="btn btn-success btn-lg mb-2" disabled>
+                                            Approved
+                                        </button>
+                                        <p class="mb-0 mt-3">
+                                            {{ $PeminjamanRuangan->approver?->nama_lengkap }}
+                                        </p>
+                                    </div>
                                     @elseif($PeminjamanRuangan->status_peminjaman == '2')
                                     <div class="d-flex flex-column align-items-center gap-2 mb-4">
                                         <button type="button" class="btn btn-danger btn-lg" disabled>
                                             Rejected
                                         </button>
 
-                                        <a href="#" class="text-danger text-decoration-underline" data-bs-toggle="modal"
-                                            data-bs-target="#ModalReasonRejected">
-                                            Lihat Alasan Penolakan
-                                        </a>
+                                        <p class="mb-0"> {{ $PeminjamanRuangan->rejector?->nama_lengkap}}
                                     </div>
                                     @endif
                                 </div>
-                                <p class="mb-0">{{ $PeminjamanRuangan->approver?->nama_lengkap}}</p>
+
                             </div>
                             <div class="col-md-4 mb-4 mt-3">
                                 <p class="fw-semibold mb-3">Pemberian Kunci</p>
-
                                 @if(is_null($PeminjamanRuangan->given_by))
                                 <div class="d-flex justify-content-center gap-2 mb-4">
                                     <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
@@ -220,10 +223,12 @@
                                     </button>
                                 </div>
                                 @else
-                                <a href="">
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#modalTampilkanBuktiPemberian">
                                     <p class="mb-0 text-center">Lihat Bukti Pemberian Kunci</p>
                                 </a>
-                                @endif
+                                <p class="mb-0 mt-3"> {{ $PeminjamanRuangan->given?->nama_lengkap}}
+                                <p class="mb-0">{{ $PeminjamanRuangan->time_given }}</p>
+                                    @endif
                             </div>
 
                             {{-- PENGEMBALIAN KUNCI --}}
@@ -238,10 +243,12 @@
                                     </button>
                                 </div>
                                 @elseif(!is_null($PeminjamanRuangan->returned_by))
-                                <a href="">
+                                <a href="" data-bs-toggle="modal" data-bs-target="#modalTampilkanBuktiPengembalian">
                                     <p class="mb-0 text-center">Lihat Bukti Pengembalian Kunci</p>
                                 </a>
-                                @endif
+                                <p class="mb-0 mt-3"> {{ $PeminjamanRuangan->returned?->nama_lengkap}}
+                                <p class="mb-0">{{ $PeminjamanRuangan->time_returned }}</p>
+                                    @endif
                             </div>
                         </div>
 
@@ -255,6 +262,9 @@
             <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
             <script src="{{ asset('js/main.js') }}"></script>
             @include('kunci.modal.pemberiankunci')
+            @include('kunci.modal.pengembaliankunci')
+            @include('kunci.modal.tampilanbuktipemberian')
+            @include('kunci.modal.tampilanbuktipengembalian')
 
 </body>
 

@@ -131,6 +131,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/kunci', [KunciController::class, 'index'])->name('kunci');
         Route::get('/kunci/detail/{id}', [KunciController::class, 'detail'])->name('kunci.detail');
         Route::put('/kunci/{id}/given', [KunciController::class, 'given'])->name('kunci.given');
+        Route::put('/kunci/{id}/return', [KunciController::class, 'return'])->name('kunci.return');
 
         
         // Route::get('/kunci/detail', function() {

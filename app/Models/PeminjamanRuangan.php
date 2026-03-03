@@ -26,6 +26,8 @@ class PeminjamanRuangan extends Model
         'ormawa_id',
         'approved_by',
         'approved_at',
+        'rejected_by',
+        'rejected_at',
         'rejected_reason',
         'given_by',
         'time_given',
@@ -52,7 +54,12 @@ class PeminjamanRuangan extends Model
 
     public function approver()
     {
-        return $this->belongsTo(Users::class, 'approved_by');
+        return $this->belongsTo(Users::class, 'approved_by',);
+    }
+
+    public function rejector()
+    {
+        return $this->belongsTo(Users::class, 'rejected_by',);
     }
 
     public function given()
@@ -64,5 +71,7 @@ class PeminjamanRuangan extends Model
     {
         return $this->belongsTo(Users::class, 'returned_by');
     }
+
+
     
 }
