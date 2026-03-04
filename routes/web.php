@@ -47,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
         //Barang//
         Route::get('/barang', [BarangController::class, 'index'])->name('barang');
         Route::get('/barang/detail/{id}', [BarangController::class, 'detail'])->name('barang.detail');
+        Route::get('/barang/{id}/form', [BarangController::class, 'form'])->name('barang.form');
         
 
         

@@ -1,6 +1,3 @@
-<div>
-    <!-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama -->
-</div>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,7 +27,7 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
+                            <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo" srcset="">
                         </div>
                     </div>
                 </div>
@@ -124,67 +121,93 @@
                     <i class="bi bi-justify fs-3"></i>
                 </a>
             </header>
-
             <div class="container-fluid">
+
+                <h3> Form Pemborang Barang</h3>
 
                 <!-- WRAPPER PUTIH -->
                 <div class="bg-white p-4 rounded-3 shadow-sm">
 
-                    <!-- HEADER -->
-                    <div class="mb-4 text-center">
-                        <h2 class="mb-1">Daftar Barang</h2>
-                        <p class="text-muted mb-0">Pilih barang yang tersedia untuk dipinjam</p>
-                    </div>
-
-                    <hr class="my-2">
-
-
-                    <!-- SEARCH -->
-                    <div class="row mb-4" style="margin-top: 10px;">
-                        <div class="col-12 col-md-4">
-                            <input type="text" class="form-control" placeholder="Cari barang...">
+                    <form action="#" method="POST" class="row g-3">
+                        @csrf
+                        <div class="col-md-6">
+                            <label for="penanggung_jawab" class="form-label">Nama Penaggung Jawab</label>
+                            <input type="text" class="form-control" id="nama_penanggung_jawab"
+                                name="nama_penanggung_jawab" value="" required>
                         </div>
-                    </div>
-
-                    <!-- GRID BARANG -->
-                    <div class="row g-3">
-                        <div class="col-6 col-sm-4 col-md-3 col-lg-2">
-                            @foreach ($barang as $item )
-                            
-                            <a href="{{ route('barang.detail' , $item->id) }}}" class="text-decoration-none text-dark">
-                                <div class="card product-card h-100 border-0"
-                                    style="border:1px solid #e5e7eb !important;">
-                                    <img src="{{ asset('storage/'. $item->foto_barang) }}" alt="Barang">
-
-                                    <div class="card-body p-2">
-                                        <p class="product-title mb-1">
-                                            {{ $item->nama_barang }}
-                                        </p>
-
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <span class="stock-text">
-                                                Stok: <strong>{{ $item->jumlah_barang }}</strong>
-                                            </span>
-
-                                            @if($item->status_barang == 0)
-                                            <span class="badge bg-success">
-                                                Dipinjam
-                                            </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            @endforeach
+                        <div class="col-md-6">
+                            <label for="nim" class="form-label">NIM</label>
+                            <input type="text" class="form-control" id="nim" name="nim" value="" required>
                         </div>
-                    </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Nama Ormawa</label>
+                            <select class="form-select" name="ormawa_id" required>
+                                <option value="" disabled>
+                                    -- Pilih Jenis Ormawa --
+                                </option>
+                                <option value="">BEM</option>
+
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="tanggal_mulai_peminjaman" class="form-label">Tanggal Peminjaman</label>
+                            <input type="date" class="form-control" id="" name="tanggal_mulai_peminjaman" value=""
+                                min="" required">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="tanggal_selesai_peminjaman" class="form-label">Tanggal Pengembalian</label>
+                            <input type="date" class="form-control" id="" name="tanggal_selesai_peminjaman" value=""
+                                min="" required">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="alasan_peminjaman" class="form-label">Alasan Peminjaman</label>
+                            <textarea class="form-control" id="" required name="alasan_peminjaman"></textarea>
+                        </div>
+
+                        <hr width="2px" style="margin-top: 20px;">
+
+                        <table class="table table-bordered">
+                            <thead style="text-align: center;">
+                                <th style="width: 200px;">Nama Barang</th>
+                                <th>Foto Barang</th>
+                                <th>Jumlah</th>
+                                </theady>
+
+                            <tbody>
+                                <td style="text-align: center;">Buku</td>
+                                <td>
+                                    <img src="{{ asset('/images/barang.jpg') }}" alt="">
+                                </td>
+                                <td></td>
+                            </tbody>
+                        </table>
 
 
-                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                    <script src="{{asset('js/main.js')}}"></script>
+
+                        <button type="submit" class="btn btn-primary">Ajukan</button>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+    <script src="{{asset('js/pages/dashboard.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
+    <script>
+        setTimeout(function () {
+            let alertBox = document.getElementById('error-alert');
+            if (alertBox) {
+                alertBox.style.transition = "opacity 0.5s";
+                alertBox.style.opacity = "0";
+                setTimeout(() => alertBox.remove(), 500);
+            }
+        }, 5000); // 5000 = 5 detik
+
+    </script>
 </body>
 
 </html>

@@ -30,11 +30,11 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">
-                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
+                            <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo" srcset="">
                         </div>
                     </div>
                 </div>
-               <div class="sidebar-menu">
+                <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
@@ -128,41 +128,18 @@
             <div class="container-fluid">
                 <div class="bg-white p-4 rounded-3 shadow-sm">
                     <div class="row">
-                        <div class="col-lg-5 col-md-12 col-12">
-                            <img src="{{ asset('images/baranglokal.jpg') }}" style="margin-bottom:10px;" width="100%"
-                                height="60%">
-                            <div class="small-img-group">
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
-                                        alt="">
-                                </div>
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
-                                        alt="">
-                                </div>
-                                <div class="small-img-col">
-                                    <img src="{{ asset('images/baranglokal.jpg')}}" width="80%" class="small-img"
-                                        alt="">
-                                </div>
-                            </div>
+                        <div class="col-lg-5 col-md-12 col-12 overflow-hidden">
+                            <img src="{{ asset('storage/' . $barang->foto_barang) }}" class="w-100 rounded"
+                                style="max-height: 400px; object-fit: cover; transform: scale(1.05);">
                         </div>
 
                         <div class="col-lg-6 col-md-12">
-                            <h6 class="text-muted">Barang / Extension</h6>
-
-                            <h3 class="fw-bold mb-2">Extension 3 Colokan</h3>
+                            <h3 class="fw-bold mb-2">{{ $barang->nama_barang }}</h3>
 
                             <p class="mb-2">
                                 Stok Tersedia :
-                                <span class="badge bg-primary">1</span>
+                                <span class="badge bg-primary">{{ $barang->jumlah_barang }}</span>
                             </p>
-
-                            <div class="d-flex align-items-center gap-3 my-3">
-                                <input type="number" value="1" min="1" class="form-control w-25 text-center">
-                                <button class="btn btn-primary px-4">
-                                    Masukkan ke List
-                                </button>
-                            </div>
 
                             <hr class="my-4">
 
@@ -172,26 +149,38 @@
                                 <tbody>
                                     <tr>
                                         <th width="40%">Nama Barang</th>
-                                        <td>: Extension 3 Colokan</td>
+                                        <td>: {{ $barang->nama_barang }}</td>
                                     </tr>
                                     <tr>
                                         <th>Ormawa Pemilik</th>
-                                        <td>: HMTI</td>
+                                        <td>: {{ $barang->ormawa->nama_ormawa}}</td>
                                     </tr>
                                     <tr>
                                         <th>Kondisi</th>
-                                        <td>: 
+                                        <td>:
+                                            @if($barang->kondisi_barang == 'baik')
                                             <button class="btn btn-success btn-sm">
                                                 Bagus
                                             </button>
+                                            @else($barang->kondisi_barang == 'rusak')
+                                            <button class="btn btn-danger btn-sm">
+                                                Rusak
+                                            </button>
+                                            @endif
                                         </td>
                                     </tr>
-                                     <tr>
+                                    <tr>
                                         <th>Deskripsi</th>
-                                        <td>: Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae excepturi, animi deleniti facere corporis, laboriosam enim cupiditate voluptate, quasi magnam sapiente. Sequi adipisci labore debitis expedita, eos consequatur. Ullam, qui.</td>
+                                        <td>: {{ $barang->deskripsi_barang }}</td>
                                     </tr>
                                 </tbody>
                             </table>
+
+                            <div class="d-grid gap-2">
+                                <a href="{{ route('barang.form' , $barang->id) }}" class="btn btn-primary">
+                                    Ajukan Peminjaman
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
