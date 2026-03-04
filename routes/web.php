@@ -68,6 +68,9 @@ Route::middleware(['auth'])->group(function () {
         //Barang//
         Route::get('/statuspeminjamanbarang', [StatusPeminjamanController::class, 'index'])->name('statuspeminjamanbarang');
         Route::get('/statuspeminjamanbarang/{id}/detail', [StatusPeminjamanController::class, 'detailbarang'])->name('statuspeminjamanbarang.detail');
+        Route::get('/statuspeminjamanbarang/editpeminjaman/{id}', [StatusPeminjamanController::class, 'editbarang'])->name('statuspeminjamanbarang.edit');
+        Route::put('/statuspeminjamanbarang/updatepeminjaman/{id}', [StatusPeminjamanController::class, 'updatepeminjaman'])->name('statuspeminjaman.updatepeminjamanbarang');
+        Route::delete('/statuspeminjamanbarang/deletepeminjaman/{id}', [StatusPeminjamanController::class, 'destroybarang'])->name('statuspeminjaman.deletepeminjamanbarang');
 
         Route::get('/statuspeminjamanbarang/detailbarang', function () {
                 return view('statuspeminjaman.statuspeminjamanbarang.detailpeminjamanbarang');

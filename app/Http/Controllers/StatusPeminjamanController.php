@@ -24,6 +24,44 @@ class StatusPeminjamanController extends Controller
        return view('statuspeminjaman.statuspeminjamanbarang.detailpeminjamanbarang', compact('peminjaman'));
     }
 
+    public function editbarang($id){
+        $peminjaman = PeminjamanBarang::findOrFail(($id));
+        $barang = $peminjaman->barang;
+        $ormawa = Ormawa::all();
+         if($peminjaman->status_peminjaman == '0') {
+            return view('statuspeminjaman.statuspeminjamanbarang.editstatuspeminjamanbarang', compact('peminjaman', 'barang', 'ormawa'));
+        } else {
+            return redirect()->back()->with('error', 'Peminjaman tidak dapat diedit karena sudah disetujui.');
+        }
+    }
+
+     public function updatepeminjaman(Request $request, $id) {
+       $peminjaman = PeminjamanBarang::findOrFail($id);
+       $peminjaman->update([
+       'nama_penanggung_jawab' => $request->nama_penanggung_jawab,
+       'nim' => $request->nim,
+       'ormawa_id' => $request->ormawa_id,
+       'tanggal_mulai_peminjaman' => $request->tanggal_mulai_peminjaman,
+       'tanggal_selesai_peminjaman' => $request->tanggal_selesai_peminjaman,
+       'alasan_peminjaman' => $request->alasan_peminjaman,
+       'jumlah_barang' => $request->jumlah_barang
+]);
+        $peminjaman->save();
+
+        return redirect()->route('statuspeminjamanbarang')->with('success', 'Peminjaman berhasil diperbarui.');
+    }
+
+    public function destroybarang($id){
+        $peminjaman = PeminjamanBarang::findOrFail($id);
+        if($peminjaman->status_peminjaman == '0') {
+            $peminjaman->delete();
+            return redirect()->route('statuspeminjamanbarang')->with('success', 'Peminjaman berhasil dihapus.');
+        } else {
+            return redirect()->back()->with('error', 'Peminjaman tidak dapat dihapus karena sudah disetujui.'); 
+
+        }
+    }
+
     //ruangan//
     public function indexRuangan() {
         $peminjamanRuangan = PeminjamanRuangan::where('user_id', auth()->id())->get();
@@ -40,7 +78,7 @@ class StatusPeminjamanController extends Controller
 
     public function edit($id){
         $peminjaman = PeminjamanRuangan::findOrFail($id);
-        $ruangan = $peminjaman->ruangan;
+        $barang = $peminjaman->barang;
         $ormawa = Ormawa::all();
         if($peminjaman->status_peminjaman == '0') {
             return view('statuspeminjaman.statuspeminjamanruangan.editstatuspeminjamanruangan', compact('peminjaman', 'ruangan', 'ormawa'));

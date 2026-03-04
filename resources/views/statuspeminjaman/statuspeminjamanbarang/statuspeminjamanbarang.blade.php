@@ -31,7 +31,7 @@
                         </div>
                     </div>
                 </div>
-               <div class="sidebar-menu">
+                <div class="sidebar-menu">
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
                         <li class="sidebar-item active ">
@@ -133,12 +133,14 @@
                         <!-- TOP ACTION -->
                         <div class="row align-items-center g-2 mb-4">
                             <div class="col-auto">
-                                <a href="{{ route('statuspeminjamanbarang') }}" class="btn btn-primary d-flex align-items-center gap-2 px-3">
+                                <a href="{{ route('statuspeminjamanbarang') }}"
+                                    class="btn btn-primary d-flex align-items-center gap-2 px-3">
                                     <i class="bi bi-archive"></i> Barang
                                 </a>
                             </div>
                             <div class="col-auto">
-                                <a href="{{ route('statuspeminjamanruangan') }}" class="btn btn-outline-secondary d-flex align-items-center gap-2 px-3">
+                                <a href="{{ route('statuspeminjamanruangan') }}"
+                                    class="btn btn-outline-secondary d-flex align-items-center gap-2 px-3">
                                     <i class="bi bi-door-open"></i> Ruangan
                                 </a>
                             </div>
@@ -191,25 +193,53 @@
 
                                 <tbody>
                                     @foreach($peminjamanBarang as $item)
-                                    <tr>
-                                        <td style="text-align: center;">{{ $loop->iteration }}.</td>
-                                        <td>{{ $item->code_peminjaman }}</td>
-                                        <td>{{ $item->barang->nama_barang }}</td>
-                                        <td>{{ $item->jumlah_barang }}</td>
-                                        <td>{{ $item->nama_penanggung_jawab }}</td>
-                                        <td >
-                                            {{ $item->tanggal_mulai_peminjaman }}
-                                        </td>
-                                        <td>
+                                    <td style="text-align: center;">{{ $loop->iteration }}.</td>
+                                    <td>{{ $item->code_peminjaman }}</td>
+                                    <td>{{ $item->barang->nama_barang }}</td>
+                                    <td>{{ $item->jumlah_barang }}</td>
+                                    <td>{{ $item->nama_penanggung_jawab }}</td>
+                                    <td>
+                                        {{ $item->tanggal_mulai_peminjaman }}
+                                    </td>
+                                    <td>
                                         {{ $item->tanggal_selesai_peminjaman }}
                                     </td>
-                                        <td class="text-center">
-                                            <div class="d-flex justify-content-center">
-                                                 <a href="{{ route('statuspeminjamanbarang.detail' , $item->id)}}" button class="btn btn-sm btn-success">
-                                                    <span> Detail </span>
-                                                 </a>
-                                            </div>
-                                        </td>
+                                    <td class="text-center">
+                                        <div class="d-flex justify-content-center gap-2">
+
+                                            @if($item->status_peminjaman == '1' || $item->status_peminjaman
+                                            == '2')
+                                            {{-- Detail --}}
+                                            <a href="{{ route('statuspeminjamanbarang.detail', $item->id) }}"
+                                                class="btn btn-success">
+                                                <i class="bi bi-justify"></i>
+                                            </a>
+
+                                            @elseif($item->status_peminjaman == '0')
+
+                                            {{-- Edit --}}
+                                            <a href="{{ route('statuspeminjamanbarang.edit', $item->id) }}"
+                                                class="btn btn-warning">
+                                                <i class="bi bi-pencil-square"></i>
+                                            </a>
+
+                                            {{-- Delete --}}
+                                            <form
+                                                action="{{ route('statuspeminjaman.deletepeminjamanbarang' , $item->id) }}"
+                                                method="POST"
+                                                onsubmit="return confirm('Yakin mau menghapus peminjaman ini?')"
+                                                class="d-inline">
+                                                @csrf
+                                                @method('DELETE')
+
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+
+                                            @endif
+                                        </div>
+                                    </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
