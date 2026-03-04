@@ -21,58 +21,6 @@
 
     <div class="container">
 
-        {{-- SUCCESS MESSAGE --}}
-        @if (session('success'))
-        <div class="success-alert" id="successAlert">
-            {{ session('success') }}
-        </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Pastikan tampil login
-                document.querySelector('.container').classList.remove('active');
-
-                // Auto hide setelah 5 detik
-                setTimeout(() => {
-                    const alert = document.getElementById('successAlert');
-                    if (alert) {
-                        alert.style.opacity = '0';
-                        alert.style.transition = 'opacity 0.5s ease';
-                        setTimeout(() => alert.remove(), 500);
-                    }
-                }, 5000);
-            });
-
-        </script>
-        @endif
-
-        @if ($errors->register->any())
-        <div class="error-alert top-alert" id="errorAlert">
-            @foreach ($errors->register->all() as $error)
-            <p>{{ $error }}</p>
-            @endforeach
-        </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                // Pastikan tampil login
-                document.querySelector('.container').classList.remove('active');
-
-                // Auto hide setelah 5 detik
-                setTimeout(() => {
-                    const alert = document.getElementById('errorAlert');
-                    if (alert) {
-                        alert.style.opacity = '0';
-                        alert.style.transition = 'opacity 0.5s ease';
-                        setTimeout(() => alert.remove(), 500);
-                    }
-                }, 5000);
-            });
-
-        </script>
-        @endif
-
-
         {{-- LOGIN FORM --}}
         <div class="form-box login">
             <form action="{{ route('login') }}" method="POST">
@@ -149,10 +97,11 @@
                 </div>
 
                 <div class="input-box">
-                    <select name="ormawa" required>
+                    <select name="ormawa_id" required>
                         <option value="">Pilih Organisasi</option>
-                        <option value="BEM" {{ old('ormawa') == 'BEM' ? 'selected' : '' }}>BEM</option>
-                        <option value="HMTI" {{ old('ormawa') == 'HMTI' ? 'selected' : '' }}>HMTI</option>
+                        @foreach($ormawa as $item)
+                        <option value="{{ $item->id }}">{{ $item->nama_ormawa }}</option>
+                        @endforeach
                     </select>
                 </div>
 
@@ -235,23 +184,46 @@
     </script>
 
     <script>
-    document.querySelectorAll('select').forEach(function(select) {
-        select.addEventListener('change', function() {
-            if (this.value !== "") {
-                this.classList.add('select-active');
-            } else {
-                this.classList.remove('select-active');
+        document.querySelectorAll('select').forEach(function (select) {
+            select.addEventListener('change', function () {
+                if (this.value !== "") {
+                    this.classList.add('select-active');
+                } else {
+                    this.classList.remove('select-active');
+                }
+            });
+
+            // Supaya saat reload tetap biru kalau sudah ada value
+            if (select.value !== "") {
+                select.classList.add('select-active');
             }
         });
 
-        // Supaya saat reload tetap biru kalau sudah ada value
-        if (select.value !== "") {
-            select.classList.add('select-active');
-        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if(session('success'))
+<script>
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil!',
+        text: @json(session('success')),
+        confirmButtonColor: '#3085d6'
     });
 </script>
+@endif
 
-
+@if(session('error'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Gagal!',
+        text: @json(session('error')),
+        confirmButtonColor: '#d33'
+    });
+</script>
+@endif
 </body>
 
 </html>

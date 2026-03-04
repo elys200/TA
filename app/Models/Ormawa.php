@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Models\Users;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -32,5 +32,10 @@ class Ormawa extends Model
     public function barang()
     {
         return $this->hasMany(Barang::class, 'ormawa_id');
+    }
+
+    public function user()
+    {
+        $this->belongsTo(Users::class);
     }
 }

@@ -14,6 +14,7 @@ use App\Http\Controllers\TambahRuanganController;
 use App\Http\Controllers\ApprovalBarangController;
 use App\Http\Controllers\ApprovalRuanganController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Models\Ormawa;
 
 
 // Login & Registrasi//
@@ -21,7 +22,8 @@ Route::get('/', function () {
     return redirect()->route('login'); // langsung redirect ke login
 });
 Route::get('/login', function () {
-        return view('login');
+    $ormawa = Ormawa::all();
+        return view('login', compact('ormawa'));
     }
 );
 Route::post('/login', [LoginController::class, 'login'])->name('login');

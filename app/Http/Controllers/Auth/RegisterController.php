@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Users;
+use App\Models\Ormawa;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,6 +13,7 @@ class RegisterController extends Controller
 {
     public function register(Request $request)
     {
+        $ormawa = Ormawa::all();
         Validator::make($request->all(), [
             'nim' => 'required|unique:users,nim',
             'nama_lengkap' => 'required',
@@ -19,7 +21,7 @@ class RegisterController extends Controller
             'program_studi' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:6',
-            'ormawa' => 'required',
+            'ormawa_id' => 'required|exists:ormawa,id',
         ])->validateWithBag('register');
 
         Users::create([
@@ -28,7 +30,7 @@ class RegisterController extends Controller
             'jurusan' => $request->jurusan,
             'program_studi' => $request->program_studi,
             'email' => $request->email,
-            'ormawa' => $request->ormawa,
+            'ormawa_id' => $request->ormawa_id,
             'password' => Hash::make($request->password),
         ]);
 

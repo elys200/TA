@@ -33,4 +33,9 @@ class Users extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function ormawa()
+    {
+        return $this->belongsTo(Ormawa::class);
+    }
 }
