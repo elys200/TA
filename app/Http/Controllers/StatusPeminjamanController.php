@@ -4,15 +4,24 @@ namespace App\Http\Controllers;
 use App\Models\PeminjamanRuangan;
 use App\Models\Users;
 use App\Models\Ormawa;
+use App\Models\PeminjamanBarang;
 use Illuminate\Http\Request;
+
 
 
 class StatusPeminjamanController extends Controller
 {
     //barang//
     public function index() {
-        
-        return view ('statuspeminjaman.statuspeminjamanbarang.statuspeminjamanbarang');
+        $peminjamanBarang = PeminjamanBarang::where('user_id', auth()->id())->get();
+        return view ('statuspeminjaman.statuspeminjamanbarang.statuspeminjamanbarang', compact('peminjamanBarang'));
+    }
+
+    public function detailbarang($id){
+       $peminjaman = PeminjamanBarang::where('id', $id)
+       ->where('user_id', auth()->id())
+       ->firstOrFail();
+       return view('statuspeminjaman.statuspeminjamanbarang.detailpeminjamanbarang', compact('peminjaman'));
     }
 
     //ruangan//

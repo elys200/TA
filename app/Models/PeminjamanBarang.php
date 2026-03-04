@@ -35,6 +35,7 @@ class PeminjamanBarang extends Model
         'returned_by',
         'foto_pengembalian',
         'waktu_pengembalian',
+        'jumlah_barang'
     ];
 
     public function user()

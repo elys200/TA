@@ -178,7 +178,9 @@
                             <table class="table table-hover table-bordered align-middle">
                                 <thead class="table-light text-center">
                                     <tr>
+                                        <th>No.</th>
                                         <th>Code</th>
+                                        <th>Nama Barang</th>
                                         <th>Jumlah</th>
                                         <th>Penanggung Jawab</th>
                                         <th>Tanggal Peminjaman</th>
@@ -188,22 +190,28 @@
                                 </thead>
 
                                 <tbody>
+                                    @foreach($peminjamanBarang as $item)
                                     <tr>
-                                        <td>001</td>
-                                        <td>2 Barang</td>
-                                        <td>Elys Aulia Tanjung</td>
+                                        <td style="text-align: center;">{{ $loop->iteration }}.</td>
+                                        <td>{{ $item->code_peminjaman }}</td>
+                                        <td>{{ $item->barang->nama_barang }}</td>
+                                        <td>{{ $item->jumlah_barang }}</td>
+                                        <td>{{ $item->nama_penanggung_jawab }}</td>
                                         <td >
-                                            20 April 2026
+                                            {{ $item->tanggal_mulai_peminjaman }}
                                         </td>
-                                        <td> 20 April 2026</td>
+                                        <td>
+                                        {{ $item->tanggal_selesai_peminjaman }}
+                                    </td>
                                         <td class="text-center">
                                             <div class="d-flex justify-content-center">
-                                                 <a href="{{ route('statuspeminjaman.detailbarang')}}" button class="btn btn-sm btn-success">
+                                                 <a href="{{ route('statuspeminjamanbarang.detail' , $item->id)}}" button class="btn btn-sm btn-success">
                                                     <span> Detail </span>
                                                  </a>
                                             </div>
                                         </td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

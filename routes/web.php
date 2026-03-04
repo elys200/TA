@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/barang', [BarangController::class, 'index'])->name('barang');
         Route::get('/barang/detail/{id}', [BarangController::class, 'detail'])->name('barang.detail');
         Route::get('/barang/{id}/form', [BarangController::class, 'form'])->name('barang.form');
+        Route::post('/barang/{id}/borang', [BarangController::class, 'store'])->name('barang.borang');
         
 
         
@@ -66,6 +67,7 @@ Route::middleware(['auth'])->group(function () {
         //Status Peminjaman//
         //Barang//
         Route::get('/statuspeminjamanbarang', [StatusPeminjamanController::class, 'index'])->name('statuspeminjamanbarang');
+        Route::get('/statuspeminjamanbarang/{id}/detail', [StatusPeminjamanController::class, 'detailbarang'])->name('statuspeminjamanbarang.detail');
 
         Route::get('/statuspeminjamanbarang/detailbarang', function () {
                 return view('statuspeminjaman.statuspeminjamanbarang.detailpeminjamanbarang');
