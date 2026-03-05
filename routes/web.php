@@ -8,7 +8,6 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\RuanganController;
 use App\Http\Controllers\KunciController;
 use App\Http\Controllers\ListPeminjamanBarangController;
-// use App\Http\Controllers\ListPeminjamanRuanganController;   
 use App\Http\Controllers\StatusPeminjamanController;
 use App\Http\Controllers\TambahRuanganController;
 use App\Http\Controllers\ApprovalBarangController;
@@ -60,8 +59,7 @@ Route::middleware(['auth'])->group(function () {
 
         )->name('listpeminjamanbarang.form');
 
-        //List Peminjaman//
-        Route::get('/listpeminjamanbarang', [ListPeminjamanBarangController::class, 'index'])->name('listpeminjamanbarang');
+       
 
 
         //Status Peminjaman//

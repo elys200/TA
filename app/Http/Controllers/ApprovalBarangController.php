@@ -10,12 +10,13 @@ use Illuminate\Support\Facades\Auth;
 class ApprovalBarangController extends Controller
 {
     public function index() {
-        $peminjaman = PeminjamanBarang::all();
+        $peminjaman = PeminjamanBarang::paginate(10);
 
+        $totalSeluruh = PeminjamanBarang::all()->count();
         $totalReview = PeminjamanBarang::where('status_peminjaman', 0)->count();
         $totalApprove = PeminjamanBarang::where('status_peminjaman', 1)->count();
         $totalRejected = PeminjamanBarang::where('status_peminjaman', 2)->count();
-        return view ('approval.approvalbarang', compact('peminjaman', 'totalApprove', 'totalRejected', 'totalReview'));
+        return view ('approval.approvalbarang', compact('peminjaman', 'totalApprove', 'totalRejected', 'totalReview', 'totalSeluruh'));
     }
 
     public function detail($id){

@@ -12,9 +12,20 @@ use Illuminate\Http\Request;
 class StatusPeminjamanController extends Controller
 {
     //barang//
-    public function index() {
-        $peminjamanBarang = PeminjamanBarang::where('user_id', auth()->id())->get();
-        return view ('statuspeminjaman.statuspeminjamanbarang.statuspeminjamanbarang', compact('peminjamanBarang'));
+    public function index(Request $request) {
+        $query = PeminjamanBarang::query();
+
+        if ($request->filled('status')) {
+        $query->where('status_peminjaman', $request->status);
+    }
+
+        $peminjaman = $query->paginate(10)->withQueryString();
+        $totalReview = PeminjamanBarang::where('status_peminjaman', 0)->count();
+    $totalApprove = PeminjamanBarang::where('status_peminjaman', 1)->count();
+    $totalRejected = PeminjamanBarang::where('status_peminjaman', 2)->count();
+        return view ('statuspeminjaman.statuspeminjamanbarang.statuspeminjamanbarang', compact('peminjaman', 'totalReview',
+        'totalApprove',
+        'totalRejected'));
     }
 
     public function detailbarang($id){
@@ -63,9 +74,20 @@ class StatusPeminjamanController extends Controller
     }
 
     //ruangan//
-    public function indexRuangan() {
-        $peminjamanRuangan = PeminjamanRuangan::where('user_id', auth()->id())->get();
-        return view ('statuspeminjaman.statuspeminjamanruangan.statuspeminjamanruangan', compact('peminjamanRuangan'));
+    public function indexRuangan(Request $request) {
+        $query = PeminjamanRuangan::query();
+
+        if ($request->filled('status')) {
+        $query->where('status_peminjaman', $request->status);
+        }
+
+        $peminjamanRuangan = $query->paginate(10)->withQueryString();
+          $totalReview = PeminjamanBarang::where('status_peminjaman', 0)->count();
+    $totalApprove = PeminjamanBarang::where('status_peminjaman', 1)->count();
+    $totalRejected = PeminjamanBarang::where('status_peminjaman', 2)->count();
+        return view ('statuspeminjaman.statuspeminjamanruangan.statuspeminjamanruangan', compact('peminjamanRuangan', 'totalReview',
+        'totalApprove',
+        'totalRejected'));
     }
 
     public function detail($id) {

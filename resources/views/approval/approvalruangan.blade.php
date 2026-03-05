@@ -54,12 +54,6 @@
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
                         <li class="sidebar-item  ">
-                            <a href="{{route('listpeminjamanbarang')}}" class='sidebar-link'>
-                                <i class="bi bi-list"></i>
-                                <span>List Peminjaman</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
                             <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>
                                 <span>Status Peminjaman</span>
@@ -130,38 +124,55 @@
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center"
-                                    style="background-color: #7367f0; border-radius: 10px; height: 130px;">
+                                <div class="card-body d-flex align-items-center" id="btnAll"
+                                    style="background-color: #3A9AFF; border-radius: 10px; height: 130px; cursor: pointer;">
+                                    <div class="me-3">
+                                        <i class="bi bi-justify" style="font-size: 50px; color: white;"></i>
+                                    </div>
+                                    <div style="margin-left: 5px;">
+                                        <span style="color: white; font-size: 25px;"><b>All</b></span>
+                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{$totalSeluruh}}
+                                        </h4>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card-body d-flex align-items-center" id="btnReview"
+                                    style="background-color: #7367f0; border-radius: 10px; height: 130px; cursor: pointer;">
                                     <div class="me-3">
                                         <i class="bi bi-bell" style="font-size: 50px; color: white;"></i>
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Reviewing</b></span>
-                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{ $totalReview }}</h4>
+                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{ $totalReview }}
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center"
-                                    style="background-color: #6EC207; border-radius: 10px; height: 130px;">
+                                <div class="card-body d-flex align-items-center" id="btnApprove"
+                                    style="background-color: #6EC207; border-radius: 10px; height: 130px; cursor: pointer;">
                                     <div class="me-3">
                                         <i class="bi bi-check2-circle" style="font-size: 50px; color: white;"></i>
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Approve</b></span>
-                                        <h4 id="counterApprove" class="mb-0" style="color: white;">{{ $totalApprove }}</h4>
+                                        <h4 id="counterApprove" class="mb-0" style="color: white;">{{ $totalApprove }}
+                                        </h4>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center"
-                                    style="background-color: #FF0000; border-radius: 10px; height: 130px;">
+                            <div class="col-sm-4" style="margin-top: 10px;">
+                                <div class="card-body d-flex align-items-center" id="btnRejected"
+                                    style="background-color: #FF0000; border-radius: 10px; height: 130px; cursor: pointer;">
                                     <div class="me-3">
                                         <i class="bi bi-x-circle" style="font-size: 50px; color: white;"></i>
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Rejected</b></span>
-                                        <h4 id="counterRejected" class="mb-0" style="color: white;">{{ $totalRejected }}</h4>
+                                        <h4 id="counterRejected" class="mb-0" style="color: white;">{{ $totalRejected }}
+                                        </h4>
                                     </div>
 
                                 </div>
@@ -169,7 +180,7 @@
                         </div>
                     </div>
 
-                    <div class="row mb-4 mt-5">
+                    <div class="row mb-4 mt-3">
                         <div class="col-12 col-sm-8 col-md-4">
                             <input type="text" class="form-control" placeholder="Cari Ruangan...">
                         </div>
@@ -192,7 +203,7 @@
 
                             <tbody>
                                 @foreach($peminjamanRuangan as $peminjaman)
-                                <tr>
+                                <tr class="data-row status-{{ $peminjaman->status_peminjaman }}">
                                     <td style="text-align: center;">{{$loop->iteration}}.</td>
                                     <td>{{$peminjaman->code_peminjaman}}</td>
                                     <td>{{$peminjaman->ruangan->nama_ruangan}}</td>
@@ -210,8 +221,9 @@
                                     </td>
                                     <td class="text-center" style="width: 140px">
                                         <div class="d-flex justify-content-center gap-2">
-                                            <a href="{{route('approvalruangan.detail', $peminjaman->id)}}" class="btn btn-success btn-sm">
-                                                 Detail
+                                            <a href="{{route('approvalruangan.detail', $peminjaman->id)}}"
+                                                class="btn btn-success btn-sm">
+                                                Detail
                                             </a>
                                         </div>
                                     </td>
@@ -219,17 +231,51 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="mt-3">
+                            {{ $peminjamanRuangan->links() }}
+                        </div>
                     </div>
 
                 </div>
-                <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                <script src="{{asset('js/main.js')}}"></script>
             </div>
         </div>
     </div>
+    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+    <script src="{{asset('js/pages/dashboard.js')}}"></script>
+    <script src="{{asset('js/main.js')}}"></script>
+
+    <script>
+        document.getElementById('btnAll').addEventListener('click', function () {
+            document.querySelectorAll('.data-row').forEach(function (row) {
+                row.style.display = '';
+            });
+        });
+
+        document.getElementById('btnReview').addEventListener('click', function () {
+            filterStatus(0);
+        });
+
+        document.getElementById('btnApprove').addEventListener('click', function () {
+            filterStatus(1);
+        });
+
+        document.getElementById('btnRejected').addEventListener('click', function () {
+            filterStatus(2);
+        });
+
+        function filterStatus(status) {
+            document.querySelectorAll('.data-row').forEach(function (row) {
+                row.style.display = 'none';
+            });
+
+            document.querySelectorAll('.status-' + status).forEach(function (row) {
+                row.style.display = '';
+            });
+        }
+
+    </script>
 </body>
 
 </html>

@@ -56,12 +56,7 @@
                             </a>
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{route('listpeminjamanbarang')}}" class='sidebar-link'>
-                                <i class="bi bi-list"></i>
-                                <span>List Peminjaman</span>
-                            </a>
-                        </li>
+                      
                         <li class="sidebar-item  ">
                             <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>

@@ -13,13 +13,14 @@ use Symfony\Contracts\Service\Attribute\Required;
 class ApprovalRuanganController extends Controller
 {
     public function index() {
-        $peminjamanRuangan = PeminjamanRuangan::all();
+        $peminjamanRuangan = PeminjamanRuangan::paginate(10);
         $ormawa = Ormawa::all();
 
+        $totalSeluruh = PeminjamanRuangan::all()->count();
         $totalReview = PeminjamanRuangan::where('status_peminjaman', 0)->count();
         $totalApprove = PeminjamanRuangan::where('status_peminjaman', 1)->count();
         $totalRejected = PeminjamanRuangan::where('status_peminjaman', 2)->count();
-        return view ('approval.approvalruangan', compact('peminjamanRuangan', 'ormawa', 'totalReview', 'totalRejected', 'totalApprove'));
+        return view ('approval.approvalruangan', compact('peminjamanRuangan', 'ormawa', 'totalReview', 'totalRejected', 'totalApprove', 'totalSeluruh'));
     }
 
     public function detail($id){

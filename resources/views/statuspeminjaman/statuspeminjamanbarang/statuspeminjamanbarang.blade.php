@@ -54,12 +54,6 @@
                         </li>
                         <li class="sidebar-title">Peminjaman</li>
                         <li class="sidebar-item  ">
-                            <a href="{{route('listpeminjamanbarang')}}" class='sidebar-link'>
-                                <i class="bi bi-list"></i>
-                                <span>List Peminjaman</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
                             <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
                                 <i class="bi bi-exclamation-circle-fill"></i>
                                 <span>Status Peminjaman</span>
@@ -155,22 +149,41 @@
 
                             <div class="btn-group">
                                 <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                                    Status Pengajuan
+                                    @if(request('status') == 1)
+                                    Approve
+                                    @elseif(request('status') == 2)
+                                    Rejected
+                                    @elseif(request('status') == 0)
+                                    Reviewing
+                                    @else
+                                    Semua Status
+                                    @endif
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Approve</a></li>
-                                    <li><a class="dropdown-item" href="#">Rejected</a></li>
-                                </ul>
-                            </div>
 
-                            <div class="btn-group">
-                                <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                                    Status Peminjaman
-                                </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Diajukan</a></li>
-                                    <li><a class="dropdown-item" href="#">Dipinjam</a></li>
-                                    <li><a class="dropdown-item" href="#">Selesai</a></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('statuspeminjamanbarang') }}">
+                                            Semua
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('statuspeminjamanbarang', ['status' => 1]) }}">
+                                            Approve
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('statuspeminjamanbarang', ['status' => 2]) }}">
+                                            Rejected
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item"
+                                            href="{{ route('statuspeminjamanbarang', ['status' => 0]) }}">
+                                            Reviewing
+                                        </a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -192,7 +205,7 @@
                                 </thead>
 
                                 <tbody>
-                                    @foreach($peminjamanBarang as $item)
+                                    @foreach($peminjaman as $item)
                                     <td style="text-align: center;">{{ $loop->iteration }}.</td>
                                     <td>{{ $item->code_peminjaman }}</td>
                                     <td>{{ $item->barang->nama_barang }}</td>
