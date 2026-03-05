@@ -31,7 +31,7 @@ Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 
-Route::middleware(['auth'])->group(function () {
+
         //Dashboard//
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
@@ -178,6 +178,3 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/tambahruangan/{id}', [TambahRuanganController::class, 'destroy'])->name('tambahruangan.destroy');
 
         
-    }
-
-);

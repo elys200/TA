@@ -128,22 +128,21 @@
                     </div>
 
                     <form action="{{ route('role.permissions.update', $role->id) }}" method="POST">
-    @csrf
+                        @csrf
 
-    @foreach ($permissions as $permission)
-        <div class="form-check">
-            <input class="form-check-input"
-                type="checkbox"
-                name="permissions[]"
-                value="{{ $permission->name }}"
-                id="perm{{ $permission->id }}"
-                {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}>
-            <label class="form-check-label" for="perm{{ $permission->id }}">
-                {{ $permission->name }}
-            </label>
-        </div>
-    @endforeach
-</form>
+                        @foreach ($permissions as $permission)
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="permissions[]"
+                                value="{{ $permission->name }}" id="perm{{ $permission->id }}"
+                                {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }}>
+                            <label class="form-check-label" for="perm{{ $permission->id }}">
+                                {{ $permission->name }}
+                            </label>
+                        </div>
+                        @endforeach
+                        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Update</button>
+
+                    </form>
 
                 </div>
             </div>

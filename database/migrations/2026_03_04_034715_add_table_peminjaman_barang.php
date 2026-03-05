@@ -22,39 +22,42 @@ return new class extends Migration
             $table->tinyInteger('status_peminjaman')->default(0);
 
             $table->foreignId('ormawa_id')
+                  ->nullable()
                   ->constrained('ormawa')
-                  ->onDelete('cascade');
+                   ->nullOnDelete();
             $table->foreignId('user_id')
+            ->nullable()
                   ->constrained('users')
-                  ->onDelete('cascade');
+                 ->nullOnDelete();
             $table->foreignId('barang_id')
+            ->nullable()
                   ->constrained('barang')
-                  ->onDelete('cascade');
+                  ->nullOnDelete();
 
             $table->foreignId('approved_by')
                   ->nullable()
                   ->constrained('users')
-                  ->onDelete('cascade');
+                  ->nullOnDelete();
             $table->timestamp('approve_at')->nullable();
             
             $table->foreignId('rejected_by')
                   ->nullable()
                   ->constrained('users')
-                  ->onDelete('cascade');
+                  ->nullOnDelete();
             $table->timestamp('rejected_at')->nullable();
             $table->string('reason_rejected')->nullable();
 
             $table->foreignId('given_by')
                   ->nullable()
                   ->constrained('users')
-                  ->onDelete('cascade');
+                 ->nullOnDelete();
            $table->timestamp('waktu_pemberian')->nullable();
            $table->string('foto_pemberian')->nullable();
 
            $table->foreignId('returned_by')
                   ->nullable()
                   ->constrained('users')
-                  ->onDelete('cascade');
+                  ->nullOnDelete();
            $table->timestamp('waktu_pengembalian')->nullable();
            $table->string('foto_pengembalian')->nullable();
 

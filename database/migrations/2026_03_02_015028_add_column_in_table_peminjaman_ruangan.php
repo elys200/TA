@@ -15,13 +15,13 @@ return new class extends Migration
             $table->foreignId('given_by')
                   ->nullable()
                   ->constrained('users')
-                  ->onDelete('cascade');
+                   ->nullOnDelete();
             $table->timestamp('time_given')->nullable();
             $table->string('foto_pemberian')->nullable();
             $table->foreignId('returned_by')
                   ->nullable()
                   ->constrained('users')
-                  ->onDelete('cascade');
+                   ->nullOnDelete();
 
             $table->timestamp('time_returned')->nullable();
              $table->string('foto_pengembalian')->nullable();

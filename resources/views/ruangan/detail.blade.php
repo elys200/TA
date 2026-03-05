@@ -174,7 +174,7 @@
                         <h5 class="mb-3">Jadwal Penggunaan Ruangan</h5>
                         <hr class="my-2">
 
-                        <div id='calendar'></div>
+                     <div id="calendar" style="width: 100%; max-width: 900px; margin: 0 auto;"></div>
 
 
 
@@ -195,27 +195,36 @@
        <script>
 document.addEventListener('DOMContentLoaded', function () {
     const calendarEl = document.getElementById('calendar');
-    const ruanganId = {{ $ruangan->id }};
+    const ruanganId = {{$ruangan->id}};
+
+    let initialView = window.innerWidth < 768 ? 'timeGridDay' : 'dayGridMonth';
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-
+        initialView: initialView,
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
             right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
-
         events: `/calendar-events/${ruanganId}`,
-
         eventTimeFormat: {
             hour: '2-digit',
             minute: '2-digit',
             hour12: false
-        }
+        },
+        height: 'auto' // penting biar tinggi otomatis sesuai container
     });
 
     calendar.render();
+
+    // opsional: ubah view saat resize layar
+    window.addEventListener('resize', function() {
+        if(window.innerWidth < 768) {
+            calendar.changeView('timeGridDay');
+        } else {
+            calendar.changeView('dayGridMonth');
+        }
+    });
 });
 </script>
 </body>

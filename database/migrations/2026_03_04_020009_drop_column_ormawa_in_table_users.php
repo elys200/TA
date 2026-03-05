@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('ormawa_id')
                   ->nullable()
                   ->constrained('ormawa')
-                  ->onDelete('cascade');
+                  ->nullOnDelete();
         });
     }
 

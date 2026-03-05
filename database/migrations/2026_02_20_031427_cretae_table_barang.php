@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('kondisi_barang');
             $table->string('foto_barang')->nullable();
              $table->foreignId('ormawa_id')
+             ->nullable()
               ->constrained('ormawa')
-              ->onDelete('cascade');
+               ->nullOnDelete();
             $table->timestamps();
         });
     }

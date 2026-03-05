@@ -6,9 +6,9 @@ use Spatie\Permission\Models\Role;
 
 
 class UserController extends Controller {
-    public function __construct() {
-        $this->middleware(['auth', 'role:admin']);
-    }
+    // public function __construct() {
+    //     $this->middleware(['auth', 'role:admin']);
+    // }
 
     public function index() {
         $users=Users::all();
@@ -47,7 +47,7 @@ class UserController extends Controller {
             $users->syncRoles([]); // hapus semua role kalau kosong
         }
 
-        return redirect() ->route('user') ->with('success', 'Data user & role berhasil diperbarui.');
+        return redirect() ->route('user') ->with('success', 'Data user berhasil diperbarui.');
     }
 
     public function destroy($id) {

@@ -15,8 +15,9 @@ return new class extends Migration
     $table->id();
 
     $table->foreignId('peminjaman_ruangan_id')
-          ->constrained('peminjaman_ruangan')
-          ->onDelete('cascade');
+           ->nullable()
+           ->constrained('peminjaman_ruangan')
+           ->nullOnDelete();
 
     $table->foreignId('diserahkan_oleh')
           ->nullable()

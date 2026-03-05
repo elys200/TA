@@ -22,14 +22,17 @@ return new class extends Migration
             $table->text('alasan_peminjaman');
             $table->string('status_peminjaman')->default('pending');
             $table->foreignId('ruangan_id')
+            ->nullable()
               ->constrained('ruangan')
-              ->onDelete('cascade');
+               ->nullOnDelete();
             $table->foreignId('user_id')
+            ->nullable()
               ->constrained('users')
-              ->onDelete('cascade');
+               ->nullOnDelete();
             $table->foreignId('ormawa_id')
+            ->nullable()
               ->constrained('ormawa')
-              ->onDelete('cascade');
+              ->nullOnDelete();
             $table->timestamps();
         });
     }

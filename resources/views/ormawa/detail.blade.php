@@ -312,6 +312,17 @@
             });
 
         </script>
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   @if(session('success'))
+    <script>
+        Swal.fire({
+            title: "Success",
+            text: "{{ session('success') }}",
+            icon: "success",
+            draggable: true
+        });
+    </script>
+    @endif
 
         <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
         <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>

@@ -110,23 +110,6 @@
             </div>
         </div>
         <div id="main">
-            @if (session('success'))
-            <div class="alert alert-primary mt-3" id="successAlert">
-                {{ session('success') }}
-            </div>
-
-            <script>
-                setTimeout(() => {
-                    const alert = document.getElementById('successAlert');
-                    if (alert) {
-                        alert.remove();
-                    }
-                }, 5000);
-
-            </script>
-            @endif
-
-
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
                     <i class="bi bi-justify fs-3"></i>
@@ -219,6 +202,17 @@
         <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
         <script src="{{asset('js/pages/dashboard.js')}}"></script>
         <script src="{{asset('js/main.js')}}"></script>
+         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   @if(session('success'))
+    <script>
+        Swal.fire({
+            title: "Success",
+            text: "{{ session('success') }}",
+            icon: "success",
+            draggable: true
+        });
+    </script>
+    @endif
         @include('user.modal.hapus')
 </body>
 

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->foreignId('rejected_by')
                   ->nullable()
                   ->constrained('users')
-                  ->onDelete('cascade');
+                  ->nullOnDelete();
             $table->timestamp('rejected_at')->nullable();
         });
     }

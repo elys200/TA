@@ -151,10 +151,10 @@
                                                 Show
                                             </a>
 
-                                        
-                                            <button type="button" class="btn btn-primary btn-sm btn-edit" data-id="{{$role->id}}"
-                                                data-name="{{$role->name}}" data-bs-toggle="modal"
-                                                data-bs-target="#modalEditRole">
+
+                                            <button type="button" class="btn btn-primary btn-sm btn-edit"
+                                                data-id="{{$role->id}}" data-name="{{$role->name}}"
+                                                data-bs-toggle="modal" data-bs-target="#modalEditRole">
                                                 Edit
                                             </button>
 
@@ -181,19 +181,31 @@
     {{-- HTML kamu di atas --}}
 
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll('.btn-edit').forEach(button => {
-        button.addEventListener('click', function () {
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.btn-edit').forEach(button => {
+                button.addEventListener('click', function () {
 
-            let id = this.dataset.id;
-            let name = this.dataset.name;
+                    let id = this.dataset.id;
+                    let name = this.dataset.name;
 
-            document.getElementById('editRoleName').value = name;
-            document.getElementById('editRoleForm').action = '/role/' + id;
+                    document.getElementById('editRoleName').value = name;
+                    document.getElementById('editRoleForm').action = '/role/' + id;
+                });
+            });
         });
-    });
-});
-</script>
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   @if(session('success'))
+    <script>
+        Swal.fire({
+            title: "Success",
+            text: "{{ session('success') }}",
+            icon: "success",
+            draggable: true
+        });
+    </script>
+    @endif
 
     <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
     <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>

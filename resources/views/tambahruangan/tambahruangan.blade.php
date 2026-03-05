@@ -122,21 +122,6 @@
             </header>
 
             <div class="container-fluid">
-                @if (session('success'))
-                <div class="alert alert-primary mt-3" id="successAlert">
-                    {{ session('success') }}
-                </div>
-
-                <script>
-                    setTimeout(() => {
-                        const alert = document.getElementById('successAlert');
-                        if (alert) {
-                            alert.remove();
-                        }
-                    }, 5000);
-
-                </script>
-                @endif
 
                 <!-- WRAPPER PUTIH -->
                 <div class="bg-white p-4 rounded-3 shadow-sm">
@@ -147,7 +132,6 @@
                     </div>
 
                     <hr class="my-2">
-
 
                     <!-- SEARCH -->
                     <div class="row mb-4 mt-2 align-items-center">
@@ -218,6 +202,17 @@
     <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
     <script src="{{asset('js/pages/dashboard.js')}}"></script>
     <script src="{{asset('js/main.js')}}"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   @if(session('success'))
+    <script>
+        Swal.fire({
+            title: "Success",
+            text: "{{ session('success') }}",
+            icon: "success",
+            draggable: true
+        });
+    </script>
+    @endif
 </body>
 
 </html>
