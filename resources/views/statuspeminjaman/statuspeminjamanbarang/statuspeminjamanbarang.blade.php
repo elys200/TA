@@ -196,7 +196,7 @@
                                     <td style="text-align: center;">{{ $loop->iteration }}.</td>
                                     <td>{{ $item->code_peminjaman }}</td>
                                     <td>{{ $item->barang->nama_barang }}</td>
-                                    <td>{{ $item->jumlah_barang }}</td>
+                                    <td style="text-align: center;">{{ $item->jumlah_barang }}</td>
                                     <td>{{ $item->nama_penanggung_jawab }}</td>
                                     <td>
                                         {{ $item->tanggal_mulai_peminjaman }}

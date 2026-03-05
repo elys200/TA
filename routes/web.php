@@ -149,12 +149,13 @@ Route::middleware(['auth'])->group(function () {
         //approval//
         //Barang//
         Route::get('/approvalbarang', [ApprovalBarangController::class, 'index'])->name('approvalbarang');
+        Route::get('/approvalbarang/detail/{id}', [ApprovalBarangController::class, 'detail'])->name('approvalbarang.detail');
+        Route::put('/approvalbarang/{id}/approve', [ApprovalBarangController::class, 'approval'])->name('approvalbarang.approval');
+        Route::put('/approvalbarang/{id}/rejected', [ApprovalBarangController::class, 'rejected'])->name('approvalbarang.rejected');
+        Route::put('/approvalbarang/{id}/given', [ApprovalBarangController::class, 'given'])->name('approvalbarang.given');
+        Route::put('/approvalbarang/{id}/return', [ApprovalBarangController::class, 'return'])->name('approvalbarang.return');
 
-        Route::get('/approvalbarang/detail', function () {
-                return view('approval.detailapprovalbarang');
-            }
-
-        )->name('approvalbarang.detail');
+        
 
         //Ruangan//
         Route::get('/approvalruangan', [ApprovalRuanganController::class, 'index'])->name('approvalruangan');

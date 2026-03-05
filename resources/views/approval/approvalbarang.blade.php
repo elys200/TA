@@ -137,7 +137,7 @@
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Reviewing</b></span>
-                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">1</h4>
+                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{$totalReview}}</h4>
                                     </div>
 
                                 </div>
@@ -150,7 +150,7 @@
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Approve</b></span>
-                                        <h4 id="counterApprove" class="mb-0" style="color: white;">1</h4>
+                                        <h4 id="counterApprove" class="mb-0" style="color: white;">{{$totalApprove}}</h4>
                                     </div>
 
                                 </div>
@@ -163,7 +163,7 @@
                                     </div>
                                     <div style="margin-left: 5px;">
                                         <span style="color: white; font-size: 25px;"><b>Rejected</b></span>
-                                        <h4 id="counterRejected" class="mb-0" style="color: white;">0</h4>
+                                        <h4 id="counterRejected" class="mb-0" style="color: white;">{{$totalRejected}}</h4>
                                     </div>
 
                                 </div>
@@ -181,34 +181,44 @@
                         <table class="table table-bordered align-middle">
                             <thead class="table-light text-center">
                                 <tr>
-                                    <th>Code</th>
+                                    <th>No.</th>
+                                    <th>Kode Peminjaman</th>
+                                    <th>Nama Barang</th>
                                     <th>Jumlah</th>
                                     <th>Penanggung Jawab</th>
                                     <th>Tanggal Peminjaman</th>
-                                    <th>Tanggal Pengembalian</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
 
                             <tbody>
+                                @foreach ($peminjaman as $item)
                                 <tr>
-                                    <td>001</td>
-                                    <td>2 Item</td>
-                                    <td>Elys Aulia Tanjung</td>
-                                    <td>20 April 2026</td>
-                                    <td>20 April 2026</td>
+                                    <td style="text-align: center;">{{ $loop->iteration }}.</td>
+                                    <td>{{ $item->code_peminjaman }}</td>
+                                    <td>{{ $item->barang->nama_barang }}</td>
+                                    <td style="text-align: center;">{{ $item->jumlah_barang }}</td>
+                                    <td>{{ $item->nama_penanggung_jawab }}</td>
+                                    <td>{{ $item->tanggal_mulai_peminjaman }}</td>
                                     <td class="text-center">
-                                        <span class="badge bg-warning text-dark">Reviewing</span>
+                                        @if($item->status_peminjaman == '0')
+                                        <span class="badge bg-warning text-white">Reviewing</span>
+                                        @elseif($item->status_peminjaman =='1')
+                                        <span class="badge bg-success text-white">Approve</span>
+                                        @elseif($item->status_peminjaman == '2')
+                                        <span class="badge bg-danger text-white">Rejected</span>
+                                        @endif
                                     </td>
                                     <td class="text-center" style="width:100px;">
                                         <div class="d-flex justify-content-center gap-2">
-                                            <a href="{{ route('approvalbarang.detail') }}" class="btn btn-success btn-sm">
+                                            <a href="{{ route('approvalbarang.detail' , $item->id) }}" class="btn btn-success btn-sm">
                                                 Detail
                                             </a>
                                         </div>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
