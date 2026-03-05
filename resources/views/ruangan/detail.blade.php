@@ -23,18 +23,6 @@
 
 
 
-    <script type="importmap">
-        {
-        "imports": {
-          "@fullcalendar/core": "https://cdn.skypack.dev/@fullcalendar/core@6.1.20",
-          "@fullcalendar/daygrid": "https://cdn.skypack.dev/@fullcalendar/daygrid@6.1.20",
-          "@fullcalendar/timegrid": "https://cdn.skypack.dev/@fullcalendar/timegrid@6.1.20",
-          "@fullcalendar/list": "https://cdn.skypack.dev/@fullcalendar/list@6.1.20"
-        }
-      }
-    </script>
-
-
 
 </head>
 
@@ -187,24 +175,35 @@
                         <hr class="my-2">
 
                         <div id='calendar'></div>
-                        <script type="module">
-import { Calendar } from "@fullcalendar/core";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
 
-document.addEventListener("DOMContentLoaded", function () {
 
-    const calendarEl = document.getElementById("calendar");
+
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
+        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
+        <!-- <script src="{{asset('js/pages/dashboard.js')}}"></script> -->
+        <script src="{{asset('js/main.js')}}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+       <script>
+document.addEventListener('DOMContentLoaded', function () {
+    const calendarEl = document.getElementById('calendar');
     const ruanganId = {{ $ruangan->id }};
 
-    const calendar = new Calendar(calendarEl, {
-        plugins: [dayGridPlugin, timeGridPlugin],
-        initialView: "dayGridMonth",
+    const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
 
         headerToolbar: {
-            left: "prev,next today",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay"
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
         },
 
         events: `/calendar-events/${ruanganId}`,
@@ -213,32 +212,12 @@ document.addEventListener("DOMContentLoaded", function () {
             hour: '2-digit',
             minute: '2-digit',
             hour12: false
-        },
-
-        // 🔥 TARUH DI SINI
-        eventDidMount: function(info) {
-            console.log(info.event);
         }
-
     });
 
     calendar.render();
 });
 </script>
-
-
-                    </div>
-
-
-
-                    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-                    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-                    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-                    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-                    <script src="{{asset('js/main.js')}}"></script>
-                </div>
-            </div>
-        </div>
 </body>
 
 </html>
