@@ -1,285 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
+@section('content')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+<div class="container-fluid">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/iconly/bold.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-icons/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <h3> List Pemborangan Barang</h3>
 
-    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}" type="image/x-icon">
+    <!-- WRAPPER PUTIH -->
+    <div class="bg-white p-4 rounded-3 shadow-sm">
 
+        <!-- CARD STATUS -->
+        <div class="container">
+            <div class="row">
 
-</head>
-
-<body>
-    <div id="app">
-        <div id="sidebar" class="active">
-            <div class="sidebar-wrapper active">
-                <div class="sidebar-header">
-                    <div class="d-flex justify-content-between">
-                        <div class="logo">
-                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
+                <div class="col-sm-4">
+                    <div class="card-body d-flex align-items-center"
+                        style="background-color: #3A9AFF; border-radius: 10px; height: 130px;">
+                        <div class="me-3">
+                            <i class="bi bi-justify" style="font-size: 50px; color: white;"></i>
+                        </div>
+                        <div>
+                            <span style="color: white; font-size: 25px;"><b>All</b></span>
+                            <h4 class="mb-0" style="color: white;">{{$totalSeluruh}}</h4>
                         </div>
                     </div>
                 </div>
-                <div class="sidebar-menu">
-                    <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
-                        <li class="sidebar-item active ">
-                            <a href="{{route('dashboard')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('ruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-open-fill"></i>
-                                <span> Ruangan </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('barang') }}" class='sidebar-link'>
-                                <i class="bi bi-archive-fill"></i>
-                                <span> Barang </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Peminjaman</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
-                                <i class="bi bi-exclamation-circle-fill"></i>
-                                <span>Status Peminjaman</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">PIC Menu</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-closed"></i>
-                                <span>Approval Ruangan</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
-                                <i class="bi bi-box-seam"></i>
-                                <span>Approval Barang</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Pamdal Menu</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
-                                <i class="bi bi-key-fill"></i>
-                                <span>Kunci</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Other</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('tambahruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-open-fill"></i>
-                                <span>Kelola Ruangan</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ url('/ormawa') }}" class='sidebar-link'>
-                                <i class="bi bi-diagram-3"></i>
-                                <span>Ormawa</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('user') }}" class='sidebar-link'>
-                                <i class="bi bi-people-fill"></i>
-                                <span>User</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('role') }}" class='sidebar-link'>
-                                <i class="bi bi-shield-lock"></i>
-                                <span>Role</span>
-                            </a>
-                        </li>
-                    </ul>
+
+                <div class="col-sm-4">
+                    <div class="card-body d-flex align-items-center"
+                        style="background-color: #7367f0; border-radius: 10px; height: 130px;">
+                        <div class="me-3">
+                            <i class="bi bi-bell" style="font-size: 50px; color: white;"></i>
+                        </div>
+                        <div>
+                            <span style="color: white; font-size: 25px;"><b>Reviewing</b></span>
+                            <h4 class="mb-0" style="color: white;">{{$totalReview}}</h4>
+                        </div>
+                    </div>
                 </div>
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+
+                <div class="col-sm-4">
+                    <div class="card-body d-flex align-items-center"
+                        style="background-color: #6EC207; border-radius: 10px; height: 130px;">
+                        <div class="me-3">
+                            <i class="bi bi-check2-circle" style="font-size: 50px; color: white;"></i>
+                        </div>
+                        <div>
+                            <span style="color: white; font-size: 25px;"><b>Approve</b></span>
+                            <h4 class="mb-0" style="color: white;">{{$totalApprove}}</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-4 mt-3">
+                    <div class="card-body d-flex align-items-center"
+                        style="background-color: #FF0000; border-radius: 10px; height: 130px;">
+                        <div class="me-3">
+                            <i class="bi bi-x-circle" style="font-size: 50px; color: white;"></i>
+                        </div>
+                        <div>
+                            <span style="color: white; font-size: 25px;"><b>Rejected</b></span>
+                            <h4 class="mb-0" style="color: white;">{{$totalRejected}}</h4>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-            <div class="container-fluid">
 
-                <h3> List Pemborangan Barang</h3>
-
-                <!-- WRAPPER PUTIH -->
-                <div class="bg-white p-4 rounded-3 shadow-sm">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center" id="btnAll"
-                                    style="background-color: #3A9AFF; border-radius: 10px; height: 130px; cursor: pointer;">
-                                    <div class="me-3">
-                                        <i class="bi bi-justify" style="font-size: 50px; color: white;"></i>
-                                    </div>
-                                    <div style="margin-left: 5px;">
-                                        <span style="color: white; font-size: 25px;"><b>All</b></span>
-                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{$totalSeluruh}}
-                                        </h4>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center" id="btnReview"
-                                    style="background-color: #7367f0; border-radius: 10px; height: 130px; cursor: pointer;">
-                                    <div class="me-3">
-                                        <i class="bi bi-bell" style="font-size: 50px; color: white;"></i>
-                                    </div>
-                                    <div style="margin-left: 5px;">
-                                        <span style="color: white; font-size: 25px;"><b>Reviewing</b></span>
-                                        <h4 id="counterReviewing" class="mb-0" style="color: white;">{{$totalReview}}
-                                        </h4>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-sm-4">
-                                <div class="card-body d-flex align-items-center" id="btnApprove"
-                                    style="background-color: #6EC207; border-radius: 10px; height: 130px;">
-                                    <div class="me-3">
-                                        <i class="bi bi-check2-circle"
-                                            style="font-size: 50px; color: white; cursor: pointer;"></i>
-                                    </div>
-                                    <div style="margin-left: 5px;">
-                                        <span style="color: white; font-size: 25px;"><b>Approve</b></span>
-                                        <h4 id="counterApprove" class="mb-0" style="color: white;">{{$totalApprove}}
-                                        </h4>
-                                    </div>
-
-                                </div>
-                            </div>
-                            <div class="col-sm-4" style="margin-top: 10px;">
-                                <div class="card-body d-flex align-items-center" id="btnRejected"
-                                    style="background-color: #FF0000; border-radius: 10px; height: 130px;">
-                                    <div class="me-3">
-                                        <i class="bi bi-x-circle"
-                                            style="font-size: 50px; color: white; cursor: pointer;"></i>
-                                    </div>
-                                    <div style="margin-left: 5px;">
-                                        <span style="color: white; font-size: 25px;"><b>Rejected</b></span>
-                                        <h4 id="counterRejected" class="mb-0" style="color: white;">{{$totalRejected}}
-                                        </h4>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-4 mt-5">
-                        <div class="col-12 col-sm-8 col-md-4">
-                            <input type="text" class="form-control" placeholder="Cari Ruangan...">
-                        </div>
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table table-bordered align-middle">
-                            <thead class="table-light text-center">
-                                <tr>
-                                    <th>No.</th>
-                                    <th>Kode Peminjaman</th>
-                                    <th>Nama Barang</th>
-                                    <th>Jumlah</th>
-                                    <th>Penanggung Jawab</th>
-                                    <th>Tanggal Peminjaman</th>
-                                    <th>Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach ($peminjaman as $item)
-                                <tr class="data-row status-{{ $item->status_peminjaman }}">
-                                    <td style="text-align: center;">{{ $loop->iteration }}.</td>
-                                    <td>{{ $item->code_peminjaman }}</td>
-                                    <td>{{ $item->barang->nama_barang }}</td>
-                                    <td style="text-align: center;">{{ $item->jumlah_barang }}</td>
-                                    <td>{{ $item->nama_penanggung_jawab }}</td>
-                                    <td>{{ $item->tanggal_mulai_peminjaman }}</td>
-                                    <td class="text-center">
-                                        @if($item->status_peminjaman == 0)
-                                        <span class="badge bg-warning text-white">Reviewing</span>
-                                        @elseif($item->status_peminjaman == 1)
-                                        <span class="badge bg-success text-white">Approve</span>
-                                        @elseif($item->status_peminjaman == 2)
-                                        <span class="badge bg-danger text-white">Rejected</span>
-                                        @endif
-                                    </td>
-                                    <td class="text-center" style="width:100px;">
-                                        <div class="d-flex justify-content-center gap-2">
-                                            <a href="{{ route('approvalbarang.detail' , $item->id) }}"
-                                                class="btn btn-success btn-sm">
-                                                Detail
-                                            </a>
-                                        </div>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        <div class="mt-3">
-                            {{ $peminjaman->links() }}
-                        </div>
-                    </div>
-
-                </div>
+        <!-- SEARCH -->
+        <div class="row mb-4 mt-5">
+            <div class="col-12 col-sm-8 col-md-4">
+                <input type="text" class="form-control" id="searchInput" placeholder="Cari Peminjaman...">
             </div>
         </div>
+
+        <!-- TABEL -->
+        <div class="table-responsive">
+            <table class="table table-bordered align-middle">
+
+                <thead class="table-light text-center">
+                    <tr>
+                        <th>No.</th>
+                        <th>Kode Peminjaman</th>
+                        <th>Nama Barang</th>
+                        <th>Jumlah</th>
+                        <th>Penanggung Jawab</th>
+                        <th>Tanggal Peminjaman</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach ($peminjaman as $item)
+
+                    <tr class="data-row status-{{ $item->status_peminjaman }}">
+
+                        <td class="text-center">{{ $loop->iteration }}</td>
+
+                        <td>{{ $item->code_peminjaman }}</td>
+
+                        <td>{{ $item->barang->nama_barang }}</td>
+
+                        <td class="text-center">{{ $item->jumlah_barang }}</td>
+
+                        <td>{{ $item->nama_penanggung_jawab }}</td>
+
+                        <td>{{ $item->tanggal_mulai_peminjaman }}</td>
+
+                        <td class="text-center">
+                            @if($item->status_peminjaman == 0)
+                            <span class="badge bg-warning text-dark">Reviewing</span>
+
+                            @elseif($item->status_peminjaman == 1)
+                            <span class="badge bg-success">Approve</span>
+
+                            @elseif($item->status_peminjaman == 2)
+                            <span class="badge bg-danger">Rejected</span>
+                            @endif
+                        </td>
+
+                        <td class="text-center" style="width:100px;">
+                            <a href="{{ route('approvalbarang.detail' , $item->id) }}" class="btn btn-success btn-sm">
+                                Detail
+                            </a>
+                        </td>
+
+                    </tr>
+
+                    @endforeach
+                </tbody>
+
+            </table>
+
+            <div class="mt-3">
+                {{ $peminjaman->links() }}
+            </div>
+
+        </div>
+
     </div>
-    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-    <script src="{{asset('js/main.js')}}"></script>
+</div>
 
-    <script>
-        document.getElementById('btnAll').addEventListener('click', function () {
-            document.querySelectorAll('.data-row').forEach(function (row) {
-                row.style.display = '';
-            });
-        });
+<!-- SCRIPT SEARCH -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
 
-        document.getElementById('btnReview').addEventListener('click', function () {
-            filterStatus(0);
-        });
+        const searchInput = document.getElementById("searchInput");
 
-        document.getElementById('btnApprove').addEventListener('click', function () {
-            filterStatus(1);
-        });
+        searchInput.addEventListener("keyup", function () {
 
-        document.getElementById('btnRejected').addEventListener('click', function () {
-            filterStatus(2);
-        });
+            const keyword = this.value.toLowerCase();
+            const rows = document.querySelectorAll(".data-row");
 
-        function filterStatus(status) {
-            document.querySelectorAll('.data-row').forEach(function (row) {
-                row.style.display = 'none';
+            rows.forEach(function (row) {
+
+                const textRow = row.textContent.toLowerCase();
+
+                if (textRow.includes(keyword)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+
             });
 
-            document.querySelectorAll('.status-' + status).forEach(function (row) {
-                row.style.display = '';
-            });
-        }
+        });
 
-    </script>
-</body>
+    });
 
-</html>
+</script>
+
+@endsection

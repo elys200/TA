@@ -1,281 +1,157 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
-
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/iconly/bold.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-icons/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}" type="image/x-icon">
+@section('content')
 
 
-</head>
+<div class="hero-simple" style="background:#fff; padding:40px; border-radius:12px; margin-top:20px;">
+    <div class="row align-items-center">
 
-<body>
-    <div id="app">
-        <div id="sidebar" class="active">
-            <div class="sidebar-wrapper active">
-                <div class="sidebar-header">
-                    <div class="d-flex justify-content-between">
-                        <div class="logo">
-                            <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo" srcset="">
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-menu">
-                    <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
-                        <li class="sidebar-item active ">
-                            <a href="{{route('dashboard')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('ruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-open-fill"></i>
-                                <span> Ruangan </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('barang') }}" class='sidebar-link'>
-                                <i class="bi bi-archive-fill"></i>
-                                <span> Barang </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Peminjaman</li
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
-                                <i class="bi bi-exclamation-circle-fill"></i>
-                                <span>Status Peminjaman</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">PIC Menu</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-closed"></i>
-                                <span>Approval Ruangan</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
-                                <i class="bi bi-box-seam"></i>
-                                <span>Approval Barang</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Pamdal Menu</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
-                                <i class="bi bi-key-fill"></i>
-                                <span>Kunci</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Other</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('tambahruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-open-fill"></i>
-                                <span>Kelola Ruangan</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ url('/ormawa') }}" class='sidebar-link'>
-                                <i class="bi bi-diagram-3"></i>
-                                <span>Ormawa</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('user') }}" class='sidebar-link'>
-                                <i class="bi bi-people-fill"></i>
-                                <span>User</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('role') }}" class='sidebar-link'>
-                                <i class="bi bi-shield-lock"></i>
-                                <span>Role</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
-            </div>
+        <!-- Text -->
+        <div class="col-lg-6">
+
+            <h1 style="font-weight:700; margin-top:10px; color:#1f1f1f;">
+                Selamat Datang di Apbaru
+            </h1>
+
+            <p style="color:#555; margin-top:15px; ont-weight:400">
+                Aplikasi peminjaman barang dan ruangan untuk memudahkan akses dan pemantauan ketersediaan.
+            </p>
+
+            <a href="#services" class="btn btn-primary" style="padding:10px 25px; margin-top:15px;">
+                Pinjam Sekarang
+            </a>
         </div>
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-            <div class="hero-simple" style="background:#fff; padding:40px; border-radius:12px; margin-top:20px;">
-                <div class="row align-items-center">
 
-                    <!-- Text -->
-                    <div class="col-lg-6">
+        <!-- Image -->
+        <div class="col-lg-6 text-center">
+            <img src="{{ asset('images/hero-img.svg') }}" alt="Hero Image" style="max-width:100%; height:auto;">
+        </div>
 
-                        <h1 style="font-weight:700; margin-top:10px; color:#1f1f1f;">
-                            Selamat Datang di Apbaru
-                        </h1>
+    </div>
+</div>
 
-                        <p style="color:#555; margin-top:15px; ont-weight:400">
-                            Aplikasi peminjaman barang dan ruangan untuk memudahkan akses dan pemantauan ketersediaan.
-                        </p>
+<div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; padding: 50px 0;">
 
-                        <a href="#services" class="btn btn-primary" style="padding:10px 25px; margin-top:15px;">
-                            Pinjam Sekarang
-                        </a>
-                    </div>
+    <div>
+        <img src="{{ asset('images/bem.png') }}" alt="Logo 1"
+            style="max-width: 120px; height: auto; opacity: 0.9; transition: transform 0.2s ease, opacity 0.2s ease;"
+            onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1';"
+            onmouseout="this.style.transform='scale(1)'; this.style.opacity='0.9';">
+    </div>
 
-                    <!-- Image -->
-                    <div class="col-lg-6 text-center">
-                        <img src="{{ asset('images/hero-img.svg') }}" alt="Hero Image"
-                            style="max-width:100%; height:auto;">
-                    </div>
+    <div>
+        <img src="{{ asset('images/hmti.png') }}" alt="Logo 2"
+            style="max-width: 160px; height: auto; opacity: 0.9; transition: transform 0.2s ease, opacity 0.2s ease;"
+            onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1';"
+            onmouseout="this.style.transform='scale(1)'; this.style.opacity='0.9';">
+    </div>
+</div>
 
-                </div>
-            </div>
+<div class="services-section" id="services">
+    <h2 class="services-title"> Ruangan</h2>
+    <p class="services-subtitle">
+        Berikut ini list ruangan Ormawa yang dapat digunakan
+    </p>
 
-            <div
-                style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; padding: 50px 0;">
-
-                <div>
-                    <img src="{{ asset('images/bem.png') }}" alt="Logo 1"
-                        style="max-width: 120px; height: auto; opacity: 0.9; transition: transform 0.2s ease, opacity 0.2s ease;"
-                        onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1';"
-                        onmouseout="this.style.transform='scale(1)'; this.style.opacity='0.9';">
-                </div>
-
-                <div>
-                    <img src="{{ asset('images/hmti.png') }}" alt="Logo 2"
-                        style="max-width: 160px; height: auto; opacity: 0.9; transition: transform 0.2s ease, opacity 0.2s ease;"
-                        onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1';"
-                        onmouseout="this.style.transform='scale(1)'; this.style.opacity='0.9';">
-                </div>
-            </div>
-
-            <div class="services-section" id="services">
-                <h2 class="services-title"> Ruangan</h2>
-                <p class="services-subtitle">
-                    Berikut ini list ruangan Ormawa yang dapat digunakan
-                </p>
-
-                <div class="container">
-                    <div class="services-wrapper2 mx-4 mt-4">
-                        <div class="row g-3">
-                            @foreach ($ruangan->take(2) as $ruang)
-                            <div class="col-sm-6">
-                                <div class="card h-100" style="border: 1px solid #ddd;">
-                                    <img src="{{ asset('storage/'. $ruang->foto) }}" class="card-img-top card-img-fit"
-                                        alt="">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $ruang->nama_ruangan }}</h5>
-                                        <p class="card-text">{{ $ruang->deskripsi }}</p>
-                                        <a href="#" class="btn btn-primary w-100">Detail</a>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
+    <div class="container">
+        <div class="services-wrapper2 mx-4 mt-4">
+            <div class="row g-3">
+                @foreach ($ruangan->take(2) as $ruang)
+                <div class="col-sm-6">
+                    <div class="card h-100" style="border: 1px solid #ddd;">
+                        <img src="{{ asset('storage/'. $ruang->foto) }}" class="card-img-top card-img-fit" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $ruang->nama_ruangan }}</h5>
+                            <p class="card-text">{{ $ruang->deskripsi }}</p>
+                            <a href="#" class="btn btn-primary w-100">Detail</a>
                         </div>
                     </div>
-                </div>
-
-                <a class="services-btn" href="{{route('ruangan')}}">Lihat Semua Ruangan</a>
-            </div>
-
-            <div class="services-section" style="margin-top: 30px">
-                <h2 class="services-title"> Barang</h2>
-                <p class="services-subtitle">
-                    Berikut ini merupakan list barang Ormawa yang dapat di pinjam
-                </p>
-
-                <div class="services-wrapper">
-
-                @foreach($barang->take(4) as $item)
-                    <div class="service-card">
-                        <div class="icon bg-1">
-                            <img src="{{ asset('storage/' . $item->foto_barang) }}" alt="">
-                        </div>
-                        <p style="margin-top: 10px; font-weight: bold; color: #0a2d62">{{ $item->nama_barang }}</p>
-                    </div>
-
                 </div>
                 @endforeach
-
-                <a class="services-btn" href="{{route('barang')}}" style="width">Lihat Semua Barang</a>
             </div>
-
-            <div class="about-section">
-                <div class="about-container">
-
-                    <div class="about-left">
-                        <img src="{{ asset('images/about-img.svg') }}" alt="About Image">
-                    </div>
-
-                    <div class="about-right">
-                        <h1 class="about-title">Tentang Aplikasi Kami</h1>
-                        <p class="about-desc">
-                            Aplikasi peminjaman barang dan ruangan yang memudahkan pengguna
-                            untuk melakukan reservasi secara cepat, akurat, dan transparan.
-                        </p>
-
-                        <div class="about-accordion">
-
-                            <div class="faq-item">
-                                <div class="faq-question">Apa saja yang bisa dipinjam?</div>
-                                <div class="faq-answer">
-                                    Anda bisa meminjam barang seperti laptop, proyektor, kamera,
-                                    serta berbagai ruang rapat dan ruang kelas.
-                                </div>
-                            </div>
-
-                            <div class="faq-item">
-                                <div class="faq-question">Bagaimana cara mengajukan peminjaman?</div>
-                                <div class="faq-answer">
-                                    Cukup pilih barang atau ruangan, tentukan tanggal, lalu ajukan permintaan.
-                                </div>
-                            </div>
-
-                            <div class="faq-item">
-                                <div class="faq-question">Apa ada batas waktu peminjaman?</div>
-                                <div class="faq-answer">
-                                    Setiap barang dan ruangan memiliki aturan durasi masing-masing.
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <a href="https://docs.google.com/document/d/1CHP3zW0nt6l4Jo2kWXtVAtC_eoUo22Y9/edit?usp=drive_link&ouid=102318851600841116319&rtpof=true&sd=true" class="about-btn">Lihat Selengkapnya</a>
-                    </div>
-
-                </div>
-            </div>
-
         </div>
     </div>
 
-    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-    <script src="{{asset('js/main.js')}}"></script>
+    <a class="services-btn" href="{{route('ruangan')}}">Lihat Semua Ruangan</a>
+</div>
 
-    <script>
-        document.querySelectorAll('.faq-item').forEach(item => {
-            item.addEventListener('click', () => {
-                item.classList.toggle('active');
-            });
-        });
+<div class="services-section" style="margin-top: 30px">
+    <h2 class="services-title"> Barang</h2>
+    <p class="services-subtitle">
+        Berikut ini merupakan list barang Ormawa yang dapat di pinjam
+    </p>
 
-    </script>
+    <div class="services-wrapper">
+
+        @foreach($barang->take(4) as $item)
+        <div class="service-card">
+            <div class="icon bg-1">
+                <img src="{{ asset('storage/' . $item->foto_barang) }}" alt="">
+            </div>
+            <p style="margin-top: 10px; font-weight: bold; color: #0a2d62">{{ $item->nama_barang }}</p>
+        </div>
+        @endforeach
+
+    </div>
 
 
-</body>
+    <a class="services-btn" href="{{route('barang')}}" style="width">Lihat Semua Barang</a>
+</div>
 
-</html>
+<div class="about-section">
+    <div class="about-container">
+
+        <div class="about-left">
+            <img src="{{ asset('images/about-img.svg') }}" alt="About Image">
+        </div>
+
+        <div class="about-right">
+            <h1 class="about-title">Tentang Aplikasi Kami</h1>
+            <p class="about-desc">
+                Aplikasi peminjaman barang dan ruangan yang memudahkan pengguna
+                untuk melakukan reservasi secara cepat, akurat, dan transparan.
+            </p>
+
+            <div class="about-accordion">
+
+                <div class="faq-item">
+                    <div class="faq-question">Apa saja yang bisa dipinjam?</div>
+                    <div class="faq-answer">
+                        Anda bisa meminjam barang seperti laptop, proyektor, kamera,
+                        serta berbagai ruang rapat dan ruang kelas.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Bagaimana cara mengajukan peminjaman?</div>
+                    <div class="faq-answer">
+                        Cukup pilih barang atau ruangan, tentukan tanggal, lalu ajukan permintaan.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">Apa ada batas waktu peminjaman?</div>
+                    <div class="faq-answer">
+                        Setiap barang dan ruangan memiliki aturan durasi masing-masing.
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="https://docs.google.com/document/d/1CHP3zW0nt6l4Jo2kWXtVAtC_eoUo22Y9/edit?usp=drive_link&ouid=102318851600841116319&rtpof=true&sd=true"
+                class="about-btn">Lihat Selengkapnya</a>
+        </div>
+
+    </div>
+</div>
+@endsection
+
+@push('scripts')
+<script>
+document.querySelectorAll('.faq-item').forEach(item => {
+    item.addEventListener('click', () => {
+        item.classList.toggle('active');
+    });
+});
+</script>
+@endpush

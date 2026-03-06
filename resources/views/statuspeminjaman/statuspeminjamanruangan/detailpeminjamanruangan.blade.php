@@ -1,296 +1,182 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Status Peminjaman</title>
+@section('content')
 
-    <!-- Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<div class="container-fluid">
+    <h3 class="mb-4">Detail Peminjaman Ruangan</h3>
 
-    <!-- Icons & CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <!-- CARD -->
+    <div class="card shadow-sm border-0">
+        <div class="card-body">
 
-    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}">
-</head>
-
-<body>
-    <div id="app">
-
-
-        <div id="sidebar" class="active">
-            <div class="sidebar-wrapper active">
-                <div class="sidebar-header">
-                    <div class="d-flex justify-content-between">
-                        <div class="logo">
-                            <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo" srcset="">
+            <form action="{{ route('statuspeminjamanruangan.detailpeminjaman', $peminjaman->id) }}" method="POST">
+                <fieldset disabled>
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Kode Peminjaman</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->code_peminjaman }}" readonly>
                         </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Nama Ruangan</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->ruangan->nama_ruangan }}"
+                                readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Penanggung Jawab</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->nama_penanggung_jawab }}"
+                                readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">NIM</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->nim }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Nama Ormawa</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->ormawa->nama_ormawa }}"
+                                readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Tanggal Peminjaman</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->tanggal_peminjaman }}"
+                                readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Jam Peminjaman</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->jam_mulai }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Jam Pengembalian</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->jam_selesai }}" readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Alasan Peminjaman</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->alasan_peminjaman }}"
+                                readonly>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </form>
+
+            <hr class="my-5">
+
+
+
+            <div class="row text-center justify-content-center mt-2">
+
+                {{-- ================= APPROVE PIC ================= --}}
+                <div class="col-md-4 mb-4 mt-3 d-flex">
+                    <div class="w-100">
+
+                        <p class="fw-semibold mb-3">Approve PIC</p>
+
+                        @if($peminjaman->status_peminjaman == '0')
+                        <button type="button" class="btn btn-warning">
+                            Waiting Reviewer
+                        </button>
+
+                        @elseif($peminjaman->status_peminjaman == '1')
+                        <button type="button" class="btn btn-success">
+                            Approve
+                        </button>
+
+                        <p class="mb-0 mt-2">
+                            {{ $peminjaman->approver?->nama_lengkap }}
+                        </p>
+
+                        @elseif($peminjaman->status_peminjaman == '2')
+                        <button type="button" class="btn btn-danger mb-2" disabled>
+                            Rejected
+                        </button>
+
+                        <a href="#" class="text-danger text-decoration-underline d-block mt-2" data-bs-toggle="modal"
+                            data-bs-target="#ModalReasonRejected">
+                            Lihat Alasan Penolakan
+                        </a>
+
+                        <p class="mb-0 mt-2">
+                            {{ $peminjaman->approver?->nama_lengkap }}
+                        </p>
+                        @endif
+
                     </div>
                 </div>
-                <div class="sidebar-menu">
-                    <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
-                        <li class="sidebar-item active ">
-                            <a href="{{route('dashboard')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('ruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-open-fill"></i>
-                                <span> Ruangan </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('barang') }}" class='sidebar-link'>
-                                <i class="bi bi-archive-fill"></i>
-                                <span> Barang </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Peminjaman</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
-                                <i class="bi bi-exclamation-circle-fill"></i>
-                                <span>Status Peminjaman</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">PIC Menu</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-closed"></i>
-                                <span>Approval Ruangan</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
-                                <i class="bi bi-box-seam"></i>
-                                <span>Approval Barang</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Pamdal Menu</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
-                                <i class="bi bi-key-fill"></i>
-                                <span>Kunci</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Other</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('tambahruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-open-fill"></i>
-                                <span>Kelola Ruangan</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ url('/ormawa') }}" class='sidebar-link'>
-                                <i class="bi bi-diagram-3"></i>
-                                <span>Ormawa</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('user') }}" class='sidebar-link'>
-                                <i class="bi bi-people-fill"></i>
-                                <span>User</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('role') }}" class='sidebar-link'>
-                                <i class="bi bi-shield-lock"></i>
-                                <span>Role</span>
-                            </a>
-                        </li>
-                    </ul>
+
+
+                {{-- ================= PEMBERIAN KUNCI ================= --}}
+                <div class="col-md-4 mb-4 mt-3 d-flex">
+                    <div class="w-100">
+
+                        <p class="fw-semibold mb-3">Pemberian Kunci</p>
+
+                        @if(is_null($peminjaman->given_by))
+                        <button type="button" class="btn btn-outline-secondary">
+                            Waiting
+                        </button>
+                        @else
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#TampilkanBuktiPemberian"
+                            class="d-block mb-2">
+                            Lihat Bukti Pemberian Kunci
+                        </a>
+
+                        <p class="mb-1 mt-3">
+                            {{ $peminjaman->given?->nama_lengkap }}
+                        </p>
+
+                        <p class="mb-0">
+                            {{ $peminjaman->time_given }}
+                        </p>
+                        @endif
+
+                    </div>
                 </div>
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+
+
+                {{-- ================= PENGEMBALIAN KUNCI ================= --}}
+                <div class="col-md-4 mb-4 mt-3 d-flex">
+                    <div class="w-100">
+
+                        <p class="fw-semibold mb-3">Pengembalian Kunci</p>
+
+                        @if(!is_null($peminjaman->given_by) && is_null($peminjaman->returned_by))
+                        <button type="button" class="btn btn-outline-secondary">
+                            Waiting
+                        </button>
+
+                        @elseif(!is_null($peminjaman->returned_by))
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#TampilanBuktiPengembalian"
+                            class="d-block mt-2">
+                            <p class="mb-0 text-center">Lihat Bukti Pengembalian Kunci</p>
+                        </a>
+
+                        <p class="mb-0 mt-3"> {{ $peminjaman->returned?->nama_lengkap}}</p>
+                        <p class="mb-0">{{ $peminjaman->time_returned }} </p>
+                        @endif
+
+
+
+                    </div>
+                </div>
+
             </div>
+
         </div>
-        <!-- MAIN -->
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
+    </div>
+</div>
 
-            <div class="container-fluid">
-                <h3 class="mb-4">Detail Peminjaman Ruangan</h3>
+@include('statuspeminjaman.modal.modalalasanrejected')
+@include('statuspeminjaman.modal.tampilanbuktipemberian')
+@include('statuspeminjaman.modal.tampilanbuktipengembalian')
 
-                <!-- CARD -->
-                <div class="card shadow-sm border-0">
-                    <div class="card-body">
+@endsection
 
-                        <form action="{{ route('statuspeminjamanruangan.detailpeminjaman', $peminjaman->id) }}"
-                            method="POST">
-                            <fieldset disabled>
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Kode Peminjaman</label>
-                                        <input type="text" class="form-control"
-                                            value="{{ $peminjaman->code_peminjaman }}" readonly>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Nama Ruangan</label>
-                                        <input type="text" class="form-control"
-                                            value="{{ $peminjaman->ruangan->nama_ruangan }}" readonly>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Penanggung Jawab</label>
-                                        <input type="text" class="form-control"
-                                            value="{{ $peminjaman->nama_penanggung_jawab }}" readonly>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">NIM</label>
-                                        <input type="text" class="form-control" value="{{ $peminjaman->nim }}" readonly>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Nama Ormawa</label>
-                                        <input type="text" class="form-control"
-                                            value="{{ $peminjaman->ormawa->nama_ormawa }}" readonly>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Tanggal Peminjaman</label>
-                                        <input type="text" class="form-control"
-                                            value="{{ $peminjaman->tanggal_peminjaman }}" readonly>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Jam Peminjaman</label>
-                                        <input type="text" class="form-control" value="{{ $peminjaman->jam_mulai }}"
-                                            readonly>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Jam Pengembalian</label>
-                                        <input type="text" class="form-control" value="{{ $peminjaman->jam_selesai }}"
-                                            readonly>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label fw-bold">Alasan Peminjaman</label>
-                                        <input type="text" class="form-control"
-                                            value="{{ $peminjaman->alasan_peminjaman }}" readonly>
-                                    </div>
+@push('scripts')
+<script>
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
 
-                                </div>
-                            </fieldset>
-                        </form>
-
-                        <hr class="my-5">
-
-
-
-                        <div class="row text-center justify-content-center mt-2">
-
-                            {{-- ================= APPROVE PIC ================= --}}
-                            <div class="col-md-4 mb-4 mt-3 d-flex">
-                                <div class="w-100">
-
-                                    <p class="fw-semibold mb-3">Approve PIC</p>
-
-                                    @if($peminjaman->status_peminjaman == '0')
-                                    <button type="button" class="btn btn-warning">
-                                        Waiting Reviewer
-                                    </button>
-
-                                    @elseif($peminjaman->status_peminjaman == '1')
-                                    <button type="button" class="btn btn-success">
-                                        Approve
-                                    </button>
-
-                                    <p class="mb-0 mt-2">
-                                        {{ $peminjaman->approver?->nama_lengkap }}
-                                    </p>
-
-                                    @elseif($peminjaman->status_peminjaman == '2')
-                                    <button type="button" class="btn btn-danger mb-2" disabled>
-                                        Rejected
-                                    </button>
-
-                                    <a href="#" class="text-danger text-decoration-underline d-block mt-2"
-                                        data-bs-toggle="modal" data-bs-target="#ModalReasonRejected">
-                                        Lihat Alasan Penolakan
-                                    </a>
-
-                                    <p class="mb-0 mt-2">
-                                        {{ $peminjaman->approver?->nama_lengkap }}
-                                    </p>
-                                    @endif
-
-                                </div>
-                            </div>
-
-
-                            {{-- ================= PEMBERIAN KUNCI ================= --}}
-                            <div class="col-md-4 mb-4 mt-3 d-flex">
-                                <div class="w-100">
-
-                                    <p class="fw-semibold mb-3">Pemberian Kunci</p>
-
-                                    @if(is_null($peminjaman->given_by))
-                                    <button type="button" class="btn btn-outline-secondary">
-                                        Waiting
-                                    </button>
-                                    @else
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#TampilkanBuktiPemberian"
-                                        class="d-block mb-2">
-                                        Lihat Bukti Pemberian Kunci
-                                    </a>
-
-                                    <p class="mb-1 mt-3">
-                                        {{ $peminjaman->given?->nama_lengkap }}
-                                    </p>
-
-                                    <p class="mb-0">
-                                        {{ $peminjaman->time_given }}
-                                    </p>
-                                    @endif
-
-                                </div>
-                            </div>
-
-
-                            {{-- ================= PENGEMBALIAN KUNCI ================= --}}
-                            <div class="col-md-4 mb-4 mt-3 d-flex">
-                                <div class="w-100">
-
-                                    <p class="fw-semibold mb-3">Pengembalian Kunci</p>
-
-                                    @if(!is_null($peminjaman->given_by) && is_null($peminjaman->returned_by))
-                                    <button type="button" class="btn btn-outline-secondary">
-                                        Waiting
-                                    </button>
-
-                                    @elseif(!is_null($peminjaman->returned_by))
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#TampilanBuktiPengembalian"
-                                        class="d-block mt-2">
-                                        <p class="mb-0 text-center">Lihat Bukti Pengembalian Kunci</p>
-                                    </a>
-
-                                    <p class="mb-0 mt-3"> {{ $peminjaman->returned?->nama_lengkap}}</p>
-                                    <p class="mb-0">{{ $peminjaman->time_returned }} </p>
-                                    @endif
-
-
-
-                                </div>
-                            </div>
-
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
-            <!-- JS -->
-            <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
-            <script src="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
-            <script src="{{ asset('js/main.js') }}"></script>
-            @include('statuspeminjaman.modal.modalalasanrejected')
-            @include('statuspeminjaman.modal.tampilanbuktipemberian')
-            @include('statuspeminjaman.modal.tampilanbuktipengembalian')
-
-</body>
-
-</html>
+</script>
+@endpush

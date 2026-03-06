@@ -201,6 +201,30 @@
         });
 
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   @if(session('success'))
+    <script>
+        Swal.fire({
+            title: "Success",
+            text: "{{ session('success') }}",
+            icon: "success",
+            draggable: true
+        });
+    </script>
+    @endif
+
+     @if(session('error'))
+    <script>
+        Swal.fire({
+            title: "Oops...",
+            text: "{{ session('error') }}",
+            icon: "error",
+            draggable: true
+        });
+    </script>
+    @endif
+
     
 </body>
 

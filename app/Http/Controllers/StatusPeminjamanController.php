@@ -103,7 +103,7 @@ class StatusPeminjamanController extends Controller
         $barang = $peminjaman->barang;
         $ormawa = Ormawa::all();
         if($peminjaman->status_peminjaman == '0') {
-            return view('statuspeminjaman.statuspeminjamanruangan.editstatuspeminjamanruangan', compact('peminjaman', 'ruangan', 'ormawa'));
+            return view('statuspeminjaman.statuspeminjamanruangan.editstatuspeminjamanruangan', compact('peminjaman', 'barang', 'ormawa'));
         } else {
             return redirect()->back()->with('error', 'Peminjaman tidak dapat diedit karena sudah disetujui.');
         }

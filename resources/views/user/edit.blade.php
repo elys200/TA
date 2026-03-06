@@ -1,191 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Mazer Admin Dashboard</title>
+@section('content')
+<div class="container-fluid">
 
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/iconly/bold.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/bootstrap-icons/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <h2>Edit User</h2>
 
-    <link rel="shortcut icon" href="{{ asset('images/logo/logo1.png') }}" type="image/x-icon">
+    <!-- WRAPPER PUTIH -->
+    <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
 
-
-</head>
-
-<body>
-    <div id="app">
-        <div id="sidebar" class="active">
-            <div class="sidebar-wrapper active">
-                <div class="sidebar-header">
-                    <div class="d-flex justify-content-between">
-                        <div class="logo">
-                            <a href="index.html"><img src="images/logo/logo1.png" alt="Logo" srcset=""></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-menu">
-                    <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
-                        <li class="sidebar-item active ">
-                            <a href="{{route('dashboard')}}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('ruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-open-fill"></i>
-                                <span> Ruangan </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('barang') }}" class='sidebar-link'>
-                                <i class="bi bi-archive-fill"></i>
-                                <span> Barang </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Peminjaman</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
-                                <i class="bi bi-exclamation-circle-fill"></i>
-                                <span>Status Peminjaman</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">PIC Menu</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-closed"></i>
-                                <span>Approval Ruangan</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
-                                <i class="bi bi-box-seam"></i>
-                                <span>Approval Barang</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Pamdal Menu</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('kunci') }}" class='sidebar-link'>
-                                <i class="bi bi-key-fill"></i>
-                                <span>Kunci</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-title">Other</li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('tambahruangan') }}" class='sidebar-link'>
-                                <i class="bi bi-door-open-fill"></i>
-                                <span>Kelola Ruangan</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ url('/ormawa') }}" class='sidebar-link'>
-                                <i class="bi bi-diagram-3"></i>
-                                <span>Ormawa</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('user') }}" class='sidebar-link'>
-                                <i class="bi bi-people-fill"></i>
-                                <span>User</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item  ">
-                            <a href="{{ route('role') }}" class='sidebar-link'>
-                                <i class="bi bi-shield-lock"></i>
-                                <span>Role</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+        <form class="row g-3" action="{{route('user.update', $users->id)}}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="col-md-6">
+                <label for="" class="form-label fw-bold">Nama Lengkap</label>
+                <input type="text" name="nama_lengkap" class="form-control"
+                    value="{{ old('nama_lengkap', $users->nama_lengkap) }}">
             </div>
-        </div>
-        <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
-            <div class="container-fluid">
-
-                <h2>Edit User</h2>
-
-                <!-- WRAPPER PUTIH -->
-                <div class="bg-white p-4 rounded-3 shadow-sm" style="margin-top: 10px">
-
-                    <form class="row g-3" action="{{route('user.update', $users->id)}}" method="POST">
-                        @csrf
-                        @method('PUT')
-                        <div class="col-md-6">
-                            <label for="" class="form-label fw-bold">Nama Lengkap</label>
-                            <input type="text" name="nama_lengkap" class="form-control"
-                                value="{{ old('nama_lengkap', $users->nama_lengkap) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="form-label fw-bold">Email</label>
-                            <input type="email" name="email" class="form-control"
-                                value="{{ old('email', $users->email) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputState" class="form-label fw-bold">Role</label>
-                            <select name="role" class="form-select">
-                                @foreach ($roles as $role)
-                                <option value="{{ $role->name }}" {{ $users->hasRole($role->name) ? 'selected' : '' }}>
-                                    {{ \Illuminate\Support\Str::title(str_replace('_', ' ', $role->name)) }}
-                                    
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="form-label fw-bold">NIM</label>
-                            <input type="text" name="nim" class="form-control" value="{{ old('nim', $users->nim) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="form-label fw-bold">Jurusan</label>
-                            <input type="text" name="program_studi" class="form-control"
-                                value="{{ old('jurusan', $users->jurusan) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="" class="form-label fw-bold">Program Studi</label>
-                            <input type="text" name="program_studi" class="form-control"
-                                value="{{ old('program_studi', $users->program_studi) }}">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputState" class="form-label fw-bold">Status User</label>
-                            <select name="status" class="form-select">
-                                <option value="1" {{ old('status', $users->status) == '1' ? 'selected' : ''}}>
-                                    Aktif</option>
-                                <option value="0"
-                                    {{ old('status', $users->status) == '0' ? 'selected' : ''}}>Non Aktif
-                                </option>
-                            </select>
-                        </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary" type="submit">Update</button>
-                        </div>
-
-
-                    </form>
-
-                </div>
+            <div class="col-md-6">
+                <label for="" class="form-label fw-bold">Email</label>
+                <input type="email" name="email" class="form-control" value="{{ old('email', $users->email) }}">
             </div>
-        </div>
-        <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-        <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-        <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-        <script src="{{asset('js/pages/dashboard.js')}}"></script>
-        <script src="{{asset('js/main.js')}}"></script>
+            <div class="col-md-6">
+                <label for="inputState" class="form-label fw-bold">Role</label>
+                <select name="role" class="form-select">
+                    @foreach ($roles as $role)
+                    <option value="{{ $role->name }}" {{ $users->hasRole($role->name) ? 'selected' : '' }}>
+                        {{ \Illuminate\Support\Str::title(str_replace('_', ' ', $role->name)) }}
 
-</body>
+                    </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label fw-bold">NIM</label>
+                <input type="text" name="nim" class="form-control" value="{{ old('nim', $users->nim) }}">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label fw-bold">Jurusan</label>
+                <input type="text" name="program_studi" class="form-control"
+                    value="{{ old('jurusan', $users->jurusan) }}">
+            </div>
+            <div class="col-md-6">
+                <label for="" class="form-label fw-bold">Program Studi</label>
+                <input type="text" name="program_studi" class="form-control"
+                    value="{{ old('program_studi', $users->program_studi) }}">
+            </div>
+            <div class="col-md-6">
+                <label for="inputState" class="form-label fw-bold">Status User</label>
+                <select name="status" class="form-select">
+                    <option value="1" {{ old('status', $users->status) == '1' ? 'selected' : ''}}>
+                        Aktif</option>
+                    <option value="0" {{ old('status', $users->status) == '0' ? 'selected' : ''}}>Non Aktif
+                    </option>
+                </select>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Update</button>
+            </div>
 
-</html>
+
+        </form>
+
+    </div>
+</div>
+</div>
+
+@endsection
+
+@push('scripts')
+<script>
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
+
+</script>
+@endpush
