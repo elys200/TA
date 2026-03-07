@@ -6,24 +6,24 @@ use Spatie\Permission\Models\Role;
 
 
 class UserController extends Controller {
-    // public function __construct() {
-    //     $this->middleware(['auth', 'role:admin']);
-    // }
+    public function __construct() {
+        $this->middleware(['auth', 'role:admin']);
+    }
 
     public function index() {
-        $users=Users::all();
-        $roles=Role::all();
+        $users = Users::all();
+        $roles = Role::all();
         return view('user.user', compact('users'));
     }
 
     public function edit($id) {
-        $users=Users::findOrFail($id);
-        $roles=Role::all();
+        $users = Users::findOrFail($id);
+        $roles = Role::all();
         return view('user.edit', compact('users', 'roles'));
     }
 
     public function update(Request $request, $id) {
-        $users=Users::findOrFail($id);
+        $users = Users::findOrFail($id);
 
         $validate=$request->validate([ 'nim'=> 'nullable|string|max:255|unique:users,nim,'. $users->id,
             'nama_lengkap'=> 'nullable|string|max:255',
@@ -51,7 +51,7 @@ class UserController extends Controller {
     }
 
     public function destroy($id) {
-        $users=Users::findOrFail($id);
+        $users = Users::findOrFail($id);
         $users->delete();
         return redirect()->route('user')->with('success', 'Data user berhasil dihapus.');
     }

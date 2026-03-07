@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ApprovalBarangController extends Controller
 {
+    public function __construct(){
+        $this->middleware(['auth', 'permission:approve_barang']);
+    }
     public function index() {
         $peminjaman = PeminjamanBarang::paginate(10);
 
@@ -66,6 +69,7 @@ public function rejected(Request $request, $id){
 
  public function given(Request $request, $id)
 {
+    if(auth()->user()->can('give_barang')){
     $request->validate([
         'password' => 'required',
         'foto_pemberian' => 'required|image|mimes:jpg,jpeg,png|max:2048'
@@ -89,9 +93,14 @@ public function rejected(Request $request, $id){
 
     return redirect()->route('approvalbarang.detail', $id)
         ->with('success', 'Data berhasil diperbaharui');
+    }
+    else{
+        abort(403, 'Unauthorize');
+    }
 }
 
 public function return(Request $request, $id){
+    if(auth()->user()->can('return_barang')){
     $request->validate([
         'password' => 'required',
         'foto_pengembalian' => 'required|image|mimes:jpg,jpeg,png|max:2048'
@@ -113,6 +122,10 @@ public function return(Request $request, $id){
 
     return redirect()->route('approvalbarang.detail', $id)
         ->with('success', 'Data berhasil diperbaharui');
+    }
+    else{
+        abort(403, 'Unathirized');
+    }
 
 }
 }

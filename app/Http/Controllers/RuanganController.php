@@ -10,145 +10,152 @@ use Illuminate\Support\Facades\DB;
 
 class RuanganController extends Controller {
     public function index() {
-        $ruangan = Ruangan::all();
-        return view ('ruangan/ruangan', compact('ruangan'));
-    }
+        if(auth()->user()->can('view_ruangan')) {
+            $ruangan = Ruangan::all();
+            return view ('ruangan/ruangan', compact('ruangan'));
+        }
 
-    public function detail($id){
-        $ruangan = Ruangan::with('pic')->findOrFail($id);
-        return view('ruangan.detail', compact('ruangan'));
-    }
-
-    public function form($id){
-        $ruangan = Ruangan::findOrFail($id);
-        $ormawa = Ormawa::all();
-        return view('ruangan.formruangan', compact('ruangan', 'ormawa'));
-    }
-
- public function generateKode($ruangan_id, $tanggal)
-{
-    $ruangan = Ruangan::findOrFail($ruangan_id);
-
-    $tgl = Carbon::parse($tanggal);
-    $tanggalFormat = $tgl->format('Ymd');
-
-    $count = PeminjamanRuangan::where('ruangan_id', $ruangan_id)
-        ->whereDate('tanggal_peminjaman', $tanggal)
-        ->lockForUpdate()
-        ->count();
-
-    $urutan = str_pad($count + 1, 3, '0', STR_PAD_LEFT);
-
-    $kodeRuangan = strtoupper(str_replace(' ', '', $ruangan->kode_ruangan));
-
-    return $kodeRuangan . '_' . $tanggalFormat . '_' . $urutan;
-}
-
-   public function store(Request $request, $id)
-{
-    $ruangan = Ruangan::findOrFail($id);
-
-    $validatedData = $request->validate([
-        'nama_penanggung_jawab' => 'required|string',
-        'nim' => 'required|string',
-        'ormawa_id' => 'required|exists:ormawa,id',
-        'tanggal_peminjaman' => 'required|date|after_or_equal:' . now()->addDays(2)->toDateString(),
-        'jam_mulai' => 'required|date_format:H:i',
-        'jam_selesai' => 'required|date_format:H:i|after:jam_mulai',
-        'alasan_peminjaman' => 'required|string',
-    ]);
-
-    // Ambil tanggal & jam
-    $tanggal = Carbon::parse($validatedData['tanggal_peminjaman']);
-    $hari = $tanggal->dayOfWeek;
-
-    $jamMulai = $validatedData['jam_mulai'];
-    $jamSelesai = $validatedData['jam_selesai'];
-
-    // 🔴 Minggu tidak boleh
-    if ($hari == 0) {
-        return back()
-            ->withErrors(['tanggal_peminjaman' => 'Hari Minggu tidak tersedia untuk peminjaman'])
-            ->withInput();
-    }
-
-    // 🟡 Sabtu (08:00 - 12:00)
-    if ($hari == 6) {
-        if ($jamMulai < '08:00' || $jamSelesai > '12:00') {
-            return back()
-                ->withErrors(['jam_mulai' => 'Hari Sabtu hanya boleh jam 08:00 - 12:00'])
-                ->withInput();
+        else {
+            abort(403, 'Unauthorized');
         }
     }
 
-    // 🟢 Senin - Jumat (08:00 - 17:00)
-    if ($hari >= 1 && $hari <= 5) {
-        if ($jamMulai < '08:00' || $jamSelesai > '17:00') {
-            return back()
-                ->withErrors(['jam_mulai' => 'Senin - Jumat hanya boleh jam 08:00 - 17:00'])
-                ->withInput();
+    public function detail($id) {
+        if(auth()->user()->can('view_ruangan')) {
+            $ruangan=Ruangan::with('pic')->findOrFail($id);
+            return view('ruangan.detail', compact('ruangan'));
+        }
+
+        else {
+            abort(403, 'Unauthorized');
+        }
+
+    }
+
+    public function form($id) {
+        if(auth()->user()->can('borang_ruangan')) {
+            $ruangan=Ruangan::findOrFail($id);
+            $ormawa=Ormawa::all();
+            return view('ruangan.formruangan', compact('ruangan', 'ormawa'));
+        }
+
+        else {
+            abort(403, 'Unauthorized');
         }
     }
 
-    if ($jamMulai >= $jamSelesai) {
-        return back()
-            ->withErrors(['jam_mulai' => 'Jam mulai harus lebih awal dari jam selesai'])
-            ->withInput();
+    public function generateKode($ruangan_id, $tanggal) {
+        $ruangan= Ruangan::findOrFail($ruangan_id);
+
+        $tgl= Carbon::parse($tanggal);
+        $tanggalFormat=$tgl->format('Ymd');
+
+        $count = PeminjamanRuangan::where('ruangan_id', $ruangan_id) ->whereDate('tanggal_peminjaman', $tanggal) ->lockForUpdate() ->count();
+
+        $urutan=str_pad($count + 1, 3, '0', STR_PAD_LEFT);
+
+        $kodeRuangan=strtoupper(str_replace(' ', '', $ruangan->kode_ruangan));
+
+        return $kodeRuangan . '_'. $tanggalFormat . '_'. $urutan;
     }
 
-       DB::transaction(function () use ($validatedData, $ruangan) {
+    public function store(Request $request, $id) {
+        if(auth()->user()->can('borang_ruangan')) {
+            $ruangan=Ruangan::findOrFail($id);
 
-        // 🔥 generate kode DI DALAM transaction
-        $kode = $this->generateKode(
-            $ruangan->id,
-            $validatedData['tanggal_peminjaman']
-        );
+            $validatedData=$request->validate([ 'nama_penanggung_jawab'=> 'required|string',
+                'nim'=> 'required|string',
+                'ormawa_id'=> 'required|exists:ormawa,id',
+                'tanggal_peminjaman'=> 'required|date|after_or_equal:'. now()->addDays(2)->toDateString(),
+                'jam_mulai'=> 'required|date_format:H:i',
+                'jam_selesai'=> 'required|date_format:H:i|after:jam_mulai',
+                'alasan_peminjaman'=> 'required|string',
+                ]);
+
+            // Ambil tanggal & jam
+            $tanggal = Carbon::parse($validatedData['tanggal_peminjaman']);
+            $hari=$tanggal->dayOfWeek;
+
+            $jamMulai=$validatedData['jam_mulai'];
+            $jamSelesai=$validatedData['jam_selesai'];
+
+            // 🔴 Minggu tidak boleh
+            if ($hari==0) {
+                return back() ->withErrors(['tanggal_peminjaman'=> 'Hari Minggu tidak tersedia untuk peminjaman']) ->withInput();
+            }
+
+            // 🟡 Sabtu (08:00 - 12:00)
+            if ($hari==6) {
+                if ($jamMulai < '08:00'|| $jamSelesai > '12:00') {
+                    return back() ->withErrors(['jam_mulai'=> 'Hari Sabtu hanya boleh jam 08:00 - 12:00']) ->withInput();
+                }
+            }
+
+            // 🟢 Senin - Jumat (08:00 - 17:00)
+            if ($hari >=1 && $hari <=5) {
+                if ($jamMulai < '08:00'|| $jamSelesai > '17:00') {
+                    return back() ->withErrors(['jam_mulai'=> 'Senin - Jumat hanya boleh jam 08:00 - 17:00']) ->withInput();
+                }
+            }
+
+            if ($jamMulai >=$jamSelesai) {
+                return back() ->withErrors(['jam_mulai'=> 'Jam mulai harus lebih awal dari jam selesai']) ->withInput();
+            }
+
+            DB::transaction(function () use ($validatedData, $ruangan) {
+
+                    // 🔥 generate kode DI DALAM transaction
+                    $kode=$this->generateKode($ruangan->id,
+                        $validatedData['tanggal_peminjaman']);
 
 
-    // ✅ Simpan data (di luar kondisi hari!)
-    PeminjamanRuangan::create([
-        'code_peminjaman' => $kode,
-        'ruangan_id' => $ruangan->id,
-        'user_id' => auth()->id(),
-        'ormawa_id' => $validatedData['ormawa_id'],
-        'nama_penanggung_jawab' => $validatedData['nama_penanggung_jawab'],
-        'nim' => $validatedData['nim'],
-        'tanggal_peminjaman' => $validatedData['tanggal_peminjaman'],
-        'jam_mulai' => $validatedData['jam_mulai'],
-        'jam_selesai' => $validatedData['jam_selesai'],
-        'alasan_peminjaman' => $validatedData['alasan_peminjaman'],
-        'status_peminjaman' => 0,
-    ]);
-       });
+                    // ✅ Simpan data (di luar kondisi hari!)
+                    PeminjamanRuangan::create([ 'code_peminjaman'=> $kode,
+                        'ruangan_id'=> $ruangan->id,
+                        'user_id'=> auth()->id(),
+                        'ormawa_id'=> $validatedData['ormawa_id'],
+                        'nama_penanggung_jawab'=> $validatedData['nama_penanggung_jawab'],
+                        'nim'=> $validatedData['nim'],
+                        'tanggal_peminjaman'=> $validatedData['tanggal_peminjaman'],
+                        'jam_mulai'=> $validatedData['jam_mulai'],
+                        'jam_selesai'=> $validatedData['jam_selesai'],
+                        'alasan_peminjaman'=> $validatedData['alasan_peminjaman'],
+                        'status_peminjaman'=> 0,
+                        ]);
+                }
 
-    return redirect()->route('statuspeminjamanruangan')
-        ->with('success', 'Peminjaman ruangan berhasil diajukan!');
-}
+            );
 
-public function calendarEvents($ruanganId)
-{
-    try {
+            return redirect()->route('statuspeminjamanruangan') ->with('success', 'Peminjaman ruangan berhasil diajukan!');
 
-        $events = PeminjamanRuangan::where('ruangan_id', $ruanganId)
-            ->where('status_peminjaman', 1)
-            ->get()
-            ->map(function ($item) {
+        }
 
-                return [
-                    'title' => $item->nama_kegiatan ?? 'Dipakai',
-                    'start' => $item->tanggal_peminjaman . 'T' . $item->jam_mulai,
-                    'end'   => $item->tanggal_peminjaman . 'T' . $item->jam_selesai,
-                    'backgroundColor' => '#28a745',
-                    'borderColor' => '#28a745',
-                ];
-            });
-
-        return response()->json($events);
-
-    } catch (\Exception $e) {
-        return response()->json([
-            'error' => $e->getMessage()
-        ], 500);
+        else {
+            abort(403, 'Unauthorized');
+        }
     }
-}
+
+    public function calendarEvents($ruanganId) {
+        try {
+
+            $events=PeminjamanRuangan::where('ruangan_id', $ruanganId) ->where('status_peminjaman', 1) ->get() ->map(function ($item) {
+
+                    return [ 'title'=> $item->nama_kegiatan ?? 'Dipakai',
+                    'start'=> $item->tanggal_peminjaman . 'T'. $item->jam_mulai,
+                    'end'=> $item->tanggal_peminjaman . 'T'. $item->jam_selesai,
+                    'backgroundColor'=> '#28a745',
+                    'borderColor'=> '#28a745',
+                    ];
+                }
+
+            );
+
+            return response()->json($events);
+
+        }
+
+        catch (\Exception $e) {
+            return response()->json([ 'error'=> $e->getMessage()], 500);
+        }
+    }
 }

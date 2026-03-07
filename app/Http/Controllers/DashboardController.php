@@ -15,6 +15,7 @@ class DashboardController extends Controller
         $ruangan = Ruangan::all();
         $barang = Barang::all();
         return view('dashboard', compact('ruangan', 'barang'));
+        
         }else{
             abort(403, 'Unauthorized');
         }

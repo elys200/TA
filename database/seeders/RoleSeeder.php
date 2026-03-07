@@ -36,13 +36,6 @@ class RoleSeeder extends Seeder
             ],
             ['name' => 'mahasiswa']
         );
-
-        $permission = Permission::updateOrCreate([
-            'name' => 'view_dashboard',
-            ],
-            ['name' => 'view_dashboard']
-        );
-
-        $role_admin->givePermissionTo($permission);
+        
     }
 }

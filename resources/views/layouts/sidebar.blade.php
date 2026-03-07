@@ -22,36 +22,40 @@
                         <span> Ruangan </span>
                     </a>
                 </li>
+                @hasanyrole('admin|pic_barang|pic_ruangan|mahasiswa')
                 <li class="sidebar-item  ">
                     <a href="{{ route('barang') }}" class='sidebar-link'>
                         <i class="bi bi-archive-fill"></i>
                         <span> Barang </span>
                     </a>
                 </li>
+                @endhasanyrole
+                @hasanyrole('admin|pic_barang|pic_ruangan|mahasiswa')
                 <li class="sidebar-title">Peminjaman</li <li class="sidebar-item  ">
                 <a href="{{ route('statuspeminjamanbarang') }}" class='sidebar-link'>
                     <i class="bi bi-exclamation-circle-fill"></i>
                     <span>Status Peminjaman</span>
                 </a>
                 </li>
+                @endhasanyrole
+                @hasanyrole('admin|pic_ruangan')
                 <li class="sidebar-title">PIC Menu</li>
-                @role('pic_ruangan|admin')
                 <li class="sidebar-item  ">
                     <a href="{{ route('approvalruangan') }}" class='sidebar-link'>
                         <i class="bi bi-door-closed"></i>
                         <span>Approval Ruangan</span>
                     </a>
                 </li>
-                @endrole
-                @role('pic_barang|admin')
+                @endhasanyrole
+                @hasanyrole('admin|pic_barang')
                 <li class="sidebar-item  ">
                     <a href="{{ route('approvalbarang') }}" class='sidebar-link'>
                         <i class="bi bi-box-seam"></i>
                         <span>Approval Barang</span>
                     </a>
                 </li>
-                @endrole
-                @role('pamdal|admin')
+                @endhasanyrole
+                @hasanyrole('admin|pamdal')
                 <li class="sidebar-title">Pamdal Menu</li>
                 <li class="sidebar-item  ">
                     <a href="{{ route('kunci') }}" class='sidebar-link'>
@@ -59,9 +63,9 @@
                         <span>Kunci</span>
                     </a>
                 </li>
-                @endrole
-                <li class="sidebar-title">Other</li>
+                @endhasanyrole
                 @role('admin')
+                <li class="sidebar-title">Other</li>
                 <li class="sidebar-item  ">
                     <a href="{{ route('tambahruangan') }}" class='sidebar-link'>
                         <i class="bi bi-door-open-fill"></i>
@@ -69,14 +73,14 @@
                     </a>
                 </li>
                 @endrole
-                @role('admin|pic_barang')
+                @hasanyrole('admin|pic_barang')
                 <li class="sidebar-item  ">
                     <a href="{{ url('/ormawa') }}" class='sidebar-link'>
                         <i class="bi bi-diagram-3"></i>
                         <span>Ormawa</span>
                     </a>
                 </li>
-                @endrole
+                @endhasanyrole
                 @role('admin')
                 <li class="sidebar-item  ">
                     <a href="{{ route('user') }}" class='sidebar-link'>
@@ -84,8 +88,6 @@
                         <span>User</span>
                     </a>
                 </li>
-                @endrole
-                @role('admin')
                 <li class="sidebar-item  ">
                     <a href="{{ route('role') }}" class='sidebar-link'>
                         <i class="bi bi-shield-lock"></i>

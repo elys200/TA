@@ -18,18 +18,23 @@ use App\Models\Ormawa;
 
 // Login & Registrasi//
 Route::get('/', function () {
-    return redirect()->route('login'); // langsung redirect ke login
-});
+        return redirect()->route('login'); // langsung redirect ke login
+    }
+
+);
+
 Route::get('/login', function () {
-    $ormawa = Ormawa::all();
+        $ormawa=Ormawa::all();
         return view('login', compact('ormawa'));
     }
+
 );
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 //Register//
 Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
+Route::group(['middleware'=> 'auth'], function () {
 
 
         //Dashboard//
@@ -48,9 +53,9 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
         Route::get('/barang/detail/{id}', [BarangController::class, 'detail'])->name('barang.detail');
         Route::get('/barang/{id}/form', [BarangController::class, 'form'])->name('barang.form');
         Route::post('/barang/{id}/borang', [BarangController::class, 'store'])->name('barang.borang');
-        
 
-        
+
+
 
         // Form Pemborangan Barang//
         Route::get('/listpeminjamanBarang/form', function () {
@@ -59,7 +64,7 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 
         )->name('listpeminjamanbarang.form');
 
-       
+
 
 
         //Status Peminjaman//
@@ -77,7 +82,7 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
         )->name('statuspeminjaman.detailbarang');
 
         //Ruangan//
-        Route::get('/statuspeminjamanruangan',[StatusPeminjamanController::class, 'indexRuangan'])->name('statuspeminjamanruangan');
+        Route::get('/statuspeminjamanruangan', [StatusPeminjamanController::class, 'indexRuangan'])->name('statuspeminjamanruangan');
         Route::get('/statuspeminjamanruangan/detailpeminjaman/{id}', [StatusPeminjamanController::class, 'detail'])->name('statuspeminjamanruangan.detailpeminjaman');
         Route::get('/statuspeminjamanruangan/editpeminjaman/{id}', [StatusPeminjamanController::class, 'edit'])->name('statuspeminjamanruangan.editpeminjaman');
         Route::put('/statuspeminjamanruangan/updatepeminjaman/{id}', [StatusPeminjamanController::class, 'update'])->name('statuspeminjamanruangan.updatepeminjaman');
@@ -137,7 +142,7 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
         Route::put('/kunci/{id}/given', [KunciController::class, 'given'])->name('kunci.given');
         Route::put('/kunci/{id}/return', [KunciController::class, 'return'])->name('kunci.return');
 
-        
+
         // Route::get('/kunci/detail', function() {
         //         return view('kunci.detail');
         //     }
@@ -153,7 +158,7 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
         Route::put('/approvalbarang/{id}/given', [ApprovalBarangController::class, 'given'])->name('approvalbarang.given');
         Route::put('/approvalbarang/{id}/return', [ApprovalBarangController::class, 'return'])->name('approvalbarang.return');
 
-        
+
 
         //Ruangan//
         Route::get('/approvalruangan', [ApprovalRuanganController::class, 'index'])->name('approvalruangan');
@@ -177,4 +182,6 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
         Route::put('/tambahruangan/{id}', [TambahRuanganController::class, 'update'])->name('tambahruangan.update');
         Route::delete('/tambahruangan/{id}', [TambahRuanganController::class, 'destroy'])->name('tambahruangan.destroy');
 
-        
+    }
+
+);

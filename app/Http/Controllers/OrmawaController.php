@@ -8,19 +8,30 @@ use Illuminate\Support\Facades\Storage;
 
 class OrmawaController extends Controller {
     public function index() {
+        if(auth()->user()->can('view_ormawa')){
         $ormawa=Ormawa::all();
         $users=Users::all();
         return view('ormawa/ormawa', compact('ormawa', 'users'));
+        }
+        else{
+            abort(403, 'Unauthorized');
+        }
     }
 
     // FORM TAMBAH
     public function create() {
+        if(auth()->user()->can('ormawa_all')){
         $users=Users::all();
         return view('ormawa.form', compact('users'));
+        }
+        else{
+          abort(403, 'Unathorized');
+        }
     }
 
     // SIMPAN DATA
     public function store(Request $request) {
+        if(auth()->user()->can('ormawa_all')){
         $validated=$request->validate([ 'nama_ormawa'=> 'required|string|unique:ormawa,nama_ormawa|max:255',
             'singkatan'=> 'required|string|unique:ormawa,singkatan|max:50',
             'jenis_ormawa'=> 'required|in:bem,himpunan,ukm',
@@ -48,22 +59,35 @@ class OrmawaController extends Controller {
         Ormawa::create($validated);
 
         return redirect() ->route('ormawa') ->with('success', 'Ormawa berhasil ditambahkan.');
+        }
+        else{
+            abort(403, 'Unathorized');
+        }
     }
 
     public function detail($id) {
+        if(auth()->user()->can('view_detail_ormawa')){
         $ormawa=Ormawa::with('barang')->findOrFail($id);
-        // relasi: Ormawa hasMany Barang
-
         return view('ormawa.detail', compact('ormawa'));
+        }
+        else{
+            abort(403, 'Unathprized');
+        }
     }
 
     public function edit($id) {
+        if(auth()->user()->can('ormawa_all')){
         $ormawa=Ormawa::findOrFail($id);
         $users=Users::all();
         return view('ormawa.edit', compact('ormawa', 'users'));
+        }
+        else{
+            abort(403, 'Unauthorized');
+        }
     }
 
     public function update(Request $request, $id) {
+        if(auth()->user()->can('ormawa_all')){
         $ormawa=Ormawa::findOrFail($id);
 
         $validated=$request->validate([ 'nama_ormawa'=> 'required|string|unique:ormawa,nama_ormawa,'. $ormawa->id . '|max:255',
@@ -105,9 +129,14 @@ class OrmawaController extends Controller {
         $ormawa->update($validated);
 
         return redirect() ->route('ormawa') ->with('success', 'Ormawa berhasil diperbarui.');
+        }
+        else{
+            abort(403, 'Unathorized');
+        }
     }
 
     public function destroy($id) {
+        if(auth()->user()->can('ormawa_all')){
         $ormawa=Ormawa::findOrFail($id);
 
         // hapus foto organisasi jika ada
@@ -123,10 +152,15 @@ class OrmawaController extends Controller {
         $ormawa->delete();
 
         return redirect() ->route('ormawa') ->with('success', 'Ormawa berhasil dihapus.');
+        }
+        else{
+            abort(403, 'Unathorized');
+        }
     }
 
 
     public function storeBarang(Request $request, $ormawa_id) {
+        if(auth()->user()->can('barang_all')){
         $validated=$request->validate([ 'nama_barang'=> 'required|string|max:255',
             'kode_barang'=> 'required|string|max:50|unique:barang,kode_barang',
             'deskripsi_barang'=> 'nullable|string',
@@ -154,10 +188,15 @@ class OrmawaController extends Controller {
         catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal menambahkan barang: '. $e->getMessage());
         }
+        }
+        else{
+            abort(403, 'Unathorized');
+        }
     }
 
 
     public function destroyBarang($id, $barangId) {
+        if(auth()->user()->can('barang_all')){
         $ormawa=Ormawa::findOrFail($id);
         $barang=Barang::where('ormawa_id', $id)->findOrFail($barangId);
 
@@ -169,16 +208,26 @@ class OrmawaController extends Controller {
         $barang->delete();
 
         return redirect() ->route('ormawa.detail', $ormawa->id) ->with('success', 'Barang berhasil dihapus dari Ormawa.');
+        }
+        else{
+            abort(403, 'Unathorized');
+        }
     }
 
     public function detailBarang($id, $barangId) {
+        if(auth()->user()->can('barang_all')){
         $ormawa=Ormawa::findOrFail($id);
         $barang=Barang::where('ormawa_id', $id)->findOrFail($barangId);
 
         return view('ormawa.detailbarang', compact('ormawa', 'barang'));
+        }
+        else {
+            abort(403, 'Unathorized');
+        }
     }
 
     public function updateBarang(Request $request, $id, $barangId) {
+        if(auth()->user()->can('barang_all')){
         $validated=$request->validate([
             'nama_barang'=> 'required|string|max:255',
             'kode_barang'=> 'required|string|max:50|unique:barang,kode_barang,'. $barangId,
@@ -209,6 +258,10 @@ class OrmawaController extends Controller {
         $barang->update($validated);
 
         return redirect()->route('ormawa.detail', $id)->with('success', 'Barang berhasil diperbarui.');
+        }
+        else{
+            abort(403, 'Unathorized');
+        }
     }
 
 }
