@@ -7,6 +7,7 @@ use App\Models\Ormawa;
 use App\Models\PeminjamanRuangan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\PeminjamanRuanganNotification;
 
 class RuanganController extends Controller {
     public function index() {
@@ -121,11 +122,22 @@ class RuanganController extends Controller {
                         'jam_selesai'=> $validatedData['jam_selesai'],
                         'alasan_peminjaman'=> $validatedData['alasan_peminjaman'],
                         'status_peminjaman'=> 0,
-                        ]);
-                }
+                    ]);                    
+            });
+            
+            $pic = Users::find($ruangan->pic_id);
 
-            );
+if ($pic) {
+    $nama = auth()->user()->nama_lengkap;
+    $namaRuangan = $ruangan->nama_ruangan;
 
+    $pic->notify(
+        new PeminjamanRuanganNotification(
+            "🔔 $nama meminjam ruangan $namaRuangan",
+            route('approvalruangan')
+        )
+    );
+}
             return redirect()->route('statuspeminjamanruangan') ->with('success', 'Peminjaman ruangan berhasil diajukan!');
 
         }

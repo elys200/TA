@@ -182,6 +182,29 @@ Route::group(['middleware'=> 'auth'], function () {
         Route::put('/tambahruangan/{id}', [TambahRuanganController::class, 'update'])->name('tambahruangan.update');
         Route::delete('/tambahruangan/{id}', [TambahRuanganController::class, 'destroy'])->name('tambahruangan.destroy');
 
+        Route::get('/notifikasi/baca', function () {
+
+    auth()->user()->unreadNotifications->markAsRead();
+
+    return back();
+
+})->name('notif.baca');
+
+Route::get('/notif/read/{id}', function ($id) {
+    $notif = auth()->user()->notifications()->find($id);
+
+    if ($notif) {
+        $notif->markAsRead();
+        return redirect($notif->data['url']);
     }
+
+    return back();
+})->name('notif.read');
+
+    }
+
+    
+
+    
 
 );

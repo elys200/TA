@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Notifications\Notifiable;
 
 
 class Users extends Authenticatable
 {
     use HasFactory, HasRoles;
+    use Notifiable;
 
     const STATUS_ACTIVE = '1';
     const STATUS_INACTIVE = '0';
