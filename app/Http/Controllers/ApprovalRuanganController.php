@@ -7,6 +7,8 @@ use App\Models\Users;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Contracts\Service\Attribute\Required;
+use App\Notifications\PeminjamanRuanganApprovalNotification;
+use App\Notifications\PeminjamanRuanganRejectedNotification;
 
 class ApprovalRuanganController extends Controller {
     public function __construct() {
@@ -68,6 +70,14 @@ class ApprovalRuanganController extends Controller {
         $peminjaman->approved_by=auth()->id();
         $peminjaman->save();
 
+        $user = $peminjaman->user;
+         $user->notify(
+        new PeminjamanRuanganApprovalNotification(
+            "🔔 Peminjaman ruangan kamu dengan kode" . $peminjaman->code_peminjaman . "telah disetujui!",
+            route('statuspeminjamanruangan') // arahkan ke halaman status
+        )
+    );
+
         return redirect()->route('approvalruangan') ->with('success', 'Status peminjaman ruangan berhasil diperbarui.');
     }
 
@@ -85,6 +95,16 @@ class ApprovalRuanganController extends Controller {
         $peminjaman->rejected_by=auth()->id();
         $peminjaman->rejected_reason=$request->rejected_reason;
         $peminjaman->save();
+
+        $user = $peminjaman->user;
+        $user->notify(
+    new PeminjamanRuanganRejectedNotification(
+        "🔔 Peminjaman ruangan kamu dengan kode " . $peminjaman->code_peminjaman . " DITOLAK!",
+        route('statuspeminjamanruangan')
+    )
+);
+
+        
         return redirect()->route('approvalruangan') ->with('success', 'Status peminjaman ruangan berhasil diperbarui.');
     }
 }
