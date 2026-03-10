@@ -24,7 +24,6 @@ class ApprovalRuanganController extends Controller {
         }
         $peminjamanRuangan=$query->paginate(10);
         $ormawa=Ormawa::all();
-
         $totalSeluruh=$query->count();
         $totalReview=(clone $query)->where('status_peminjaman', 0)->count();
         $totalApprove=(clone $query)->where('status_peminjaman', 1)->count();

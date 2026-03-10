@@ -10,11 +10,19 @@ use Illuminate\Support\Facades\Auth;
 class ApprovalBarangController extends Controller
 {
     public function __construct(){
-        $this->middleware(['auth', 'permission:approve_barang']);
+        $this->middleware(['auth', 'role:admin|pic_barang']);
     }
     public function index() {
-        $peminjaman = PeminjamanBarang::paginate(10);
+        $query = PeminjamanBarang::query();
+         if (auth()->user()->hasRole('pic_barang')) {
+            $query->whereHas('barang.ormawa', function ($q) {
+                    $q->where('pic_id', auth()->id());
+                }
 
+            );
+        }
+
+        $peminjaman = $query->paginate(10);
         $totalSeluruh = PeminjamanBarang::all()->count();
         $totalReview = PeminjamanBarang::where('status_peminjaman', 0)->count();
         $totalApprove = PeminjamanBarang::where('status_peminjaman', 1)->count();
@@ -39,6 +47,7 @@ class ApprovalBarangController extends Controller
     }
 
     $peminjaman = PeminjamanBarang::findOrFail($id);
+    $peminjaman->barang->decrement('jumlah_barang', $peminjaman->jumlah_barang);
     $peminjaman->status_peminjaman = 1;
     $peminjaman->approved_by = auth()->id();
     $peminjaman->save();

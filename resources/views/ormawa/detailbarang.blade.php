@@ -64,51 +64,56 @@
         </div>
 
         <div class="card-body">
-            <div class="position-relative ps-4">
+            <div class="table-responsive">
+                <table class="table table-hover table-bordered align-middle">
+                    <thead class="table-light text-center">
+                        <tr>
+                            <th>No.</th>
+                            <th>Code</th>
+                            <th>Penanggung Jawab</th>
+                            <th>Jumlah</th>
+                            <th>Tanggal Peminjaman</th>
+                            <th>Tanggal Pengembalian</th>
+                            <th>Bukti Pemberian</th>
+                            <th>Bukti Pengembalian</th>
+                        </tr>
+                    </thead>
 
-                <!-- Garis -->
-                <div class="position-absolute" style="left:8px; top:0; bottom:0; width:2px; background:#e5e7eb;">
-                </div>
-
-                <!-- Item 1 -->
-                <div class="mb-4 position-relative">
-                    <div
-                        style="position:absolute; left:-1px; top:5px; width:14px; height:14px; border-radius:50%; background:#fff; border:3px solid #facc15;">
-                    </div>
-                    <div class="ps-4">
-                        <div class="fw-semibold text-warning">Borrowed</div>
-                        <div class="small">21 Feb 2025</div>
-                        <div class="small text-muted">By: Yudha P.</div>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="mb-4 position-relative">
-                    <div
-                        style="position:absolute; left:-1px; top:5px; width:14px; height:14px; border-radius:50%; background:#fff; border:3px solid #6366f1;">
-                    </div>
-                    <div class="ps-4">
-                        <div class="fw-semibold text-primary">Returned</div>
-                        <div class="small">20 Aug 2024</div>
-                        <div class="small text-muted">By: Yudha P.</div>
-                    </div>
-                </div>
-
+                    <tbody>
+                        @foreach($peminjaman as $item)
+                        <td style="text-align: center;">{{ $loop->iteration }}.</td>
+                        <td>{{ $item->code_peminjaman }}</td>
+                        <td>{{ $item->nama_penanggung_jawab}}</td>
+                        <td style="text-align: center;">{{ $item->jumlah_barang }}</td>
+                        <td style="text-align: center;">{{ $item->tanggal_mulai_peminjaman }}</td>
+                        <td style="text-align: center;">{{ $item->tanggal_selesai_peminjaman }}</td>
+                        <td>
+                            @if($item->foto_pemberian == null)
+                            <button class="btn btn-secondary">Waiting</button>
+                            @else
+                            <a href="" data-bs-toggle="modal" data-bs-target="#modalTampilkanBuktiPemberian{{ $item->id }}">
+                                Lihat Bukti
+                            </a>
+                            @endif
+                        </td>
+                        <td style="text-align: center;">
+                            @if($item->foto_pengembalian == null)
+                            <button class="btn btn-secondary">Waiting</button>
+                            @else
+                            <a href="" data-bs-toggle="modal" data-bs-target="#modalTampilkanBuktiPengembalian{{ $item->id }}">
+                                Lihat Bukti
+                            </a>
+                            @endif
+                        </td>
+                       @endforeach
+                    </tbody>
+                </table>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
 
-
+@include('ormawa.modal.tampikanbuktipemberian')
+@include('ormawa.modal.tampilkanbuktipengembalian')
 @endsection
-@push('scripts')
-<script>
-    document.querySelectorAll('.faq-item').forEach(item => {
-        item.addEventListener('click', () => {
-            item.classList.toggle('active');
-        });
-    });
-
-</script>
-@endpush

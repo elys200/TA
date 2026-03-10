@@ -42,10 +42,10 @@
                                     Stok: <strong>{{ $item->jumlah_barang }}</strong>
                                 </span>
 
-                                @if($item->status_barang == 0)
-                                <span class="badge bg-success">
-                                    Dipinjam
-                                </span>
+                                @if($item->jumlah_barang > 0)
+                                <span class="badge bg-success">Available</span>
+                                @else
+                                <span class="badge bg-danger">Not Available</span>
                                 @endif
 
                             </div>

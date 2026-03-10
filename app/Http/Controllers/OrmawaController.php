@@ -4,13 +4,26 @@ use Illuminate\Http\Request;
 use App\Models\Users;
 use App\Models\Ormawa;
 use App\Models\Barang;
+use App\Models\PeminjamanBarang;
 use Illuminate\Support\Facades\Storage;
 
 class OrmawaController extends Controller {
+    public function __construct(){
+        $this->middleware(['auth', 'role:admin|pic_barang']);
+    }
     public function index() {
+        $query = Ormawa::query();
+
+        if (auth()->user()->hasRole('pic_barang')) {
+            $query->whereHas('barang', function ($q) {
+                    $q->where('pic_id', auth()->id());
+                }
+
+            );
+        }
         if(auth()->user()->can('view_ormawa')){
-        $ormawa=Ormawa::all();
-        $users=Users::all();
+        $ormawa = $query->get();
+        $users = Users::all();
         return view('ormawa/ormawa', compact('ormawa', 'users'));
         }
         else{
@@ -216,10 +229,13 @@ class OrmawaController extends Controller {
 
     public function detailBarang($id, $barangId) {
         if(auth()->user()->can('barang_all')){
-        $ormawa=Ormawa::findOrFail($id);
-        $barang=Barang::where('ormawa_id', $id)->findOrFail($barangId);
+        $ormawa = Ormawa::findOrFail($id);
+        $barang = Barang::where('ormawa_id', $id)->findOrFail($barangId);
+        $peminjaman = PeminjamanBarang::where('barang_id', $barangId)
+                ->where('status_peminjaman', 1)
+                ->get();
 
-        return view('ormawa.detailbarang', compact('ormawa', 'barang'));
+        return view('ormawa.detailbarang', compact('ormawa', 'barang', 'peminjaman'));
         }
         else {
             abort(403, 'Unathorized');
@@ -265,4 +281,3 @@ class OrmawaController extends Controller {
     }
 
 }
-
