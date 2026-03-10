@@ -16,6 +16,10 @@ class StatusPeminjamanController extends Controller {
     //barang//
     public function index(Request $request) {
         $query = PeminjamanBarang::query();
+        if (!auth()->user()->hasRole('admin')) {
+        $query->where('user_id', auth()->id());
+        }
+
         if ($request->filled('status')) {
             $query->where('status_peminjaman', $request->status);
         }
@@ -79,7 +83,10 @@ class StatusPeminjamanController extends Controller {
     //ruangan//
     public function indexRuangan(Request $request) {
         $query = PeminjamanRuangan::query();
-
+        if (!auth()->user()->hasRole('admin')) {
+        $query->where('user_id', auth()->id());
+        }
+        
         if ($request->filled('status')) {
             $query->where('status_peminjaman', $request->status);
         }

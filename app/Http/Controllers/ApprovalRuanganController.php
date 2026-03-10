@@ -10,18 +10,34 @@ use Symfony\Contracts\Service\Attribute\Required;
 
 class ApprovalRuanganController extends Controller {
     public function __construct() {
-        $this->middleware(['auth', 'role:pic_ruangan']);
+        $this->middleware(['auth', 'role:admin|pic_ruangan']);
     }
 
     public function index() {
-        $peminjamanRuangan = PeminjamanRuangan::paginate(10);
-        $ormawa = Ormawa::all();
+        $query = PeminjamanRuangan::query();
+        if (auth()->user()->hasRole('pic_ruangan')) {
+            $query->whereHas('ruangan', function ($q) {
+                    $q->where('pic_id', auth()->id());
+                }
 
-        $totalSeluruh = PeminjamanRuangan::all()->count();
-        $totalReview = PeminjamanRuangan::where('status_peminjaman', 0)->count();
-        $totalApprove = PeminjamanRuangan::where('status_peminjaman', 1)->count();
-        $totalRejected = PeminjamanRuangan::where('status_peminjaman', 2)->count();
-        return view ('approval.approvalruangan', compact('peminjamanRuangan', 'ormawa', 'totalReview', 'totalRejected', 'totalApprove', 'totalSeluruh'));
+            );
+        }
+        $peminjamanRuangan=$query->paginate(10);
+        $ormawa=Ormawa::all();
+
+        $totalSeluruh=$query->count();
+        $totalReview=(clone $query)->where('status_peminjaman', 0)->count();
+        $totalApprove=(clone $query)->where('status_peminjaman', 1)->count();
+        $totalRejected=(clone $query)->where('status_peminjaman', 2)->count();
+
+        return view('approval.approvalruangan',
+            compact('peminjamanRuangan',
+                'ormawa',
+                'totalReview',
+                'totalRejected',
+                'totalApprove',
+                'totalSeluruh'
+            ));
     }
 
     public function detail($id) {
@@ -35,6 +51,13 @@ class ApprovalRuanganController extends Controller {
 
 
     public function approval(Request $request, $id) {
+        $peminjaman = PeminjamanRuangan::findOrFail($id);
+        if ( !auth()->user()->hasRole('admin')) {
+            if ($peminjaman->ruangan->pic_id !=auth()->id()) {
+                abort(403, 'Anda tidak berhak approve ruangan ini');
+            }
+        }
+
         $request->validate([ 'password'=> 'required'
             ]);
 
@@ -42,7 +65,6 @@ class ApprovalRuanganController extends Controller {
             return redirect()->route('approvalruangan') ->with('error', 'Password Salah');
         }
 
-        $peminjaman = PeminjamanRuangan::findOrFail($id);
         $peminjaman->status_peminjaman=1;
         $peminjaman->approved_by=auth()->id();
         $peminjaman->save();
@@ -59,7 +81,7 @@ class ApprovalRuanganController extends Controller {
             return redirect()->route('approvalruangan') ->with('error', 'Password Salah');
         }
 
-        $peminjaman = PeminjamanRuangan::findOrFail($id);
+        $peminjaman=PeminjamanRuangan::findOrFail($id);
         $peminjaman->status_peminjaman=2;
         $peminjaman->rejected_by=auth()->id();
         $peminjaman->rejected_reason=$request->rejected_reason;
