@@ -57,6 +57,7 @@
             </div>
 
             @endforeach
+            <p id="notFound" style="display:none; text-align: center; font-size: 20px; color: red; ">Oops! Data Tidak Ditemukan!</p>
 
         </div>
 
@@ -72,6 +73,7 @@
 
             const keyword = this.value.toLowerCase();
             const items = document.querySelectorAll(".barang-item");
+            let ditemukan = false;
 
             items.forEach(function (item) {
 
@@ -79,11 +81,18 @@
 
                 if (nama.includes(keyword)) {
                     item.style.display = "";
+                    ditemukan = true;
                 } else {
                     item.style.display = "none";
                 }
 
             });
+
+            if(!ditemukan){
+            document.getElementById("notFound").style.display = "block";
+        } else {
+            document.getElementById("notFound").style.display = "none";
+        }
 
         });
 

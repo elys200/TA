@@ -4,14 +4,13 @@ use Illuminate\Http\Request;
 use App\Models\Users;
 use Spatie\Permission\Models\Role;
 
-
 class UserController extends Controller {
     public function __construct() {
         $this->middleware(['auth', 'role:admin']);
     }
 
     public function index() {
-        $users = Users::all();
+        $users = Users::paginate(10);
         $roles = Role::all();
         return view('user.user', compact('users'));
     }
@@ -33,7 +32,7 @@ class UserController extends Controller {
             'ormawa'=> 'nullable|string|max:255',
             'role'=> 'nullable|exists:roles,name',
             'status'=> 'nullable|in:0,1',
-            ]);
+        ]);
 
         $userData=collect($validate)->except('role')->toArray();
         $users->update($userData);

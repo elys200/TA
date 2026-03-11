@@ -102,9 +102,7 @@ class ApprovalRuanganController extends Controller {
         "🔔 Peminjaman ruangan kamu dengan kode " . $peminjaman->code_peminjaman . " DITOLAK!",
         route('statuspeminjamanruangan')
     )
-);
-
-        
+);        
         return redirect()->route('approvalruangan') ->with('success', 'Status peminjaman ruangan berhasil diperbarui.');
     }
 }

@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers;
 
+use App\Notifications\PeminjamanBarangNotification;
 use Illuminate\Http\Request;
 use App\Models\Barang;
 use App\Models\Ormawa;
@@ -7,6 +8,7 @@ use App\Models\PeminjamanBarang;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Users;
 
 
 class BarangController extends Controller {
@@ -102,6 +104,19 @@ class BarangController extends Controller {
                 }
 
             );
+
+            $pic = Users::find($barang->ormawa->pic_id);
+            if ($pic) {
+                $nama = auth()->user()->nama_lengkap;
+                $namaBarang = $barang->nama_barang;
+
+                $pic->notify(
+                    new PeminjamanBarangNotification(
+                        "🔔 $nama meminjam barang $namaBarang",
+                        route('approvalbarang')
+                    )
+                );
+            }
 
 
             return redirect()->route('statuspeminjamanbarang') ->with('success', 'Peminjaman Barang berhasil dilakukan');

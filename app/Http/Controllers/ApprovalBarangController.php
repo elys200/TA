@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\PeminjamanBarang;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Notifications\PeminjamanBarangApproveNotification;
+use App\Notifications\PeminjamanBarangRejectedNotification;
+use App\Notifications\PeminjamanBarangNotification;
 
 class ApprovalBarangController extends Controller
 {
@@ -51,6 +54,14 @@ class ApprovalBarangController extends Controller
     $peminjaman->status_peminjaman = 1;
     $peminjaman->approved_by = auth()->id();
     $peminjaman->save();
+
+    $user = $peminjaman->user;
+    $user->notify(
+        new PeminjamanBarangApproveNotification(
+            "🔔 Peminjaman barang kamu dengan kode" . $peminjaman->code_peminjaman . "telah disetujui!",
+            route('statuspeminjamanruangan')
+        )
+    );
 
     return redirect()->route('approvalbarang')
         ->with('success', 'Status peminjaman barang berhasil diperbarui.');
@@ -99,6 +110,15 @@ public function rejected(Request $request, $id){
     $peminjaman->foto_pemberian = $path;
     $peminjaman->waktu_pemberian = now();
     $peminjaman->save();
+
+    $user = $peminjaman->user;
+        $user->notify(
+    new PeminjamanBarangRejectedNotification(
+        "🔔 Peminjaman ruangan kamu dengan kode " . $peminjaman->code_peminjaman . " DITOLAK!",
+        route('statuspeminjamanBarang')
+    )
+);      
+
 
     return redirect()->route('approvalbarang.detail', $id)
         ->with('success', 'Data berhasil diperbaharui');

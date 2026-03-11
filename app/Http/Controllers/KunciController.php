@@ -12,7 +12,8 @@ class KunciController extends Controller {
     }
 
     public function index () {
-        $peminjamanRuangan = PeminjamanRuangan::with('ruangan') ->where('status_peminjaman', 1) ->get();
+        $peminjamanRuangan = PeminjamanRuangan::with('ruangan') ->where('status_peminjaman', 1) 
+        ->paginate(10);
 
         $totalApproved = PeminjamanRuangan::where('status_peminjaman', 1)->count();
         $totalGiven = PeminjamanRuangan::whereNotNull('time_given')->count();

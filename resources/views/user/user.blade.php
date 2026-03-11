@@ -13,7 +13,7 @@
         <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-3 gap-2">
             <div class="d-flex align-items-center gap-2">
                 <label class="mb-0">Search:</label>
-                <input type="text" class="form-control form-control-sm">
+                <input type="text" id="searchInput" class="form-control form-control-sm">
             </div>
         </div>
 
@@ -32,9 +32,9 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($users as $user)
-                    <tr>
-                        <td style="text-align: center;">{{ $loop->iteration }}.</td>
+                    @foreach ($users as $index =>$user)
+                    <tr class="user-item">
+                        <td style="text-align: center;">{{ $users->firstItem() + $index}}.</td>
                         <td>{{ $user->nim}}</td>
                         <td>{{ $user->nama_lengkap}}</td>
                         <td>{{ $user->jurusan}}</td>
@@ -46,6 +46,9 @@
                             'PENDING' => 'bg-secondary',
                             'ADMIN' => 'bg-primary',
                             'MAHASISWA' => 'bg-success',
+                            'PAMDAL' => 'bg-warning',
+                            'PIC_BARANG' => 'bg-info',
+                            'PIC_RUANGAN' => 'bg-danger',
                             default => 'bg-secondary',
                             }
                             @endphp
@@ -77,10 +80,56 @@
                     @endforeach
                 </tbody>
             </table>
+            <p id="notFound" style="display:none; text-align: center; font-size: 20px; color: red; ">Oops! Data Tidak Ditemukan!</p>
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div style="margin-top: 5px;">
+                        Menampilkan {{ $users->lastItem() }}
+                        dari {{ $users->total() }} data
+                    </div>
+
+                    <div>
+                        {{ $users->links() }}
+                    </div>
+
+            </div>
         </div>
     </div>
 </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("searchInput");
+
+    searchInput.addEventListener("keyup", function () {
+
+        const keyword = this.value.toLowerCase();
+        const items = document.querySelectorAll(".user-item");
+        let ditemukan = false;
+
+        items.forEach(function(item){
+
+            const text = item.textContent.toLowerCase();
+
+            if(text.includes(keyword)){
+                item.style.display = "";
+                ditemukan = true;
+            } else {
+                item.style.display = "none";
+            }
+
+        });
+
+        if(!ditemukan){
+            document.getElementById("notFound").style.display = "block";
+        } else {
+            document.getElementById("notFound").style.display = "none";
+        }
+
+    });
+
+});
+</script>
 @endsection
 
 @push('scripts')

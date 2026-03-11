@@ -80,40 +80,56 @@
                     </thead>
 
                     <tbody>
-                        @foreach($peminjaman as $item)
-                        <td style="text-align: center;">{{ $loop->iteration }}.</td>
-                        <td>{{ $item->code_peminjaman }}</td>
-                        <td>{{ $item->nama_penanggung_jawab}}</td>
-                        <td style="text-align: center;">{{ $item->jumlah_barang }}</td>
-                        <td style="text-align: center;">{{ $item->tanggal_mulai_peminjaman }}</td>
-                        <td style="text-align: center;">{{ $item->tanggal_selesai_peminjaman }}</td>
-                        <td>
-                            @if($item->foto_pemberian == null)
-                            <button class="btn btn-secondary">Waiting</button>
-                            @else
-                            <a href="" data-bs-toggle="modal" data-bs-target="#modalTampilkanBuktiPemberian{{ $item->id }}">
-                                Lihat Bukti
-                            </a>
-                            @endif
-                        </td>
-                        <td style="text-align: center;">
-                            @if($item->foto_pengembalian == null)
-                            <button class="btn btn-secondary">Waiting</button>
-                            @else
-                            <a href="" data-bs-toggle="modal" data-bs-target="#modalTampilkanBuktiPengembalian{{ $item->id }}">
-                                Lihat Bukti
-                            </a>
-                            @endif
-                        </td>
-                       @endforeach
+                        @foreach($peminjaman as $index =>$item)
+                        <tr>
+                            <td style="text-align: center;">{{ $peminjaman->firstItem() + $index  }}.</td>
+                            <td>{{ $item->code_peminjaman }}</td>
+                            <td>{{ $item->nama_penanggung_jawab}}</td>
+                            <td style="text-align: center;">{{ $item->jumlah_barang }}</td>
+                            <td style="text-align: center;">{{ $item->tanggal_mulai_peminjaman }}</td>
+                            <td style="text-align: center;">{{ $item->tanggal_selesai_peminjaman }}</td>
+                            <td>
+                                @if($item->foto_pemberian == null)
+                                <button class="btn btn-secondary">Waiting</button>
+                                @else
+                                <a href="#" data-bs-toggle="modal"
+                                    data-bs-target="#modalTampilkanBuktiPemberian{{ $item->id }}">
+                                    Lihat Bukti
+                                </a>
+                                @endif
+                            </td>
+                            <td style="text-align: center;">
+                                @if($item->foto_pengembalian == null)
+                                <button class="btn btn-secondary">Waiting</button>
+                                @else
+                                <a href="" data-bs-toggle="modal"
+                                    data-bs-target="#modalTampilkanBuktiPengembalian{{ $item->id }}">
+                                    Lihat Bukti
+                                </a>
+                                @endif
+                            </td>
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
+                 <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div style="margin-top: 5px;">
+                        Menampilkan {{ $peminjaman->lastItem() }}
+                        dari {{ $peminjaman->total() }} data
+                    </div>
+
+                    <div>
+                        {{ $peminjaman->links() }}
+                    </div>
+            </div>
+
             </div>
         </div>
 
     </div>
 </div>
-
-@include('ormawa.modal.tampikanbuktipemberian')
-@include('ormawa.modal.tampilkanbuktipengembalian')
+@foreach($peminjaman as $item)
+@include('ormawa.modal.tampikanbuktipemberian', ['item' => $item])
+@include('ormawa.modal.tampilkanbuktipengembalian', ['item' => $item])
+@endforeach
 @endsection

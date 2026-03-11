@@ -69,7 +69,7 @@
 
         <div class="row mb-4 mt-3">
             <div class="col-12 col-sm-8 col-md-4">
-                <input type="text" class="form-control" placeholder="Cari Ruangan...">
+                <input type="text" class="form-control" id="searchInput" placeholder="Cari Data Peminjaman...">
             </div>
         </div>
 
@@ -89,9 +89,9 @@
                 </thead>
 
                 <tbody>
-                    @foreach($peminjamanRuangan as $peminjaman)
-                    <tr class="data-row status-{{ $peminjaman->status_peminjaman }}">
-                        <td style="text-align: center;">{{$loop->iteration}}.</td>
+                    @foreach($peminjamanRuangan as $index =>$peminjaman)
+                    <tr class="data-row approveruangan status-{{$peminjaman->status_peminjaman}}">
+                        <td style="text-align: center;">{{$peminjamanRuangan->firstItem() + $index}}.</td>
                         <td>{{$peminjaman->code_peminjaman}}</td>
                         <td>{{$peminjaman->ruangan->nama_ruangan}}</td>
                         <td>{{$peminjaman->nama_penanggung_jawab}}</td>
@@ -118,8 +118,18 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="mt-3">
-                {{ $peminjamanRuangan->links() }}
+            <p id="notFound" style="display:none; text-align: center; font-size: 20px; color: red; ">Oops! Data Tidak
+                Ditemukan!</p>
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div style="margin-top: 5px;">
+                    Menampilkan {{ $peminjamanRuangan->lastItem() }}
+                    dari {{ $peminjamanRuangan->total() }} data
+                </div>
+
+                <div>
+                    {{ $peminjamanRuangan->links() }}
+                </div>
+
             </div>
         </div>
 
@@ -127,6 +137,79 @@
 </div>
 </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const searchInput = document.getElementById("searchInput");
+
+        searchInput.addEventListener("keyup", function () {
+
+            const keyword = this.value.toLowerCase();
+            const rows = document.querySelectorAll(".approveruangan");
+            let ditemukan = false;
+
+            rows.forEach(function (row) {
+
+                const textRow = row.textContent.toLowerCase();
+
+                if (textRow.includes(keyword)) {
+                    row.style.display = "table-row";
+                    ditemukan = true;
+                } else {
+                    row.style.display = "none";
+                }
+
+            });
+
+            if (!ditemukan) {
+                document.getElementById("notFound").style.display = "block";
+            } else {
+                document.getElementById("notFound").style.display = "none";
+            }
+
+        });
+
+    });
+
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const rows = document.querySelectorAll(".data-row");
+
+        function showRows(status) {
+            rows.forEach(row => {
+                if (status === "all") {
+                    row.style.display = "";
+                } else {
+                    if (row.classList.contains("status-" + status)) {
+                        row.style.display = "";
+                    } else {
+                        row.style.display = "none";
+                    }
+                }
+            });
+        }
+
+        document.getElementById("btnAll").addEventListener("click", function () {
+            showRows("all");
+        });
+
+        document.getElementById("btnReview").addEventListener("click", function () {
+            showRows("0");
+        });
+
+        document.getElementById("btnApprove").addEventListener("click", function () {
+            showRows("1");
+        });
+
+        document.getElementById("btnRejected").addEventListener("click", function () {
+            showRows("2");
+        });
+
+    });
+
+</script>
 @endsection
 @push('scripts')
 <script>

@@ -19,6 +19,7 @@
         <!-- SEARCH -->
         <div class="row mb-4 mt-2">
             <div class="col-12 col-sm-8 col-md-4">
+                
                 <input 
                     type="text" 
                     class="form-control" 
@@ -58,9 +59,9 @@
 
                     </div>
                 </div>
-
                 @endforeach
 
+                <p id="notFound" style="display:none; text-align: center; font-size: 20px; color: red; ">Oops! Data Tidak Ditemukan!</p>
             </div>
         </div>
 
@@ -78,6 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const keyword = this.value.toLowerCase();
         const items = document.querySelectorAll(".ruang-item");
+        let ditemukan = false;
 
         items.forEach(function(item){
 
@@ -85,17 +87,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if(nama.includes(keyword)){
                 item.style.display = "";
+                ditemukan = true;
             } else {
                 item.style.display = "none";
             }
 
         });
 
+        if(!ditemukan){
+            document.getElementById("notFound").style.display = "block";
+        } else {
+            document.getElementById("notFound").style.display = "none";
+        }
+
     });
 
 });
 </script>
-
 @endsection
 
 

@@ -17,7 +17,7 @@
         <!-- SEARCH -->
         <div class="row mb-4 mt-2 align-items-center">
             <div class="col-auto">
-                <input type="text" class="form-control" placeholder="Cari Ruangan..." style="width: 300px;">
+                <input type="text" class="form-control" id="searchInput" placeholder="Cari Ruangan..." style="width: 300px;">
             </div>
 
             <div class="col ms-auto">
@@ -33,7 +33,7 @@
         <div class="services-wrapper2">
             <div class="row g-3">
                 @foreach($ruangan as $r)
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-6 ruangan-item">
                     <div class="card h-100" style="border: 1px solid #ddd;">
 
                         @if($r->foto)
@@ -69,12 +69,48 @@
                     </div>
                 </div>
                 @endforeach
+                 <p id="notFound" style="display:none; text-align: center; font-size: 20px; color: red; ">Oops! Data Tidak Ditemukan!</p>
             </div>
         </div>
     </div>
 </div>
 </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const searchInput = document.getElementById("searchInput");
+
+        searchInput.addEventListener("keyup", function () {
+
+            const keyword = this.value.toLowerCase();
+            const rows = document.querySelectorAll(".ruangan-item");
+            let ditemukan = false;
+
+            rows.forEach(function (row) {
+
+                const textRow = row.textContent.toLowerCase();
+
+                if (textRow.includes(keyword)) {
+                    row.style.display = "table-row";
+                    ditemukan = true;
+                } else {
+                    row.style.display = "none";
+                }
+
+            });
+
+             if(!ditemukan){
+            document.getElementById("notFound").style.display = "block";
+        } else {
+            document.getElementById("notFound").style.display = "none";
+        }
+
+        });
+
+    });
+
+</script>
 @endsection
 
 @push('scripts')

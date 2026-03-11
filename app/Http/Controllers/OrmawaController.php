@@ -233,7 +233,7 @@ class OrmawaController extends Controller {
         $barang = Barang::where('ormawa_id', $id)->findOrFail($barangId);
         $peminjaman = PeminjamanBarang::where('barang_id', $barangId)
                 ->where('status_peminjaman', 1)
-                ->get();
+                ->paginate(10);
 
         return view('ormawa.detailbarang', compact('ormawa', 'barang', 'peminjaman'));
         }

@@ -24,7 +24,7 @@
                     </a>
                 </div>
                 <div class="col-md-4 ms-auto">
-                    <input type="text" class="form-control" placeholder="Cari data...">
+                    <input type="text" class="form-control" id="searchInput" placeholder="Cari data...">
                 </div>
             </div>
 
@@ -81,61 +81,84 @@
                             <th>Jumlah</th>
                             <th>Penanggung Jawab</th>
                             <th>Tanggal Peminjaman</th>
-                            <th>Tanggal Pengembalian</th>
+                            <th>Status Peminjaman</th>
                             <th width="120">Action</th>
                         </tr>
                     </thead>
 
                     <tbody>
-                        @foreach($peminjaman as $item)
-                        <td style="text-align: center;">{{ $loop->iteration }}.</td>
-                        <td>{{ $item->code_peminjaman }}</td>
-                        <td>{{ $item->barang->nama_barang }}</td>
-                        <td style="text-align: center;">{{ $item->jumlah_barang }}</td>
-                        <td>{{ $item->nama_penanggung_jawab }}</td>
-                        <td>
-                            {{ $item->tanggal_mulai_peminjaman }}
-                        </td>
-                        <td>
-                            {{ $item->tanggal_selesai_peminjaman }}
-                        </td>
-                        <td class="text-center">
-                            <div class="d-flex justify-content-center gap-2">
-
-                                @if($item->status_peminjaman == '1' || $item->status_peminjaman
-                                == '2')
-                                {{-- Detail --}}
-                                <a href="{{ route('statuspeminjamanbarang.detail', $item->id) }}"
-                                    class="btn btn-success">
-                                    <i class="bi bi-justify"></i>
-                                </a>
-
-                                @elseif($item->status_peminjaman == '0')
-
-                                {{-- Edit --}}
-                                <a href="{{ route('statuspeminjamanbarang.edit', $item->id) }}" class="btn btn-warning">
-                                    <i class="bi bi-pencil-square"></i>
-                                </a>
-
-                                {{-- Delete --}}
-                                <form action="{{ route('statuspeminjaman.deletepeminjamanbarang' , $item->id) }}"
-                                    method="POST" onsubmit="return confirm('Yakin mau menghapus peminjaman ini?')"
-                                    class="d-inline">
-                                    @csrf
-                                    @method('DELETE')
-
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
-
+                            @foreach($peminjaman as $index =>$item)
+                            <tr class="peminjamanbarang-item">
+                            <td style="text-align: center;">{{ $peminjaman->firstItem() + $index}}.</td>
+                            <td>{{ $item->code_peminjaman }}</td>
+                            <td>{{ $item->barang->nama_barang }}</td>
+                            <td style="text-align: center;">{{ $item->jumlah_barang }}</td>
+                            <td>{{ $item->nama_penanggung_jawab }}</td>
+                            <td>
+                                {{ $item->tanggal_mulai_peminjaman }}
+                            </td>
+                            <td class="text-center">
+                                @if ($item->status_peminjaman == '0')
+                                <span class="badge bg-warning">Waiting Review</span>
+                                @elseif ($item->status_peminjaman == '1')
+                                <span class="badge bg-success">Approve</span>
+                                @elseif ($item->status_peminjaman == '2')
+                                <span class="badge bg-danger">Rejected</span>
                                 @endif
-                            </div>
-                        </td>
+                            </td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center gap-2">
+
+                                    @if($item->status_peminjaman == '1' || $item->status_peminjaman
+                                    == '2')
+                                    {{-- Detail --}}
+                                    <a href="{{ route('statuspeminjamanbarang.detail', $item->id) }}"
+                                        class="btn btn-success">
+                                        <i class="bi bi-justify"></i>
+                                    </a>
+
+                                    @elseif($item->status_peminjaman == '0')
+
+                                    {{-- Edit --}}
+                                    <a href="{{ route('statuspeminjamanbarang.edit', $item->id) }}"
+                                        class="btn btn-warning">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+
+                                    {{-- Delete --}}
+                                    <form action="{{ route('statuspeminjaman.deletepeminjamanbarang' , $item->id) }}"
+                                        method="POST" onsubmit="return confirm('Yakin mau menghapus peminjaman ini?')"
+                                        class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+
+                                        <button type="submit" class="btn btn-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+
+                                    @endif
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
                 </table>
+            
+                     <p id="notFound" style="display:none; text-align: center; font-size: 20px; color: red; ">Oops!
+                            Data Tidak Ditemukan!</p>
+        
+                <div class="d-flex justify-content-between align-items-center mt-3">
+                    <div style="margin-top: 5px;">
+                        Menampilkan {{ $peminjaman->lastItem() }}
+                        dari {{ $peminjaman->total() }} data
+                    </div>
+
+                    <div>
+                        {{ $peminjaman->links() }}
+                    </div>
+
+                </div>
             </div>
 
         </div>
@@ -144,6 +167,41 @@
 </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const searchInput = document.getElementById("searchInput");
+
+        searchInput.addEventListener("keyup", function () {
+
+            const keyword = this.value.toLowerCase();
+            const rows = document.querySelectorAll(".peminjamanbarang-item");
+            let ditemukan = false;
+
+            rows.forEach(function (row) {
+
+                const textRow = row.textContent.toLowerCase();
+
+                if (textRow.includes(keyword)) {
+                    row.style.display = "table-row";
+                    ditemukan = true;
+                } else {
+                    row.style.display = "none";
+                }
+
+            });
+
+             if(!ditemukan){
+            document.getElementById("notFound").style.display = "block";
+        } else {
+            document.getElementById("notFound").style.display = "none";
+        }
+
+        });
+
+    });
+
+</script>
 @endsection
 
 @push('scripts')

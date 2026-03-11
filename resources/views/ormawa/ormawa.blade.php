@@ -12,7 +12,7 @@
                 <span class="input-group-text">
                     <i class="bi bi-search"></i>
                 </span>
-                <input type="text" class="form-control" placeholder="Cari organisasi...">
+                <input type="text" class="form-control" id="searchInput" placeholder="Cari organisasi...">
             </div>
             <a href="{{ route('ormawa.form') }}">
                 <button class="btn btn-primary d-flex align-items-center gap-1">
@@ -24,9 +24,7 @@
 
         <div class="row g-4">
             @foreach ($ormawa as $ormawas)
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-
-
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 ormawa-item">
                 <div class="card h-100 shadow-sm border-0 card-hover">
 
 
@@ -66,9 +64,43 @@
             </div>
             @endforeach
         </div>
+        <p id="notFound" style="display:none; text-align: center; font-size: 20px; color: red; margin-top:10px;">Oops! Data Tidak Ditemukan!</p>
     </div>
 </div>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
 
+    const searchInput = document.getElementById("searchInput");
+
+    searchInput.addEventListener("keyup", function () {
+
+        const keyword = this.value.toLowerCase();
+        const items = document.querySelectorAll(".ormawa-item");
+        let ditemukan = false;
+
+        items.forEach(function(item){
+
+            const text = item.textContent.toLowerCase();
+
+            if(text.includes(keyword)){
+                item.style.display = "";
+                ditemukan = true;
+            } else {
+                item.style.display = "none";
+            }
+
+        });
+
+        if(!ditemukan){
+            document.getElementById("notFound").style.display = "block";
+        } else {
+            document.getElementById("notFound").style.display = "none";
+        }
+
+    });
+
+});
+</script>
 
 
 @endsection
