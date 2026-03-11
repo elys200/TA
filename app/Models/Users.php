@@ -25,10 +25,10 @@ class Users extends Authenticatable
         'nama_lengkap',
         'jurusan',
         'program_studi',
-        'email',
         'ormawa',
         'password',
         'status',
+        'no_tlp',
     ];
 
     protected $hidden = [

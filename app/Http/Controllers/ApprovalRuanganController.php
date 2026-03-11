@@ -17,6 +17,7 @@ class ApprovalRuanganController extends Controller {
 
     public function index() {
         $query = PeminjamanRuangan::query();
+
         if (auth()->user()->hasRole('pic_ruangan')) {
             $query->whereHas('ruangan', function ($q) {
                     $q->where('pic_id', auth()->id());
@@ -24,6 +25,7 @@ class ApprovalRuanganController extends Controller {
 
             );
         }
+
         $peminjamanRuangan=$query->paginate(10);
         $ormawa=Ormawa::all();
         $totalSeluruh=$query->count();
@@ -53,6 +55,7 @@ class ApprovalRuanganController extends Controller {
 
     public function approval(Request $request, $id) {
         $peminjaman = PeminjamanRuangan::findOrFail($id);
+
         if ( !auth()->user()->hasRole('admin')) {
             if ($peminjaman->ruangan->pic_id !=auth()->id()) {
                 abort(403, 'Anda tidak berhak approve ruangan ini');
@@ -70,13 +73,10 @@ class ApprovalRuanganController extends Controller {
         $peminjaman->approved_by=auth()->id();
         $peminjaman->save();
 
-        $user = $peminjaman->user;
-         $user->notify(
-        new PeminjamanRuanganApprovalNotification(
-            "🔔 Peminjaman ruangan kamu dengan kode" . $peminjaman->code_peminjaman . "telah disetujui!",
-            route('statuspeminjamanruangan') // arahkan ke halaman status
-        )
-    );
+        $user=$peminjaman->user;
+        $user->notify(new PeminjamanRuanganApprovalNotification("🔔 Peminjaman ruangan kamu dengan kode". $peminjaman->code_peminjaman . "telah disetujui!",
+                route('statuspeminjamanruangan') // arahkan ke halaman status
+            ));
 
         return redirect()->route('approvalruangan') ->with('success', 'Status peminjaman ruangan berhasil diperbarui.');
     }
@@ -96,13 +96,9 @@ class ApprovalRuanganController extends Controller {
         $peminjaman->rejected_reason=$request->rejected_reason;
         $peminjaman->save();
 
-        $user = $peminjaman->user;
-        $user->notify(
-    new PeminjamanRuanganRejectedNotification(
-        "🔔 Peminjaman ruangan kamu dengan kode " . $peminjaman->code_peminjaman . " DITOLAK!",
-        route('statuspeminjamanruangan')
-    )
-);        
+        $user=$peminjaman->user;
+        $user->notify(new PeminjamanRuanganRejectedNotification("🔔 Peminjaman ruangan kamu dengan kode ". $peminjaman->code_peminjaman . " DITOLAK!",
+                route('statuspeminjamanruangan')));
         return redirect()->route('approvalruangan') ->with('success', 'Status peminjaman ruangan berhasil diperbarui.');
     }
 }

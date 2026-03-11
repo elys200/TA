@@ -8,6 +8,7 @@ use App\Models\PeminjamanRuangan;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use App\Notifications\PeminjamanRuanganNotification;
+use Illuminate\Support\Facades\Auth;
 
 class RuanganController extends Controller {
     public function index() {
@@ -37,7 +38,8 @@ class RuanganController extends Controller {
         if(auth()->user()->can('borang_ruangan')) {
             $ruangan=Ruangan::findOrFail($id);
             $ormawa=Ormawa::all();
-            return view('ruangan.formruangan', compact('ruangan', 'ormawa'));
+            $user = Auth::user();
+            return view('ruangan.formruangan', compact('ruangan', 'ormawa', 'user'));
         }
 
         else {
@@ -62,7 +64,7 @@ class RuanganController extends Controller {
 
     public function store(Request $request, $id) {
         if(auth()->user()->can('borang_ruangan')) {
-            $ruangan=Ruangan::findOrFail($id);
+            $ruangan =Ruangan::findOrFail($id);
 
             $validatedData=$request->validate([ 'nama_penanggung_jawab'=> 'required|string',
                 'nim'=> 'required|string',

@@ -94,7 +94,7 @@
                 </div>
 
                 <div class="input-box" style="margin-top: 10px;">
-                    <input type="email" name="email" placeholder="Email" value="{{ old('email') }}">
+                    <input type="" name="no_tlp" placeholder="Nomor Telephone" value="{{ old('no_tlp') }}" required>
                 </div>
 
                 <div class="input-box">
@@ -105,6 +105,7 @@
                         @endforeach
                     </select>
                 </div>
+
 
                 <div class="input-box">
                     <input type="password" name="password" placeholder="Password" required>

@@ -59,7 +59,7 @@
                         <td class="text-center">
                             <div class="d-flex justify-content-center gap-2">
                                 <a href="{{route('user.edit', $user->id)}}"
-                                    class="btn btn-primary btn-sm btn-air-primary p-3 pt-2 pb-2"
+                                    class="btn btn-primary btn btn-warning p-3 pt-2 pb-2"
                                     style="white-space: nowrap;">
                                     <span class="bi bi-pencil"></span>
                                 </a>
@@ -68,7 +68,7 @@
                                         onsubmit="return confirm('Yakin mau menghapus user ini?')">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm btn-air-danger p-3 pt-2 pb-2"
+                                        <button type="submit" class="btn btn-danger btn-air-danger p-3 pt-2 pb-2"
                                             style="white-space: nowrap;">
                                             <span class="bi bi-trash"></span>
                                         </button>

@@ -19,7 +19,7 @@ class RegisterController extends Controller
             'nama_lengkap' => 'required',
             'jurusan' => 'required',
             'program_studi' => 'required',
-            'email' => 'required|email|unique:users,email',
+            'no_tlp' => 'required|max:20',
             'password' => 'required|min:6',
             'ormawa_id' => 'required|exists:ormawa,id',
         ])->validateWithBag('register');
@@ -29,7 +29,7 @@ class RegisterController extends Controller
             'nama_lengkap' => $request->nama_lengkap,
             'jurusan' => $request->jurusan,
             'program_studi' => $request->program_studi,
-            'email' => $request->email,
+            'no_tlp' => $request->no_tlp,
             'ormawa_id' => $request->ormawa_id,
             'password' => Hash::make($request->password),
         ]);

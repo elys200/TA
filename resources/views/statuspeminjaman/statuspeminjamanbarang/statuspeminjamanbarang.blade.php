@@ -13,14 +13,15 @@
             <div class="row align-items-center g-2 mb-4">
                 <div class="col-auto">
                     <a href="{{ route('statuspeminjamanbarang') }}"
-                        class="btn btn-primary d-flex align-items-center gap-2 px-3">
-                        <i class="bi bi-archive"></i> Barang
+                        class="btn btn-primary d-flex align-items-center justify-content-center gap-2 px-3">
+                       <i class="bi bi-archive mb-0 lh-1"></i> Barang
                     </a>
                 </div>
                 <div class="col-auto">
                     <a href="{{ route('statuspeminjamanruangan') }}"
-                        class="btn btn-outline-secondary d-flex align-items-center gap-2 px-3">
-                        <i class="bi bi-door-open"></i> Ruangan
+                        class="btn btn-outline-secondary d-flex align-items-center justify-content-center  gap-2 px-3">
+                        <i class="bi bi-door-open mb-0 lh-1"></i> 
+                        <span>Ruangan</span>
                     </a>
                 </div>
                 <div class="col-md-4 ms-auto">

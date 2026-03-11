@@ -10,6 +10,16 @@
         <form action="{{ route('barang.borang', $barang->id) }}" method="POST" class="row g-3">
             @csrf
             <div class="col-md-6">
+                <label for="disabledTextInput" class="form-label">Nama Pengaju</label>
+                <input type="text" id="disabledTextInput" class="form-control" value="{{ $user->nama_lengkap }}"
+                    disabled>
+            </div>
+            <div class="col-md-6">
+                <label for="disabledTextInput" class="form-label">No Tlp Pengaju</label>
+                <input type="text" id="disabledTextInput" class="form-control" value="{{ $user->no_tlp }}"
+                    disabled>
+            </div>
+            <div class="col-md-6">
                 <label for="penanggung_jawab" class="form-label">Nama Penaggung Jawab</label>
                 <input type="text" class="form-control" id="nama_penanggung_jawab" name="nama_penanggung_jawab"
                     value="{{ old('nama_penanggung_jawab') }}" required>

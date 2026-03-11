@@ -39,7 +39,8 @@ class BarangController extends Controller {
         if(auth()->user()->can('borang_barang')) {
             $barang = Barang::findOrFail($id);
             $ormawa = Ormawa::all();
-            return view('barang.form', compact('barang', 'ormawa'));
+            $user = Auth::user();
+            return view('barang.form', compact('barang', 'ormawa', 'user'));
         }
 
         else {
@@ -105,17 +106,14 @@ class BarangController extends Controller {
 
             );
 
-            $pic = Users::find($barang->ormawa->pic_id);
-            if ($pic) {
-                $nama = auth()->user()->nama_lengkap;
-                $namaBarang = $barang->nama_barang;
+            $pic=Users::find($barang->ormawa->pic_id);
 
-                $pic->notify(
-                    new PeminjamanBarangNotification(
-                        "🔔 $nama meminjam barang $namaBarang",
-                        route('approvalbarang')
-                    )
-                );
+            if ($pic) {
+                $nama=auth()->user()->nama_lengkap;
+                $namaBarang=$barang->nama_barang;
+
+                $pic->notify(new PeminjamanBarangNotification("🔔 $nama meminjam barang $namaBarang",
+                        route('approvalbarang')));
             }
 
 

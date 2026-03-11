@@ -18,23 +18,23 @@
                 <tbody>
                     <tr>
                         <th>Lokasi Ruangan</th>
-                        <td>{{ $ruangan->lokasi }}</td>
+                        <td>: {{ $ruangan->lokasi }}</td>
                     </tr>
                     <tr>
                         <th>Kode Ruangan</th>
-                        <td>{{ $ruangan->kode_ruangan }}</td>
+                        <td>: {{ $ruangan->kode_ruangan }}</td>
                     </tr>
                     <tr>
                         <th>Kapasitas Ruangan</th>
-                        <td>{{ $ruangan->kapasitas }} Orang</td>
+                        <td>: {{ $ruangan->kapasitas }} Orang</td>
                     </tr>
                     <tr>
                         <th>PIC Ruangan</th>
-                        <td>{{ $ruangan->pic->nama_lengkap ?? '-' }}</td>
+                        <td>: {{ $ruangan->pic->nama_lengkap ?? '-' }}</td>
                     </tr>
                     <tr>
                         <th>No Telp PIC</th>
-                        <td>089505631279</td>
+                        <td>: 089505631279</td>
                     </tr>
                 </tbody>
             </table>

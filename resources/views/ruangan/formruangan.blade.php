@@ -25,6 +25,16 @@
                                 value="{{ $ruangan->nama_ruangan }}" disabled>
                         </div>
                         <div class="col-md-6">
+                            <label for="disabledTextInput" class="form-label">Nama Pengaju</label>
+                            <input type="text" id="disabledTextInput" class="form-control"
+                                value="{{ $user->nama_lengkap }}" disabled>
+                        </div>
+                         <div class="col-md-6">
+                            <label for="disabledTextInput" class="form-label">No Tlp Pengaju</label>
+                            <input type="text" id="disabledTextInput" class="form-control"
+                                value="{{ $user->no_tlp }}" disabled>
+                        </div>
+                        <div class="col-md-6">
                             <label for="exampleInputEmail1" class="form-label">Nama Penaggung Jawab</label>
                             <input type="text" class="form-control" id="nama_penanggung_jawab"
                                 aria-describedby="emailHelp" name="nama_penanggung_jawab"
@@ -73,9 +83,8 @@
                                 name="alasan_peminjaman">{{ old('alasan_peminjaman') }} </textarea>
                         </div>
                         <small class="text-danger">
-                            Senin – Jumat: 08:00–17:00 <br>
-                            Sabtu: 08:00–12:00 <br>
-                            Minggu: Tidak tersedia
+                            Senin – Jumat: 08:00–21:00 <br>
+                            Sabtu - Minggu: 08:00–17:00 <br>
                         </small>
                         <button type="submit" class="btn btn-primary">Ajukan</button>
 

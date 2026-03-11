@@ -47,11 +47,11 @@
 
 
                             <div class="d-flex gap-2">
-                                <a href="{{ route('tambahruangan.detail', $r->id) }}" class="btn btn-success btn">
+                                <a href="{{ route('tambahruangan.detail', $r->id) }}"  class="btn btn-success align-items-center gap-2">
                                     <i class="bi bi-list"></i>
                                 </a>
 
-                                <a href="{{ route('tambahruangan.edit', $r->id) }}" class="btn btn-warning btn">
+                                <a href="{{ route('tambahruangan.edit', $r->id) }}" class="btn btn-warning  align-items-center gap-2">
                                     <i class="bi bi-pencil-square"></i>
                                 </a>
 
@@ -59,9 +59,9 @@
                                     onsubmit="return confirm('Yakin mau menghapus ruangan ini?')" class="m-0">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="bi bi-trash3-fill"></i>
-                                    </button>
+                                     <button type="submit" class="btn btn-danger align-items-center gap-2">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                                 </form>
 
                             </div>
