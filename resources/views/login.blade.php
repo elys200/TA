@@ -8,7 +8,7 @@
 
     <title>Login</title>
 
-    <link rel="stylesheet" href="https://6c6c-2001-448a-8020-15d5-ec35-c365-ecfd-d45b.ngrok-free.app/css/login.css">
+    <link rel="stylesheet" href=" https://b4de-2001-448a-8020-15d5-ec35-c365-ecfd-d45b.ngrok-free.app/css/login.css">
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
     <link href="https://cdn.boxicons.com/3.0.4/fonts/basic/boxicons.min.css" rel="stylesheet">
 

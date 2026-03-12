@@ -22,6 +22,16 @@
                                 readonly>
                         </div>
                         <div class="col-md-6">
+                            <label class="form-label fw-bold">Nama Pengaju</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->user->nama_lengkap }}"
+                                readonly>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">No Tlp Pengaju</label>
+                            <input type="text" class="form-control" value="{{ $peminjaman->user->no_tlp }}"
+                                readonly>
+                        </div>
+                        <div class="col-md-6">
                             <label class="form-label fw-bold">Penanggung Jawab</label>
                             <input type="text" class="form-control" value="{{ $peminjaman->nama_penanggung_jawab }}"
                                 readonly>
@@ -76,27 +86,23 @@
                         </button>
 
                         @elseif($peminjaman->status_peminjaman == '1')
-                        <button type="button" class="btn btn-success">
-                            Approve
-                        </button>
-
-                        <p class="mb-0 mt-2">
-                            {{ $peminjaman->approver?->nama_lengkap }}
-                        </p>
+                        <div class="d-flex flex-column align-items-center gap-2 mb-4">
+                        <button type="button" class="btn btn-success btn-lg" disabled>Approved</button>
+                        <p class="mb-0 mt-3"> {{ $peminjaman->approver?->nama_lengkap}}
+                    </div>
 
                         @elseif($peminjaman->status_peminjaman == '2')
-                        <button type="button" class="btn btn-danger mb-2" disabled>
+                       <div class="d-flex flex-column align-items-center gap-2 mb-4">
+                        <button type="button" class="btn btn-danger btn-lg" disabled>
                             Rejected
                         </button>
 
-                        <a href="#" class="text-danger text-decoration-underline d-block mt-2" data-bs-toggle="modal"
+                        <a href="#" class="text-danger text-decoration-underline" data-bs-toggle="modal"
                             data-bs-target="#ModalReasonRejected">
                             Lihat Alasan Penolakan
                         </a>
-
-                        <p class="mb-0 mt-2">
-                            {{ $peminjaman->approver?->nama_lengkap }}
-                        </p>
+                        <p class="mb-0"> {{ $peminjaman->rejector?->nama_lengkap}}
+                    </div>
                         @endif
 
                     </div>

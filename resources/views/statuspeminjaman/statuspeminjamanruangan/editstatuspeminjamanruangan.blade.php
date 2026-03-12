@@ -28,6 +28,16 @@
                     value="{{ $peminjaman->ruangan->nama_ruangan }}" disabled>
             </div>
             <div class="col-md-6">
+                <label for="disabledTextInput" class="form-label">Nama Pengaju</label>
+                <input type="text" id="disabledTextInput" class="form-control"
+                    value="{{ $peminjaman->user->nama_lengkap }}" disabled>
+            </div>
+            <div class="col-md-6">
+                <label for="disabledTextInput" class="form-label">No Tlp Pengaju</label>
+                <input type="text" id="disabledTextInput" class="form-control"
+                    value="{{ $peminjaman->user->no_tlp }}" disabled>
+            </div>
+            <div class="col-md-6">
                 <label for="exampleInputEmail1" class="form-label">Nama Penaggung Jawab</label>
                 <input type="text" class="form-control" id="nama_penanggung_jawab" aria-describedby="emailHelp"
                     name="nama_penanggung_jawab"

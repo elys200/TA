@@ -13,6 +13,16 @@
             @csrf
             @method('PUT')
             <div class="col-md-6">
+                <label for="penanggung_jawab" class="form-label">Nama Pengaju</label>
+                <input type="text" class="form-control" id="nama_penanggung_jawab" name="nama_penanggung_jawab"
+                    placeholder="{{ $peminjaman->user->nama_lengkap }}" disabled>
+            </div>
+            <div class="col-md-6">
+                <label for="penanggung_jawab" class="form-label">No Tlp Pengaju</label>
+                <input type="text" class="form-control" id="nama_penanggung_jawab" name="nama_penanggung_jawab"
+                    placeholder="{{ $peminjaman->user->no_tlp }}" disabled>
+            </div>
+            <div class="col-md-6">
                 <label for="penanggung_jawab" class="form-label">Nama Penaggung Jawab</label>
                 <input type="text" class="form-control" id="nama_penanggung_jawab" name="nama_penanggung_jawab"
                     value="{{ old('nama_penanggung_jawab' , $peminjaman->nama_penanggung_jawab) }}" required>

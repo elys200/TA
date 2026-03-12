@@ -36,16 +36,18 @@ class StatusPeminjamanController extends Controller {
 
     public function detailbarang($id) {
         $peminjaman = PeminjamanBarang::where('id', $id) ->where('user_id', auth()->id()) ->firstOrFail();
-        return view('statuspeminjaman.statuspeminjamanbarang.detailpeminjamanbarang', compact('peminjaman'));
+        $user = $peminjaman->user;
+        return view('statuspeminjaman.statuspeminjamanbarang.detailpeminjamanbarang', compact('peminjaman', 'user'));
     }
 
     public function editbarang($id) {
         $peminjaman = PeminjamanBarang::findOrFail(($id));
         $barang=$peminjaman->barang;
         $ormawa = Ormawa::all();
+        $user = $peminjaman->user;
 
         if($peminjaman->status_peminjaman=='0') {
-            return view('statuspeminjaman.statuspeminjamanbarang.editstatuspeminjamanbarang', compact('peminjaman', 'barang', 'ormawa'));
+            return view('statuspeminjaman.statuspeminjamanbarang.editstatuspeminjamanbarang', compact('peminjaman', 'barang', 'ormawa', 'user'));
         }
 
         else {
@@ -104,17 +106,18 @@ class StatusPeminjamanController extends Controller {
 
     public function detail($id) {
         $peminjaman = PeminjamanRuangan::where('id', $id) ->where('user_id', auth()->id()) ->firstOrFail();
-        $user = Users::all();
-        return view('statuspeminjaman.statuspeminjamanruangan.detailpeminjamanruangan', compact('peminjaman'));
+        $users = $peminjaman->user;
+        return view('statuspeminjaman.statuspeminjamanruangan.detailpeminjamanruangan', compact('peminjaman', 'users'));
     }
 
     public function edit($id) {
         $peminjaman = PeminjamanRuangan::findOrFail($id);
         $barang=$peminjaman->barang;
+        $user=$peminjaman->user;
         $ormawa = Ormawa::all();
 
         if($peminjaman->status_peminjaman=='0') {
-            return view('statuspeminjaman.statuspeminjamanruangan.editstatuspeminjamanruangan', compact('peminjaman', 'barang', 'ormawa'));
+            return view('statuspeminjaman.statuspeminjamanruangan.editstatuspeminjamanruangan', compact('peminjaman', 'barang', 'ormawa', 'user'));
         }
 
         else {

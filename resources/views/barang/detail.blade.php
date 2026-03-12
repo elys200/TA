@@ -54,9 +54,15 @@
                 </table>
 
                 <div class="d-grid gap-2">
+                    @if($barang->jumlah_barang == 0)
+                    <button class="btn btn-primary" disabled>
+                        Ajukan Peminjaman
+                    </button>
+                    @else
                     <a href="{{ route('barang.form' , $barang->id) }}" class="btn btn-primary">
                         Ajukan Peminjaman
                     </a>
+                    @endif
                 </div>
             </div>
         </div>

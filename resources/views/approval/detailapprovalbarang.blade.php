@@ -10,6 +10,16 @@
 
             <form action="" method="POST" class="row g-3">
                 <div class="col-md-6">
+                    <label for="nama_penanggung_jawab" class="form-label">Nama Pengaju</label>
+                    <input type="text" class="form-control" id="" name="nama_penanggung_jawab"
+                        placeholder="{{ $peminjaman->user->nama_lengkap }}"disabled>
+                </div>
+                <div class="col-md-6">
+                    <label for="nama_penanggung_jawab" class="form-label">No Tlp Pengaju</label>
+                    <input type="text" class="form-control" id="" name="nama_penanggung_jawab"
+                       placeholder="{{ $peminjaman->user->no_tlp }}" disabled>
+                </div>
+                <div class="col-md-6">
                     <label for="nama_penanggung_jawab" class="form-label">Nama Penanggung Jawab</label>
                     <input type="text" class="form-control" id="nama_penanggung_jawab" name="nama_penanggung_jawab"
                         value="{{ $peminjaman->nama_penanggung_jawab }}" disabled>

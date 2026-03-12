@@ -16,6 +16,16 @@
                             <input type="text" class="form-control"
                                 placeholder="{{ $peminjamanRuangan->code_peminjaman }}">
                         </div>
+                         <div class="col-md-6">
+                            <label class="form-label fw-bold">Nama Pengaju</label>
+                            <input type="text" class="form-control"
+                                placeholder="{{ $peminjamanRuangan->user->nama_lengkap}}">
+                        </div>
+                         <div class="col-md-6">
+                            <label class="form-label fw-bold">No Tlp Pengaju</label>
+                            <input type="text" class="form-control"
+                                placeholder="{{ $peminjamanRuangan->user->no_tlp }}">
+                        </div>
                         <div class="col-md-6">
                             <label class="form-label fw-bold">Nama Ruangan</label>
                             <input type="text" class="form-control"
@@ -53,11 +63,7 @@
                             <input type="text" class="form-control"
                                 placeholder="{{ $peminjamanRuangan->alasan_peminjaman }}">
                         </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Nama Pengaju</label>
-                            <input type="text" class="form-control"
-                                placeholder="{{ $peminjamanRuangan->user->nama_lengkap }}">
-                        </div>
+                        
 
                     </div>
                 </fieldset>
