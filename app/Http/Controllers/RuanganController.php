@@ -82,22 +82,18 @@ class RuanganController extends Controller {
             $jamMulai=$validatedData['jam_mulai'];
             $jamSelesai=$validatedData['jam_selesai'];
 
-            // 🔴 Minggu tidak boleh
-            if ($hari==0) {
-                return back() ->withErrors(['tanggal_peminjaman'=> 'Hari Minggu tidak tersedia untuk peminjaman']) ->withInput();
-            }
 
             // 🟡 Sabtu (08:00 - 12:00)
             if ($hari==6) {
-                if ($jamMulai < '08:00'|| $jamSelesai > '12:00') {
-                    return back() ->withErrors(['jam_mulai'=> 'Hari Sabtu hanya boleh jam 08:00 - 12:00']) ->withInput();
+                if ($jamMulai < '08:00'|| $jamSelesai > '17:00') {
+                    return back() ->withErrors(['jam_mulai'=> 'Hari Sabtu hanya boleh jam 08:00 - 17:00']) ->withInput();
                 }
             }
 
             // 🟢 Senin - Jumat (08:00 - 17:00)
             if ($hari >=1 && $hari <=5) {
-                if ($jamMulai < '08:00'|| $jamSelesai > '17:00') {
-                    return back() ->withErrors(['jam_mulai'=> 'Senin - Jumat hanya boleh jam 08:00 - 17:00']) ->withInput();
+                if ($jamMulai < '08:00'|| $jamSelesai > '21:00') {
+                    return back() ->withErrors(['jam_mulai'=> 'Senin - Jumat hanya boleh jam 08:00 - 21:00']) ->withInput();
                 }
             }
 
