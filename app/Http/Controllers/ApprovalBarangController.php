@@ -98,14 +98,14 @@ class ApprovalBarangController extends Controller {
 
             $user=$peminjaman->user;
             $user->notify(new PeminjamanBarangRejectedNotification("🔔 Peminjaman ruangan kamu dengan kode ". $peminjaman->code_peminjaman . " DITOLAK!",
-                    route('statuspeminjamanBarang')));
+                    route('statuspeminjamanbarang')));
 
 
             return redirect()->route('approvalbarang.detail', $id) ->with('success', 'Data berhasil diperbaharui');
         }
 
         else {
-            abort(403, 'Unauthorize');
+            abort(403);
         }
     }
 
@@ -126,13 +126,14 @@ class ApprovalBarangController extends Controller {
             $peminjaman->returned_by=auth()->id();
             $peminjaman->foto_pengembalian=$path;
             $peminjaman->waktu_pengembalian=now();
+            $peminjaman->barang->increment('jumlah_barang', $peminjaman->jumlah_barang);
             $peminjaman->save();
 
             return redirect()->route('approvalbarang.detail', $id) ->with('success', 'Data berhasil diperbaharui');
         }
 
         else {
-            abort(403, 'Unathirized');
+            abort(403);
         }
 
     }

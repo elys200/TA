@@ -12,10 +12,13 @@
     <link rel="stylesheet" href="{{ asset('vendors/iconly/bold.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap-icons/bootstrap-icons.css') }}">
+    <link rel="stylesheet" href="https://6c6c-2001-448a-8020-15d5-ec35-c365-ecfd-d45b.ngrok-free.app/css/app.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.20/main.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.20/main.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.20/main.min.css" rel="stylesheet" />
+
+    @pwaHead
 
     <style>
         .image-wrapper img {
@@ -153,6 +156,9 @@
     </script>
 
     @stack('scripts')
+    @laravelPwa
+@pwaUpdateNotifier
+@pwaInstallButton
 </body>
 
 </html>

@@ -30,7 +30,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unauthorized');
+            abort(403);
         }
     }
 
@@ -42,7 +42,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unathorized');
+            abort(403);
         }
     }
 
@@ -79,7 +79,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unathorized');
+            abort(403);
         }
     }
 
@@ -90,7 +90,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unathprized');
+            abort(403);
         }
     }
 
@@ -102,7 +102,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unauthorized');
+            abort(403);
         }
     }
 
@@ -152,7 +152,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unathorized');
+            abort(403);
         }
     }
 
@@ -176,7 +176,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unathorized');
+            abort(403);
         }
     }
 
@@ -213,7 +213,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unathorized');
+            abort(403);
         }
     }
 
@@ -234,7 +234,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unathorized');
+            abort(403);
         }
     }
 
@@ -248,7 +248,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unathorized');
+            abort(403);
         }
     }
 
@@ -287,7 +287,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403, 'Unathorized');
+            abort(403);
         }
     }
 

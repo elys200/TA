@@ -17,7 +17,7 @@ class DashboardController extends Controller
         return view('dashboard', compact('ruangan', 'barang'));
         
         }else{
-            abort(403, 'Unauthorized');
+            abort(403);
         }
     }
 }

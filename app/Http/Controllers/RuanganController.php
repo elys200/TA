@@ -18,7 +18,7 @@ class RuanganController extends Controller {
         }
 
         else {
-            abort(403, 'Unauthorized');
+            abort(403);
         }
     }
 
@@ -29,7 +29,7 @@ class RuanganController extends Controller {
         }
 
         else {
-            abort(403, 'Unauthorized');
+            abort(403);
         }
 
     }
@@ -43,7 +43,7 @@ class RuanganController extends Controller {
         }
 
         else {
-            abort(403, 'Unauthorized');
+            abort(403);
         }
     }
 
@@ -145,7 +145,7 @@ if ($pic) {
         }
 
         else {
-            abort(403, 'Unauthorized');
+            abort(403);
         }
     }
 

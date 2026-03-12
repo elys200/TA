@@ -19,7 +19,7 @@ class BarangController extends Controller {
         }
 
         else {
-            abort(403, 'Unauthorized');
+            abort(403);
         }
     }
 
@@ -31,7 +31,7 @@ class BarangController extends Controller {
         }
 
         else {
-            abort(403, 'Unauthorized');
+            abort(403);
         }
     }
 
@@ -44,7 +44,7 @@ class BarangController extends Controller {
         }
 
         else {
-            abort(403, 'Unauthorized');
+            abort(403);
         }
     }
 
@@ -121,7 +121,7 @@ class BarangController extends Controller {
         }
 
         else {
-            abort(403, 'Unauthorized');
+            abort(403);
         }
     }
 

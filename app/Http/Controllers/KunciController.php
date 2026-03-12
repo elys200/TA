@@ -50,7 +50,7 @@ class KunciController extends Controller {
         }
 
         else {
-            abort(403, 'Unathorized');
+            abort(403);
         }
     }
 
@@ -77,7 +77,7 @@ class KunciController extends Controller {
         }
 
         else {
-            abort(403, 'Unathorized');
+            abort(403);
         }
 
     }
