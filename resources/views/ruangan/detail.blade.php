@@ -14,30 +14,32 @@
 
             <hr class="my-2">
 
-            <table class="table table-borderless detail-table">
-                <tbody>
-                    <tr>
-                        <th>Lokasi Ruangan</th>
-                        <td>: {{ $ruangan->lokasi }}</td>
-                    </tr>
-                    <tr>
-                        <th>Kode Ruangan</th>
-                        <td>: {{ $ruangan->kode_ruangan }}</td>
-                    </tr>
-                    <tr>
-                        <th>Kapasitas Ruangan</th>
-                        <td>: {{ $ruangan->kapasitas }} Orang</td>
-                    </tr>
-                    <tr>
-                        <th>PIC Ruangan</th>
-                        <td>: {{ $ruangan->pic->nama_lengkap ?? '-' }}</td>
-                    </tr>
-                    <tr>
-                        <th>No Telp PIC</th>
-                        <td>: 089505631279</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-responsive">
+<table class="table table-borderless detail-table" style="font-size:15px;">
+    <tbody>
+        <tr>
+            <th style="width:140px; font-weight:600;">Lokasi Ruangan</th>
+            <td>: {{ $ruangan->lokasi }}</td>
+        </tr>
+        <tr>
+            <th style="width:140px; font-weight:600;">Kode Ruangan</th>
+            <td>: {{ $ruangan->kode_ruangan }}</td>
+        </tr>
+        <tr>
+            <th style="width:140px; font-weight:600;">Kapasitas Ruangan</th>
+            <td>: {{ $ruangan->kapasitas }} Orang</td>
+        </tr>
+        <tr>
+            <th style="width:140px; font-weight:600;">PIC Ruangan</th>
+            <td>: {{ $ruangan->pic->nama_lengkap ?? '-' }}</td>
+        </tr>
+        <tr>
+            <th style="width:140px; font-weight:600;">No Telp PIC</th>
+            <td>: {{ $ruangan->pic->no_tlp ?? '-' }}</td>
+        </tr>
+    </tbody>
+</table>
+</div>
 
             <div class="d-grid gap-2">
                 <a href="{{ route('ruangan.form', $ruangan->id) }}" class="btn btn-primary">
@@ -50,7 +52,7 @@
             <h5 class="mb-3">Jadwal Penggunaan Ruangan</h5>
             <hr class="my-2">
 
-            <div id="calendar" style="width: 100%; max-width: 900px; margin: 0 auto; margin-top: 10px;"></div>
+            <div id="calendar" style="width:100%; margin:auto; margin-top:10px;"></div>
         </div>
 
     </div>
@@ -73,12 +75,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: initialView,
-
-        headerToolbar: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay'
-        },
+        aspectRatio: 1.2,
+        contentHeight: 'auto',
+        headerToolbar: window.innerWidth < 768 ? 
+{
+    left: 'prev,next',
+    right: 'dayGridMonth,timeGridDay',
+     center: 'title'
+} : 
+{
+    left: 'prev,next today',
+    right: 'dayGridMonth,timeGridDay',
+    center: 'title'
+},
 
         events: `/calendar-events/${ruanganId}`,
 

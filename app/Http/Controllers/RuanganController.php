@@ -24,7 +24,7 @@ class RuanganController extends Controller {
 
     public function detail($id) {
         if(auth()->user()->can('view_ruangan')) {
-            $ruangan=Ruangan::with('pic')->findOrFail($id);
+            $ruangan = Ruangan::with('pic')->findOrFail($id);
             return view('ruangan.detail', compact('ruangan'));
         }
 
@@ -36,8 +36,8 @@ class RuanganController extends Controller {
 
     public function form($id) {
         if(auth()->user()->can('borang_ruangan')) {
-            $ruangan=Ruangan::findOrFail($id);
-            $ormawa=Ormawa::all();
+            $ruangan = Ruangan::findOrFail($id);
+            $ormawa = Ormawa::all();
             $user = Auth::user();
             return view('ruangan.formruangan', compact('ruangan', 'ormawa', 'user'));
         }
@@ -48,9 +48,9 @@ class RuanganController extends Controller {
     }
 
     public function generateKode($ruangan_id, $tanggal) {
-        $ruangan= Ruangan::findOrFail($ruangan_id);
+        $ruangan = Ruangan::findOrFail($ruangan_id);
 
-        $tgl= Carbon::parse($tanggal);
+        $tgl = Carbon::parse($tanggal);
         $tanggalFormat=$tgl->format('Ymd');
 
         $count = PeminjamanRuangan::where('ruangan_id', $ruangan_id) ->whereDate('tanggal_peminjaman', $tanggal) ->lockForUpdate() ->count();
@@ -63,86 +63,101 @@ class RuanganController extends Controller {
     }
 
     public function store(Request $request, $id) {
-        if(auth()->user()->can('borang_ruangan')) {
-            $ruangan =Ruangan::findOrFail($id);
-
-            $validatedData=$request->validate([ 'nama_penanggung_jawab'=> 'required|string',
-                'nim'=> 'required|string',
-                'ormawa_id'=> 'required|exists:ormawa,id',
-                'tanggal_peminjaman'=> 'required|date|after_or_equal:'. now()->addDays(2)->toDateString(),
-                'jam_mulai'=> 'required|date_format:H:i',
-                'jam_selesai'=> 'required|date_format:H:i|after:jam_mulai',
-                'alasan_peminjaman'=> 'required|string',
-                ]);
-
-            // Ambil tanggal & jam
-            $tanggal = Carbon::parse($validatedData['tanggal_peminjaman']);
-            $hari=$tanggal->dayOfWeek;
-
-            $jamMulai=$validatedData['jam_mulai'];
-            $jamSelesai=$validatedData['jam_selesai'];
-
-
-            // 🟡 Sabtu (08:00 - 12:00)
-            if ($hari==6) {
-                if ($jamMulai < '08:00'|| $jamSelesai > '17:00') {
-                    return back() ->withErrors(['jam_mulai'=> 'Hari Sabtu hanya boleh jam 08:00 - 17:00']) ->withInput();
-                }
-            }
-
-            // 🟢 Senin - Jumat (08:00 - 17:00)
-            if ($hari >=1 && $hari <=5) {
-                if ($jamMulai < '08:00'|| $jamSelesai > '21:00') {
-                    return back() ->withErrors(['jam_mulai'=> 'Senin - Jumat hanya boleh jam 08:00 - 21:00']) ->withInput();
-                }
-            }
-
-            if ($jamMulai >=$jamSelesai) {
-                return back() ->withErrors(['jam_mulai'=> 'Jam mulai harus lebih awal dari jam selesai']) ->withInput();
-            }
-
-            DB::transaction(function () use ($validatedData, $ruangan) {
-
-                    // 🔥 generate kode DI DALAM transaction
-                    $kode=$this->generateKode($ruangan->id,
-                        $validatedData['tanggal_peminjaman']);
-
-
-                    // ✅ Simpan data (di luar kondisi hari!)
-                    PeminjamanRuangan::create([ 'code_peminjaman'=> $kode,
-                        'ruangan_id'=> $ruangan->id,
-                        'user_id'=> auth()->id(),
-                        'ormawa_id'=> $validatedData['ormawa_id'],
-                        'nama_penanggung_jawab'=> $validatedData['nama_penanggung_jawab'],
-                        'nim'=> $validatedData['nim'],
-                        'tanggal_peminjaman'=> $validatedData['tanggal_peminjaman'],
-                        'jam_mulai'=> $validatedData['jam_mulai'],
-                        'jam_selesai'=> $validatedData['jam_selesai'],
-                        'alasan_peminjaman'=> $validatedData['alasan_peminjaman'],
-                        'status_peminjaman'=> 0,
-                    ]);                    
-            });
-            
-            $pic = Users::find($ruangan->pic_id);
-
-if ($pic) {
-    $nama = auth()->user()->nama_lengkap;
-    $namaRuangan = $ruangan->nama_ruangan;
-
-    $pic->notify(
-        new PeminjamanRuanganNotification(
-            "🔔 $nama meminjam ruangan $namaRuangan",
-            route('approvalruangan')
-        )
-    );
-}
-            return redirect()->route('statuspeminjamanruangan') ->with('success', 'Peminjaman ruangan berhasil diajukan!');
-
-        }
-
-        else {
+        if ( !auth()->user()->can('borang_ruangan')) {
             abort(403);
         }
+
+        $ruangan=Ruangan::findOrFail($id);
+
+        $validatedData=$request->validate([ 'nama_penanggung_jawab'=> 'required|string',
+            'nim'=> 'required|string',
+            'ormawa_id'=> 'required|exists:ormawa,id',
+            'tanggal_peminjaman'=> 'required|date|after_or_equal:'. now()->addDays(2)->toDateString(),
+            'jam_mulai'=> 'required|date_format:H:i',
+            'jam_selesai'=> 'required|date_format:H:i|after:jam_mulai',
+            'alasan_peminjaman'=> 'required|string',
+            ]);
+
+        // ambil tanggal
+        $tanggal=Carbon::parse($validatedData['tanggal_peminjaman']);
+        $hari=$tanggal->dayOfWeek;
+
+        $jamMulai=$validatedData['jam_mulai'];
+        $jamSelesai=$validatedData['jam_selesai'];
+
+        // 🟡 Sabtu
+        if ($hari==6) {
+            if ($jamMulai < '08:00'|| $jamSelesai > '17:00') {
+                return back()->withErrors([ 'jam_mulai'=> 'Hari Sabtu hanya boleh jam 08:00 - 17:00'
+                    ])->withInput();
+            }
+        }
+
+        // 🟢 Senin - Jumat
+        if ($hari >=1 && $hari <=5) {
+            if ($jamMulai < '08:00'|| $jamSelesai > '21:00') {
+                return back()->withErrors([ 'jam_mulai'=> 'Senin - Jumat hanya boleh jam 08:00 - 21:00'
+                    ])->withInput();
+            }
+        }
+
+        // ❌ Minggu tidak boleh
+        if ($hari==0) {
+            return back()->withErrors([ 'tanggal_peminjaman'=> 'Hari Minggu tidak bisa melakukan peminjaman'
+                ])->withInput();
+        }
+
+        // 🔍 Cek bentrok jadwal
+        $exists=PeminjamanRuangan::where('ruangan_id', $ruangan->id) ->where('tanggal_peminjaman', $validatedData['tanggal_peminjaman']) ->where('status_peminjaman', '!=', 2) // misal 2 = ditolak
+
+        ->where(function ($query) use ($jamMulai, $jamSelesai) {
+                $query->whereBetween('jam_mulai', [$jamMulai, $jamSelesai]) ->orWhereBetween('jam_selesai', [$jamMulai, $jamSelesai]) ->orWhere(function ($q) use ($jamMulai, $jamSelesai) {
+                        $q->where('jam_mulai', '<=', $jamMulai) ->where('jam_selesai', '>=', $jamSelesai);
+                    }
+
+                );
+            }
+
+        ) ->exists();
+
+        if ($exists) {
+            return back()->withErrors([ 'jam_mulai'=> 'Tanggal dan jam tersebut sudah digunakan'
+                ])->withInput();
+        }
+
+        // 💾 Simpan data
+        DB::transaction(function () use ($validatedData, $ruangan) {
+
+                $kode=$this->generateKode($ruangan->id,
+                    $validatedData['tanggal_peminjaman']);
+
+                PeminjamanRuangan::create([ 'code_peminjaman'=> $kode,
+                    'ruangan_id'=> $ruangan->id,
+                    'user_id'=> auth()->id(),
+                    'ormawa_id'=> $validatedData['ormawa_id'],
+                    'nama_penanggung_jawab'=> $validatedData['nama_penanggung_jawab'],
+                    'nim'=> $validatedData['nim'],
+                    'tanggal_peminjaman'=> $validatedData['tanggal_peminjaman'],
+                    'jam_mulai'=> $validatedData['jam_mulai'],
+                    'jam_selesai'=> $validatedData['jam_selesai'],
+                    'alasan_peminjaman'=> $validatedData['alasan_peminjaman'],
+                    'status_peminjaman'=> 0]);
+            }
+
+        );
+
+        // 🔔 Kirim notifikasi ke PIC
+        $pic=Users::find($ruangan->pic_id);
+
+        if ($pic) {
+            $nama=auth()->user()->nama_lengkap;
+            $namaRuangan=$ruangan->nama_ruangan;
+
+            $pic->notify(new PeminjamanRuanganNotification("🔔 $nama meminjam ruangan $namaRuangan",
+                    route('approvalruangan')));
+        }
+
+        return redirect()->route('statuspeminjamanruangan') ->with('success', 'Peminjaman ruangan berhasil diajukan!');
     }
 
     public function calendarEvents($ruanganId) {

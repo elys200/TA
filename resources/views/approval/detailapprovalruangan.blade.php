@@ -114,7 +114,7 @@
                         <p class="fw-semibold mb-3">Pemberian Kunci</p>
 
                         @if(is_null($peminjamanRuangan->given_by))
-                        <button type="button" class="btn btn-outline-secondary">
+                        <button type="button" class="btn btn-outline-secondary" disabled>
                             Waiting
                         </button>
                         @else

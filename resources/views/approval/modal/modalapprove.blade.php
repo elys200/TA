@@ -7,7 +7,7 @@
                 @method('PUT')
 
                 <div class="modal-header">
-                    <h5 class="modal-title" style="margin-left: 145px;">Konfirmasi Approval</h5>
+                    <h5 class="modal-title">Konfirmasi Approval</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
 

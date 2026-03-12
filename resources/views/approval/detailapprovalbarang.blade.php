@@ -1,6 +1,8 @@
 @extends('layouts.app')
-
 @section('content')
+@php
+    use Carbon\Carbon;
+@endphp
 <div class="container-fluid">
     <h3 class="mb-4">Detail Peminjaman Barang</h3>
 
@@ -153,7 +155,7 @@
                 <div class="col-12 col-md-4 mb-4 mt-3">
                     <p class="fw-semibold mb-3">Pemberian Barang</p>
 
-                    @if(is_null($peminjaman->given_by))
+                    @if(is_null($peminjaman->given_by) && Carbon::parse($peminjaman->tanggal_mulai_peminjaman)->isToday())
                     <div class="d-flex justify-content-center gap-2 mb-4">
                         <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
                             data-bs-target="#modalPemberianBarang">
@@ -175,7 +177,7 @@
                 <div class="col-12 col-md-4 mb-4 mt-3">
                     <p class="fw-semibold mb-3">Pengembalian Barang</p>
 
-                    @if(!is_null($peminjaman->given_by) && is_null($peminjaman->returned_by))
+                    @if(!is_null($peminjaman->given_by) && is_null($peminjaman->returned_by) &&\Carbon\Carbon::parse($peminjaman->tanggal_selesai_peminjaman)->isToday())
                     <div class="d-flex justify-content-center gap-2 mb-4">
                         <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
                             data-bs-target="#modalPengembalianBarang">

@@ -35,7 +35,7 @@ class KunciController extends Controller {
                 return redirect()->route('kunci') ->with('error', 'Password Salah');
             }
 
-            $peminjaman=PeminjamanRuangan::findOrFail($id);
+            $peminjaman=PeminjamanRuangan::findOrFail($id)
 
             // Simpan file ke storage
             $file=$request->file('foto_pemberian');

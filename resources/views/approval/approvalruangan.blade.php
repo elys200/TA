@@ -10,7 +10,7 @@
     <div class="bg-white p-4 rounded-3 shadow-sm">
         <div class="container">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="margin-top: 10px;">
                     <div class="card-body d-flex align-items-center" id="btnAll"
                         style="background-color: #3A9AFF; border-radius: 10px; height: 130px; cursor: pointer;">
                         <div class="me-3">
@@ -24,7 +24,7 @@
 
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="margin-top: 10px;">
                     <div class="card-body d-flex align-items-center" id="btnReview"
                         style="background-color: #7367f0; border-radius: 10px; height: 130px; cursor: pointer;">
                         <div class="me-3">
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-sm-4" style="margin-top: 10px;">
                     <div class="card-body d-flex align-items-center" id="btnApprove"
                         style="background-color: #6EC207; border-radius: 10px; height: 130px; cursor: pointer;">
                         <div class="me-3">
