@@ -90,19 +90,19 @@
         <div class="table-responsive">
             <table class="table table-bordered align-middle">
                 <thead class="table-light">
-                    <tr>
-                        <th>No</th>
+                    <tr style="text-align: center;">
+                        <th width="50">No</th>
                         <th>Gambar</th>
                         <th>Nama</th>
                         <th>Qty</th>
                         <th>Deskripsi</th>
-                        <th width="200">Action</th>
+                        <th width="200"  style="text-align: center;">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($ormawa->barang as $barang)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
+                        <td style="text-align: center;">{{ $loop->iteration }}.</td>
                         <td>
                             <img src="{{ asset('storage/' . $barang->foto_barang) }}"
                                 style="width: 80px; height: 60px; object-fit: contain;">
@@ -114,11 +114,11 @@
                             <div class="d-flex justify-content-center align-items-center gap-2">
 
                                 <a href="{{ route('ormawa.barang.detail', ['id' => $ormawa->id, 'barangId' => $barang->id]) }}"
-                                    class="btn btn-success btn-sm">
+                                    class="btn btn-success">
                                     <i class="bi bi-justify"></i>
                                 </a>
 
-                                <button class="btn btn-warning btn-sm btn-edit-barang" data-id="{{ $barang->id }}"
+                                <button class="btn btn-warning btn-edit-barang" data-id="{{ $barang->id }}"
                                     data-ormawa="{{ $ormawa->id }}" data-nama="{{ $barang->nama_barang }}"
                                     data-kode="{{ $barang->kode_barang }}"
                                     data-deskripsi="{{ $barang->deskripsi_barang }}"
@@ -135,9 +135,9 @@
                                     class="m-0">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i class="bi bi-trash3-fill"></i>
-                                    </button>
+                                     <button type="submit" class="btn btn-danger align-items-center gap-2">
+                                    <i class="bi bi-trash"></i>
+                                </button>
                                 </form>
 
                             </div>
