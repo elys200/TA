@@ -27,8 +27,8 @@ Route::get('/login', function () {
         $ormawa=Ormawa::all();
         return view('login', compact('ormawa'));
     }
-
 );
+
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 //Register//

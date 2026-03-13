@@ -63,7 +63,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ $ruang->nama_ruangan }}</h5>
                             <p class="card-text">{{ $ruang->deskripsi }}</p>
-                            <a href="#" class="btn btn-primary w-100">Detail</a>
+                            <a href="{{ route('ruangan.detail', $ruang->id) }}" class="btn btn-primary w-100">Detail</a>
                         </div>
                     </div>
                 </div>
@@ -71,7 +71,6 @@
             </div>
         </div>
     </div>
-
     <a class="services-btn" href="{{route('ruangan')}}">Lihat Semua Ruangan</a>
 </div>
 
@@ -144,22 +143,24 @@
 
     </div>
 </div>
-  <script>
-document.addEventListener("DOMContentLoaded", function () {
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+    });
+
+</script>
+@endsection
+@push('scripts')
+<script>
     document.querySelectorAll('.faq-item').forEach(item => {
         item.addEventListener('click', () => {
             item.classList.toggle('active');
         });
     });
-});
-</script>
-@endsection
-@push('scripts')
-<script>
-document.querySelectorAll('.faq-item').forEach(item => {
-    item.addEventListener('click', () => {
-        item.classList.toggle('active');
-    });
-});
+
 </script>
 @endpush
