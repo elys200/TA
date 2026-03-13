@@ -41,13 +41,6 @@
                     <i class="bx bx-lock"></i>
                 </div>
 
-                @error('email')
-                <div style="color:red">{{ $message }}</div>
-                @enderror
-
-                @error('password')
-                <div style="color:red">{{ $message }}</div>
-                @enderror
 
                 <button type="submit" class="btn">Login</button>
             </form>
@@ -55,13 +48,6 @@
 
         {{-- REGISTER FORM --}}
         <div class="form-box register">
-            @if ($errors->register->any())
-            <div class="error-alert">
-                @foreach ($errors->register->all() as $error)
-                <p>{{ $error }}</p>
-                @endforeach
-            </div>
-            @endif
 
             <form action="{{ route('register') }}" method="POST">
                 @csrf
