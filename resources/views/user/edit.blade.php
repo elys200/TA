@@ -14,11 +14,11 @@
             <div class="col-md-6">
                 <label for="" class="form-label fw-bold">Nama Lengkap</label>
                 <input type="text" name="nama_lengkap" class="form-control"
-                    value="{{ old('nama_lengkap', $users->nama_lengkap) }}">
+                    value="{{ old('nama_lengkap', $users->nama_lengkap) }}" disabled>
             </div>
             <div class="col-md-6">
-                <label for="" class="form-label fw-bold">Email</label>
-                <input type="email" name="email" class="form-control" value="{{ old('email', $users->email) }}">
+                <label for="" class="form-label fw-bold">No Tlp</label>
+                <input type="email" name="no_tlp" class="form-control" value="{{ old('no_tlp', $users->no_tlp) }}" disabled>
             </div>
             <div class="col-md-6">
                 <label for="inputState" class="form-label fw-bold">Role</label>
@@ -33,17 +33,17 @@
             </div>
             <div class="col-md-6">
                 <label for="" class="form-label fw-bold">NIM</label>
-                <input type="text" name="nim" class="form-control" value="{{ old('nim', $users->nim) }}">
+                <input type="text" name="nim" class="form-control" value="{{ old('nim', $users->nim) }}" disabled>
             </div>
             <div class="col-md-6">
                 <label for="" class="form-label fw-bold">Jurusan</label>
                 <input type="text" name="program_studi" class="form-control"
-                    value="{{ old('jurusan', $users->jurusan) }}">
+                    value="{{ old('jurusan', $users->jurusan) }}" disabled>
             </div>
             <div class="col-md-6">
                 <label for="" class="form-label fw-bold">Program Studi</label>
                 <input type="text" name="program_studi" class="form-control"
-                    value="{{ old('program_studi', $users->program_studi) }}">
+                    value="{{ old('program_studi', $users->program_studi) }}" disabled>
             </div>
             <div class="col-md-6">
                 <label for="inputState" class="form-label fw-bold">Status User</label>
