@@ -71,6 +71,7 @@ class ApprovalRuanganController extends Controller {
 
         $peminjaman->status_peminjaman=1;
         $peminjaman->approved_by=auth()->id();
+        $peminjaman->approved_at=now();
         $peminjaman->save();
 
         $user=$peminjaman->user;

@@ -107,8 +107,8 @@
 
 
                 @if(is_null($peminjaman->given_by))
-                <button type="button" class="btn btn-warning">
-                    Waiting Approval
+                <button type="button" class="btn btn-secondary" disabled>
+                    Belum diberikan
                 </button>
                 @else
                 <a href="#" data-bs-toggle="modal" data-bs-target="#TampilkanBuktiPemberian" class="d-block mb-2">

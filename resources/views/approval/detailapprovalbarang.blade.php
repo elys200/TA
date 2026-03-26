@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 @php
-    use Carbon\Carbon;
+use Carbon\Carbon;
 @endphp
 <div class="container-fluid">
     <h3 class="mb-4">Detail Peminjaman Barang</h3>
@@ -14,12 +14,12 @@
                 <div class="col-md-6">
                     <label for="nama_penanggung_jawab" class="form-label">Nama Pengaju</label>
                     <input type="text" class="form-control" id="" name="nama_penanggung_jawab"
-                        placeholder="{{ $peminjaman->user->nama_lengkap }}"disabled>
+                        placeholder="{{ $peminjaman->user->nama_lengkap }}" disabled>
                 </div>
                 <div class="col-md-6">
                     <label for="nama_penanggung_jawab" class="form-label">No Tlp Pengaju</label>
                     <input type="text" class="form-control" id="" name="nama_penanggung_jawab"
-                       placeholder="{{ $peminjaman->user->no_tlp }}" disabled>
+                        placeholder="{{ $peminjaman->user->no_tlp }}" disabled>
                 </div>
                 <div class="col-md-6">
                     <label for="nama_penanggung_jawab" class="form-label">Nama Penanggung Jawab</label>
@@ -155,29 +155,40 @@
                 <div class="col-12 col-md-4 mb-4 mt-3">
                     <p class="fw-semibold mb-3">Pemberian Barang</p>
 
-                    @if(is_null($peminjaman->given_by) && Carbon::parse($peminjaman->tanggal_mulai_peminjaman)->isToday())
+                    @if(is_null($peminjaman->given_by) &&
+                    Carbon::parse($peminjaman->tanggal_mulai_peminjaman)->toDateString() == now()->toDateString())
+
+                    {{-- Bisa upload --}}
                     <div class="d-flex justify-content-center gap-2 mb-4">
                         <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
                             data-bs-target="#modalPemberianBarang">
                             Upload Bukti
                         </button>
                     </div>
-                    @else
+
+                    @elseif(!is_null($peminjaman->given_by))
+
+                    {{-- Sudah ada bukti --}}
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modalTampilkanBuktiPemberian">
-                        <p class="mb-0 text-center">Lihat Bukti Pemberian Kunci</p>
+                        <p class="mb-0 text-center">Lihat Bukti Pemberian Barang</p>
                     </a>
-                    <p class="mb-0 mt-3"> {{ $peminjaman->given?->nama_lengkap}}
-                        <p class="mb-0">{{ $peminjaman->time_given }}</p>
+                    <p class="mb-0 mt-3">{{ $peminjaman->given?->nama_lengkap }}</p>
+                    <p class="mb-0">{{ $peminjaman->time_given }}</p>
 
-                        @endif
+                    @else
 
+                    {{-- Belum waktunya upload --}}
+                    <p class="text-center text-muted">Belum bisa upload bukti</p>
+
+                    @endif
                 </div>
 
                 <!-- PENGEMBALIAN BARANG -->
                 <div class="col-12 col-md-4 mb-4 mt-3">
                     <p class="fw-semibold mb-3">Pengembalian Barang</p>
 
-                    @if(!is_null($peminjaman->given_by) && is_null($peminjaman->returned_by) &&\Carbon\Carbon::parse($peminjaman->tanggal_selesai_peminjaman)->isToday())
+                    @if(!is_null($peminjaman->given_by) && is_null($peminjaman->returned_by)
+                    &&\Carbon\Carbon::parse($peminjaman->tanggal_selesai_peminjaman)->isToday())
                     <div class="d-flex justify-content-center gap-2 mb-4">
                         <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
                             data-bs-target="#modalPengembalianBarang">

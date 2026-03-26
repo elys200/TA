@@ -94,6 +94,8 @@
     </script>
     @endif
 
+    
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
 
@@ -154,6 +156,16 @@
         });
 
     </script>
+
+    @if ($errors->any())
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Validasi Gagal',
+        html: `{!! implode('<br>', $errors->all()) !!}`
+    })
+</script>
+@endif
 
     @stack('scripts')
     @laravelPwa

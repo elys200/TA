@@ -215,6 +215,17 @@
     </script>
     @endif
 
+    @if ($errors->any())
+<script>
+    Swal.fire({
+        title: "Oops...",
+        text: "{{ $errors->first() }}",
+        icon: "error",
+        draggable: true
+    });
+</script>
+@endif
+
 
 
     

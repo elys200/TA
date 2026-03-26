@@ -75,11 +75,20 @@ class BarangController extends Controller {
             $validateData=$request->validate([ 'nama_penanggung_jawab'=> 'required|string',
                 'nim'=> 'required|string',
                 'ormawa_id'=> 'required|exists:ormawa,id',
-                'tanggal_mulai_peminjaman'=> 'required|date|after_or_equal:'. now()->addDays(2)->toDateString(),
+                'tanggal_mulai_peminjaman' => [
+                'required',
+                'date',
+                'after_or_equal:' . now()->addDays(2)->format('Y-m-d')
+                ],
                 'tanggal_selesai_peminjaman'=> 'required|date|after:tanggal_mulai_peminjaman',
                 'alasan_peminjaman'=> 'required|string',
                 'jumlah_barang'=> 'required|integer|min:1'
-                ]);
+                ],
+                 [
+                'tanggal_mulai_peminjaman.after_or_equal' => 'Tanggal mulai peminjaman harus minimal 2 hari dari sekarang.',
+                'tanggal_selesai_peminjaman.after' => 'Tanggal selesai peminjaman harus lebih besar dari tanggal mulai peminjaman.'
+]
+                );
 
             if ($validateData['jumlah_barang'] > $barang->jumlah_barang) {
                 return back()->withErrors([ 'jumlah_barang'=> 'Stok tidak mencukupi'

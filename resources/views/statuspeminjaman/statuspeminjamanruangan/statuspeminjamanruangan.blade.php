@@ -117,7 +117,7 @@
                                     {{-- Edit --}}
                                     <a href="{{ route('statuspeminjamanruangan.editpeminjaman', $peminjaman->id) }}"
                                         class="btn btn-warning">
-                                        <i class="bi bi-pencil-square"></i>
+                                        <i class="bi bi-pencil-square" style="color: white;"></i>
                                     </a>
 
                                     {{-- Delete --}}

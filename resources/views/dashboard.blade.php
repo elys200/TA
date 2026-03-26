@@ -94,7 +94,7 @@
     </div>
 
 
-    <a class="services-btn" href="{{route('barang')}}" style="width">Lihat Semua Barang</a>
+    <a class="services-btn" href="{{route('barang')}}">Lihat Semua Barang</a>
 </div>
 
 <div class="about-section">

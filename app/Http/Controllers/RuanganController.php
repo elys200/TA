@@ -103,8 +103,10 @@ class RuanganController extends Controller {
 
         // ❌ Minggu tidak boleh
         if ($hari==0) {
-            return back()->withErrors([ 'tanggal_peminjaman'=> 'Hari Minggu tidak bisa melakukan peminjaman'
-                ])->withInput();
+             if ($jamMulai < '08:00'|| $jamSelesai > '17:00') {
+                return back()->withErrors([ 'jam_mulai'=> 'Hari Minggu hanya boleh jam 08:00 - 17:00'
+                    ])->withInput();
+            }
         }
 
         // 🔍 Cek bentrok jadwal
