@@ -5,7 +5,7 @@
         <div class="sidebar-header">
             <div class="d-flex align-items-center justify-content-between">
 
-               
+
                 <div class="logo">
                     <img src="{{ asset('images/logo/logo1.png') }}" alt="Logo">
                 </div>
@@ -17,10 +17,11 @@
                         <i class="bi bi-bell fs-5"></i>
 
                         @if(auth()->user()?->unreadNotifications->count() > 0)
-        <span class="position-absolute top-0 start-100 translate-middle p-1 badge rounded-pill bg-danger notif-badge">
-            {{ auth()->user()?->unreadNotifications->count() }}
-        </span>
-    @endif
+                        <span
+                            class="position-absolute top-0 start-100 translate-middle p-1 badge rounded-pill bg-danger notif-badge">
+                            {{ auth()->user()?->unreadNotifications->count() }}
+                        </span>
+                        @endif
                     </a>
 
                     <ul class="dropdown-menu dropdown-menu-end shadow">
@@ -134,6 +135,8 @@
                         <span>Kelola Ruangan</span>
                     </a>
                 </li>
+                @endrole
+                @hasrole('admin|pic_barang')
 
                 <li class="sidebar-item">
                     <a href="{{ url('/ormawa') }}" class='sidebar-link'>
@@ -141,6 +144,8 @@
                         <span>Ormawa</span>
                     </a>
                 </li>
+                @endhasrole
+                @role('admin')
 
                 <li class="sidebar-item">
                     <a href="{{ route('user') }}" class='sidebar-link'>

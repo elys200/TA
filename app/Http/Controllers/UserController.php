@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use App\Models\Users;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller {
     public function __construct() {
@@ -14,6 +16,43 @@ class UserController extends Controller {
         $roles = Role::all();
         return view('user.user', compact('users'));
     }
+
+    public function create() {
+        $roles = Role::all();
+        return view('user.form', compact('roles'));;
+    }
+
+    public function store(Request $request)
+{
+    Validator::make($request->all(), [
+        'nim'           => 'required|unique:users,nim',
+        'nama_lengkap'  => 'required',
+        'no_tlp'        => 'nullable|unique:users,no_tlp',
+        'password'      => 'required|min:6',
+        'role'          => 'required|exists:roles,name',
+        'status'        => 'required|in:0,1',
+        'jurusan'       => 'nullable',
+        'program_studi' => 'nullable',
+        'ormawa_id'     => 'nullable',
+    ])->validate();
+
+    $user = Users::create([
+        'nim'           => $request->nim,
+        'nama_lengkap'  => $request->nama_lengkap,
+        'no_tlp'        => $request->no_tlp,
+        'jurusan'       => $request->jurusan ?? null,
+        'program_studi' => $request->program_studi ?? null,
+        'ormawa_id'     => $request->ormawa_id ?? null,
+        'password'      => Hash::make($request->password),
+        'status'        => $request->status,
+    ]);
+
+    // Assign role Spatie
+    $user->assignRole($request->role);
+
+    return redirect()->route('user')
+                     ->with('success', 'User berhasil ditambahkan!');
+}
 
     public function edit($id) {
         $users = Users::findOrFail($id);

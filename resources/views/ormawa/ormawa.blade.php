@@ -46,6 +46,7 @@
                                 class="btn btn-success align-items-center gap-2">
                                 <i class="bi bi-justify"></i>
                             </a>
+                            @hasrole('admin')
                             <a href="{{ route('ormawa.edit', $ormawas->id) }}"
                                 class="btn btn-warning  align-items-center gap-2">
                                 <i class="bi bi-pencil-square"></i>
@@ -58,6 +59,7 @@
                                     <i class="bi bi-trash"></i>
                                 </button>
                             </form>
+                            @endhasrole
                         </div>
                     </div>
                 </div>

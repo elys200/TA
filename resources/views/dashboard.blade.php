@@ -30,24 +30,7 @@
     </div>
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap; padding: 50px 0;">
-
-    <div>
-        <img src="{{ asset('images/bem.png') }}" alt="Logo 1"
-            style="max-width: 120px; height: auto; opacity: 0.9; transition: transform 0.2s ease, opacity 0.2s ease;"
-            onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1';"
-            onmouseout="this.style.transform='scale(1)'; this.style.opacity='0.9';">
-    </div>
-
-    <div>
-        <img src="{{ asset('images/hmti.png') }}" alt="Logo 2"
-            style="max-width: 160px; height: auto; opacity: 0.9; transition: transform 0.2s ease, opacity 0.2s ease;"
-            onmouseover="this.style.transform='scale(1.05)'; this.style.opacity='1';"
-            onmouseout="this.style.transform='scale(1)'; this.style.opacity='0.9';">
-    </div>
-</div>
-
-<div class="services-section" id="services">
+<div class="services-section" style="margin-top: 50px;" id="services">
     <h2 class="services-title"> Ruangan</h2>
     <p class="services-subtitle">
         Berikut ini list ruangan Ormawa yang dapat digunakan

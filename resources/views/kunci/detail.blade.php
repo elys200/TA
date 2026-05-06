@@ -96,10 +96,11 @@ use Carbon\Carbon;
                 </div>
                 <div class="col-md-4 mb-4 mt-3">
                     <p class="fw-semibold mb-3">Pemberian Kunci</p>
-                    @if(is_null($PeminjamanRuangan->given_by) &&
-                    Carbon::parse($PeminjamanRuangan->tanggal_peminjaman)->toDateString() == now()->toDateString())
 
-                    {{-- Bisa upload --}}
+                    @if(is_null($PeminjamanRuangan->given_by)
+                    && Carbon::parse($PeminjamanRuangan->tanggal_peminjaman)->isToday())
+
+                    {{-- Hari H & belum upload --}}
                     <div class="d-flex justify-content-center gap-2 mb-4">
                         <button type="button" class="btn btn-success btn-lg" data-bs-toggle="modal"
                             data-bs-target="#modalPemberianKunci">
@@ -107,19 +108,27 @@ use Carbon\Carbon;
                         </button>
                     </div>
 
-                    @elseif(!is_null($PeminjamanRuangan->given_by))
+                    @elseif(is_null($PeminjamanRuangan->given_by))
+
+                    {{-- Belum upload & belum hari H --}}
+                    <p class="text-center text-muted">
+                        Belum bisa upload <br> (menunggu hari peminjaman)
+                    </p>
+
+                    @else
 
                     {{-- Sudah upload --}}
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modalTampilkanBuktiPemberian">
                         <p class="mb-0 text-center">Lihat Bukti Pemberian Kunci</p>
                     </a>
-                    <p class="mb-0 mt-3">{{ $PeminjamanRuangan->given?->nama_lengkap }}</p>
-                    <p class="mb-0">{{ $PeminjamanRuangan->time_given }}</p>
 
-                    @else
+                    <p class="mb-0 mt-3">
+                        {{ $PeminjamanRuangan->given?->nama_lengkap }}
+                    </p>
 
-                    {{-- Belum waktunya --}}
-                    <p class="text-center text-muted">Belum bisa upload bukti</p>
+                    <p class="mb-0">
+                        {{ $PeminjamanRuangan->time_given }}
+                    </p>
 
                     @endif
                 </div>

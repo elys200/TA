@@ -15,7 +15,16 @@
                 <label class="mb-0">Search:</label>
                 <input type="text" id="searchInput" class="form-control form-control-sm">
             </div>
+
+            <a href="{{ route('user.create') }}">
+                <button class="btn btn-primary d-flex align-items-center gap-1">
+                    <i class="bi bi-plus-circle"></i>
+                    Tambah
+                </button>
+            </a>
         </div>
+
+        
 
         <div class="table-responsive">
             <table class="table table-bordered align-middle">

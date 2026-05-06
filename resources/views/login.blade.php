@@ -32,7 +32,7 @@
                 <h1>Login</h1>
 
                 <div class="input-box">
-                    <input type="text" name="nim" placeholder="NIM" required>
+                    <input type="text" name="nim" placeholder="NIM/NIP" required>
                     <i class="bx bx-user"></i>
                 </div>
 

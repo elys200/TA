@@ -13,26 +13,21 @@ class OrmawaController extends Controller {
     }
 
     public function index() {
-        $query = Ormawa::query();
+    $query = Ormawa::query();
 
-        if (auth()->user()->hasRole('pic_barang')) {
-            $query->whereHas('barang', function ($q) {
-                    $q->where('pic_id', auth()->id());
-                }
-
-            );
-        }
-
-        if(auth()->user()->can('view_ormawa')) {
-            $ormawa=$query->get();
-            $users = Users::all();
-            return view('ormawa/ormawa', compact('ormawa', 'users'));
-        }
-
-        else {
-            abort(403);
-        }
+    if (auth()->user()->hasRole('pic_barang')) {
+        $query->where('pic_id', auth()->id());
     }
+
+    if(auth()->user()->can('view_ormawa')) {
+        $ormawa = $query->with('user')->get();
+        $users = Users::all();
+
+        return view('ormawa/ormawa', compact('ormawa', 'users'));
+    } else {
+        abort(403);
+    }
+}
 
     // FORM TAMBAH
     public function create() {
@@ -79,7 +74,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403);
+            abort(401);
         }
     }
 
@@ -90,7 +85,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403);
+            abort(401);
         }
     }
 
@@ -102,7 +97,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403);
+            abort(401);
         }
     }
 
@@ -152,7 +147,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403);
+            abort(401);
         }
     }
 
@@ -176,7 +171,7 @@ class OrmawaController extends Controller {
         }
 
         else {
-            abort(403);
+            abort(401);
         }
     }
 

@@ -49,7 +49,7 @@
                     <tr>
                         <th>PIC</th>
                         <td>:</td>
-                        <td>{{ $ormawa->users->name ?? 'Tidak Ada PIC' }}</td>
+                        <td>{{ $ormawa->user->nama_lengkap ?? 'Tidak Ada PIC' }}</td>
                     </tr>
                     <tr>
                         <th>Email</th>

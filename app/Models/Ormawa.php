@@ -36,6 +36,6 @@ class Ormawa extends Model
 
     public function user()
     {
-        $this->belongsTo(Users::class);
+        return $this->belongsTo(Users::class, 'pic_id');
     }
 }
