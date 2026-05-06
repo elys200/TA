@@ -26,6 +26,7 @@ class StatusPeminjamanController extends Controller {
             $query->where('status_peminjaman', $request->status);
         }
 
+        $query->orderBy('created_at', 'desc');
         $peminjaman=$query->paginate(10)->withQueryString();
         $totalReview=PeminjamanBarang::where('status_peminjaman', 0)->count();
         $totalApprove=PeminjamanBarang::where('status_peminjaman', 1)->count();
@@ -107,6 +108,8 @@ class StatusPeminjamanController extends Controller {
         if ($request->filled('status')) {
             $query->where('status_peminjaman', $request->status);
         }
+
+         $query->orderBy('created_at', 'desc');
 
         $peminjamanRuangan=$query->paginate(10)->withQueryString();
         $totalReview=PeminjamanBarang::where('status_peminjaman', 0)->count();

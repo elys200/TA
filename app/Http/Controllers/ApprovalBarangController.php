@@ -24,6 +24,8 @@ class ApprovalBarangController extends Controller {
             );
         }
 
+        $query->orderBy('created_at', 'desc');
+
         $peminjaman=$query->paginate(10);
         $totalSeluruh=PeminjamanBarang::all()->count();
         $totalReview=PeminjamanBarang::where('status_peminjaman', 0)->count();

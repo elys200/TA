@@ -26,6 +26,8 @@ class ApprovalRuanganController extends Controller {
             );
         }
 
+        $query->orderBy('created_at', 'desc');
+        
         $peminjamanRuangan=$query->paginate(10);
         $ormawa=Ormawa::all();
         $totalSeluruh=$query->count();
