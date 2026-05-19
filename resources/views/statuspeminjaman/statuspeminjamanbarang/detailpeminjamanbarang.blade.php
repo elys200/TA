@@ -112,7 +112,7 @@
                 </button>
                 @else
                 <a href="#" data-bs-toggle="modal" data-bs-target="#TampilkanBuktiPemberian" class="d-block mb-2">
-                    Lihat Bukti Pemberian Kunci
+                    Lihat Bukti Pemberian Barang
                 </a>
 
                 <p class="mb-1 mt-3">
@@ -137,7 +137,7 @@
 
                 @elseif(!is_null($peminjaman->returned_by))
                 <a href="#" data-bs-toggle="modal" data-bs-target="#TampilanBuktiPengembalian" class="d-block mt-2">
-                    <p class="mb-0 text-center">Lihat Bukti Pengembalian Kunci</p>
+                    <p class="mb-0 text-center">Lihat Bukti Pengembalian Barang</p>
                 </a>
 
                 <p class="mb-0 mt-3"> {{ $peminjaman->returned?->nama_lengkap}}</p>

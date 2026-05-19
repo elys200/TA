@@ -12,11 +12,16 @@
     <link rel="stylesheet" href="{{ asset('vendors/iconly/bold.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap-icons/bootstrap-icons.css') }}">
-    <link rel="stylesheet" href="https://6c6c-2001-448a-8020-15d5-ec35-c365-ecfd-d45b.ngrok-free.app/css/app.css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.20/main.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.20/main.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/@fullcalendar/timegrid@6.1.20/main.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@hotwired/turbo@8.0.12/dist/turbo.es2017.umd.js"></script>
+
+    {{-- Disable transisi sidebar saat first paint untuk mencegah flash --}}
+    <style>
+        html:not(.sidebar-ready) .sidebar-wrapper { transition: none !important; }
+    </style>
 
     @pwaHead
 
@@ -49,17 +54,19 @@
             <!-- header -->
             @include('layouts.header')
 
-            @yield('content')
+           <div id="page-content">  {{-- tambah id ini --}}
+              @yield('content')
+            </div>
 
         </div>
 
     </div>
 
-    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-    <script src="{{asset('js/main.js')}}"></script>
+    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}" data-turbo-eval="false"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}" data-turbo-eval="false"></script>
+    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}" data-turbo-eval="false"></script>
+    <script src="{{asset('js/pages/dashboard.js')}}" data-turbo-eval="false"></script>
+    <script src="{{asset('js/main.js')}}" data-turbo-eval="false"></script>
 
     <script>
         document.querySelectorAll('.faq-item').forEach(item => {
@@ -95,67 +102,6 @@
     @endif
 
     
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-
-            const rows = document.querySelectorAll(".data-row");
-
-            function showRows(status) {
-                rows.forEach(row => {
-                    if (status === "all") {
-                        row.style.display = "";
-                    } else {
-                        if (row.classList.contains("status-" + status)) {
-                            row.style.display = "";
-                        } else {
-                            row.style.display = "none";
-                        }
-                    }
-                });
-            }
-
-            document.getElementById("btnAll").addEventListener("click", function () {
-                showRows("all");
-            });
-
-            document.getElementById("btnReview").addEventListener("click", function () {
-                showRows("0");
-            });
-
-            document.getElementById("btnApprove").addEventListener("click", function () {
-                showRows("1");
-            });
-
-            document.getElementById("btnRejected").addEventListener("click", function () {
-                showRows("2");
-            });
-
-        });
-
-    </script>
-
-    <script>
-        document.getElementById('searchRuangan').addEventListener('keyup', function () {
-
-            let keyword = this.value.toLowerCase();
-            let items = document.querySelectorAll('.ruang-item');
-
-            items.forEach(function (item) {
-
-                let nama = item.querySelector('.card-title').textContent.toLowerCase();
-
-                if (nama.includes(keyword)) {
-                    item.style.display = "";
-                } else {
-                    item.style.display = "none";
-                }
-
-            });
-
-        });
-
-    </script>
 
     @if ($errors->any())
 <script>

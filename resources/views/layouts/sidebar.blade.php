@@ -1,5 +1,5 @@
-<div id="sidebar" class="active">
-    <div class="sidebar-wrapper active">
+<div id="sidebar" data-turbo-permanent>
+    <div id="sidebar-wrapper" class="sidebar-wrapper" data-turbo-permanent>
 
         <!-- HEADER SIDEBAR -->
         <div class="sidebar-header">
@@ -166,7 +166,7 @@
             </ul>
         </div>
 
-        <button class="sidebar-toggler btn x">
+        <button class="sidebar-toggler btn x sidebar-hide">
             <i data-feather="x"></i>
         </button>
 
