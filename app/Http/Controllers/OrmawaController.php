@@ -32,7 +32,7 @@ class OrmawaController extends Controller {
     // FORM TAMBAH
     public function create() {
         if(auth()->user()->can('ormawa_all')) {
-            $users = Users::all();
+            $users = Users::role('pic_barang')->get();
             return view('ormawa.form', compact('users'));
         }
 
@@ -92,7 +92,7 @@ class OrmawaController extends Controller {
     public function edit($id) {
         if(auth()->user()->can('ormawa_all')) {
             $ormawa = Ormawa::findOrFail($id);
-            $users = Users::all();
+            $users = Users::role('pic_barang')->get();
             return view('ormawa.edit', compact('ormawa', 'users'));
         }
 

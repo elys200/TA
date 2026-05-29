@@ -48,6 +48,11 @@ class ApprovalBarangController extends Controller {
         }
 
         $peminjaman=PeminjamanBarang::findOrFail($id);
+
+        if ($peminjaman->status_peminjaman !== 0) {
+            return redirect()->route('approvalbarang')->with('error', 'Peminjaman sudah diproses sebelumnya.');
+        }
+
         $peminjaman->barang->decrement('jumlah_barang', $peminjaman->jumlah_barang);
         $peminjaman->status_peminjaman=1;
         $peminjaman->approved_by=auth()->id();

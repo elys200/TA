@@ -39,11 +39,6 @@
                     value="{{old('kapasitas', $ruangan->kapasitas)}}">
             </div>
             <div class="col-md-6">
-                <label for="formFile" class="form-label fw-bold">Foto Ruangan</label>
-                <input class="form-control" name="foto" type="file" id="formFile"
-                    value="{{old('foto', $ruangan->foto)}}">
-            </div>
-            <div class="col-md-6">
                 <label for="formFile" class="form-label fw-bold">Jam Operasional</label>
                 <input class="form-control" name="jam_operasional" type="time" id="jam_operasional"
                     value="{{old('jam_operasional', $ruangan->jam_operasional)}}" required>
@@ -58,6 +53,17 @@
                     @endforeach
                 </select>
             </div>
+            <div class="col-md-6">
+                <label for="formFile" class="form-label fw-bold">Foto Ruangan</label>
+                <input class="form-control" name="foto" type="file" id="formFile" accept="image/*">
+                @if($ruangan->foto)
+                <img id="fotoPreview" src="{{ asset('storage/' . $ruangan->foto) }}" alt="Foto Ruangan"
+                    class="mt-2" style="width:100%; max-height:180px; object-fit:cover; border-radius:8px; border:1px solid #ddd;">
+                @else
+                <img id="fotoPreview" src="" alt="" class="mt-2" style="display:none; width:100%; max-height:180px; object-fit:cover; border-radius:8px; border:1px solid #ddd;">
+                @endif
+            </div>
+
             <div class="col-12">
                 <button class="btn btn-primary" type="submit">Submit</button>
             </div>
@@ -75,5 +81,13 @@
         });
     });
 
+    document.getElementById('formFile').addEventListener('change', function () {
+        const file = this.files[0];
+        if (file) {
+            const preview = document.getElementById('fotoPreview');
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = 'block';
+        }
+    });
 </script>
 @endpush

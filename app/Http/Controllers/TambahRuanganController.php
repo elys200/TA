@@ -16,7 +16,7 @@ class TambahRuanganController extends Controller {
     }
 
     public function create() {
-        $users= Users::all();
+        $users = Users::role('pic_ruangan')->get();
         return view('tambahruangan.form', compact('users'));
     }
 
@@ -47,7 +47,7 @@ class TambahRuanganController extends Controller {
 
     public function edit($id) {
         $ruangan = Ruangan::findOrfail($id);
-        $users = Users::all();
+        $users = Users::role('pic_ruangan')->get();
         return view('tambahruangan.edit', compact('ruangan', 'users'));
     }
 

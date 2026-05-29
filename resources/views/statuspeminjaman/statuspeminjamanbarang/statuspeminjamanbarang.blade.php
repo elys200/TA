@@ -3,206 +3,159 @@
 @section('content')
 
 <div class="container-fluid">
-    <h3 class="mb-4">Status Peminjaman</h3>
 
-    <!-- CARD -->
-    <div class="card shadow-sm border-0">
-        <div class="card-body">
+    <div class="bg-white p-4 rounded-3 shadow-sm">
 
-            <!-- TOP ACTION -->
-            <div class="row align-items-center g-2 mb-4">
-                <div class="col-auto">
-                    <a href="{{ route('statuspeminjamanbarang') }}"
-                        class="btn btn-primary d-flex align-items-center justify-content-center gap-2 px-3">
-                       <i class="bi bi-archive mb-0 lh-1"></i> Barang
-                    </a>
-                </div>
-                <div class="col-auto">
-                    <a href="{{ route('statuspeminjamanruangan') }}"
-                        class="btn btn-outline-secondary d-flex align-items-center justify-content-center  gap-2 px-3">
-                        <i class="bi bi-door-open mb-0 lh-1"></i> 
-                        <span>Ruangan</span>
-                    </a>
-                </div>
-                <div class="col-md-4 ms-auto">
-                    <input type="text" class="form-control" id="searchInput" placeholder="Cari data...">
-                </div>
+        <div class="mb-3">
+            <h4 class="fw-bold mb-0">Status Peminjaman Barang</h4>
+            <p class="text-muted small mb-0">Pantau status pengajuan peminjaman barang</p>
+        </div>
+
+        <hr class="my-3">
+
+        {{-- Tab Navigasi --}}
+        <div class="d-flex gap-2 mb-4">
+            <a href="{{ route('statuspeminjamanbarang') }}"
+                class="btn btn-primary d-inline-flex align-items-center gap-2">
+                <i class="bi bi-archive"></i> Barang
+            </a>
+            <a href="{{ route('statuspeminjamanruangan') }}"
+                class="btn btn-outline-secondary d-inline-flex align-items-center gap-2">
+                <i class="bi bi-door-open"></i> Ruangan
+            </a>
+        </div>
+
+        {{-- Search & Filter --}}
+        <div class="d-flex flex-column flex-md-row align-items-md-center gap-2 mb-4">
+            <div class="btn-group">
+                <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
+                    <i class="bi bi-filter me-1"></i>
+                    @if(request('status') == 1) Approve
+                    @elseif(request('status') == 2) Rejected
+                    @elseif(request('status') == 0) Reviewing
+                    @else Semua Status
+                    @endif
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ route('statuspeminjamanbarang') }}">Semua</a></li>
+                    <li><a class="dropdown-item" href="{{ route('statuspeminjamanbarang', ['status' => 1]) }}">Approve</a></li>
+                    <li><a class="dropdown-item" href="{{ route('statuspeminjamanbarang', ['status' => 2]) }}">Rejected</a></li>
+                    <li><a class="dropdown-item" href="{{ route('statuspeminjamanbarang', ['status' => 0]) }}">Reviewing</a></li>
+                </ul>
             </div>
-
-            <!-- FILTER -->
-            <div class="d-flex flex-wrap align-items-center gap-3 p-3 border rounded mb-4">
-                <i class="bi bi-filter fs-5 text-muted"></i>
-
-                <div class="btn-group">
-                    <button class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown">
-                        @if(request('status') == 1)
-                        Approve
-                        @elseif(request('status') == 2)
-                        Rejected
-                        @elseif(request('status') == 0)
-                        Reviewing
-                        @else
-                        Semua Status
-                        @endif
-                    </button>
-
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a class="dropdown-item" href="{{ route('statuspeminjamanbarang') }}">
-                                Semua
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('statuspeminjamanbarang', ['status' => 1]) }}">
-                                Approve
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('statuspeminjamanbarang', ['status' => 2]) }}">
-                                Rejected
-                            </a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('statuspeminjamanbarang', ['status' => 0]) }}">
-                                Reviewing
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <div class="flex-grow-1">
+                <input type="text" class="form-control" id="searchInput" placeholder="Cari data...">
             </div>
+        </div>
 
-            <!-- TABLE -->
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered align-middle">
-                    <thead class="table-light text-center">
-                        <tr>
-                            <th>No.</th>
-                            <th>Code</th>
-                            <th>Nama Barang</th>
-                            <th>Jumlah</th>
-                            <th>Penanggung Jawab</th>
-                            <th>Tanggal Peminjaman</th>
-                            <th>Status Peminjaman</th>
-                            <th width="120">Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                            @foreach($peminjaman as $index =>$item)
-                            <tr class="peminjamanbarang-item">
-                            <td style="text-align: center;">{{ $peminjaman->firstItem() + $index}}.</td>
-                            <td>{{ $item->code_peminjaman }}</td>
-                            <td>{{ $item->barang->nama_barang }}</td>
-                            <td style="text-align: center;">{{ $item->jumlah_barang }}</td>
-                            <td>{{ $item->nama_penanggung_jawab }}</td>
-                            <td>
-                                {{ $item->tanggal_mulai_peminjaman }}
-                            </td>
-                            <td class="text-center">
-                                @if ($item->status_peminjaman == '0')
-                                <span class="badge bg-warning">Waiting Review</span>
-                                @elseif ($item->status_peminjaman == '1')
-                                <span class="badge bg-success">Approve</span>
-                                @elseif ($item->status_peminjaman == '2')
-                                <span class="badge bg-danger">Rejected</span>
-                                @endif
-                            </td>
-                            <td class="text-center">
-                                <div class="d-flex justify-content-center gap-2">
-
-                                    @if($item->status_peminjaman == '1' || $item->status_peminjaman
-                                    == '2')
-                                    {{-- Detail --}}
+        {{-- Tabel --}}
+        <div class="table-responsive">
+            <table class="table table-hover table-bordered align-middle" style="border-collapse: collapse;">
+                <thead>
+                    <tr style="background:#f8f9fa; border-bottom: 2px solid #dee2e6;">
+                        <th class="px-3 py-3 text-center text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">No.</th>
+                        <th class="px-3 py-3 text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Code</th>
+                        <th class="px-3 py-3 text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Nama Barang</th>
+                        <th class="px-3 py-3 text-center text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Jumlah</th>
+                        <th class="px-3 py-3 text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Penanggung Jawab</th>
+                        <th class="px-3 py-3 text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Tgl. Peminjaman</th>
+                        <th class="px-3 py-3 text-center text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Status</th>
+                        <th class="px-3 py-3 text-center text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($peminjaman as $index => $item)
+                    <tr class="peminjamanbarang-item" style="border-bottom: 1px solid #f0f0f0;">
+                        <td class="px-3 py-3 text-center text-muted">{{ $peminjaman->firstItem() + $index }}.</td>
+                        <td class="px-3 py-3"><span class="fw-medium">{{ $item->code_peminjaman }}</span></td>
+                        <td class="px-3 py-3">{{ $item->barang->nama_barang }}</td>
+                        <td class="px-3 py-3 text-center">{{ $item->jumlah_barang }}</td>
+                        <td class="px-3 py-3">{{ $item->nama_penanggung_jawab }}</td>
+                        <td class="px-3 py-3 text-muted">{{ $item->tanggal_mulai_peminjaman }}</td>
+                        <td class="px-3 py-3 text-center">
+                            @if ($item->status_peminjaman == '0')
+                                <span style="display:inline-flex; align-items:center; gap:5px; background:#f59e0b; color:#fff; border-radius:20px; padding:4px 12px; font-size:.8rem; font-weight:600;">
+                                    Waiting Review
+                                </span>
+                            @elseif ($item->status_peminjaman == '1')
+                                <span style="display:inline-flex; align-items:center; gap:5px; background:#10b981; color:#fff; border-radius:20px; padding:4px 12px; font-size:.8rem; font-weight:600;">
+                                    Approve
+                                </span>
+                            @elseif ($item->status_peminjaman == '2')
+                                <span style="display:inline-flex; align-items:center; gap:5px; background:#ef4444; color:#fff; border-radius:20px; padding:4px 12px; font-size:.8rem; font-weight:600;">
+                                    Rejected
+                                </span>
+                            @endif
+                        </td>
+                        <td class="px-3 py-3 text-center">
+                            <div class="d-flex justify-content-center gap-2">
+                                @if($item->status_peminjaman == '1' || $item->status_peminjaman == '2')
                                     <a href="{{ route('statuspeminjamanbarang.detail', $item->id) }}"
-                                        class="btn btn-success">
-                                        <i class="bi bi-justify"></i>
+                                        class="btn btn-sm d-inline-flex align-items-center gap-1"
+                                        style="background:#3b82f6; color:#fff; border-radius:8px;">
+                                        Detail
                                     </a>
-
-                                    @elseif($item->status_peminjaman == '0')
-
-                                    {{-- Edit --}}
+                                @elseif($item->status_peminjaman == '0')
                                     <a href="{{ route('statuspeminjamanbarang.edit', $item->id) }}"
-                                        class="btn btn-warning">
-                                        <i class="bi bi-pencil-square" style="color: #ffffff;"></i>
+                                        class="btn btn-sm d-inline-flex align-items-center gap-1"
+                                        style="background:#f59e0b; color:#fff; border-radius:8px;">
+                                        Edit
                                     </a>
-
-                                    {{-- Delete --}}
-                                    <form action="{{ route('statuspeminjaman.deletepeminjamanbarang' , $item->id) }}"
+                                    <form action="{{ route('statuspeminjaman.deletepeminjamanbarang', $item->id) }}"
                                         method="POST" onsubmit="return confirm('Yakin mau menghapus peminjaman ini?')"
-                                        class="d-inline">
+                                        class="d-inline m-0">
                                         @csrf
                                         @method('DELETE')
-
-                                        <button type="submit" class="btn btn-danger">
-                                            <i class="bi bi-trash"></i>
+                                        <button type="submit" class="btn btn-sm d-inline-flex align-items-center gap-1"
+                                            style="background:#ef4444; color:#fff; border-radius:8px;">
+                                            Hapus
                                         </button>
                                     </form>
+                                @endif
+                            </div>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
 
-                                    @endif
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            
-                     <p id="notFound" style="display:none; text-align: center; font-size: 20px; color: red; ">Oops!
-                            Data Tidak Ditemukan!</p>
-        
-                <div class="d-flex justify-content-between align-items-center mt-3">
-                    <div style="margin-top: 5px;">
-                        Menampilkan {{ $peminjaman->lastItem() }}
-                        dari {{ $peminjaman->total() }} data
-                    </div>
+            <p id="notFound" style="display:none; text-align:center; font-size:20px; color:red;">
+                Oops! Data Tidak Ditemukan!
+            </p>
 
-                    <div>
-                        {{ $peminjaman->links() }}
-                    </div>
-
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="text-muted small">
+                    Menampilkan {{ $peminjaman->lastItem() }} dari {{ $peminjaman->total() }} data
+                </div>
+                <div>
+                    {{ $peminjaman->links() }}
                 </div>
             </div>
-
         </div>
+
     </div>
-</div>
-</div>
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-        const searchInput = document.getElementById("searchInput");
-
-        searchInput.addEventListener("keyup", function () {
-
-            const keyword = this.value.toLowerCase();
-            const rows = document.querySelectorAll(".peminjamanbarang-item");
-            let ditemukan = false;
-
-            rows.forEach(function (row) {
-
-                const textRow = row.textContent.toLowerCase();
-
-                if (textRow.includes(keyword)) {
-                    row.style.display = "table-row";
-                    ditemukan = true;
-                } else {
-                    row.style.display = "none";
-                }
-
-            });
-
-             if(!ditemukan){
-            document.getElementById("notFound").style.display = "block";
-        } else {
-            document.getElementById("notFound").style.display = "none";
-        }
-
+document.addEventListener("DOMContentLoaded", function () {
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("keyup", function () {
+        const keyword = this.value.toLowerCase();
+        const rows = document.querySelectorAll(".peminjamanbarang-item");
+        let ditemukan = false;
+        rows.forEach(function (row) {
+            if (row.textContent.toLowerCase().includes(keyword)) {
+                row.style.display = "table-row";
+                ditemukan = true;
+            } else {
+                row.style.display = "none";
+            }
         });
-
+        document.getElementById("notFound").style.display = ditemukan ? "none" : "block";
     });
-
+});
 </script>
+
 @endsection
 
 @push('scripts')
@@ -212,6 +165,5 @@
             item.classList.toggle('active');
         });
     });
-
 </script>
 @endpush

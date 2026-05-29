@@ -14,7 +14,7 @@ use App\Models\Users;
 class BarangController extends Controller {
     public function index() {
         if(auth()->user()->can('view_barang')) {
-            $barang = Barang::all();
+            $barang = Barang::inRandomOrder()->get();
             return view ('barang/barang', compact('barang'));
         }
 

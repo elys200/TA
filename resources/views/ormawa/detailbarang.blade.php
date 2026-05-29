@@ -102,7 +102,7 @@
                                 @if($item->foto_pengembalian == null)
                                 <button class="btn btn-secondary">Waiting</button>
                                 @else
-                                <a href="" data-bs-toggle="modal"
+                                <a href="#" data-bs-toggle="modal"
                                     data-bs-target="#modalTampilkanBuktiPengembalian{{ $item->id }}">
                                     Lihat Bukti
                                 </a>

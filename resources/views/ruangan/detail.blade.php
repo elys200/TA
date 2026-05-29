@@ -37,6 +37,10 @@
             <th style="width:140px; font-weight:600;">No Telp PIC</th>
             <td>: {{ $ruangan->pic->no_tlp ?? '-' }}</td>
         </tr>
+         <tr>
+            <th style="width:140px; font-weight:600;">Deskripsi</th>
+            <td>: {{ $ruangan->deskripsi }}</td>
+        </tr>
     </tbody>
 </table>
 </div>

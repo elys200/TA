@@ -19,10 +19,15 @@ class AppServiceProvider extends ServiceProvider
      * Bootstrap any application services.
      */
     public function boot(): void
-    {
-        Paginator::useBootstrap();
-        
+{
+    Paginator::useBootstrap();
+
+    if (app()->runningInConsole() === false) {
+        if (str_contains(request()->getHost(), 'ngrok')) {
+            \URL::forceScheme('https');
+        }
     }
+}
 
     
 }

@@ -74,62 +74,64 @@
         </div>
 
         <div class="table-responsive">
-            <table class="table table-bordered align-middle">
-                <thead class="table-light text-center">
-                    <tr>
-                        <th>No.</th>
-                        <th>Kode Peminjaman</th>
-                        <th>Nama Ruangan</th>
-                        <th>Penanggung Jawab</th>
-                        <th>Nama Ormawa</th>
-                        <th>Tanggal Peminjaman</th>
-                        <th>Status Peminjaman</th>
-                        <th>Actions</th>
+            <table class="table table-hover table-bordered align-middle" style="border-collapse: collapse;">
+                <thead>
+                    <tr style="background:#f8f9fa; border-bottom: 2px solid #dee2e6;">
+                        <th class="px-3 py-3 text-center text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">No.</th>
+                        <th class="px-3 py-3 text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Kode Peminjaman</th>
+                        <th class="px-3 py-3 text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Nama Ruangan</th>
+                        <th class="px-3 py-3 text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Penanggung Jawab</th>
+                        <th class="px-3 py-3 text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Nama Ormawa</th>
+                        <th class="px-3 py-3 text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Tgl. Peminjaman</th>
+                        <th class="px-3 py-3 text-center text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Status</th>
+                        <th class="px-3 py-3 text-center text-muted fw-semibold" style="font-size:.82rem; text-transform:uppercase; letter-spacing:.04em;">Action</th>
                     </tr>
                 </thead>
-
                 <tbody>
-                    @foreach($peminjamanRuangan as $index =>$peminjaman)
-                    <tr class="data-row approveruangan status-{{$peminjaman->status_peminjaman}}">
-                        <td style="text-align: center;">{{$peminjamanRuangan->firstItem() + $index}}.</td>
-                        <td>{{$peminjaman->code_peminjaman}}</td>
-                        <td>{{$peminjaman->ruangan->nama_ruangan}}</td>
-                        <td>{{$peminjaman->nama_penanggung_jawab}}</td>
-                        <td>{{$peminjaman->ormawa->singkatan}}</td>
-                        <td>{{$peminjaman->tanggal_peminjaman}}</td>
-                        <td class="text-center">
+                    @foreach($peminjamanRuangan as $index => $peminjaman)
+                    <tr class="data-row approveruangan status-{{$peminjaman->status_peminjaman}}" style="border-bottom: 1px solid #f0f0f0;">
+                        <td class="px-3 py-3 text-center text-muted">{{$peminjamanRuangan->firstItem() + $index}}.</td>
+                        <td class="px-3 py-3"><span class="fw-medium">{{$peminjaman->code_peminjaman}}</span></td>
+                        <td class="px-3 py-3">{{$peminjaman->ruangan->nama_ruangan}}</td>
+                        <td class="px-3 py-3">{{$peminjaman->nama_penanggung_jawab}}</td>
+                        <td class="px-3 py-3">{{$peminjaman->ormawa->singkatan}}</td>
+                        <td class="px-3 py-3 text-muted">{{$peminjaman->tanggal_peminjaman}}</td>
+                        <td class="px-3 py-3 text-center">
                             @if($peminjaman->status_peminjaman == 0)
-                            <span class="badge bg-warning">Reviewing</span>
+                                <span style="display:inline-flex; align-items:center; gap:5px; background:#f59e0b; color:#fff; border-radius:20px; padding:4px 12px; font-size:.8rem; font-weight:600;">
+                                    Reviewing
+                                </span>
                             @elseif($peminjaman->status_peminjaman == 1)
-                            <span class="badge bg-success">Approved</span>
+                                <span style="display:inline-flex; align-items:center; gap:5px; background:#10b981; color:#fff; border-radius:20px; padding:4px 12px; font-size:.8rem; font-weight:600;">
+                                    Approve
+                                </span>
                             @elseif($peminjaman->status_peminjaman == 2)
-                            <span class="badge bg-danger">Rejected</span>
+                                <span style="display:inline-flex; align-items:center; gap:5px; background:#ef4444; color:#fff; border-radius:20px; padding:4px 12px; font-size:.8rem; font-weight:600;">
+                                    Rejected
+                                </span>
                             @endif
                         </td>
-                        <td class="text-center" style="width: 140px">
-                            <div class="d-flex justify-content-center gap-2">
-                                <a href="{{route('approvalruangan.detail', $peminjaman->id)}}"
-                                    class="btn btn-success btn-sm">
-                                    Detail
-                                </a>
-                            </div>
+                        <td class="px-3 py-3 text-center">
+                            <a href="{{route('approvalruangan.detail', $peminjaman->id)}}"
+                                class="btn btn-sm d-inline-flex align-items-center gap-1"
+                                style="background:#3b82f6; color:#fff; border-radius:8px;">
+                                Detail
+                            </a>
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-            <p id="notFound" style="display:none; text-align: center; font-size: 20px; color: red; ">Oops! Data Tidak
-                Ditemukan!</p>
-            <div class="d-flex justify-content-between align-items-center mt-3">
-                <div style="margin-top: 5px;">
-                    Menampilkan {{ $peminjamanRuangan->lastItem() }}
-                    dari {{ $peminjamanRuangan->total() }} data
-                </div>
 
+            <p id="notFound" style="display:none; text-align:center; font-size:20px; color:red;">Oops! Data Tidak Ditemukan!</p>
+
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div class="text-muted small">
+                    Menampilkan {{ $peminjamanRuangan->lastItem() }} dari {{ $peminjamanRuangan->total() }} data
+                </div>
                 <div>
                     {{ $peminjamanRuangan->links() }}
                 </div>
-
             </div>
         </div>
 

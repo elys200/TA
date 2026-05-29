@@ -55,7 +55,6 @@
                 <div class="col-md-6 d-flex align-items-center gap-3">
                     <img src="{{ asset('storage/' . $peminjaman->barang->foto_barang) }}" class="rounded"
                         style="width:90px;height:90px;object-fit:cover;border:1px solid #e5e7eb;">
-
                     <div>
                         <div class="fw-semibold">{{ $peminjaman->barang->nama_barang }}</div>
                     </div>

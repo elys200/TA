@@ -27,6 +27,8 @@
                     <option value="himpunan" {{ old('jenis_ormawa') == 'himpunan' ? 'selected' : '' }}>
                         Himpunan</option>
                     <option value="ukm" {{ old('jenis_ormawa') == 'ukm' ? 'selected' : '' }}>UKM</option>
+                    <option value="ukm" {{ old('jenis_ormawa') == 'ukm' ? 'selected' : '' }}>Lainnya</option>
+                </select>
                 </select>
             </div>
             <div class="col-md-6">

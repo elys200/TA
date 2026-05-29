@@ -3,84 +3,82 @@
 @section('content')
 
 <div class="container-fluid">
+
     <div class="bg-white p-4 rounded-3 shadow-sm">
-        <div class="row">
-            <div class="col-lg-5 col-md-12 col-12 overflow-hidden">
-                <img src="{{ asset('storage/' . $barang->foto_barang) }}" class="w-100 rounded"
-                    style="max-height: 400px; object-fit: cover; transform: scale(1.05);">
+
+        <div class="row g-4 align-items-start flex-column-reverse flex-lg-row">
+
+            {{-- FOTO --}}
+            <div class="col-12 col-lg-5">
+                <div style="border-radius:12px; overflow:hidden; border:1px solid #e5e7eb;">
+                    <img src="{{ asset('storage/' . $barang->foto_barang) }}" alt="{{ $barang->nama_barang }}"
+                        style="width:100%; max-height:380px; object-fit:cover;">
+                </div>
             </div>
 
-            <div class="col-lg-6 col-md-12">
-                <h3 class="fw-bold mb-2">{{ $barang->nama_barang }}</h3>
+            {{-- DETAIL --}}
+            <div class="col-12 col-lg-7">
 
-                <p class="mb-2">
-                    Stok Tersedia :
-                    <span class="badge bg-primary">{{ $barang->jumlah_barang }}</span>
-                </p>
+                <div class="d-flex align-items-center gap-2 mb-1">
+                    @if($barang->jumlah_barang > 0)
+                    <span class="badge bg-success">Available</span>
+                    @else
+                    <span class="badge bg-danger">Habis</span>
+                    @endif
+                    <span class="badge bg-primary">Stok: {{ $barang->jumlah_barang }}</span>
+                </div>
 
-                <hr class="my-4">
+                <h3 class="fw-bold mb-3">{{ $barang->nama_barang }}</h3>
 
-                <h5 class="fw-bold mb-3">Detail Barang</h5>
+                <hr class="my-3">
 
-                <table class="table table-sm">
+                <table class="table table-borderless" style="font-size:15px;">
                     <tbody>
                         <tr>
-                            <th width="40%">Nama Barang</th>
-                            <td>: {{ $barang->nama_barang }}</td>
+                            <th style="width:150px; font-weight:600; color:#555;">Ormawa Pemilik</th>
+                            <td>: {{ $barang->ormawa->nama_ormawa }}</td>
                         </tr>
                         <tr>
-                            <th>Ormawa Pemilik</th>
-                            <td>: {{ $barang->ormawa->nama_ormawa}}</td>
-                        </tr>
-                        <tr>
-                            <th>Kondisi</th>
+                            <th style="font-weight:600; color:#555;">Kondisi</th>
                             <td>:
                                 @if($barang->kondisi_barang == 'baik')
-                                <button class="btn btn-success btn-sm">
-                                    Bagus
-                                </button>
-                                @else($barang->kondisi_barang == 'rusak')
-                                <button class="btn btn-danger btn-sm">
-                                    Rusak
-                                </button>
+                                <span class="badge bg-success">Bagus</span>
+                                @else
+                                <span class="badge bg-danger">Rusak</span>
                                 @endif
                             </td>
                         </tr>
                         <tr>
-                            <th>Deskripsi</th>
-                            <td>: {{ $barang->deskripsi_barang }}</td>
+                            <th style="font-weight:600; color:#555;">Deskripsi</th>
+                            <td>: {{ $barang->deskripsi_barang ?? '-' }}</td>
                         </tr>
                     </tbody>
                 </table>
 
-                <div class="d-grid gap-2">
+                <div class="d-grid mt-3">
                     @if($barang->jumlah_barang == 0)
-                    <button class="btn btn-primary" disabled>
-                        Ajukan Peminjaman
-                    </button>
+                    <button class="btn btn-primary" disabled>Ajukan Peminjaman</button>
                     @else
-                    <a href="{{ route('barang.form' , $barang->id) }}" class="btn btn-primary">
-                        Ajukan Peminjaman
+                    <a href="{{ route('barang.form', $barang->id) }}" class="btn btn-primary">
+                        <i class="bi bi-box-arrow-right me-1"></i> Ajukan Peminjaman
                     </a>
                     @endif
                 </div>
+
             </div>
         </div>
+
     </div>
-    <script src="{{asset('vendors/perfect-scrollbar/perfect-scrollbar.min.js')}}"></script>
-    <script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
-    <script src="{{asset('vendors/apexcharts/apexcharts.js')}}"></script>
-    <script src="{{asset('js/pages/dashboard.js')}}"></script>
-    <script src="{{asset('js/main.js')}}"></script>
 </div>
-</div>
-</div> 
-@endsection 
-@push('scripts') <script>
-document.querySelectorAll('.faq-item').forEach(item => {
-item.addEventListener('click', () => {
-item.classList.toggle('active');
-});
-});
+
+@endsection
+
+@push('scripts')
+<script>
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
+            item.classList.toggle('active');
+        });
+    });
 </script>
 @endpush
