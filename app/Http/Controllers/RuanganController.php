@@ -12,14 +12,8 @@ use Illuminate\Support\Facades\Auth;
 
 class RuanganController extends Controller {
     public function index() {
-        if(auth()->user()->can('view_ruangan')) {
-            $ruangan = Ruangan::all();
-            return view ('ruangan/ruangan', compact('ruangan'));
-        }
-
-        else {
-            abort(403);
-        }
+        $ruangan = Ruangan::all();
+        return view ('ruangan/ruangan', compact('ruangan'));
     }
 
     public function detail($id) {

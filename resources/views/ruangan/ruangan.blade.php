@@ -24,7 +24,7 @@
                 <div class="card h-100" style="border:1px solid #e5e7eb; border-radius:12px; overflow:hidden; transition: box-shadow .2s, transform .2s;">
 
                     <div style="position:relative;">
-                        <img src="{{ asset('storage/'.$ruangans->foto) }}" class="card-img-top" alt=""
+                        <img src="{{ asset('uploads/' . $ruangans->foto) }}" class="card-img-top" alt=""
                             style="height:180px; object-fit:cover;">
                         <span class="badge bg-primary" style="position:absolute; top:10px; left:10px; font-size:11px;">
                             {{ $ruangans->kode_ruangan }}

@@ -28,7 +28,7 @@
                 <div class="card h-100 shadow-sm border-0 card-hover">
 
 
-                    <img src="{{ asset('storage/' . $ormawas->foto_organisasi) }}" class="card-img-top"
+                    <img src="{{ asset('uploads/' . $ormawas->foto_organisasi) }}" class="card-img-top"
                         style="height: 220px; object-fit: cover;" alt="BEM">
 
                     <div class="card-body d-flex flex-column">

@@ -40,7 +40,7 @@
                 @foreach ($ruangan->take(2) as $ruang)
                 <div class="col-sm-6">
                     <div class="card h-100" style="border: 1px solid #ddd; border-radius:12px; overflow:hidden;">
-                        <img src="{{ asset('storage/'. $ruang->foto) }}" class="card-img-top card-img-fit" alt="">
+                        <img src="{{ asset('uploads/' . $ruang->foto) }}" class="card-img-top card-img-fit" alt="">
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title fw-semibold">{{ $ruang->nama_ruangan }}</h5>
                             <p class="card-text text-muted small flex-grow-1" style="text-align:left;">{{ \Illuminate\Support\Str::limit($ruang->deskripsi, 100, '...') }}</p>
@@ -72,7 +72,7 @@
             <span class="badge bg-danger" style="position:absolute; top:12px; right:12px; font-size:11px;">Habis</span>
             @endif
             <div class="icon bg-1">
-                <img src="{{ asset('storage/' . $item->foto_barang) }}" alt="{{ $item->nama_barang }}">
+                <img src="{{ asset('uploads/' . $item->foto_barang) }}" alt="{{ $item->nama_barang }}">
             </div>
             <p style="margin-top: 10px; font-weight: bold; color: #0a2d62;">{{ $item->nama_barang }}</p>
         </div>

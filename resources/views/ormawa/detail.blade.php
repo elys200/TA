@@ -11,7 +11,7 @@
 
             <!-- Logo / Foto -->
             <div class="col-md-4 text-center">
-                <img src="{{ asset('storage/' . $ormawa->foto_organisasi) }}" class="img-fluid rounded mb-2"
+                <img src="{{ asset('uploads/' . $ormawa->foto_organisasi) }}" class="img-fluid rounded mb-2"
                     style="max-height: 300px; object-fit: contain;">
             </div>
 
@@ -65,7 +65,7 @@
                         <th>Logo</th>
                         <th>:</th>
                         <th>
-                            <img src="{{ asset('storage/' . $ormawa->logo) }}" class="img-fluid rounded"
+                            <img src="{{ asset('uploads/' . $ormawa->logo) }}" class="img-fluid rounded"
                                 style="max-height: 70px; object-fit: contain;">
                         </th>
                     </tr>
@@ -104,7 +104,7 @@
                     <tr>
                         <td style="text-align: center;">{{ $loop->iteration }}.</td>
                         <td>
-                            <img src="{{ asset('storage/' . $barang->foto_barang) }}"
+                            <img src="{{ asset('uploads/' . $barang->foto_barang) }}"
                                 style="width: 80px; height: 60px; object-fit: contain;">
                         </td>
                         <td>{{ $barang->nama_barang }}</td>
@@ -179,7 +179,7 @@
 
                 if (foto) {
                     preview.innerHTML =
-                        `<img src="/storage/${foto}" class="img-thumbnail" style="width:200px;">`;
+                        `<img src="/${foto}" class="img-thumbnail" style="width:200px;">`;
                 } else {
                     preview.innerHTML = "";
                 }

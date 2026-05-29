@@ -32,7 +32,10 @@ class TambahRuanganController extends Controller {
             ]);
 
         if ($request->hasFile('foto')) {
-            $data['foto']=$request->file('foto')->store('ruangan', 'public');
+            $file = $request->file('foto');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/ruangan'), $filename);
+            $data['foto'] = 'ruangan/' . $filename;
         }
 
         Ruangan::create($data);
@@ -65,7 +68,10 @@ class TambahRuanganController extends Controller {
             ]);
 
         if ($request->hasFile('foto')) {
-            $validate['foto']=$request->file('foto')->store('ruangan', 'public');
+            $file = $request->file('foto');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/ruangan'), $filename);
+            $validate['foto'] = 'ruangan/' . $filename;
         }
 
         $ruangan->update($validate);

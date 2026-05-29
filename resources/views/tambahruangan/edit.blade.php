@@ -57,7 +57,7 @@
                 <label for="formFile" class="form-label fw-bold">Foto Ruangan</label>
                 <input class="form-control" name="foto" type="file" id="formFile" accept="image/*">
                 @if($ruangan->foto)
-                <img id="fotoPreview" src="{{ asset('storage/' . $ruangan->foto) }}" alt="Foto Ruangan"
+                <img id="fotoPreview" src="{{ asset('uploads/' . $ruangan->foto) }}" alt="Foto Ruangan"
                     class="mt-2" style="width:100%; max-height:180px; object-fit:cover; border-radius:8px; border:1px solid #ddd;">
                 @else
                 <img id="fotoPreview" src="" alt="" class="mt-2" style="display:none; width:100%; max-height:180px; object-fit:cover; border-radius:8px; border:1px solid #ddd;">

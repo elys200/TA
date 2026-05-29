@@ -6,7 +6,7 @@
         <h3 class="mb-3">{{ $ruangan->nama_ruangan }}</h3>
 
         <div class="image-wrapper mb-4">
-            <img src="{{ asset('storage/'.$ruangan->foto) }}" alt="" max-width="200px" class="rounded-3 shadow-sm">
+            <img src="{{ asset('uploads/' . $ruangan->foto) }}" alt="" max-width="200px" class="rounded-3 shadow-sm">
         </div>
 
         <div class="bg-white p-4 rounded-3 shadow-sm">

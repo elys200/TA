@@ -28,7 +28,7 @@
 
                     <div class="card product-card h-100 border-0" style="border:1px solid #e5e7eb !important;">
 
-                        <img src="{{ asset('storage/'. $item->foto_barang) }}" alt="Barang">
+                        <img src="{{ asset('uploads/' . $item->foto_barang) }}" alt="Barang">
 
                         <div class="card-body p-2">
 

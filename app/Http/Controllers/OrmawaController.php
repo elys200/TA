@@ -5,7 +5,7 @@ use App\Models\Users;
 use App\Models\Ormawa;
 use App\Models\Barang;
 use App\Models\PeminjamanBarang;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 class OrmawaController extends Controller {
     public function __construct() {
@@ -60,12 +60,18 @@ class OrmawaController extends Controller {
 
             // upload foto organisasi
             if ($request->hasFile('foto_organisasi')) {
-                $validated['foto_organisasi']=$request->file('foto_organisasi')->store('ormawa', 'public');
+                $file = $request->file('foto_organisasi');
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/ormawa'), $filename);
+                $validated['foto_organisasi'] = 'ormawa/' . $filename;
             }
 
             // upload logo
             if ($request->hasFile('logo')) {
-                $validated['logo']=$request->file('logo')->store('ormawa', 'public');
+                $file = $request->file('logo');
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/ormawa'), $filename);
+                $validated['logo'] = 'ormawa/' . $filename;
             }
 
             Ormawa::create($validated);
@@ -121,24 +127,24 @@ class OrmawaController extends Controller {
 
             // upload foto organisasi
             if ($request->hasFile('foto_organisasi')) {
-
-                // hapus foto lama jika ada
                 if ($ormawa->foto_organisasi) {
-                    Storage::disk('public')->delete($ormawa->foto_organisasi);
+                    File::delete(public_path($ormawa->foto_organisasi));
                 }
-
-                $validated['foto_organisasi']=$request->file('foto_organisasi')->store('ormawa', 'public');
+                $file = $request->file('foto_organisasi');
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/ormawa'), $filename);
+                $validated['foto_organisasi'] = 'ormawa/' . $filename;
             }
 
             // upload logo
             if ($request->hasFile('logo')) {
-
-                // hapus logo lama jika ada
                 if ($ormawa->logo) {
-                    Storage::disk('public')->delete($ormawa->logo);
+                    File::delete(public_path($ormawa->logo));
                 }
-
-                $validated['logo']=$request->file('logo')->store('ormawa', 'public');
+                $file = $request->file('logo');
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/ormawa'), $filename);
+                $validated['logo'] = 'ormawa/' . $filename;
             }
 
             $ormawa->update($validated);
@@ -157,12 +163,12 @@ class OrmawaController extends Controller {
 
             // hapus foto organisasi jika ada
             if ($ormawa->foto_organisasi) {
-                Storage::disk('public')->delete($ormawa->foto_organisasi);
+                File::delete(public_path($ormawa->foto_organisasi));
             }
 
             // hapus logo jika ada
             if ($ormawa->logo) {
-                Storage::disk('public')->delete($ormawa->logo);
+                File::delete(public_path($ormawa->logo));
             }
 
             $ormawa->delete();
@@ -193,8 +199,9 @@ class OrmawaController extends Controller {
 
             if ($request->hasFile('foto_barang')) {
                 $file=$request->file('foto_barang');
-                $path=$file->store('barang', 'public'); // storage/app/public/barang
-                $validated['foto_barang']=$path;
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/barang'), $filename);
+                $validated['foto_barang'] = 'barang/' . $filename;
             }
 
             try {
@@ -262,15 +269,13 @@ class OrmawaController extends Controller {
             $barang = Barang:: where('ormawa_id', $id)->findOrFail($barangId);
 
             if ($request->hasFile('foto_barang')) {
-
-                // hapus foto lama jika ada
                 if ($barang->foto_barang) {
-                    Storage::disk('public')->delete($barang->foto_barang);
+                    File::delete(public_path($barang->foto_barang));
                 }
-
                 $file=$request->file('foto_barang');
-                $path=$file->store('barang', 'public');
-                $validated['foto_barang']=$path;
+                $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('uploads/barang'), $filename);
+                $validated['foto_barang'] = 'barang/' . $filename;
             }
 
             $validated['jumlah_barang']=(int) $validated['jumlah_barang'];

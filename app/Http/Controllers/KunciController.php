@@ -37,9 +37,10 @@ class KunciController extends Controller {
 
             $peminjaman=PeminjamanRuangan::findOrFail($id);
 
-            // Simpan file ke storage
             $file=$request->file('foto_pemberian');
-            $path=$file->store('foto_pemberian', 'public');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/foto_pemberian'), $filename);
+            $path = 'foto_pemberian/' . $filename;
 
             $peminjaman->given_by=auth()->id();
             $peminjaman->foto_pemberian=$path;
@@ -66,7 +67,9 @@ class KunciController extends Controller {
 
             $peminjaman=PeminjamanRuangan::findOrFail($id);
             $file=$request->file('foto_pengembalian');
-            $path=$file->store('foto_pengembalian', 'public');
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/foto_pengembalian'), $filename);
+            $path = 'foto_pengembalian/' . $filename;
 
             $peminjaman->returned_by=auth()->id();
             $peminjaman->foto_pengembalian=$path;

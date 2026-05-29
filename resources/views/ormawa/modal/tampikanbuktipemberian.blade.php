@@ -13,7 +13,7 @@
 
             <div class="modal-body text-center">
 
-                <img src="{{ asset('storage/' . $item->foto_pemberian) }}"
+                <img src="{{ asset('uploads/' . $item->foto_pemberian) }}"
                     class="img-fluid rounded"
                     style="max-height:400px; margin-bottom:15px;"
                     alt="Bukti Pemberian">

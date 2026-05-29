@@ -14,13 +14,30 @@ use App\Http\Controllers\ApprovalBarangController;
 use App\Http\Controllers\ApprovalRuanganController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Models\Ormawa;
+use Illuminate\Support\Facades\Artisan;
 
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    
+    return response()->json([
+        'status'  => 'success',
+        'message' => 'All cache cleared successfully!',
+        'cleared' => [
+            'cache',
+            'config',
+            'route',
+            'view',
+        ]
+    ]);
+});
 
 // Login & Registrasi//
 Route::get('/', function () {
         return redirect()->route('login'); // langsung redirect ke login
     }
-
 );
 
 Route::get('/login', function () {

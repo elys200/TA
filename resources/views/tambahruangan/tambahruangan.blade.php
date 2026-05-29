@@ -30,7 +30,7 @@
                     <div class="card h-100" style="border: 1px solid #ddd;">
 
                         @if($r->foto)
-                        <img src="{{ asset('storage/' . $r->foto) }}" class="card-img-top card-img-fit" alt="Foto Ruangan">
+                        <img src="{{ asset('uploads/' . $r->foto) }}" class="card-img-top card-img-fit" alt="Foto Ruangan">
                         @endif
 
                         <div class="card-body d-flex flex-column">

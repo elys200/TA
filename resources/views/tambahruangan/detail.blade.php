@@ -12,7 +12,7 @@
         <form action="#" class="row g-3" enctype="multipart/form-data">
             <div class="col-md-12">
                 <label for="formFile" class="form-label fw-bold">Foto Ruangan</label>
-                <img src="{{ asset('storage/' . $ruangan->foto) }}" class="img-thumbnail" alt="Foto Ruangan"
+                <img src="{{ asset('uploads/' . $ruangan->foto) }}" class="img-thumbnail" alt="Foto Ruangan"
                     style="width: 200px height: 100px; object-fit: cover;">
             </div>
             <div class="col-md-6">

@@ -53,7 +53,7 @@
                             <label for="formFile" class="form-label fw-bold">Foto Organisasi</label>
                             @if(!empty($ormawa->foto_organisasi))
                             <div class="mb-2">
-                                <img src="{{ asset('storage/' . $ormawa->foto_organisasi) }}" alt="Foto Organisasi" class="img-thumbnail" style="max-width: 500px;">
+                                <img src="{{ asset('uploads/' . $ormawa->foto_organisasi) }}" alt="Foto Organisasi" class="img-thumbnail" style="max-width: 500px;">
                             </div>
                             @endif
                             <input class="form-control" type="file" id="formFile" name="foto_organisasi">
@@ -62,7 +62,7 @@
                             <label for="formFile" class="form-label fw-bold">Logo</label>
                             @if(!empty($ormawa->logo))
                             <div class="mb-2">
-                                <img src="{{ asset('storage/' . $ormawa->logo) }}" alt="Logo" class="img-thumbnail" style="max-width: 300px;">
+                                <img src="{{ asset('uploads/' . $ormawa->logo) }}" alt="Logo" class="img-thumbnail" style="max-width: 300px;">
                             </div>
                             @endif
                             <input class="form-control" type="file" id="formFile" name="logo">

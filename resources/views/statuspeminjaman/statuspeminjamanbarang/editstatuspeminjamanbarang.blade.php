@@ -92,7 +92,7 @@
                                     </td>
 
                                     <td>
-                                        <img src="{{ asset('storage/' . $barang->foto_barang) }}"
+                                        <img src="{{ asset('uploads/' . $barang->foto_barang) }}"
                                             class="img-fluid rounded" style="max-width:120px;">
                                     </td>
 

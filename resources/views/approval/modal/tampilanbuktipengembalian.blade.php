@@ -8,7 +8,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <img src="{{ asset('storage/' . $peminjamanRuangan->foto_pengembalian) }}"
+                <img src="{{ asset('uploads/' . $peminjamanRuangan->foto_pengembalian) }}"
                     class="img-fluid rounded mx-auto d-block" style="max-height:400px; margin-bottom: 10px;" alt="Bukti Pemberian">
             </div>
         </div>

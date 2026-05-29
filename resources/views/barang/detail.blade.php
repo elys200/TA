@@ -11,7 +11,7 @@
             {{-- FOTO --}}
             <div class="col-12 col-lg-5">
                 <div style="border-radius:12px; overflow:hidden; border:1px solid #e5e7eb;">
-                    <img src="{{ asset('storage/' . $barang->foto_barang) }}" alt="{{ $barang->nama_barang }}"
+                    <img src="{{ asset('uploads/' . $barang->foto_barang) }}" alt="{{ $barang->nama_barang }}"
                         style="width:100%; max-height:380px; object-fit:cover;">
                 </div>
             </div>

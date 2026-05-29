@@ -10,7 +10,7 @@
             <!-- GAMBAR -->
             <div class="col-12 col-lg-5 mb-4 mb-lg-0">
                 <div class="image-wrapper">
-                    <img src="{{ asset('storage/'.$barang->foto_barang) }}" class="img-fluid shadow-sm"
+                    <img src="{{ asset('uploads/' . $barang->foto_barang) }}" class="img-fluid shadow-sm"
                         style="object-fit:cover; max-height:350px;">
                 </div>
             </div>

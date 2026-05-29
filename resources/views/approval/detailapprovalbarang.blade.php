@@ -85,7 +85,7 @@ use Carbon\Carbon;
                                         </td>
 
                                         <td>
-                                            <img src="{{ asset('storage/' . $peminjaman->barang->foto_barang) }}"
+                                            <img src="{{ asset('uploads/' . $peminjaman->barang->foto_barang) }}"
                                                 class="img-fluid rounded" style="max-width:120px;">
                                         </td>
 
