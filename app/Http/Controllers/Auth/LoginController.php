@@ -31,6 +31,6 @@ class LoginController extends Controller {
         Auth::login($user);
         $request->session()->regenerate();
 
-        return redirect()->intended('/dashboard')->with('success', 'Login berhasil!');
+        return redirect()->intended('/')->with('success', 'Login berhasil!');
     }
 }
